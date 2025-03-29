@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../styles.css"
+    />
+    <title>Modelado de Objetos</title>
+  </head>
+  <body>
+    <header>
+      <h1>ANÁLISIS DE SISTEMAS 3/4</h1>
+      <h2>Modelado de Objetos</h2>
+    </header>
+    <main>
+      <nav>
+        <ul>
+          <li><a href="#analisis-oo">1 Análisis Orientado a Objetos</a></li>
+          <li><a href="#objetos">2 Objetos</a></li>
+          <li><a href="#atributos">3 Atributos</a></li>
+          <li><a href="#metodos">4 Métodos</a></li>
+          <li><a href="#mensajes">5 Mensajes</a></li>
+          <li><a href="#clases">6 Clases</a></li>
+          <li><a href="#relaciones">7 Relaciones entre Objetos y Clases</a></li>
+          <li><a href="#uml">8 Lenguaje Unificado de Modelado</a></li>
+        </ul>
+      </nav>
+      <section>
+        <h2 id="analisis-oo">1 Análisis Orientado a Objetos</h2>
+        <p>
+          Las opciones más populares de desarrollo de sistemas son el análisis
+          estructurado, el análisis orientado a objetos ("OO") y los métodos
+          ágiles. La metodología OO es popular porque se integra fácilmente con
+          lenguajes OO como PHP, Ruby, Python, C++, Java, etc. A los
+          programadores también les gusta OO porque es modular, reusable y fácil
+          de mantener.
+        </p>
+        <p>
+          El análisis OO describe un sistema informático al identificar cosas
+          llamadas "objetos". Un objeto representa algo real como una persona,
+          un lugar, un evento o una transacción. Por ejemplo, cuando un paciente
+          saca un turno para ver a un médico, el paciente se representa como
+          objeto, el doctor se representa como objeto y el mismo turno también
+          se representa como objeto.
+        </p>
+        <p>
+          El análisis OO es un enfoque popular en el cual se ve al sistema desde
+          el punto de vista de los objetos y de cómo funcionan e interactúan. El
+          producto final de un análisis OO es un modelo de objetos, el cual
+          representa el sistema informático en términos de objetos y conceptos
+          OO.
+        </p>
+      </section>
+      <section>
+        <h2 id="objetos">2 Objetos</h2>
+        <p>
+          Un objeto representa una persona, un lugar, un evento, una transacción
+          o cualquier cosa que sea significativa para el sistema informático.
+          Los DFD se crearon para tratar a los datos y procesos por separado.
+          Sin embargo, los objetos contienen datos y procesos que afectan los
+          datos a procesar.
+        </p>
+      </section>
+      <section>
+        <h2 id="atributos">3 Atributos</h2>
+        <p>
+          Un objeto tiene ciertos atributos, a los que podemos ver como
+          características que describen al objeto. Si los objetos son similares
+          a los "sustantivos", los atributos son similares a los "adjetivos" que
+          describen las características de un objeto.
+        </p>
+        <p>
+          Los analistas de sistemas definen los atributos de los objetos durante
+          el proceso del diseño del sistema. En un sistema OO, los objetos
+          pueden
+          <strong>heredar</strong>
+          ciertos atributos de otros objetos.
+        </p>
+      </section>
+      <section>
+        <h2 id="metodos">4 Métodos</h2>
+        <p>
+          Un objeto también tiene métodos, los cuales son tareas o funciones que
+          el objeto ejecuta cuando recibe un mensaje para hacerlo. Por ejemplo,
+          un auto ejecuta el método llamado "ENCENDER LIMPIAPARABRISAS" cuando
+          se le manda un mensaje a través de la palanca del limpiaparabrisas y
+          también puede "FRENAR" cuando se manda el mensaje al presionar el
+          pedal de freno. Los métodos definen tareas especificas que los objetos
+          pueden llevar a cabo. De la misma forma que los objetos son similares
+          a los "sustantivos" y los atributos son similares a los "adjetivos",
+          los métodos se parecen a los "verbos" que describen
+          <strong>qué</strong>
+          hacen los objetos y
+          <strong>cómo</strong>
+          .
+        </p>
+      </section>
+      <section>
+        <h2 id="mensajes">5 Mensajes</h2>
+        <p>
+          Un mensaje es un comando, que le dice al objeto, que tiene que
+          ejecutar cierto método. Por ejemplo, el mensaje "JUNTAR LOS JUGUETES"
+          le ordena al objeto "NIÑO" que realice todos los pasos necesarios para
+          juntar los juguetes. El objeto "NIÑO" entiende el mensaje y ejecuta el
+          método. Si se manda el mismo mensaje a dos objetos diferentes, se
+          puede obtener resultados diferentes. Se llama "polimorfismo" al
+          concepto en el cual un mensaje tiene diferentes significados con
+          diferentes objetos.
+        </p>
+        <p>
+          Los objetos se pueden ver como cajas negras, porque los mensajes a los
+          objetos disparan cambios dentro del mismo sin especificar cómo se
+          llevan a cabo.
+        </p>
+        <p>
+          El concepto de caja negra es un ejemplo de encapsulamiento, que
+          significa que todos los datos y métodos están auto-contenidos. Una
+          caja negra no quiere o necesita interferencia externa. Al limitar el
+          acceso a los procesos internos, los objetos previenen que su código
+          interno sea modificado por otros objetos o procesos. El
+          encapsulamiento le permite a los objetos ser usados como componentes
+          modulares en cualquier parte del sistema, debido a que los objetos
+          envían y reciben mensajes pero no alteran los métodos internos de
+          otros objetos.
+        </p>
+      </section>
+      <section>
+        <h2 id="clases">6 Clases</h2>
+        <p>
+          Un objeto pertenece a un grupo (o categoría) llamado
+          <strong>clase</strong>
+          . Un objeto es una instancia de una clase y miembro especifico de
+          ésta.
+        </p>
+        <p>
+          Todos los objetos que pertenecen a una clase comparten atributos y
+          métodos en común. A una clase se la puede describir como un plano o
+          una plantilla para todos los objetos de ésta clase. A los objetos de
+          una clase se los puede agrupar en subclases, las cuales son categorías
+          más especificas de la clase.
+        </p>
+      </section>
+      <section>
+        <h2 id="relaciones">7 Relaciones entre Objetos y Clases</h2>
+        <p>
+          Las relaciones permiten que los objetos se comuniquen e interactúen a
+          medida que ejecutan funciones de negocios y transacciones requeridas
+          por el sistema. Las relaciones describen qué es lo que los objetos
+          necesitan saber sobre los otros, cómo responden los objetos a los
+          cambios en otros objetos y los efectos de pertenecer a clases,
+          superclases y subclases. Algunas relaciones son más fuertes que otras
+          (de la misma forma que la relación entre familiares es más fuerte que
+          la relación entre conocidos). A la relación más fuerte se la llama
+          <strong>herencia</strong>
+          . La herencia le permite a un objeto, llamado "hijo", obtener
+          (heredar) uno o más de sus atributos de otro objeto llamado "padre".
+        </p>
+      </section>
+      <section>
+        <h2 id="uml">8 Lenguaje Unificado de Modelado</h2>
+        <p>
+          De la misma manera que el análisis estructurado usa los DFDs para
+          modelar datos y procesos, los analistas de sistemas usan el Lenguaje
+          Unificado de Modelado ("UML" del inglés "Unified Modeling Language")
+          para describir los sistemas OO. El UML usa un conjunto de símbolos
+          para representar gráficamente varios componentes y relaciones del
+          sistema. Si bien el UML puede ser usado para el modelado de procesos
+          de negocios y el modelado de requerimientos, se usa principalmente
+          para dar soporte al análisis de sistemas OO y desarrollar modelos de
+          objetos.
+        </p>
+        <!-- ...remaining content transformed to HTML... -->
+      </section>
+    </main>
+  </body>
+</html>

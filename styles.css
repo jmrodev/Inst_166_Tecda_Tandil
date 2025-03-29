@@ -1,0 +1,287 @@
+/* Variables de colores */
+:root {
+    --link-text-color: #f8faf8;
+  --white-color: #ffffff;
+  --btn-text-color: #4caf50;
+  --black-color: #1a1a1a;
+  --bg-color-primary: #f4f4f9;
+  --bg-color-secondary: #4caf50;
+  --text-color: #333333;
+  --border-color: #cccccc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+  --button-bg-color: #4caf50;
+  --button-hover-bg-color: #388e3c;
+  --text-hover-color: #4c7752;
+}
+
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
+  background-color: var(--bg-color-primary);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  background-color: var(--bg-color-secondary);
+  color: var(--white-color);
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+header nav a,
+footer a {
+  color: var(--link-text-color);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+header nav a:hover,
+footer a:hover {
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+section {
+  margin: 1rem 0;
+  padding: 5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+section h2 {
+  margin-top: 0;
+}
+
+section p {
+  margin: 0.5rem 2rem;
+}
+
+section ul,
+section ol {
+  padding-left: 20px;
+}
+
+h1,
+h2,
+h3,
+p {
+  font-family: 'Arial', sans-serif;
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--text-hover-color);
+}
+
+#images-container img {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+#pdfs-container a {
+  display: block;
+  margin: 5px 0;
+  color: var(--link-color);
+}
+
+#pdfs-container a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+#image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#image-viewer img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 2px solid var(--white-color);
+  border-radius: 5px;
+}
+
+#image-viewer.hidden {
+  display: none;
+}
+
+#close-viewer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--button-bg-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg-color);
+  transform: scale(1.05);
+}
+
+ul,
+ol {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+/* Estilos responsivos */
+
+/* Móviles (primera prioridad) */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+
+  header,
+  footer {
+    font-size: 0.9rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    padding: 1.5rem;
+  }
+
+  header,
+  footer {
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Notebooks/PC */
+@media (min-width: 769px) and (max-width: 1200px) {
+  body {
+    padding: 2rem;
+  }
+
+  header,
+  footer {
+    font-size: 1.2rem;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  a {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* TVs */
+@media (min-width: 1201px) {
+  body {
+    padding: 3rem;
+  }
+
+  header,
+  footer {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding: 2rem;
+  }
+
+  a {
+    font-size: 1.3rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  button {
+    font-size: 1.3rem;
+    padding: 0.8rem 1.5rem;
+  }
+}

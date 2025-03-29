@@ -1,0 +1,152 @@
+{
+  "Analisis_matematico": {
+    "pdfs": {
+      "files": [
+        "Apuntes Análisis Matemático II.pdf"
+      ]
+    }
+  },
+  "Analisis_sistema": {
+    "html": {
+      "files": [
+        "analisis_de_sistemas_01_de_12.html",
+        "analisis_de_sistemas_02_de_12.html",
+        "analisis_de_sistemas_03_de_12.html",
+        "analisis_de_sistemas_04_de_12.html",
+        "analisis_de_sistemas_05_de_12.html",
+        "analisis_de_sistemas_06_de_12.html",
+        "analisis_de_sistemas_07_de_12.html",
+        "analisis_de_sistemas_08_de_12.html",
+        "analisis_de_sistemas_09_de_12.html",
+        "analisis_de_sistemas_10_de_12.html",
+        "analisis_de_sistemas_11_de_12.html",
+        "analisis_de_sistemas_12_de_12.html"
+      ]
+    },
+    "pdfs": {
+      "files": [
+        "00_introduccion.pdf",
+        "01_introduccion_analisis_y_diseno.pdf",
+        "02_analisis_casos_negocios.pdf"
+      ]
+    }
+  },
+  "EdiII": {
+    "Scripts": {
+      "files": [
+        "arith-loop",
+        "array-2-4thEd",
+        "array-lookup",
+        "array-mapfile",
+        "array-multi",
+        "array-sort",
+        "async-child",
+        "async-parent",
+        "average",
+        "case-menu",
+        "distros.txt",
+        "file-info",
+        "getopts-test",
+        "hours",
+        "loan-calc",
+        "local-vars",
+        "longest-word",
+        "longest-word2",
+        "longest-word3",
+        "modulo",
+        "modulo2",
+        "posit-param",
+        "posit-param2",
+        "posit-param3",
+        "read-ifs",
+        "read-integer",
+        "read-menu",
+        "read-multiple",
+        "read-secret",
+        "read-single",
+        "read-validate",
+        "simple_counter",
+        "sys_info_page",
+        "test-integer",
+        "test-integer2",
+        "test-integer2a",
+        "test-integer3",
+        "test-integer4",
+        "test-string",
+        "trap-demo",
+        "trap-demo2",
+        "trap-demo3",
+        "ul-param",
+        "until-count",
+        "while-count",
+        "while-menu",
+        "while-menu2",
+        "while-read",
+        "while-read2"
+      ]
+    },
+    "pdfs": {
+      "files": [
+        "AWTLCL-21.10.pdf",
+        "La línea de comandos de Linux.pdf",
+        "TLCL-24.11.pdf",
+        "edi2_00_links (1).pdf",
+        "edi2_00_links.pdf",
+        "edi2_01_debian.pdf",
+        "edi2_02_cli_01.pdf",
+        "edi2_02_cli_02.pdf",
+        "edi2_02_cli_03.pdf",
+        "edi2_02_cli_04.pdf",
+        "edi2_02_cli_05.pdf",
+        "edi2_03_git_01.pdf",
+        "edi2_03_git_02.pdf",
+        "edi2_04_network.pdf",
+        "edi2_05_restful_api.pdf",
+        "edi2_06_lc_01.pdf",
+        "edi2_06_lc_02.pdf",
+        "edi2_06_lc_03.pdf"
+      ]
+    }
+  },
+  "English": {
+    "images": {
+      "files": [
+        "Past Regular -ED Spelling.png",
+        "Past Simple of Verb To Be.jpg",
+        "Past Simple.jpg",
+        "Present Perfect - Affirmative.jpg",
+        "Present Perfect - Negative Form.jpg",
+        "Present Perfect - Questions.jpg",
+        "Present_Perfect_Form.jpg"
+      ]
+    },
+    "pdfs": {
+      "files": [
+        "Past_Simple_-_Revision.pdf",
+        "Past_Simple_Revision_-_Answers.pdf",
+        "Professional_Profile_-_Jay_Peters.pdf",
+        "Unit 1 - An Introduction to Emails.pdf",
+        "Unit 1 - Jobs.pdf",
+        "Unit_1_-_Review_-_Answers.pdf",
+        "Unit_1_-_Review_-_Page_94.pdf"
+      ]
+    }
+  },
+  "Poo": {
+    "files": [
+      "Clase - 01.pdf"
+    ],
+    "pdfs": {
+      "files": [
+        "Clase - 01.pdf"
+      ]
+    }
+  },
+  "Probabilidad_estadistica": {
+    "pdfs": {
+      "files": [
+        "Apuntes Álgebra.pdf"
+      ]
+    }
+  }
+}
