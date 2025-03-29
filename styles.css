@@ -20,7 +20,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  line-height: 1.6;
+  line-height: 1.2;
   background-color: var(--bg-color-primary);
   color: var(--text-color);
   display: flex;
@@ -55,9 +55,14 @@ main {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0rem;
 }
 
+/* primera letra en mayuscula */
+body > main > ul > li > a{
+  text-transform: capitalize;
+
+}
 section {
   margin: 1rem 0;
   padding: 5rem;

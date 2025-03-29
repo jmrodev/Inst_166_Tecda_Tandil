@@ -39,7 +39,12 @@ const generateSubjectPages = () => {
                 dynamicLinks += `
                     <h2>${folder.charAt(0).toUpperCase() + folder.slice(1)} Files</h2>
                     <ul>
-                        ${files.map(file => `<li><a href="${folder}/${file}" target="_blank">${file}</a></li>`).join('')}
+                        ${files.map(file => `
+                            <li>
+                                <a href="${path.join(subject, folder, file)}" target="_blank">
+                                    ${file}
+                                </a>
+                            </li>`).join('')}
                     </ul>
                 `;
             }
