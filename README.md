@@ -10,7 +10,50 @@ Bienvenido/a al repositorio de la aplicación **Inst_166_Tecda_Tandil**. Este pr
 
 ---
 
+## 📂 Estructura de carpetas
 
+A continuación, se muestra un ejemplo de cómo debería organizarse el directorio `subjects` para que el sistema funcione correctamente, con los archivos organizados por tipo dentro de cada materia:
+
+```
+subjects/
+├── Materia1/
+│   ├── index.html
+│   ├── PDFs/
+│   │   ├── archivo1.pdf
+│   │   ├── archivo2.pdf
+│   ├── Images/
+│   │   ├── imagen1.png
+│   │   ├── imagen2.jpg
+│   ├── Scripts/
+│   │   ├── script1.sh
+│   │   ├── script2.py
+│   └── Others/
+│       ├── archivo1.txt
+│       ├── archivo2.docx
+├── Materia2/
+│   ├── index.html
+│   ├── PDFs/
+│   │   ├── archivo3.pdf
+│   ├── Images/
+│   │   ├── imagen3.png
+│   └── Scripts/
+│       ├── script3.sh
+└── Materia3/
+    ├── index.html
+    ├── PDFs/
+    │   ├── archivo4.pdf
+    └── Images/
+        ├── imagen4.svg
+```
+
+- **PDFs/**: Carpeta para documentos en formato PDF.
+- **Images/**: Carpeta para imágenes en formatos como `.png`, `.jpg`, `.svg`, etc.
+- **Scripts/**: Carpeta para scripts en formatos como `.sh`, `.py`, etc.
+- **Others/**: Carpeta para otros tipos de archivos como `.txt`, `.docx`, etc.
+
+Esta organización facilita la navegación y el acceso a los archivos según su tipo.
+
+---
 
 ## 📚 ¿Cómo generar el archivo `files.json`?
 
@@ -24,8 +67,6 @@ El archivo `files.json` contiene la estructura de carpetas y archivos dentro del
 3. Esto generará un archivo `files.json` en el directorio `scripts`, que incluirá la estructura de carpetas y archivos.
 
 ---
-
-
 
 ## 📂 ¿Cómo generar las páginas dinámicas para las materias?
 
@@ -43,7 +84,6 @@ Una vez que tengas el archivo `files.json`, puedes generar las páginas HTML din
 ## 🛠️ Requisitos técnicos
 
 - **Node.js**: Versión 16 o superior.
-- **Base de datos**: MySQL o PostgreSQL (configurable).
 - **Navegador**: Compatible con las últimas versiones de Chrome, Firefox y Edge.
 
 ---
@@ -61,6 +101,6 @@ Una vez que tengas el archivo `files.json`, puedes generar las páginas HTML din
 
 ## 📞 Soporte
 
-Si tienes alguna duda o necesitas ayuda, no dudes en contactarnos a través de nuestro correo: **soporte@inst166.edu.ar**.
+Si tienes alguna duda o necesitas ayuda, no dudes en contactarnos a través de nuestro correo: **juanmarcelo.rodrigueztandil@gmail.com**.
 
 ¡Gracias por usar **Inst_166_Tecda_Tandil**! 🎉
