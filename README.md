@@ -6,30 +6,37 @@ Bienvenido/a al repositorio de la aplicación **Inst_166_Tecda_Tandil**. Este pr
 
 - **Gestión de materias**: Crea, edita y organiza materias de forma intuitiva.
 - **Carga de archivos**: Sube y organiza archivos mediante la creación de carpetas específicas para cada materia.
-- **Interfaz amigable**: Diseñada para ser fácil de usar, incluso para usuarios con poca experiencia técnica.
+- **Generación de páginas dinámicas**: Automatiza la creación de páginas HTML para cada materia con enlaces a los archivos disponibles.
 
 ---
 
-## 📚 ¿Cómo crear una nueva materia?
 
-1. Accede a la sección de **Gestión de Materias** en la aplicación.
-2. Haz clic en el botón **Crear Materia**.
-3. Completa los campos requeridos, como:
-   - Nombre de la materia.
-   - Descripción (opcional).
-   - Profesor/a asignado/a (si aplica).
-4. Guarda los cambios y la nueva materia aparecerá en la lista.
+
+## 📚 ¿Cómo generar el archivo `files.json`?
+
+El archivo `files.json` contiene la estructura de carpetas y archivos dentro del directorio `subjects`. Sigue estos pasos para generarlo:
+
+1. Asegúrate de que el directorio `subjects` contenga las carpetas y archivos organizados por materia.
+2. Ejecuta el siguiente comando desde la raíz del proyecto:
+   ```bash
+   node scripts/generateFileTree.js
+   ```
+3. Esto generará un archivo `files.json` en el directorio `scripts`, que incluirá la estructura de carpetas y archivos.
 
 ---
 
-## 📂 ¿Cómo cargar archivos mediante la creación de carpetas?
 
-1. Navega a la sección de **Archivos** dentro de la materia correspondiente.
-2. Haz clic en el botón **Crear Carpeta**.
-3. Asigna un nombre a la carpeta que identifique claramente su contenido (por ejemplo, "Trabajos Prácticos" o "Exámenes").
-4. Una vez creada la carpeta, selecciona la opción **Subir Archivos**.
-5. Arrastra y suelta los archivos o selecciona los documentos desde tu dispositivo.
-6. Los archivos se guardarán automáticamente dentro de la carpeta seleccionada.
+
+## 📂 ¿Cómo generar las páginas dinámicas para las materias?
+
+Una vez que tengas el archivo `files.json`, puedes generar las páginas HTML dinámicas para cada materia:
+
+1. Asegúrate de haber generado el archivo `files.json` siguiendo los pasos anteriores.
+2. Ejecuta el siguiente comando desde la raíz del proyecto:
+   ```bash
+   node scripts/generateSubjectPages.js
+   ```
+3. Esto creará un archivo `index.html` dentro de cada carpeta de materia en el directorio `subjects`. Estas páginas incluirán enlaces a los archivos disponibles en cada materia.
 
 ---
 
