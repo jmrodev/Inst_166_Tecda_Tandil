@@ -1,10 +1,9 @@
-/* Variables de colores */
 :root {
-    --link-text-color: #f8faf8;
+  --link-text-color: #f8faf8;
   --white-color: #ffffff;
   --btn-text-color: #4caf50;
   --black-color: #1a1a1a;
-  --bg-color-primary: #f4f4f9;
+  --bg-color-primary: #f2f2ff;
   --bg-color-secondary: #4caf50;
   --text-color: #333333;
   --border-color: #cccccc;
@@ -16,7 +15,6 @@
   --text-hover-color: #4c7752;
 }
 
-/* Estilos generales */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -57,7 +55,6 @@ main {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1.5rem;
 }
 
@@ -180,9 +177,7 @@ li {
   margin: 0.5rem 0;
 }
 
-/* Estilos responsivos */
 
-/* Móviles (primera prioridad) */
 @media (max-width: 480px) {
   body {
     padding: 1rem;
@@ -208,7 +203,6 @@ li {
   }
 }
 
-/* Tablets */
 @media (min-width: 481px) and (max-width: 768px) {
   body {
     padding: 1.5rem;
@@ -234,7 +228,6 @@ li {
   }
 }
 
-/* Notebooks/PC */
 @media (min-width: 769px) and (max-width: 1200px) {
   body {
     padding: 2rem;
@@ -260,7 +253,6 @@ li {
   }
 }
 
-/* TVs */
 @media (min-width: 1201px) {
   body {
     padding: 3rem;
