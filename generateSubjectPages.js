@@ -39,12 +39,15 @@ const generateSubjectPages = () => {
                 dynamicLinks += `
                     <h2>${folder.charAt(0).toUpperCase() + folder.slice(1)} Files</h2>
                     <ul>
-                        ${files.map(file => `
-                            <li>
-                                <a href="${path.join(subject, folder, file)}" target="_blank">
-                                    ${file}
-                                </a>
-                            </li>`).join('')}
+                        ${files.map(file => {
+                            const isShellScript = file.endsWith('.sh'); // Verificar si es un archivo .sh
+                            return `
+                                <li>
+                                    <a href="${folder}/${file}" ${isShellScript ? 'download' : ''}>
+                                        ${isShellScript ? 'Descargar' : 'Ver'} ${file}
+                                    </a>
+                                </li>`;
+                        }).join('')}
                     </ul>
                 `;
             }
