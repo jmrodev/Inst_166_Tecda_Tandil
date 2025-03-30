@@ -1,158 +1,87 @@
 {
-  "Primer_anio": {
+  "Primer_anio": {},
+  "Segundo_anio": {
     "Analisis_matematico": {
       "files": [
         "index.html"
       ],
       "pdfs": {
         "files": [
-          "Apuntes Análisis Matemático II.pdf"
+          "Apuntes Análisis Matemático II.pdf.html"
         ]
       }
     },
     "Analisis_sistema": {
       "html": {
-        "files": [
-          "administrando_proyectos_de_sistemas.html",
-          "analisis_de_casos_de_negocios.html",
-          "diseno_de_datos.html",
-          "diseno_de_interfaces_de_usuario.html",
-          "diseno_de_sistemas.html",
-          "estrategias_de_desarrollo.html",
-          "implementacion_de_sistemas.html",
-          "ingenieria_de_requerimientos.html",
-          "introduccion_al_analisis_y_diseno_de_sistemas.html",
-          "modelado_de_datos_y_procesos.html",
-          "modelado_de_objetos.html",
-          "soporte_y_seguridad_de_los_sistemas.html"
-        ]
+        "files": []
       },
       "files": [
         "index.html"
       ],
       "pdfs": {
         "files": [
-          "00_introduccion.pdf",
-          "01_introduccion_analisis_y_diseno.pdf",
-          "02_analisis_casos_negocios.pdf"
+          "00_introduccion.pdf.html",
+          "01_introduccion_analisis_y_diseno.pdf.html",
+          "02_analisis_casos_negocios.pdf.html"
         ]
       }
     },
     "EdiII": {
       "Scripts": {
-        "files": [
-          "arith-loop.sh",
-          "array-2-4thEd.sh",
-          "array-lookup.sh",
-          "array-mapfile.sh",
-          "array-multi.sh",
-          "array-sort.sh",
-          "async-child.sh",
-          "async-parent.sh",
-          "average.sh",
-          "case-menu.sh",
-          "distros.sh.txt",
-          "file-info.sh",
-          "getopts-test.sh",
-          "hours.sh",
-          "loan-calc.sh",
-          "local-vars.sh",
-          "longest-word.sh",
-          "longest-word2.sh",
-          "longest-word3.sh",
-          "modulo.sh",
-          "modulo2.sh",
-          "posit-param.sh",
-          "posit-param2.sh",
-          "posit-param3.sh",
-          "read-ifs.sh",
-          "read-integer.sh",
-          "read-menu.sh",
-          "read-multiple.sh",
-          "read-secret.sh",
-          "read-single.sh",
-          "read-validate.sh",
-          "simple_counter.sh",
-          "sys_info_page.sh",
-          "test-integer.sh",
-          "test-integer2.sh",
-          "test-integer2a.sh",
-          "test-integer3.sh",
-          "test-integer4.sh",
-          "test-string.sh",
-          "trap-demo.sh",
-          "trap-demo2.sh",
-          "trap-demo3.sh",
-          "ul-param.sh",
-          "until-count.sh",
-          "while-count.sh",
-          "while-menu.sh",
-          "while-menu2.sh",
-          "while-read.sh",
-          "while-read2.sh"
-        ]
+        "files": []
       },
       "files": [
         "index.html"
       ],
       "pdfs": {
         "files": [
-          "AWTLCL-21.10.pdf",
-          "La línea de comandos de Linux.pdf",
-          "TLCL-24.11.pdf",
-          "edi2_00_links (1).pdf",
-          "edi2_00_links.pdf",
-          "edi2_01_debian.pdf",
-          "edi2_02_cli_01.pdf",
-          "edi2_02_cli_02.pdf",
-          "edi2_02_cli_03.pdf",
-          "edi2_02_cli_04.pdf",
-          "edi2_02_cli_05.pdf",
-          "edi2_03_git_01.pdf",
-          "edi2_03_git_02.pdf",
-          "edi2_04_network.pdf",
-          "edi2_05_restful_api.pdf",
-          "edi2_06_lc_01.pdf",
-          "edi2_06_lc_02.pdf",
-          "edi2_06_lc_03.pdf"
+          "AWTLCL-21.10.pdf.html",
+          "La línea de comandos de Linux.pdf.html",
+          "TLCL-24.11.pdf.html",
+          "edi2_00_links (1).pdf.html",
+          "edi2_00_links.pdf.html",
+          "edi2_01_debian.pdf.html",
+          "edi2_02_cli_01.pdf.html",
+          "edi2_02_cli_02.pdf.html",
+          "edi2_02_cli_03.pdf.html",
+          "edi2_02_cli_04.pdf.html",
+          "edi2_02_cli_05.pdf.html",
+          "edi2_03_git_01.pdf.html",
+          "edi2_03_git_02.pdf.html",
+          "edi2_04_network.pdf.html",
+          "edi2_05_restful_api.pdf.html",
+          "edi2_06_lc_01.pdf.html",
+          "edi2_06_lc_02.pdf.html",
+          "edi2_06_lc_03.pdf.html"
         ]
       }
     },
     "English": {
       "images": {
-        "files": [
-          "Past Regular -ED Spelling.png",
-          "Past Simple of Verb To Be.jpg",
-          "Past Simple.jpg",
-          "Present Perfect - Affirmative.jpg",
-          "Present Perfect - Negative Form.jpg",
-          "Present Perfect - Questions.jpg",
-          "Present_Perfect_Form.jpg"
-        ]
+        "files": []
       },
       "files": [
         "index.html"
       ],
       "pdfs": {
         "files": [
-          "Past_Simple_-_Revision.pdf",
-          "Past_Simple_Revision_-_Answers.pdf",
-          "Professional_Profile_-_Jay_Peters.pdf",
-          "Unit 1 - An Introduction to Emails.pdf",
-          "Unit 1 - Jobs.pdf",
-          "Unit_1_-_Review_-_Answers.pdf",
-          "Unit_1_-_Review_-_Page_94.pdf"
+          "Past_Simple_-_Revision.pdf.html",
+          "Past_Simple_Revision_-_Answers.pdf.html",
+          "Professional_Profile_-_Jay_Peters.pdf.html",
+          "Unit 1 - An Introduction to Emails.pdf.html",
+          "Unit 1 - Jobs.pdf.html",
+          "Unit_1_-_Review_-_Answers.pdf.html",
+          "Unit_1_-_Review_-_Page_94.pdf.html"
         ]
       }
     },
     "Poo": {
       "files": [
-        "Clase - 01.pdf",
         "index.html"
       ],
       "pdfs": {
         "files": [
-          "Clase - 01.pdf"
+          "Clase - 01.pdf.html"
         ]
       }
     },
@@ -162,9 +91,12 @@
       ],
       "pdfs": {
         "files": [
-          "Apuntes Álgebra.pdf"
+          "Apuntes Álgebra.pdf.html"
         ]
       }
-    }
+    },
+    "files": [
+      "index.html"
+    ]
   }
 }
