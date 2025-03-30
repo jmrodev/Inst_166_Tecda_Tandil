@@ -11,7 +11,20 @@ const generateFileTree = (dir) => {
     items.forEach((item) => {
         const fullPath = path.join(dir, item.name);
         if (item.isDirectory()) {
-            result[item.name] = generateFileTree(fullPath);
+            // Detectar carpetas específicas como pdfs, html, images, Scripts
+            if (['pdfs', 'html', 'images', 'Scripts'].includes(item.name)) {
+                result[item.name] = { files: [] };
+                const subItems = fs.readdirSync(fullPath);
+                subItems.forEach((subItem) => {
+                    const subItemPath = path.join(fullPath, subItem);
+                    if (fs.statSync(subItemPath).isFile()) {
+                        result[item.name].files.push(subItem);
+                    }
+                });
+            } else {
+                // Procesar otras carpetas recursivamente
+                result[item.name] = generateFileTree(fullPath);
+            }
         } else {
             if (!result.files) result.files = [];
             result.files.push(item.name);
