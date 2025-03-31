@@ -1,0 +1,21 @@
+# Ignorar archivos de entorno (variables sensibles)
+.env
+.env.local
+
+# Ignorar dependencias y carpetas generadas
+node_modules/
+dist/
+build/
+
+# Ignorar archivos de IDE/Editor
+.idea/
+.vscode/
+*.swp
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar logs y temporales
+*.log
+*.tmp

@@ -27,16 +27,18 @@ const generateSubjectPages = () => {
     Object.keys(folderContent).forEach((key) => {
       if (key === 'files') {
         folderContent[key].forEach((file) => {
+          const encodedFile = encodeURIComponent(file).replace(/%20/g, '_') // Reemplazar espacios por guiones bajos
+          const displayName = decodeURIComponent(file.replace(/_/g, ' ')) // Decodificar nombres con espacios
           if (file !== 'index.html') {
             // Excluir index.html de la lista
             dynamicLinks += `
                             <li>
-                                <a href="${file}" ${
+                                <a href="${encodedFile}" ${
               file.endsWith('.sh') ? 'download' : ''
             }>
 ${
   file.endsWith('.sh') ? 'Descargar' : 'Ver'
-}                                     ${file}
+}                                     ${displayName}
                                 </a>
                             </li>`
           }
@@ -54,58 +56,66 @@ ${
         }
 
         folderContent[key].files.forEach((file) => {
+          const encodedFile = encodeURIComponent(file) // Codificar espacios y caracteres especiales
+          const displayName = decodeURIComponent(file) // Decodificar para mostrar correctamente
+
+          // Excluir archivos .pdf.html del índice
+          if (file.endsWith('.pdf.html')) {
+            return // Saltar este archivo
+          }
+
           if (file.endsWith('.pdf')) {
             // Generar un archivo HTML con un iframe para el PDF
-            const pdfViewerPath = path.join(subfolder, `${file}.html`)
+            const pdfViewerPath = path.join(subfolder, `${encodedFile}.html`)
             const pdfViewerContent = `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${file}</title>
+    <title>${displayName}</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header id="header">
         <nav>
-            <a href="/index.html">Home</a>
+            <a href="/index.html">Inicio</a>
         </nav>
     </header>
     <main>
-        <h1>Visualizando: ${file}</h1>
-        <iframe src="${file}" width="100%" height="600px" style="border: none;"></iframe>
+        <h1>Visualizando: ${displayName}</h1>
+        <iframe src="./${encodedFile}" width="100%" height="600px" style="border: none;"></iframe>
     </main>
     <footer id="footer">
         <p>&copy; 2023 Vanilla JS SPA</p>
     </footer>
 </body>
 </html>
-                        `
+        `
             fs.writeFileSync(pdfViewerPath, pdfViewerContent)
             console.log(`Archivo HTML generado para visualizar el PDF: ${file}`)
 
             // Agregar enlace al archivo HTML del visor
             dynamicLinks += `
-                            <li>
-                                <a href="${key}/${file}.html">${file}</a>
-                            </li>`
+        <li>
+            <a href="${key}/${encodedFile}.html">${displayName}</a>
+        </li>`
           } else {
             dynamicLinks += `
-                            <li>
-                                <a href="${key}/${file}" ${
+        <li>
+            <a href="${key}/${encodedFile}" ${
               file.endsWith('.sh') ? 'download' : ''
             }>
-                                    ${file}
-                                </a>
-                            </li>`
+                ${displayName}
+            </a>
+        </li>`
           }
         })
       } else {
         // Agregar enlace a la subcarpeta
         dynamicLinks += `
                     <li>
-                        <a href="${key}/index.html">Abrir carpeta: ${key}</a>
+                        <a href="${key}/index.html">${key}</a>
                     </li>`
         // Procesar subcarpetas recursivamente
         processFolder(key, folderContent[key], currentDir)
