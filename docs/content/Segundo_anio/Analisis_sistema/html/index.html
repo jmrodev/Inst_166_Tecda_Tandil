@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html | Instituto 166</title>
+  <link rel="stylesheet" href="../../../../styles.css">
+</head>
+<body>
+  <header>
+    <h1>html</h1>
+    <nav class="breadcrumb">
+      <a href="../../../../index.html">Inicio</a> /
+      <a href="../../../../content/index.html">content</a> / <a href="../../../../content/Segundo_anio/index.html">Segundo_anio</a> / <a href="../../../../content/Segundo_anio/Analisis_sistema/index.html">Analisis_sistema</a> / <a href="../../../../content/Segundo_anio/Analisis_sistema/html/index.html">html</a>
+    </nav>
+  </header>
+
+  <main>
+    
+
+    
+    <section class="files">
+      <h2>Archivos</h2>
+      <ul>
+        
+          <li>
+            <a href="#" onclick="loadPDF('01_introduccion_al_analisis_y_diseno_de_sistemas.html')">
+              📄 01_introduccion_al_analisis_y_diseno_de_sistemas.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('02_analisis_de_casos_de_negocios.html')">
+              📄 02_analisis_de_casos_de_negocios.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('03_administrando_proyectos_de_sistemas.html')">
+              📄 03_administrando_proyectos_de_sistemas.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('04_ingenieria_de_requerimientos.html')">
+              📄 04_ingenieria_de_requerimientos.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('05_modelado_de_datos_y_procesos.html')">
+              📄 05_modelado_de_datos_y_procesos.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('06_modelado_de_objetos.html')">
+              📄 06_modelado_de_objetos.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('07_estrategias_de_desarrollo.html')">
+              📄 07_estrategias_de_desarrollo.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('08_diseno_de_interfaces_de_usuario.html')">
+              📄 08_diseno_de_interfaces_de_usuario.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('09_diseno_de_datos.html')">
+              📄 09_diseno_de_datos.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('10_arquitectura_del_sistemas.html')">
+              📄 10_arquitectura_del_sistemas.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('11_implementacion_de_sistemas.html')">
+              📄 11_implementacion_de_sistemas.html
+            </a>
+          </li>
+        
+          <li>
+            <a href="#" onclick="loadPDF('12_soporte_y_seguridad_de_los_sistemas.html')">
+              📄 12_soporte_y_seguridad_de_los_sistemas.html
+            </a>
+          </li>
+        
+      </ul>
+    </section>
+
+    <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
+      <h2>Visor de PDF</h2>
+      <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    <p>Instituto 166 - Tecda Tandil • 1/4/2025</p>
+  </footer>
+
+  <script>
+    function loadPDF(pdfPath) {
+      const viewer = document.getElementById('pdf-viewer');
+      const frame = document.getElementById('pdf-frame');
+      frame.src = pdfPath;
+      viewer.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

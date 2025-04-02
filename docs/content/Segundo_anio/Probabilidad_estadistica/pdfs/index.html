@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pdfs | Instituto 166</title>
+  <link rel="stylesheet" href="../../../../styles.css">
+</head>
+<body>
+  <header>
+    <h1>pdfs</h1>
+    <nav class="breadcrumb">
+      <a href="../../../../index.html">Inicio</a> /
+      <a href="../../../../content/index.html">content</a> / <a href="../../../../content/Segundo_anio/index.html">Segundo_anio</a> / <a href="../../../../content/Segundo_anio/Probabilidad_estadistica/index.html">Probabilidad_estadistica</a> / <a href="../../../../content/Segundo_anio/Probabilidad_estadistica/pdfs/index.html">pdfs</a>
+    </nav>
+  </header>
+
+  <main>
+    
+
+    
+    <section class="files">
+      <h2>Archivos</h2>
+      <ul>
+        
+          <li>
+            <a href="#" onclick="loadPDF('Apuntes Álgebra.pdf')">
+              📄 Apuntes Álgebra.pdf
+            </a>
+          </li>
+        
+      </ul>
+    </section>
+
+    <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
+      <h2>Visor de PDF</h2>
+      <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    <p>Instituto 166 - Tecda Tandil • 1/4/2025</p>
+  </footer>
+
+  <script>
+    function loadPDF(pdfPath) {
+      const viewer = document.getElementById('pdf-viewer');
+      const frame = document.getElementById('pdf-frame');
+      frame.src = pdfPath;
+      viewer.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

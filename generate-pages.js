@@ -4,7 +4,7 @@ const path = require('path')
 // 1. Configuración corregida
 const CONFIG = {
   sourceRoot: path.join(__dirname, 'pages'), // Directorio raíz del contenido
-  outputRoot: path.join(__dirname, 'dist'), // Directorio de salida
+  outputRoot: path.join(__dirname, 'docs'), // Directorio de salida
   baseHref: '', // Para GitHub Pages: '/tu-repositorio'
   excludes: ['node_modules', '.git', 'dist', '*.md', '.DS_Store'],
 }
