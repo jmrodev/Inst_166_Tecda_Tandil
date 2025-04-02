@@ -229,16 +229,36 @@ li {
 
 @media (min-width: 481px) and (max-width: 768px) {
   body {
-    padding: 1.5rem;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    background-color: var(--bg-color-primary);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+
   }
 
   header,
   footer {
     font-size: 1rem;
+    padding: 0.5rem;
+    background-color: var(--bg-color-secondary);
+    color: var(--white-color);
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+
   }
 
   main {
-    padding: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    overflow: hidden;
+    
   }
 
   a {
