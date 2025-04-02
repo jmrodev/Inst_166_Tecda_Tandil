@@ -26,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-y: auto; /* Permitir desplazamiento vertical */
 }
 
 header,
@@ -56,12 +57,12 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0rem;
+  overflow-y: auto; /* Permitir desplazamiento vertical dentro de main */
 }
 
 /* primera letra en mayuscula */
-body > main > ul > li > a{
+body > main > ul > li > a {
   text-transform: capitalize;
-
 }
 section {
   margin: 1rem 0;
@@ -182,7 +183,6 @@ li {
   margin: 0.5rem 0;
 }
 
-
 @media (max-width: 480px) {
   body {
     padding: 0;
@@ -191,10 +191,10 @@ li {
     background-color: var(--bg-color-primary);
     color: var(--text-color);
     min-height: 100vh;
-    
+    overflow-y: auto; /* Asegurar desplazamiento en móviles */
   }
 
-  section{
+  section {
     width: 100%;
     padding: 0;
     margin: 0;
@@ -202,7 +202,6 @@ li {
     border-radius: 0;
     background-color: transparent;
     box-shadow: none;
-
   }
   header,
   footer {
@@ -211,6 +210,7 @@ li {
 
   main {
     padding: 0.5rem;
+    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
   }
 
   a {
@@ -232,7 +232,7 @@ li {
     background-color: var(--bg-color-primary);
     color: var(--text-color);
     min-height: 100vh;
-
+    overflow-y: auto; /* Asegurar desplazamiento en tabletas */
   }
 
   header,
@@ -243,13 +243,12 @@ li {
     color: var(--white-color);
     text-align: center;
     box-shadow: 0 2px 5px var(--shadow-color);
-
   }
 
   main {
     padding: 0.5rem;
     gap: 0rem;
-    
+    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
   }
 
   a {
