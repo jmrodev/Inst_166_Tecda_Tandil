@@ -26,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-y: auto; /* Permitir desplazamiento vertical */
 }
 
 header,
@@ -56,12 +57,12 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0rem;
+  overflow-y: auto; /* Permitir desplazamiento vertical dentro de main */
 }
 
 /* primera letra en mayuscula */
-body > main > ul > li > a{
+body > main > ul > li > a {
   text-transform: capitalize;
-
 }
 section {
   margin: 1rem 0;
@@ -90,6 +91,11 @@ h3,
 p {
   font-family: 'Arial', sans-serif;
   color: var(--text-color);
+}
+
+p {
+  line-height: 1.6; /* Aumentar la altura de línea para mayor separación */
+  margin-bottom: 1rem; /* Agregar margen inferior entre párrafos */
 }
 
 a {
@@ -182,22 +188,18 @@ li {
   margin: 0.5rem 0;
 }
 
-
 @media (max-width: 480px) {
   body {
     padding: 0;
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 2.5rem; /* Tamaño de fuente más generoso */
     background-color: var(--bg-color-primary);
     color: var(--text-color);
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
-    overflow: hidden;
-    
+    overflow-y: auto; /* Asegurar desplazamiento en móviles */
   }
 
-  section{
+  section {
     width: 100%;
     padding: 0;
     margin: 0;
@@ -205,25 +207,36 @@ li {
     border-radius: 0;
     background-color: transparent;
     box-shadow: none;
-
   }
   header,
   footer {
-    font-size: 0.9rem;
+    font-size: 1.2rem; /* Aumentar tamaño de fuente en header y footer */
   }
 
   main {
     padding: 0.5rem;
+    font-size: 1.5rem; /* Aumentar tamaño de fuente en el contenido principal */
+    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
   }
 
   a {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 2.2rem; /* Aumentar tamaño de fuente en enlaces */
+    padding: 0.5rem 1rem; /* Ajustar padding para mayor comodidad */
   }
 
   button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem; /* Aumentar tamaño de fuente en botones */
+    padding: 0.6rem 1rem; /* Ajustar padding para mayor comodidad */
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 2.5rem; /* Aumentar tamaño de encabezados */
+  }
+
+  p {
+    font-size: 1.8rem; /* Aumentar tamaño de párrafos */
   }
 }
 
@@ -231,14 +244,11 @@ li {
   body {
     padding: 0;
     margin: 0;
-    font-size: 1rem;
+    font-size: 2rem;
     background-color: var(--bg-color-primary);
     color: var(--text-color);
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
-    overflow: hidden;
-
+    overflow-y: auto; /* Asegurar desplazamiento en tabletas */
   }
 
   header,
@@ -249,16 +259,12 @@ li {
     color: var(--white-color);
     text-align: center;
     box-shadow: 0 2px 5px var(--shadow-color);
-
   }
 
   main {
     padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
     gap: 0rem;
-    overflow: hidden;
-    
+    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
   }
 
   a {
