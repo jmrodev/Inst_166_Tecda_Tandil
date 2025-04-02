@@ -5,86 +5,8 @@ const path = require('path')
 const CONFIG = {
   sourceRoot: path.join(__dirname, 'documents'), // Directorio raíz del contenido
   outputRoot: path.join(__dirname, 'docs'), // Directorio de salida
-  baseHref: '', // Para GitHub Pages: '/tu-repositorio'
+  baseHref: '/Inst_166_Tecda_Tandil', // Subdirectorio para GitHub Pages
   excludes: ['node_modules', '.git', 'dist', '*.md', '.DS_Store'],
-  pdfViewerTemplate: `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visor de PDF</title>
-  <style>
-    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-    #toolbar {
-      padding: 10px;
-      background: #2c3e50;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #pdf-frame {
-      width: 100%;
-      height: calc(100vh - 50px);
-      border: none;
-    }
-    button {
-      padding: 8px 15px;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      #pdf-frame {
-        height: calc(100vh - 60px);
-      }
-      #toolbar {
-        flex-direction: column;
-        gap: 8px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="toolbar">
-    <button onclick="window.history.back()">← Volver</button>
-    <div>
-      <button id="download-btn">Descargar PDF</button>
-      <button id="fullscreen-btn" style="margin-left: 8px;">Pantalla completa</button>
-    </div>
-  </div>
-  <iframe id="pdf-frame" allowfullscreen></iframe>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const pdfFile = decodeURIComponent(params.get('file'));
-    const frame = document.getElementById('pdf-frame');
-    const downloadBtn = document.getElementById('download-btn');
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-    if (pdfFile) {
-      frame.src = pdfFile.includes('://') ? pdfFile : (pdfFile.startsWith('/') ? pdfFile : '/' + pdfFile);
-      downloadBtn.onclick = () => {
-        const link = document.createElement('a');
-        link.href = pdfFile;
-        link.download = pdfFile.split('/').pop() || 'documento.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      };
-      fullscreenBtn.onclick = () => {
-        if (frame.requestFullscreen) frame.requestFullscreen();
-        else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
-        else if (frame.msRequestFullscreen) frame.msRequestFullscreen();
-      };
-    } else {
-      document.body.innerHTML = '<h1 style="padding:20px;color:red;">Error: No se especificó archivo PDF</h1>';
-    }
-  </script>
-</body>
-</html>`,
 }
 
 // 2. Función para verificar exclusiones
@@ -101,6 +23,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   const dirs = items.dirs || []
   const files = items.files || []
 
+  // Calcular ruta relativa a la raíz del sitio
   const rootPath =
     currentPath.split('/').filter(Boolean).fill('..').join('/') || '.'
 
@@ -110,7 +33,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} | Instituto 166</title>
-  <link rel="stylesheet" href="${rootPath}/styles.css">
+  <link rel="stylesheet" href="${rootPath}/styles.css"> <!-- Ruta relativa para el CSS -->
 </head>
 <body>
   <header>
@@ -155,13 +78,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         ${files
           .map((file) => {
             if (file.ext === '.pdf') {
-              // Ajustar la ruta del archivo PDF para que sea relativa al visor
-              const pdfPath = path.join(currentPath, file.name).replace(/\\/g, '/');
+              // Enlace directo al archivo PDF
               return `
                 <li>
-                  <a href="${rootPath}/pdf-viewer.html?file=${encodeURIComponent(
-                pdfPath
-              )}">
+                  <a href="${file.name}" target="_blank">
                     📄 ${file.name}
                   </a>
                 </li>`
@@ -223,15 +143,12 @@ async function buildSite() {
     const staticFiles = {
       'styles.css': path.join(__dirname, 'styles.css'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
-      'pdf-viewer.html': null,
     }
 
     for (const [file, source] of Object.entries(staticFiles)) {
       const dest = path.join(CONFIG.outputRoot, file)
       if (source && fs.existsSync(source)) {
         fs.copyFileSync(source, dest)
-      } else if (file === 'pdf-viewer.html') {
-        fs.writeFileSync(dest, CONFIG.pdfViewerTemplate)
       }
     }
 
