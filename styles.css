@@ -41,6 +41,8 @@ footer {
   text-align: center;
   padding: 1rem;
   box-shadow: 0 2px 5px var(--shadow-color);
+  position: relative; /* Cambiar de fixed a relative para que se desplace */
+  z-index: 1; /* Asegurar que el header esté por encima del contenido */
 }
 
 header nav a,
