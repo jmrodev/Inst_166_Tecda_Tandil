@@ -1,280 +1,527 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scripts | Instituto 166</title>
-  <link rel="stylesheet" href="../../../../css/styles.css">
-  <script src="../../../../scripts/modal.js" defer></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Scripts | Instituto 166</title>
+    <link rel="stylesheet" ../../../css/styles.css />
+    <script
+      src="../../../../scripts/modal.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>Scripts</h1>
+      <nav class="breadcrumb">
+        <a href="../../../../index.html">Inicio</a>
+        /
+        <a href="../../../../content/index.html">content</a>
+        /
+        <a href="../../../../content/Segundo_anio/index.html">Segundo_anio</a>
+        /
+        <a href="../../../../content/Segundo_anio/EdiII/index.html">EdiII</a>
+        /
+        <a href="../../../../content/Segundo_anio/EdiII/Scripts/index.html">
+          Scripts
+        </a>
+      </nav>
+    </header>
 
-  <header>
-  
-    <h1>Scripts</h1>
-    <nav class="breadcrumb">
-      <a href="../../../../index.html">Inicio</a> /
-      <a href="../../../../content/index.html">content</a> / <a href="../../../../content/Segundo_anio/index.html">Segundo_anio</a> / <a href="../../../../content/Segundo_anio/EdiII/index.html">EdiII</a> / <a href="../../../../content/Segundo_anio/EdiII/Scripts/index.html">Scripts</a>
-    </nav>
-  </header>
- 
+    <main>
+      <section class="files">
+        <h2>Archivos</h2>
+        <ul>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('arith-loop.sh')"
+            >
+              📄 arith-loop.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('array-2-4thEd.sh')"
+            >
+              📄 array-2-4thEd.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('array-lookup.sh')"
+            >
+              📄 array-lookup.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('array-mapfile.sh')"
+            >
+              📄 array-mapfile.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('array-multi.sh')"
+            >
+              📄 array-multi.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('array-sort.sh')"
+            >
+              📄 array-sort.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('async-child.sh')"
+            >
+              📄 async-child.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('async-parent.sh')"
+            >
+              📄 async-parent.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('average.sh')"
+            >
+              📄 average.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('case-menu.sh')"
+            >
+              📄 case-menu.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('distros.sh.txt')"
+            >
+              📄 distros.sh.txt
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('file-info.sh')"
+            >
+              📄 file-info.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('getopts-test.sh')"
+            >
+              📄 getopts-test.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('hours.sh')"
+            >
+              📄 hours.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('loan-calc.sh')"
+            >
+              📄 loan-calc.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('local-vars.sh')"
+            >
+              📄 local-vars.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('longest-word.sh')"
+            >
+              📄 longest-word.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('longest-word2.sh')"
+            >
+              📄 longest-word2.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('longest-word3.sh')"
+            >
+              📄 longest-word3.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('modulo.sh')"
+            >
+              📄 modulo.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('modulo2.sh')"
+            >
+              📄 modulo2.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('posit-param.sh')"
+            >
+              📄 posit-param.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('posit-param2.sh')"
+            >
+              📄 posit-param2.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('posit-param3.sh')"
+            >
+              📄 posit-param3.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-ifs.sh')"
+            >
+              📄 read-ifs.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-integer.sh')"
+            >
+              📄 read-integer.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-menu.sh')"
+            >
+              📄 read-menu.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-multiple.sh')"
+            >
+              📄 read-multiple.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-secret.sh')"
+            >
+              📄 read-secret.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-single.sh')"
+            >
+              📄 read-single.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('read-validate.sh')"
+            >
+              📄 read-validate.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('simple_counter.sh')"
+            >
+              📄 simple_counter.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('sys_info_page.sh')"
+            >
+              📄 sys_info_page.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('test-integer.sh')"
+            >
+              📄 test-integer.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('test-integer2.sh')"
+            >
+              📄 test-integer2.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('test-integer2a.sh')"
+            >
+              📄 test-integer2a.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('test-integer3.sh')"
+            >
+              📄 test-integer3.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('test-integer4.sh')"
+            >
+              📄 test-integer4.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('test-string.sh')"
+            >
+              📄 test-string.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('trap-demo.sh')"
+            >
+              📄 trap-demo.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('trap-demo2.sh')"
+            >
+              📄 trap-demo2.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('trap-demo3.sh')"
+            >
+              📄 trap-demo3.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('ul-param.sh')"
+            >
+              📄 ul-param.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('until-count.sh')"
+            >
+              📄 until-count.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('while-count.sh')"
+            >
+              📄 while-count.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('while-menu.sh')"
+            >
+              📄 while-menu.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('while-menu2.sh')"
+            >
+              📄 while-menu2.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('while-read.sh')"
+            >
+              📄 while-read.sh
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="showFile('while-read2.sh')"
+            >
+              📄 while-read2.sh
+            </a>
+          </li>
+        </ul>
+      </section>
 
-  <main>
-    
+      <div
+        id="file-viewer"
+        style="
+          display: none;
+          position: fixed;
+          top: 10%;
+          left: 50%;
+          transform: translate(-50%, 0);
+          width: 90%;
+          max-width: 1000px;
+          padding: 1rem;
+          border: 1px solid #ccc;
+          background: #f9f9f9;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+          border-radius: 8px;
+        "
+      >
+        <button
+          onclick="closeViewer()"
+          style="
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+          "
+        >
+          Cerrar
+        </button>
+        <pre
+          id="file-content"
+          style="
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-top: 2rem;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 1rem;
+          "
+        ></pre>
+      </div>
 
-    
-    <section class="files">
-      <h2>Archivos</h2>
-      <ul>
-        
-                <li>
-                  <a href="#" onclick="showFile('arith-loop.sh')">
-                    📄 arith-loop.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('array-2-4thEd.sh')">
-                    📄 array-2-4thEd.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('array-lookup.sh')">
-                    📄 array-lookup.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('array-mapfile.sh')">
-                    📄 array-mapfile.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('array-multi.sh')">
-                    📄 array-multi.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('array-sort.sh')">
-                    📄 array-sort.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('async-child.sh')">
-                    📄 async-child.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('async-parent.sh')">
-                    📄 async-parent.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('average.sh')">
-                    📄 average.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('case-menu.sh')">
-                    📄 case-menu.sh
-                  </a>
-                </li><li><a href="distros.sh.txt" target="_blank">📁 distros.sh.txt</a></li>
-                <li>
-                  <a href="#" onclick="showFile('file-info.sh')">
-                    📄 file-info.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('getopts-test.sh')">
-                    📄 getopts-test.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('hours.sh')">
-                    📄 hours.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('loan-calc.sh')">
-                    📄 loan-calc.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('local-vars.sh')">
-                    📄 local-vars.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('longest-word.sh')">
-                    📄 longest-word.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('longest-word2.sh')">
-                    📄 longest-word2.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('longest-word3.sh')">
-                    📄 longest-word3.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('modulo.sh')">
-                    📄 modulo.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('modulo2.sh')">
-                    📄 modulo2.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('posit-param.sh')">
-                    📄 posit-param.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('posit-param2.sh')">
-                    📄 posit-param2.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('posit-param3.sh')">
-                    📄 posit-param3.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-ifs.sh')">
-                    📄 read-ifs.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-integer.sh')">
-                    📄 read-integer.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-menu.sh')">
-                    📄 read-menu.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-multiple.sh')">
-                    📄 read-multiple.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-secret.sh')">
-                    📄 read-secret.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-single.sh')">
-                    📄 read-single.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('read-validate.sh')">
-                    📄 read-validate.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('simple_counter.sh')">
-                    📄 simple_counter.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('sys_info_page.sh')">
-                    📄 sys_info_page.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('test-integer.sh')">
-                    📄 test-integer.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('test-integer2.sh')">
-                    📄 test-integer2.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('test-integer2a.sh')">
-                    📄 test-integer2a.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('test-integer3.sh')">
-                    📄 test-integer3.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('test-integer4.sh')">
-                    📄 test-integer4.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('test-string.sh')">
-                    📄 test-string.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('trap-demo.sh')">
-                    📄 trap-demo.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('trap-demo2.sh')">
-                    📄 trap-demo2.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('trap-demo3.sh')">
-                    📄 trap-demo3.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('ul-param.sh')">
-                    📄 ul-param.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('until-count.sh')">
-                    📄 until-count.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('while-count.sh')">
-                    📄 while-count.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('while-menu.sh')">
-                    📄 while-menu.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('while-menu2.sh')">
-                    📄 while-menu2.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('while-read.sh')">
-                    📄 while-read.sh
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onclick="showFile('while-read2.sh')">
-                    📄 while-read2.sh
-                  </a>
-                </li>
-      </ul>
-    </section>
-  </main>
+      <div
+        id="overlay"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+        "
+        onclick="closeViewer()"
+      ></div>
+    </main>
 
-  <div id="file-viewer">
-    <button onclick="closeViewer()">Cerrar</button>
-    <pre id="file-content"></pre>
-  </div>
-  <div id="overlay" onclick="closeViewer()"></div>
-</body>
+    <script>
+      function showFile(fileName) {
+        console.log('Intentando cargar el archivo:', fileName)
+
+        fetch(fileName)
+          .then((response) => {
+            console.log('Respuesta del servidor:', response)
+            if (!response.ok) {
+              throw new Error('No se pudo cargar el archivo.')
+            }
+            return response.text()
+          })
+          .then((text) => {
+            console.log('Contenido del archivo:', text)
+            document.getElementById('file-content').textContent = text
+            document.getElementById('file-viewer').style.display = 'block'
+            document.getElementById('overlay').style.display = 'block'
+          })
+          .catch((error) => {
+            alert(error.message)
+          })
+      }
+
+      function closeViewer() {
+        document.getElementById('file-viewer').style.display = 'none'
+        document.getElementById('overlay').style.display = 'none'
+        document.getElementById('file-content').textContent = ''
+      }
+    </script>
+  </body>
 </html>
