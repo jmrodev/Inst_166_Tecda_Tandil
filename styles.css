@@ -26,7 +26,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-y: auto; /* Permitir desplazamiento vertical */
   height: 100%; /* Asegurar que el cuerpo ocupe toda la altura de la ventana */
 }
 
@@ -64,7 +63,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0rem;
-  overflow-y: auto; /* Permitir desplazamiento vertical dentro de main */
   min-height: 0; /* Evitar que el contenido principal crezca más allá de la pantalla */
 }
 
@@ -73,7 +71,8 @@ body > main > ul > li > a {
   text-transform: capitalize;
 }
 section {
-  margin: 1rem 0;
+  width: 75%;
+  margin: 1rem auto;
   padding: 5rem;
   border: 1px solid var(--border-color);
   border-radius: 5px;
@@ -99,6 +98,7 @@ h3,
 p {
   font-family: 'Arial', sans-serif;
   color: var(--text-color);
+  font-size: 1.3rem; /* Tamaño de fuente base */
 }
 
 p {
@@ -226,14 +226,12 @@ li:hover {
     background-color: var(--bg-color-primary);
     color: var(--text-color);
     min-height: 100vh;
-    overflow-y: auto; /* Asegurar desplazamiento en móviles */
     height: 100%; /* Asegurar altura completa en móviles */
   }
 
   main {
     padding: 0.5rem;
     font-size: 1.2rem; /* Reducir tamaño de fuente en el contenido principal */
-    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
     min-height: 0; /* Evitar problemas de altura en móviles */
   }
 
@@ -280,7 +278,6 @@ li:hover {
     background-color: var(--bg-color-primary);
     color: var(--text-color);
     min-height: 100vh;
-    overflow-y: auto; /* Asegurar desplazamiento en tabletas */
   }
 
   header,
@@ -296,7 +293,6 @@ li:hover {
   main {
     padding: 0.5rem;
     gap: 0rem;
-    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
   }
 
   a {

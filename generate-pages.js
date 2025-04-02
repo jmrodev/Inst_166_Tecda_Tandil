@@ -27,15 +27,19 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   const rootPath =
     currentPath.split('/').filter(Boolean).fill('..').join('/') || '.'
 
+  // Verificar si el archivo está en una carpeta llamada "html"
+  const isInHtmlFolder = currentPath.includes('/html')
+
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} | Instituto 166</title>
-  <link rel="stylesheet" href="${rootPath}/styles.css"> <!-- Ruta relativa para el CSS -->
+  <link rel="stylesheet" href="${rootPath}/styles.css">
 </head>
 <body>
+
   <header>
     <h1>${title}</h1>
     <nav class="breadcrumb">
@@ -50,6 +54,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         .join(' / ')}
     </nav>
   </header>
+ 
 
   <main>
     ${
