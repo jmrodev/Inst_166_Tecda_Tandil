@@ -29,7 +29,20 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
 
   // Verificar si el archivo está en una carpeta llamada "html"
   const isInHtmlFolder = currentPath.includes('/html')
-  
+
+  // Leer enlaces adicionales desde links.txt si existe
+  const linksFilePath = path.join(CONFIG.sourceRoot, currentPath, 'links.txt')
+  let additionalLinks = ''
+  if (fs.existsSync(linksFilePath)) {
+    const links = fs.readFileSync(linksFilePath, 'utf-8').split('\n')
+    additionalLinks = links
+      .filter((line) => line.trim() !== '') // Ignorar líneas vacías
+      .map((line) => {
+        const [text, url] = line.split('|').map((part) => part.trim())
+        return `<li><a href="${url}" target="_blank">${text}</a></li>`
+      })
+      .join('')
+  }
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -105,6 +118,18 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
             return `<li><a href="${file.name}" target="_blank">📁 ${file.name}</a></li>`
           })
           .join('')}
+      </ul>
+    </section>`
+        : ''
+    }
+
+    ${
+      additionalLinks
+        ? `
+    <section class="additional-links">
+      <h2>Enlaces adicionales</h2>
+      <ul>
+        ${additionalLinks}
       </ul>
     </section>`
         : ''
