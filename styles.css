@@ -185,13 +185,35 @@ button:hover {
 
 ul,
 ol {
-  margin: 1rem 0;
+  margin: 1rem auto; /* Centrar la lista horizontalmente */
   padding: 0;
-  list-style: none;
+  list-style: none; /* Eliminar los estilos predeterminados de lista */
+  text-align: center; /* Centrar el contenido de la lista */
 }
 
 li {
-  margin: 0.5rem 0;
+  margin: 0.5rem auto; /* Separación entre elementos */
+  line-height: 1.5; /* Mejorar la legibilidad */
+  padding: 0.5rem 1rem; /* Espaciado interno */
+  border: 1px solid var(--border-color); /* Borde para destacar los elementos */
+  border-radius: 5px; /* Bordes redondeados */
+  width: 80%; /* Ajustar el ancho de los elementos */
+  max-width: 600px; /* Limitar el ancho máximo */
+  background-color: #fff; /* Fondo blanco para contraste */
+  box-shadow: 0 2px 5px var(--shadow-color); /* Sombra para destacar */
+  text-align: center; /* Centrar el texto dentro del elemento */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animación más suave */
+}
+
+li a:hover {
+  transform: scale(1.02); /* Reducir el aumento de tamaño al pasar el cursor */
+  box-shadow: 0 3px 8px var(--shadow-color); /* Sombra más sutil */
+}
+
+/* Eliminar hover de los <li> sin enlaces */
+li:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 @media (max-width: 480px) {
