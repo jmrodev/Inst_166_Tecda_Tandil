@@ -29,6 +29,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
 
   // Verificar si el archivo está en una carpeta llamada "html"
   const isInHtmlFolder = currentPath.includes('/html')
+  
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -41,6 +42,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
 <body>
 
   <header>
+  ${isInHtmlFolder ? '<h1>Es HTML</h1>' : ''}
     <h1>${title}</h1>
     <nav class="breadcrumb">
       <a href="${rootPath}/index.html">Inicio</a> /
