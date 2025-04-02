@@ -198,7 +198,7 @@ li {
   body {
     padding: 0;
     margin: 0;
-    font-size: 2.5rem; /* Tamaño de fuente más generoso */
+    font-size: 1.8rem; /* Reducir tamaño de fuente base */
     background-color: var(--bg-color-primary);
     color: var(--text-color);
     min-height: 100vh;
@@ -208,7 +208,7 @@ li {
 
   main {
     padding: 0.5rem;
-    font-size: 1.5rem; /* Aumentar tamaño de fuente en el contenido principal */
+    font-size: 1.2rem; /* Reducir tamaño de fuente en el contenido principal */
     overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
     min-height: 0; /* Evitar problemas de altura en móviles */
   }
@@ -224,27 +224,27 @@ li {
   }
   header,
   footer {
-    font-size: 1.2rem; /* Aumentar tamaño de fuente en header y footer */
+    font-size: 1rem; /* Reducir tamaño de fuente en header y footer */
   }
 
   a {
-    font-size: 2.2rem; /* Aumentar tamaño de fuente en enlaces */
-    padding: 0.5rem 1rem; /* Ajustar padding para mayor comodidad */
+    font-size: 1.5rem; /* Reducir tamaño de fuente en enlaces */
+    padding: 0.4rem 0.8rem; /* Ajustar padding para mayor comodidad */
   }
 
   button {
-    font-size: 1.2rem; /* Aumentar tamaño de fuente en botones */
-    padding: 0.6rem 1rem; /* Ajustar padding para mayor comodidad */
+    font-size: 1rem; /* Reducir tamaño de fuente en botones */
+    padding: 0.5rem 0.8rem; /* Ajustar padding */
   }
 
   h1,
   h2,
   h3 {
-    font-size: 2.5rem; /* Aumentar tamaño de encabezados */
+    font-size: 2rem; /* Reducir tamaño de encabezados */
   }
 
   p {
-    font-size: 1.8rem; /* Aumentar tamaño de párrafos */
+    font-size: 1.4rem; /* Reducir tamaño de párrafos */
   }
 }
 
