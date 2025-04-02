@@ -3,7 +3,7 @@ const path = require('path')
 
 // 1. Configuración corregida
 const CONFIG = {
-  sourceRoot: path.join(__dirname, 'pages'), // Directorio raíz del contenido
+  sourceRoot: path.join(__dirname, 'documents'), // Directorio raíz del contenido
   outputRoot: path.join(__dirname, 'docs'), // Directorio de salida
   baseHref: '', // Para GitHub Pages: '/tu-repositorio'
   excludes: ['node_modules', '.git', 'dist', '*.md', '.DS_Store'],
@@ -17,7 +17,7 @@ function isExcluded(name) {
   })
 }
 
-// 3. Generador de HTML con soporte para iframe de PDFs
+// 3. Generador de HTML con soporte para iframe de PDFs y botón de apertura
 function generateHTML(title, items, currentPath) {
   // Calcular ruta relativa a la raíz del sitio
   const rootPath =
@@ -91,6 +91,7 @@ function generateHTML(title, items, currentPath) {
     <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
       <h2>Visor de PDF</h2>
       <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
+      <button id="open-pdf-btn" style="margin-top: 1rem; display: none;" onclick="openPDF()">Abrir en nueva pestaña</button>
     </section>
   </main>
 
@@ -102,8 +103,26 @@ function generateHTML(title, items, currentPath) {
     function loadPDF(pdfPath) {
       const viewer = document.getElementById('pdf-viewer');
       const frame = document.getElementById('pdf-frame');
+      const openBtn = document.getElementById('open-pdf-btn');
       frame.src = pdfPath;
+      openBtn.setAttribute('data-pdf', pdfPath);
       viewer.style.display = 'block';
+
+      // Mostrar el botón "Abrir en nueva pestaña" solo si el iframe no se carga correctamente
+      frame.onload = () => {
+        openBtn.style.display = 'none';
+      };
+      frame.onerror = () => {
+        openBtn.style.display = 'block';
+      };
+    }
+
+    function openPDF() {
+      const openBtn = document.getElementById('open-pdf-btn');
+      const pdfPath = openBtn.getAttribute('data-pdf');
+      if (pdfPath) {
+        window.open(pdfPath, '_blank');
+      }
     }
   </script>
 </body>
