@@ -10,13 +10,20 @@ const CONFIG = {
 }
 
 // 2. Función para verificar exclusiones
+// function isExcluded(name) {
+//   return CONFIG.excludes.some((pattern) => {
+//     const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`)
+//     return regex.test(name)
+//   })
+// }
+
 function isExcluded(name) {
-  return CONFIG.excludes.some((pattern) => {
+  const patterns = [...CONFIG.excludes, 'links.txt', '*.txt']
+  return patterns.some((pattern) => {
     const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`)
     return regex.test(name)
   })
 }
-
 // 3. Generador de HTML con soporte para PDFs
 function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   // Asegurarse de que items.dirs y items.files sean arreglos
@@ -27,11 +34,14 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   const rootPath =
     currentPath.split('/').filter(Boolean).fill('..').join('/') || '.'
 
-  // Verificar si el archivo está en una carpeta llamada "html"
-  const isInHtmlFolder = currentPath.includes('/html')
+  // Verificar si el archivo es un índice (index.html)
+  const isIndex = path.basename(currentPath) === ''
 
   // Leer enlaces adicionales desde links.txt si existe
-  const linksFilePath = path.join(CONFIG.sourceRoot, currentPath, 'links.txt')
+  const linksPath = currentPath
+    ? path.join(currentPath, 'links.txt')
+    : 'links.txt'
+  const linksFilePath = path.join(CONFIG.outputRoot, linksPath)
   let additionalLinks = ''
   if (fs.existsSync(linksFilePath)) {
     const links = fs.readFileSync(linksFilePath, 'utf-8').split('\n')
@@ -39,9 +49,17 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
       .filter((line) => line.trim() !== '') // Ignorar líneas vacías
       .map((line) => {
         const [text, url] = line.split('|').map((part) => part.trim())
-        return `<li><a href="${url}" target="_blank">${text}</a></li>`
+        if (text && url) {
+          return `<li><a href="${url}" target="_blank">${text}</a></li>`
+        }
+        return '' // Ignorar líneas mal formateadas
       })
       .join('')
+    if (additionalLinks) {
+      console.log(
+        `Enlaces adicionales leídos de ${linksFilePath}: ${additionalLinks}`
+      )
+    }
   }
 
   return `<!DOCTYPE html>
@@ -56,7 +74,6 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
 <body>
 
   <header>
-  ${isInHtmlFolder ? '<h1>Es HTML</h1>' : ''}
     <h1>${title}</h1>
     <nav class="breadcrumb">
       <a href="${rootPath}/index.html">Inicio</a> /
@@ -91,7 +108,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
     }
 
     ${
-      files.length > 0
+      !isIndex && files.length > 0
         ? `
     <section class="files">
       <h2>Archivos</h2>
