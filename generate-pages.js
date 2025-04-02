@@ -1,15 +1,93 @@
 const fs = require('fs')
 const path = require('path')
 
-// 1. Configuración corregida
+// 1. Configuración mejorada
 const CONFIG = {
   sourceRoot: path.join(__dirname, 'documents'), // Directorio raíz del contenido
   outputRoot: path.join(__dirname, 'docs'), // Directorio de salida
   baseHref: '', // Para GitHub Pages: '/tu-repositorio'
   excludes: ['node_modules', '.git', 'dist', '*.md', '.DS_Store'],
+  pdfViewerTemplate: `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de PDF</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    #toolbar {
+      padding: 10px;
+      background: #2c3e50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #pdf-frame {
+      width: 100%;
+      height: calc(100vh - 50px);
+      border: none;
+    }
+    button {
+      padding: 8px 15px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      #pdf-frame {
+        height: calc(100vh - 60px);
+      }
+      #toolbar {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button onclick="window.history.back()">← Volver</button>
+    <div>
+      <button id="download-btn">Descargar PDF</button>
+      <button id="fullscreen-btn" style="margin-left: 8px;">Pantalla completa</button>
+    </div>
+  </div>
+  <iframe id="pdf-frame" allowfullscreen></iframe>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const pdfFile = decodeURIComponent(params.get('file'));
+    const frame = document.getElementById('pdf-frame');
+    const downloadBtn = document.getElementById('download-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    if (pdfFile) {
+      frame.src = pdfFile.includes('://') ? pdfFile : (pdfFile.startsWith('/') ? pdfFile : '/' + pdfFile);
+      downloadBtn.onclick = () => {
+        const link = document.createElement('a');
+        link.href = pdfFile;
+        link.download = pdfFile.split('/').pop() || 'documento.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+      fullscreenBtn.onclick = () => {
+        if (frame.requestFullscreen) frame.requestFullscreen();
+        else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+        else if (frame.msRequestFullscreen) frame.msRequestFullscreen();
+      };
+    } else {
+      document.body.innerHTML = '<h1 style="padding:20px;color:red;">Error: No se especificó archivo PDF</h1>';
+    }
+  </script>
+</body>
+</html>`,
 }
 
-// 2. Función mejorada para verificar exclusiones
+// 2. Función para verificar exclusiones
 function isExcluded(name) {
   return CONFIG.excludes.some((pattern) => {
     const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`)
@@ -17,9 +95,12 @@ function isExcluded(name) {
   })
 }
 
-// 3. Generador de HTML con soporte para enlaces a archivos HTML
-function generateHTML(title, items, currentPath) {
-  // Calcular ruta relativa a la raíz del sitio
+// 3. Generador de HTML con soporte para PDFs
+function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
+  // Asegurarse de que items.dirs y items.files sean arreglos
+  const dirs = items.dirs || []
+  const files = items.files || []
+
   const rootPath =
     currentPath.split('/').filter(Boolean).fill('..').join('/') || '.'
 
@@ -49,16 +130,15 @@ function generateHTML(title, items, currentPath) {
 
   <main>
     ${
-      items.dirs.length > 0
+      dirs.length > 0
         ? `
     <section class="directories">
       <h2>Directorios</h2>
       <ul>
-        ${items.dirs
+        ${dirs
           .map(
-            (dir) => `
-          <li><a href="${dir.name}/index.html">📁 ${dir.name}</a></li>
-        `
+            (dir) =>
+              `<li><a href="${dir.name}/index.html">📁 ${dir.name}</a></li>`
           )
           .join('')}
       </ul>
@@ -67,89 +147,42 @@ function generateHTML(title, items, currentPath) {
     }
 
     ${
-      items.files.length > 0
+      files.length > 0
         ? `
     <section class="files">
       <h2>Archivos</h2>
       <ul>
-        ${items.files
+        ${files
           .map((file) => {
-            if (file.ext === '.html') {
+            if (file.ext === '.pdf') {
+              // Ajustar la ruta del archivo PDF para que sea relativa al visor
+              const pdfPath = path.join(currentPath, file.name).replace(/\\/g, '/');
               return `
                 <li>
-                  <a href="${file.name}">
-                    📝 ${file.name}
-                  </a>
-                </li>`
-            } else if (file.ext === '.pdf') {
-              return `
-                <li>
-                  <a href="#" onclick="loadPDF('${file.name}')">
+                  <a href="${rootPath}/pdf-viewer.html?file=${encodeURIComponent(
+                pdfPath
+              )}">
                     📄 ${file.name}
                   </a>
                 </li>`
-            } else {
-              return `
-                <li>
-                  <a href="${file.name}" target="_blank">
-                    📁 ${file.name}
-                  </a>
-                </li>`
             }
+            return `<li><a href="${file.name}" target="_blank">📁 ${file.name}</a></li>`
           })
           .join('')}
       </ul>
     </section>`
         : ''
     }
-
-    <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
-      <h2>Visor de PDF</h2>
-      <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
-      <button id="open-pdf-btn" style="margin-top: 1rem; display: none;" onclick="openPDF()">Abrir en nueva pestaña</button>
-    </section>
   </main>
-
-  <footer>
-    <p>Instituto 166 - Tecda Tandil • ${new Date().toLocaleDateString()}</p>
-  </footer>
-
-  <script>
-    function loadPDF(pdfPath) {
-      const viewer = document.getElementById('pdf-viewer');
-      const frame = document.getElementById('pdf-frame');
-      const openBtn = document.getElementById('open-pdf-btn');
-      frame.src = pdfPath;
-      openBtn.setAttribute('data-pdf', pdfPath);
-      viewer.style.display = 'block';
-
-      // Mostrar el botón "Abrir en nueva pestaña" solo si el iframe no se carga correctamente
-      frame.onload = () => {
-        openBtn.style.display = 'none';
-      };
-      frame.onerror = () => {
-        openBtn.style.display = 'block';
-      };
-    }
-
-    function openPDF() {
-      const openBtn = document.getElementById('open-pdf-btn');
-      const pdfPath = openBtn.getAttribute('data-pdf');
-      if (pdfPath) {
-        window.open(pdfPath, '_blank');
-      }
-    }
-  </script>
 </body>
 </html>`
 }
 
-// 4. Procesador de directorios con rutas absolutas
+// 4. Procesador de directorios
 async function processDirectory(srcPath, destPath, relativePath = '') {
   const items = fs.readdirSync(srcPath, { withFileTypes: true })
   const contents = { dirs: [], files: [] }
 
-  // Crear directorio de salida
   fs.mkdirSync(destPath, { recursive: true })
 
   for (const item of items) {
@@ -160,22 +193,15 @@ async function processDirectory(srcPath, destPath, relativePath = '') {
     const itemDest = path.join(destPath, item.name)
 
     if (item.isDirectory()) {
-      contents.dirs.push({
-        name: item.name,
-        path: itemRelPath,
-      })
+      contents.dirs.push({ name: item.name, path: itemRelPath })
       await processDirectory(itemSrc, itemDest, itemRelPath)
     } else {
       const ext = path.extname(item.name)
-      contents.files.push({
-        name: item.name,
-        ext: ext,
-      })
+      contents.files.push({ name: item.name, ext })
       fs.copyFileSync(itemSrc, itemDest)
     }
   }
 
-  // Generar index.html solo si hay contenido
   if (contents.dirs.length > 0 || contents.files.length > 0) {
     fs.writeFileSync(
       path.join(destPath, 'index.html'),
@@ -184,65 +210,50 @@ async function processDirectory(srcPath, destPath, relativePath = '') {
   }
 }
 
-// 5. Función principal completamente corregida
+// 5. Función principal
 async function buildSite() {
-  console.log('🏗  Construyendo sitio...')
+  console.log('🏗 Construyendo sitio...')
 
   try {
-    // Limpiar directorio de salida
     if (fs.existsSync(CONFIG.outputRoot)) {
       fs.rmSync(CONFIG.outputRoot, { recursive: true })
     }
     fs.mkdirSync(CONFIG.outputRoot, { recursive: true })
 
-    // Copiar archivos estáticos
-    const staticFiles = ['styles.css', 'favicon.ico']
-    staticFiles.forEach((file) => {
-      const src = path.join(__dirname, file)
-      if (fs.existsSync(src)) {
-        fs.copyFileSync(src, path.join(CONFIG.outputRoot, file))
-      }
-    })
+    const staticFiles = {
+      'styles.css': path.join(__dirname, 'styles.css'),
+      'favicon.ico': path.join(__dirname, 'favicon.ico'),
+      'pdf-viewer.html': null,
+    }
 
-    // Procesar contenido
+    for (const [file, source] of Object.entries(staticFiles)) {
+      const dest = path.join(CONFIG.outputRoot, file)
+      if (source && fs.existsSync(source)) {
+        fs.copyFileSync(source, dest)
+      } else if (file === 'pdf-viewer.html') {
+        fs.writeFileSync(dest, CONFIG.pdfViewerTemplate)
+      }
+    }
+
     await processDirectory(
       CONFIG.sourceRoot,
-      path.join(CONFIG.outputRoot, 'content'), // Cambiado a 'content' en lugar de 'pages'
-      'content' // Ruta relativa inicial
+      path.join(CONFIG.outputRoot, 'content'),
+      'content'
+    )
+    fs.writeFileSync(
+      path.join(CONFIG.outputRoot, 'index.html'),
+      generateHTML(
+        'Instituto 166 - Tecda Tandil',
+        { dirs: [{ name: 'content' }] },
+        ''
+      )
     )
 
-    // Crear index.html principal
-    const mainHtml = generateHTML(
-      'Instituto 166 - Tecda Tandil',
-      { dirs: [{ name: 'content' }], files: [] },
-      ''
-    )
-    fs.writeFileSync(path.join(CONFIG.outputRoot, 'index.html'), mainHtml)
-
-    console.log('✅ Sitio construido correctamente en:', CONFIG.outputRoot)
-    console.log('📌 Estructura correcta:')
-    console.log(`
-${CONFIG.outputRoot}/
-├── index.html
-├── styles.css
-└── content/
-    ├── index.html
-    ├── Primer_anio/
-    │   ├── index.html
-    │   └── pdfs/
-    │       ├── index.html
-    │       └── archivo.pdf
-    └── Segundo_anio/
-        ├── index.html
-        └── materias/
-            ├── index.html
-            └── archivos/
-    `)
+    console.log('✅ Sitio generado correctamente.')
   } catch (error) {
-    console.error('❌ Error crítico:', error)
+    console.error('❌ Error:', error)
     process.exit(1)
   }
 }
 
-// Ejecutar
 buildSite()

@@ -20,52 +20,11 @@
     <section class="directories">
       <h2>Directorios</h2>
       <ul>
-        
-          <li><a href="Primer_anio/index.html">📁 Primer_anio</a></li>
-        
-          <li><a href="Segundo_anio/index.html">📁 Segundo_anio</a></li>
-        
+        <li><a href="Primer_anio/index.html">📁 Primer_anio</a></li><li><a href="Segundo_anio/index.html">📁 Segundo_anio</a></li>
       </ul>
     </section>
 
     
-
-    <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
-      <h2>Visor de PDF</h2>
-      <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
-      <button id="open-pdf-btn" style="margin-top: 1rem; display: none;" onclick="openPDF()">Abrir en nueva pestaña</button>
-    </section>
   </main>
-
-  <footer>
-    <p>Instituto 166 - Tecda Tandil • 2/4/2025</p>
-  </footer>
-
-  <script>
-    function loadPDF(pdfPath) {
-      const viewer = document.getElementById('pdf-viewer');
-      const frame = document.getElementById('pdf-frame');
-      const openBtn = document.getElementById('open-pdf-btn');
-      frame.src = pdfPath;
-      openBtn.setAttribute('data-pdf', pdfPath);
-      viewer.style.display = 'block';
-
-      // Mostrar el botón "Abrir en nueva pestaña" solo si el iframe no se carga correctamente
-      frame.onload = () => {
-        openBtn.style.display = 'none';
-      };
-      frame.onerror = () => {
-        openBtn.style.display = 'block';
-      };
-    }
-
-    function openPDF() {
-      const openBtn = document.getElementById('open-pdf-btn');
-      const pdfPath = openBtn.getAttribute('data-pdf');
-      if (pdfPath) {
-        window.open(pdfPath, '_blank');
-      }
-    }
-  </script>
 </body>
 </html>

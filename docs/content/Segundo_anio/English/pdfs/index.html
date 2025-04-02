@@ -24,79 +24,42 @@
       <ul>
         
                 <li>
-                  <a href="#" onclick="loadPDF('Past_Simple_-_Revision.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FPast_Simple_-_Revision.pdf">
                     📄 Past_Simple_-_Revision.pdf
                   </a>
                 </li>
                 <li>
-                  <a href="#" onclick="loadPDF('Past_Simple_Revision_-_Answers.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FPast_Simple_Revision_-_Answers.pdf">
                     📄 Past_Simple_Revision_-_Answers.pdf
                   </a>
                 </li>
                 <li>
-                  <a href="#" onclick="loadPDF('Professional_Profile_-_Jay_Peters.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FProfessional_Profile_-_Jay_Peters.pdf">
                     📄 Professional_Profile_-_Jay_Peters.pdf
                   </a>
                 </li>
                 <li>
-                  <a href="#" onclick="loadPDF('Unit 1 - An Introduction to Emails.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FUnit%201%20-%20An%20Introduction%20to%20Emails.pdf">
                     📄 Unit 1 - An Introduction to Emails.pdf
                   </a>
                 </li>
                 <li>
-                  <a href="#" onclick="loadPDF('Unit 1 - Jobs.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FUnit%201%20-%20Jobs.pdf">
                     📄 Unit 1 - Jobs.pdf
                   </a>
                 </li>
                 <li>
-                  <a href="#" onclick="loadPDF('Unit_1_-_Review_-_Answers.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FUnit_1_-_Review_-_Answers.pdf">
                     📄 Unit_1_-_Review_-_Answers.pdf
                   </a>
                 </li>
                 <li>
-                  <a href="#" onclick="loadPDF('Unit_1_-_Review_-_Page_94.pdf')">
+                  <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FEnglish%2Fpdfs%2FUnit_1_-_Review_-_Page_94.pdf">
                     📄 Unit_1_-_Review_-_Page_94.pdf
                   </a>
                 </li>
       </ul>
     </section>
-
-    <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
-      <h2>Visor de PDF</h2>
-      <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
-      <button id="open-pdf-btn" style="margin-top: 1rem; display: none;" onclick="openPDF()">Abrir en nueva pestaña</button>
-    </section>
   </main>
-
-  <footer>
-    <p>Instituto 166 - Tecda Tandil • 2/4/2025</p>
-  </footer>
-
-  <script>
-    function loadPDF(pdfPath) {
-      const viewer = document.getElementById('pdf-viewer');
-      const frame = document.getElementById('pdf-frame');
-      const openBtn = document.getElementById('open-pdf-btn');
-      frame.src = pdfPath;
-      openBtn.setAttribute('data-pdf', pdfPath);
-      viewer.style.display = 'block';
-
-      // Mostrar el botón "Abrir en nueva pestaña" solo si el iframe no se carga correctamente
-      frame.onload = () => {
-        openBtn.style.display = 'none';
-      };
-      frame.onerror = () => {
-        openBtn.style.display = 'block';
-      };
-    }
-
-    function openPDF() {
-      const openBtn = document.getElementById('open-pdf-btn');
-      const pdfPath = openBtn.getAttribute('data-pdf');
-      if (pdfPath) {
-        window.open(pdfPath, '_blank');
-      }
-    }
-  </script>
 </body>
 </html>

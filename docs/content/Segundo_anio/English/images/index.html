@@ -22,81 +22,9 @@
     <section class="files">
       <h2>Archivos</h2>
       <ul>
-        
-                <li>
-                  <a href="Past Regular -ED Spelling.png" target="_blank">
-                    📁 Past Regular -ED Spelling.png
-                  </a>
-                </li>
-                <li>
-                  <a href="Past Simple of Verb To Be.jpg" target="_blank">
-                    📁 Past Simple of Verb To Be.jpg
-                  </a>
-                </li>
-                <li>
-                  <a href="Past Simple.jpg" target="_blank">
-                    📁 Past Simple.jpg
-                  </a>
-                </li>
-                <li>
-                  <a href="Present Perfect - Affirmative.jpg" target="_blank">
-                    📁 Present Perfect - Affirmative.jpg
-                  </a>
-                </li>
-                <li>
-                  <a href="Present Perfect - Negative Form.jpg" target="_blank">
-                    📁 Present Perfect - Negative Form.jpg
-                  </a>
-                </li>
-                <li>
-                  <a href="Present Perfect - Questions.jpg" target="_blank">
-                    📁 Present Perfect - Questions.jpg
-                  </a>
-                </li>
-                <li>
-                  <a href="Present_Perfect_Form.jpg" target="_blank">
-                    📁 Present_Perfect_Form.jpg
-                  </a>
-                </li>
+        <li><a href="Past Regular -ED Spelling.png" target="_blank">📁 Past Regular -ED Spelling.png</a></li><li><a href="Past Simple of Verb To Be.jpg" target="_blank">📁 Past Simple of Verb To Be.jpg</a></li><li><a href="Past Simple.jpg" target="_blank">📁 Past Simple.jpg</a></li><li><a href="Present Perfect - Affirmative.jpg" target="_blank">📁 Present Perfect - Affirmative.jpg</a></li><li><a href="Present Perfect - Negative Form.jpg" target="_blank">📁 Present Perfect - Negative Form.jpg</a></li><li><a href="Present Perfect - Questions.jpg" target="_blank">📁 Present Perfect - Questions.jpg</a></li><li><a href="Present_Perfect_Form.jpg" target="_blank">📁 Present_Perfect_Form.jpg</a></li>
       </ul>
     </section>
-
-    <section id="pdf-viewer" style="margin-top: 2rem; display: none;">
-      <h2>Visor de PDF</h2>
-      <iframe id="pdf-frame" src="" width="100%" height="600px" style="border: 1px solid var(--border-color);"></iframe>
-      <button id="open-pdf-btn" style="margin-top: 1rem; display: none;" onclick="openPDF()">Abrir en nueva pestaña</button>
-    </section>
   </main>
-
-  <footer>
-    <p>Instituto 166 - Tecda Tandil • 2/4/2025</p>
-  </footer>
-
-  <script>
-    function loadPDF(pdfPath) {
-      const viewer = document.getElementById('pdf-viewer');
-      const frame = document.getElementById('pdf-frame');
-      const openBtn = document.getElementById('open-pdf-btn');
-      frame.src = pdfPath;
-      openBtn.setAttribute('data-pdf', pdfPath);
-      viewer.style.display = 'block';
-
-      // Mostrar el botón "Abrir en nueva pestaña" solo si el iframe no se carga correctamente
-      frame.onload = () => {
-        openBtn.style.display = 'none';
-      };
-      frame.onerror = () => {
-        openBtn.style.display = 'block';
-      };
-    }
-
-    function openPDF() {
-      const openBtn = document.getElementById('open-pdf-btn');
-      const pdfPath = openBtn.getAttribute('data-pdf');
-      if (pdfPath) {
-        window.open(pdfPath, '_blank');
-      }
-    }
-  </script>
 </body>
 </html>

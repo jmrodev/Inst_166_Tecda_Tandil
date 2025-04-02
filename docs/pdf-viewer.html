@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de PDF</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    #toolbar {
+      padding: 10px;
+      background: #2c3e50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #pdf-frame {
+      width: 100%;
+      height: calc(100vh - 50px);
+      border: none;
+    }
+    button {
+      padding: 8px 15px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      #pdf-frame {
+        height: calc(100vh - 60px);
+      }
+      #toolbar {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button onclick="window.history.back()">← Volver</button>
+    <div>
+      <button id="download-btn">Descargar PDF</button>
+      <button id="fullscreen-btn" style="margin-left: 8px;">Pantalla completa</button>
+    </div>
+  </div>
+  <iframe id="pdf-frame" allowfullscreen></iframe>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const pdfFile = decodeURIComponent(params.get('file'));
+    const frame = document.getElementById('pdf-frame');
+    const downloadBtn = document.getElementById('download-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    if (pdfFile) {
+      frame.src = pdfFile.includes('://') ? pdfFile : (pdfFile.startsWith('/') ? pdfFile : '/' + pdfFile);
+      downloadBtn.onclick = () => {
+        const link = document.createElement('a');
+        link.href = pdfFile;
+        link.download = pdfFile.split('/').pop() || 'documento.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+      fullscreenBtn.onclick = () => {
+        if (frame.requestFullscreen) frame.requestFullscreen();
+        else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+        else if (frame.msRequestFullscreen) frame.msRequestFullscreen();
+      };
+    } else {
+      document.body.innerHTML = '<h1 style="padding:20px;color:red;">Error: No se especificó archivo PDF</h1>';
+    }
+  </script>
+</body>
+</html>
