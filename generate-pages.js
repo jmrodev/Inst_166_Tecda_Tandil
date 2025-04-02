@@ -36,7 +36,8 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} | Instituto 166</title>
-  <link rel="stylesheet" href="${rootPath}/styles.css">
+  <link rel="stylesheet" href="${rootPath}/css/styles.css">
+  <script src="${rootPath}/scripts/modal.js" defer></script>
 </head>
 <body>
 
@@ -91,6 +92,14 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
                   </a>
                 </li>`
             }
+            if (file.ext === '.sh') {
+              return `
+                <li>
+                  <a href="#" onclick="showFile('${file.name}')">
+                    📄 ${file.name}
+                  </a>
+                </li>`
+            }
             return `<li><a href="${file.name}" target="_blank">📁 ${file.name}</a></li>`
           })
           .join('')}
@@ -99,6 +108,12 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         : ''
     }
   </main>
+
+  <div id="file-viewer">
+    <button onclick="closeViewer()">Cerrar</button>
+    <pre id="file-content"></pre>
+  </div>
+  <div id="overlay" onclick="closeViewer()"></div>
 </body>
 </html>`
 }
@@ -146,12 +161,17 @@ async function buildSite() {
     fs.mkdirSync(CONFIG.outputRoot, { recursive: true })
 
     const staticFiles = {
-      'styles.css': path.join(__dirname, 'styles.css'),
+      'css/styles.css': path.join(__dirname, 'css/styles.css'),
+      'scripts/modal.js': path.join(__dirname, 'scripts/modal.js'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
     }
 
     for (const [file, source] of Object.entries(staticFiles)) {
       const dest = path.join(CONFIG.outputRoot, file)
+      const destDir = path.dirname(dest)
+      if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true })
+      }
       if (source && fs.existsSync(source)) {
         fs.copyFileSync(source, dest)
       }

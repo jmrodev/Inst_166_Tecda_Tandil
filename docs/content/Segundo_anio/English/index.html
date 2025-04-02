@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English | Instituto 166</title>
-  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../css/styles.css">
+  <script src="../../../scripts/modal.js" defer></script>
 </head>
 <body>
 
@@ -34,5 +35,11 @@
       </ul>
     </section>
   </main>
+
+  <div id="file-viewer">
+    <button onclick="closeViewer()">Cerrar</button>
+    <pre id="file-content"></pre>
+  </div>
+  <div id="overlay" onclick="closeViewer()"></div>
 </body>
 </html>
