@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario de Clases - 2do Año</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tecnicarura Superior en Análisis, Desarrollo y Programación de Aplicaciones - 2do Año</h2>
+    <table>
+        <tr>
+            <th>Horario</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+        </tr>
+        <tr>
+            <td>18:00 - 19:00</td>
+            <td>Programación Orientada a Objetos (Martinez)</td>
+            <td>Seminario de Programación (Pizzi)</td>
+            <td>Inglés Técnico II (González Formaini)</td>
+            <td>Bases de Datos (Rodríguez)</td>
+            <td>Sistemas Operativos (Salvatori)</td>
+        </tr>
+        <tr>
+            <td>19:00 - 20:00</td>
+            <td>Programación Orientada a Objetos</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>20:00 - 21:00</td>
+            <td>Análisis de Sistemas (Lopez)</td>
+            <td>Análisis Matemático II (Meana)</td>
+            <td>EDI (Lopez)</td>
+            <td>Programación Orientada a Objetos (Martinez)</td>
+            <td>Probabilidad y Estadística (Meana)</td>
+        </tr>
+        <tr>
+            <td>21:00 - 22:00</td>
+            <td></td>
+            <td></td>
+            <td>Análisis de Sistemas (Lopez)</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>
