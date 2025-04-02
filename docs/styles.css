@@ -27,6 +27,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
   overflow-y: auto; /* Permitir desplazamiento vertical */
+  height: 100%; /* Asegurar que el cuerpo ocupe toda la altura de la ventana */
+}
+
+html {
+  height: 100%; /* Asegurar que el elemento raíz ocupe toda la altura */
 }
 
 header,
@@ -58,6 +63,7 @@ main {
   flex-direction: column;
   gap: 0rem;
   overflow-y: auto; /* Permitir desplazamiento vertical dentro de main */
+  min-height: 0; /* Evitar que el contenido principal crezca más allá de la pantalla */
 }
 
 /* primera letra en mayuscula */
@@ -197,6 +203,14 @@ li {
     color: var(--text-color);
     min-height: 100vh;
     overflow-y: auto; /* Asegurar desplazamiento en móviles */
+    height: 100%; /* Asegurar altura completa en móviles */
+  }
+
+  main {
+    padding: 0.5rem;
+    font-size: 1.5rem; /* Aumentar tamaño de fuente en el contenido principal */
+    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
+    min-height: 0; /* Evitar problemas de altura en móviles */
   }
 
   section {
@@ -211,12 +225,6 @@ li {
   header,
   footer {
     font-size: 1.2rem; /* Aumentar tamaño de fuente en header y footer */
-  }
-
-  main {
-    padding: 0.5rem;
-    font-size: 1.5rem; /* Aumentar tamaño de fuente en el contenido principal */
-    overflow-y: auto; /* Asegurar desplazamiento en el contenedor principal */
   }
 
   a {
