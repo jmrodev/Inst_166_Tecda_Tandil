@@ -17,7 +17,7 @@ function isExcluded(name) {
   })
 }
 
-// 3. Generador de HTML con soporte para iframe de PDFs y botón de apertura
+// 3. Generador de HTML con soporte para enlaces a archivos HTML
 function generateHTML(title, items, currentPath) {
   // Calcular ruta relativa a la raíz del sitio
   const rootPath =
@@ -73,15 +73,30 @@ function generateHTML(title, items, currentPath) {
       <h2>Archivos</h2>
       <ul>
         ${items.files
-          .map(
-            (file) => `
-          <li>
-            <a href="#" onclick="loadPDF('${file.name}')">
-              📄 ${file.name}
-            </a>
-          </li>
-        `
-          )
+          .map((file) => {
+            if (file.ext === '.html') {
+              return `
+                <li>
+                  <a href="${file.name}">
+                    📝 ${file.name}
+                  </a>
+                </li>`
+            } else if (file.ext === '.pdf') {
+              return `
+                <li>
+                  <a href="#" onclick="loadPDF('${file.name}')">
+                    📄 ${file.name}
+                  </a>
+                </li>`
+            } else {
+              return `
+                <li>
+                  <a href="${file.name}" target="_blank">
+                    📁 ${file.name}
+                  </a>
+                </li>`
+            }
+          })
           .join('')}
       </ul>
     </section>`
