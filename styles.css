@@ -93,6 +93,11 @@ p {
   color: var(--text-color);
 }
 
+p {
+  line-height: 1.6; /* Aumentar la altura de línea para mayor separación */
+  margin-bottom: 1rem; /* Agregar margen inferior entre párrafos */
+}
+
 a {
   text-decoration: none;
   padding: 0.5rem 1rem;
