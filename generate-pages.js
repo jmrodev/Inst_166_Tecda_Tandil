@@ -6,60 +6,47 @@ const CONFIG = {
   sourceRoot: path.join(__dirname, 'documents'), // Directorio raíz del contenido
   outputRoot: path.join(__dirname, 'docs'), // Directorio de salida
   baseHref: '/Inst_166_Tecda_Tandil', // Subdirectorio para GitHub Pages
-  excludes: ['node_modules', '.git', 'dist', '*.md', '.DS_Store'],
+  excludes: [
+    'node_modules',
+    '.git',
+    'dist',
+    '*.md',
+    '.DS_Store',
+    'links.txt',
+    '*.txt',
+  ], // Exclusiones actualizadas
 }
 
 // 2. Función para verificar exclusiones
-// function isExcluded(name) {
-//   return CONFIG.excludes.some((pattern) => {
-//     const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`)
-//     return regex.test(name)
-//   })
-// }
-
 function isExcluded(name) {
-  const patterns = [...CONFIG.excludes, 'links.txt', '*.txt']
-  return patterns.some((pattern) => {
+  return CONFIG.excludes.some((pattern) => {
     const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`)
     return regex.test(name)
   })
 }
+
 // 3. Generador de HTML con soporte para PDFs
 function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
-  // Asegurarse de que items.dirs y items.files sean arreglos
   const dirs = items.dirs || []
   const files = items.files || []
-
-  // Calcular ruta relativa a la raíz del sitio
   const rootPath =
     currentPath.split('/').filter(Boolean).fill('..').join('/') || '.'
-
-  // Verificar si el archivo es un índice (index.html)
   const isIndex = path.basename(currentPath) === ''
 
-  // Leer enlaces adicionales desde links.txt si existe
-  const linksPath = currentPath
-    ? path.join(currentPath, 'links.txt')
-    : 'links.txt'
-  const linksFilePath = path.join(CONFIG.outputRoot, linksPath)
+  // Leer enlaces adicionales desde links.txt
   let additionalLinks = ''
+  const linksFilePath = path.join(CONFIG.outputRoot, currentPath, 'links.txt')
   if (fs.existsSync(linksFilePath)) {
     const links = fs.readFileSync(linksFilePath, 'utf-8').split('\n')
     additionalLinks = links
-      .filter((line) => line.trim() !== '') // Ignorar líneas vacías
+      .filter((line) => line.trim())
       .map((line) => {
         const [text, url] = line.split('|').map((part) => part.trim())
-        if (text && url) {
-          return `<li><a href="${url}" target="_blank">${text}</a></li>`
-        }
-        return '' // Ignorar líneas mal formateadas
+        return text && url
+          ? `<li><a href="${url}" target="_blank">${text}</a></li>`
+          : ''
       })
       .join('')
-    if (additionalLinks) {
-      console.log(
-        `Enlaces adicionales leídos de ${linksFilePath}: ${additionalLinks}`
-      )
-    }
   }
 
   return `<!DOCTYPE html>
@@ -72,7 +59,6 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   <script src="${rootPath}/scripts/modal.js" defer></script>
 </head>
 <body>
-
   <header>
     <h1>${title}</h1>
     <nav class="breadcrumb">
@@ -87,68 +73,53 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         .join(' / ')}
     </nav>
   </header>
- 
 
   <main>
     ${
       dirs.length > 0
         ? `
-    <section class="directories">
-      <h2>Directorios</h2>
-      <ul>
-        ${dirs
-          .map(
-            (dir) =>
-              `<li><a href="${dir.name}/index.html">📁 ${dir.name}</a></li>`
-          )
-          .join('')}
-      </ul>
-    </section>`
+      <section class="directories">
+        <h2>Directorios</h2>
+        <ul>
+          ${dirs
+            .map(
+              (dir) =>
+                `<li><a href="${dir.name}/index.html">📁 ${dir.name}</a></li>`
+            )
+            .join('')}
+        </ul>
+      </section>`
         : ''
     }
 
     ${
       !isIndex && files.length > 0
         ? `
-    <section class="files">
-      <h2>Archivos</h2>
-      <ul>
-        ${files
-          .map((file) => {
-            if (file.ext === '.pdf') {
-              // Enlace directo al archivo PDF
-              return `
-                <li>
-                  <a href="${file.name}" target="_blank">
-                    📄 ${file.name}
-                  </a>
-                </li>`
-            }
-            if (file.ext === '.sh') {
-              return `
-                <li>
-                  <a href="#" onclick="showFile('${file.name}')">
-                    📄 ${file.name}
-                  </a>
-                </li>`
-            }
-            return `<li><a href="${file.name}" target="_blank">📁 ${file.name}</a></li>`
-          })
-          .join('')}
-      </ul>
-    </section>`
+      <section class="files">
+        <h2>Archivos</h2>
+        <ul>
+          ${files
+            .map((file) => {
+              if (file.ext === '.pdf') {
+                return `<li><a href="${file.name}" target="_blank">📄 ${file.name}</a></li>`
+              } else if (file.ext === '.sh') {
+                return `<li><a href="#" onclick="showFile('${file.name}')">📄 ${file.name}</a></li>`
+              }
+              return `<li><a href="${file.name}" target="_blank">📁 ${file.name}</a></li>`
+            })
+            .join('')}
+        </ul>
+      </section>`
         : ''
     }
 
     ${
       additionalLinks
         ? `
-    <section class="additional-links">
-      <h2>Enlaces adicionales</h2>
-      <ul>
-        ${additionalLinks}
-      </ul>
-    </section>`
+      <section class="additional-links">
+        <h2>Enlaces adicionales</h2>
+        <ul>${additionalLinks}</ul>
+      </section>`
         : ''
     }
   </main>
@@ -163,30 +134,28 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
 }
 
 // 4. Procesador de directorios
-async function processDirectory(srcPath, destPath, relativePath = '') {
+function processDirectory(srcPath, destPath, relativePath = '') {
   const items = fs.readdirSync(srcPath, { withFileTypes: true })
   const contents = { dirs: [], files: [] }
 
   fs.mkdirSync(destPath, { recursive: true })
 
-  for (const item of items) {
-    if (isExcluded(item.name)) continue
+  items.forEach((item) => {
+    if (isExcluded(item.name)) return
 
     const itemRelPath = path.join(relativePath, item.name)
-    const itemSrc = path.join(srcPath, item.name)
     const itemDest = path.join(destPath, item.name)
 
     if (item.isDirectory()) {
       contents.dirs.push({ name: item.name, path: itemRelPath })
-      await processDirectory(itemSrc, itemDest, itemRelPath)
+      processDirectory(path.join(srcPath, item.name), itemDest, itemRelPath)
     } else {
-      const ext = path.extname(item.name)
-      contents.files.push({ name: item.name, ext })
-      fs.copyFileSync(itemSrc, itemDest)
+      contents.files.push({ name: item.name, ext: path.extname(item.name) })
+      fs.copyFileSync(path.join(srcPath, item.name), itemDest)
     }
-  }
+  })
 
-  if (contents.dirs.length > 0 || contents.files.length > 0) {
+  if (contents.dirs.length + contents.files.length > 0) {
     fs.writeFileSync(
       path.join(destPath, 'index.html'),
       generateHTML(path.basename(srcPath) || 'Inicio', contents, relativePath)
@@ -197,35 +166,36 @@ async function processDirectory(srcPath, destPath, relativePath = '') {
 // 5. Función principal
 async function buildSite() {
   console.log('🏗 Construyendo sitio...')
-
   try {
+    // Limpiar directorio de salida
     if (fs.existsSync(CONFIG.outputRoot)) {
       fs.rmSync(CONFIG.outputRoot, { recursive: true })
     }
     fs.mkdirSync(CONFIG.outputRoot, { recursive: true })
 
+    // Copiar archivos estáticos
     const staticFiles = {
       'css/styles.css': path.join(__dirname, 'css/styles.css'),
       'scripts/modal.js': path.join(__dirname, 'scripts/modal.js'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
     }
 
-    for (const [file, source] of Object.entries(staticFiles)) {
+    Object.entries(staticFiles).forEach(([file, source]) => {
       const dest = path.join(CONFIG.outputRoot, file)
-      const destDir = path.dirname(dest)
-      if (!fs.existsSync(destDir)) {
-        fs.mkdirSync(destDir, { recursive: true })
-      }
-      if (source && fs.existsSync(source)) {
+      fs.mkdirSync(path.dirname(dest), { recursive: true })
+      if (fs.existsSync(source)) {
         fs.copyFileSync(source, dest)
       }
-    }
+    })
 
-    await processDirectory(
+    // Generar contenido
+    processDirectory(
       CONFIG.sourceRoot,
       path.join(CONFIG.outputRoot, 'content'),
       'content'
     )
+
+    // Crear índice raíz
     fs.writeFileSync(
       path.join(CONFIG.outputRoot, 'index.html'),
       generateHTML(
@@ -237,7 +207,7 @@ async function buildSite() {
 
     console.log('✅ Sitio generado correctamente.')
   } catch (error) {
-    console.error('❌ Error:', error)
+    console.error('❌ Error:', error.stack || error)
     process.exit(1)
   }
 }

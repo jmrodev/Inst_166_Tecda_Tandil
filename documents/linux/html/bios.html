@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>BIOS vs UEFI vs Legacy: Explicación Completa</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+      }
+      h1 {
+        text-align: center;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+      }
+      h2 {
+        background-color: #e8f4f8;
+        padding: 10px;
+        border-left: 5px solid #3498db;
+        margin-top: 40px;
+      }
+      .tech-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 30px 0;
+      }
+      .tech-box {
+        flex: 1;
+        min-width: 250px;
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        border-top: 4px solid;
+      }
+      .bios {
+        border-top-color: #e74c3c;
+      }
+      .uefi {
+        border-top-color: #2ecc71;
+      }
+      .legacy {
+        border-top-color: #f39c12;
+      }
+      .tech-title {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #2c3e50;
+      }
+      .tech-image {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 5em;
+      }
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      .comparison-table th {
+        background-color: #3498db;
+        color: white;
+      }
+      .comparison-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .pro {
+        color: #27ae60;
+        font-weight: bold;
+      }
+      .con {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      .note {
+        background-color: #fffde7;
+        padding: 15px;
+        border-left: 4px solid #ffd600;
+        margin: 25px 0;
+      }
+      .boot-process {
+        background-color: #e8f4f8;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 30px 0;
+      }
+      .boot-step {
+        margin-bottom: 15px;
+        position: relative;
+        padding-left: 30px;
+      }
+      .boot-step:before {
+        content: '➔';
+        position: absolute;
+        left: 0;
+        color: #3498db;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>¿Qué son BIOS, UEFI y Legacy (CSM)?</h1>
+
+    <div class="note">
+      <p>
+        Estos términos se refieren a
+        <strong>sistemas de arranque</strong>
+        que permiten que tu computadora inicie el sistema operativo. Entender
+        sus diferencias es clave para resolver problemas de instalación y
+        compatibilidad.
+      </p>
+    </div>
+
+    <div class="tech-container">
+      <div class="tech-box bios">
+        <div class="tech-title">BIOS (Basic Input/Output System)</div>
+        <div class="tech-image">💾</div>
+        <p>
+          <strong>Sistema tradicional</strong>
+          (desde los 80s) que realiza el
+          <strong>POST</strong>
+          (Power-On Self-Test) y carga el sistema operativo.
+        </p>
+        <h3>Características:</h3>
+        <ul>
+          <li>
+            Interfaz
+            <strong>textual</strong>
+            (pantalla azul)
+          </li>
+          <li>
+            Usa
+            <strong>MBR</strong>
+            (Master Boot Record)
+          </li>
+          <li>
+            Límite de
+            <strong>2TB</strong>
+            por disco
+          </li>
+          <li>
+            No soporta
+            <strong>Secure Boot</strong>
+          </li>
+          <li>
+            Proceso de arranque
+            <strong>más lento</strong>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tech-box uefi">
+        <div class="tech-title">UEFI (Unified Extensible Firm Interface)</div>
+        <div class="tech-image">🚀</div>
+        <p>
+          <strong>Reemplazo moderno</strong>
+          del BIOS (desde 2007) con mejor seguridad y rendimiento.
+        </p>
+        <h3>Características:</h3>
+        <ul>
+          <li>
+            Interfaz
+            <strong>gráfica</strong>
+            (mouse compatible)
+          </li>
+          <li>
+            Usa
+            <strong>GPT</strong>
+            (GUID Partition Table)
+          </li>
+          <li>
+            Soporta discos
+            <strong>>2TB</strong>
+          </li>
+          <li>
+            <strong>Secure Boot</strong>
+            (protege contra malware)
+          </li>
+          <li>
+            Arranque
+            <strong>más rápido</strong>
+            (incluye "Fast Boot")
+          </li>
+        </ul>
+      </div>
+
+      <div class="tech-box legacy">
+        <div class="tech-title">Legacy (CSM)</div>
+        <div class="tech-image">🔄</div>
+        <p>
+          <strong>Modo de compatibilidad</strong>
+          en placas modernas para emular BIOS tradicional.
+        </p>
+        <h3>Características:</h3>
+        <ul>
+          <li>
+            Permite ejecutar
+            <strong>sistemas antiguos</strong>
+          </li>
+          <li>
+            Necesario para algunos
+            <strong>Windows 7/XP</strong>
+          </li>
+          <li>
+            Desactiva
+            <strong>Secure Boot</strong>
+          </li>
+          <li>
+            También llamado
+            <strong>CSM</strong>
+            (Compatibility Support Module)
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>🔍 Comparación detallada</h2>
+
+    <table class="comparison-table">
+      <tr>
+        <th>Característica</th>
+        <th>BIOS (Legacy)</th>
+        <th>UEFI</th>
+      </tr>
+      <tr>
+        <td><strong>Interfaz</strong></td>
+        <td>Texto (teclado)</td>
+        <td>Gráfica (mouse)</td>
+      </tr>
+      <tr>
+        <td><strong>Tabla de particiones</strong></td>
+        <td>MBR (Master Boot Record)</td>
+        <td>GPT (GUID Partition Table)</td>
+      </tr>
+      <tr>
+        <td><strong>Límite de disco</strong></td>
+        <td class="con">2TB</td>
+        <td class="pro">9.4 Zettabytes (prácticamente ilimitado)</td>
+      </tr>
+      <tr>
+        <td><strong>Número de particiones</strong></td>
+        <td class="con">4 primarias (o 3 + extendida)</td>
+        <td class="pro">128 particiones</td>
+      </tr>
+      <tr>
+        <td><strong>Secure Boot</strong></td>
+        <td class="con">No soportado</td>
+        <td class="pro">Sí (bloquea sistemas no firmados)</td>
+      </tr>
+      <tr>
+        <td><strong>Velocidad de arranque</strong></td>
+        <td class="con">Lento (segundos de espera)</td>
+        <td class="pro">Rápido (Fast Boot)</td>
+      </tr>
+      <tr>
+        <td><strong>Compatibilidad</strong></td>
+        <td class="pro">Sistemas antiguos (Windows XP, 7)</td>
+        <td class="con">
+          Requiere SOs modernos (Windows 8.1/10/11, Linux nuevo)
+        </td>
+      </tr>
+    </table>
+
+    <h2>⚙️ Proceso de arranque comparado</h2>
+
+    <div class="boot-process">
+      <h3>Arranque Legacy (BIOS):</h3>
+      <div class="boot-step">Power On (Encendido)</div>
+      <div class="boot-step">POST (Autocomprobación)</div>
+      <div class="boot-step">BIOS busca dispositivos booteables</div>
+      <div class="boot-step">
+        Carga el
+        <strong>MBR</strong>
+        (primer sector del disco)
+      </div>
+      <div class="boot-step">
+        Ejecuta el
+        <strong>bootloader</strong>
+        (ej. NTLDR, GRUB)
+      </div>
+      <div class="boot-step">Inicia el sistema operativo</div>
+    </div>
+
+    <div class="boot-process">
+      <h3>Arranque UEFI:</h3>
+      <div class="boot-step">Power On (Encendido)</div>
+      <div class="boot-step">POST (más rápido, en paralelo)</div>
+      <div class="boot-step">
+        UEFI busca
+        <strong>partición ESP</strong>
+        (FAT32 con bootloaders)
+      </div>
+      <div class="boot-step">
+        Ejecuta el
+        <strong>bootloader.efi</strong>
+        (desde GPT)
+      </div>
+      <div class="boot-step">
+        Verifica
+        <strong>Secure Boot</strong>
+        (si está activo)
+      </div>
+      <div class="boot-step">Inicia el sistema operativo (más rápido)</div>
+    </div>
+
+    <div class="note">
+      <h3>📌 ¿Cómo saber qué usa mi computadora?</h3>
+      <p>
+        <strong>En Windows:</strong>
+        Abre "Información del sistema" (msinfo32) y busca
+        <em>Modo de BIOS</em>
+        .
+        <br />
+        <strong>En Linux:</strong>
+        Ejecuta
+        <code>ls /sys/firmware/efi</code>
+        (si existe el directorio, es UEFI).
+      </p>
+    </div>
+
+    <h2>💡 ¿Cuál es mejor? ¿Cuándo usar cada uno?</h2>
+
+    <h3>Elige UEFI si:</h3>
+    <ul>
+      <li>
+        Tienes un
+        <strong>disco duro >2TB</strong>
+      </li>
+      <li>
+        Quieres
+        <strong>Secure Boot</strong>
+        (seguridad contra malware)
+      </li>
+      <li>
+        Usas
+        <strong>Windows 10/11</strong>
+        o Linux moderno
+      </li>
+      <li>
+        Valoras
+        <strong>arranque rápido</strong>
+      </li>
+    </ul>
+
+    <h3>Usa Legacy (CSM) si:</h3>
+    <ul>
+      <li>
+        Instalas
+        <strong>Windows 7/XP</strong>
+      </li>
+      <li>
+        Tienes
+        <strong>hardware muy antiguo</strong>
+      </li>
+      <li>
+        Usas
+        <strong>herramientas de recuperación antiguas</strong>
+      </li>
+      <li>
+        El
+        <strong>Secure Boot</strong>
+        bloquea tu sistema
+      </li>
+    </ul>
+
+    <h2>🔧 Ventoy y la compatibilidad</h2>
+    <p>
+      Ventoy es
+      <strong>único</strong>
+      porque soporta
+      <em>ambos modos</em>
+      en un mismo USB. Puedes:
+    </p>
+    <ul>
+      <li>
+        Crear un USB que funcione en
+        <strong>UEFI y Legacy</strong>
+        simultáneamente
+      </li>
+      <li>Elegir el modo al iniciar (automáticamente o manualmente)</li>
+      <li>
+        Configurar
+        <strong>Secure Boot</strong>
+        si es necesario
+      </li>
+    </ul>
+    <p>
+      Esto lo hace ideal para
+      <strong>mantenimiento de equipos</strong>
+      donde no sabes qué tipo de BIOS tendrá la máquina objetivo.
+    </p>
+  </body>
+</html>
