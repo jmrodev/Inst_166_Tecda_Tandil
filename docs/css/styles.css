@@ -1,0 +1,285 @@
+:root {
+  /* Paleta de colores profesional */
+  --primary: #4a6fa5;
+  --primary-dark: #2c4a7a;
+  --secondary: #4fc3f7;
+  --accent: #ff8a65;
+  --light: #f8f9fa;
+  --dark: #1a2639;
+  --text: #333333;
+  --text-light: #6c757d;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --border: #dee2e6;
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.breadcrumb a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+  color: white;
+  border-bottom: 1px solid var(--secondary);
+}
+
+/* Contenido principal */
+main {
+  flex: 1; /* Permitir que el contenido principal crezca */
+  padding: 2rem;
+  margin: 0 auto;
+  justify-content: center;
+  background-color: var(--light);
+}
+
+/* Secciones */
+.section-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+section {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+/* Listados */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--light);
+  border-radius: 0.5rem;
+  transition: var(--transition);
+  border: 1px solid var(--border);
+}
+
+li:hover {
+  transform: translateX(5px);
+  border-color: var(--primary);
+}
+
+li a {
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Footer */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--dark);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.footer-bar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.footer-bar button:hover {
+  text-decoration: underline;
+}
+
+/* Estilos exclusivos para la tabla de horarios */
+.table-wrapper {
+  overflow-x: auto; /* Habilitar scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en móviles */
+  margin: 1rem 0; /* Espaciado exterior */
+  border: 1px solid var(--border); /* Bordes alrededor de la tabla */
+  border-radius: 0.5rem; /* Bordes redondeados */
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px; /* Altura del scroll */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary); /* Color del scroll */
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--border); /* Fondo del track del scroll */
+}
+
+#horario-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  table-layout: auto; /* Ajustar automáticamente el ancho */
+}
+
+#horario-table th,
+#horario-table td {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+#horario-table th {
+  background-color: var(--primary);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+#horario-table td {
+  background-color: var(--light);
+  color: var(--text);
+}
+
+#horario-table tr:nth-child(even) td {
+  background-color: var(--border);
+}
+
+#horario-table th,
+#horario-table td {
+  white-space: nowrap; /* Evitar saltos de línea */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: auto; /* Scroll manual en pantallas pequeñas */
+  }
+
+  #horario-table th,
+  #horario-table td {
+    padding: 0.75rem; /* Reducir espacio interno */
+    font-size: 0.9rem; /* Ajustar tamaño del texto */
+  }
+
+  #horario-table th {
+    font-size: 1rem; /* Tamaño de encabezado ajustado */
+  }
+
+  #horario-table tr:nth-child(even) td {
+    background-color: var(--light);
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 0.5s ease-out;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+li {
+  animation: slideIn 0.5s ease-out;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+li:hover {
+  animation: bounce 0.5s ease-in-out;
+}
+/* Fin de los estilos */

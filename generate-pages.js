@@ -3,9 +3,9 @@ const path = require('path')
 
 // 1. Configuración mejorada
 const CONFIG = {
-  sourceRoot: path.join(__dirname, 'documents'), // Directorio raíz del contenido
-  outputRoot: path.join(__dirname, 'docs'), // Directorio de salida
-  baseHref: '/Inst_166_Tecda_Tandil', // Subdirectorio para GitHub Pages
+  sourceRoot: path.join(__dirname, 'documents'),
+  outputRoot: path.join(__dirname, 'docs'),
+  baseHref: '/Inst_166_Tecda_Tandil',
   excludes: [
     'node_modules',
     '.git',
@@ -14,10 +14,25 @@ const CONFIG = {
     '.DS_Store',
     'links.txt',
     '*.txt',
-  ], // Exclusiones actualizadas
+  ],
 }
 
-// 2. Función para verificar exclusiones
+// 2. Función para validar configuraciones
+function validateConfig(config) {
+  try {
+    if (!fs.existsSync(config.sourceRoot)) {
+      throw new Error(`El directorio raíz ${config.sourceRoot} no existe.`)
+    }
+    if (!fs.existsSync(config.outputRoot)) {
+      fs.mkdirSync(config.outputRoot, { recursive: true })
+    }
+  } catch (error) {
+    console.error(`Error en la configuración: ${error.message}`)
+    process.exit(1)
+  }
+}
+
+// 3. Función para verificar exclusiones
 function isExcluded(name) {
   return CONFIG.excludes.some((pattern) => {
     const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`)
@@ -25,29 +40,24 @@ function isExcluded(name) {
   })
 }
 
-// 3. Generador de HTML con soporte para PDFs
+// 4. Función para formatear nombres amigables para la vista
+function formatName(name) {
+  const nameWithoutExt = name.replace(/\.[^/.]+$/, '') // Eliminar la extensión
+  return nameWithoutExt
+    .replace(/_/g, ' ') // Reemplazar guiones bajos por espacios
+    .replace(/anio/g, 'año') // Corregir "anio" a "año"
+    .toLowerCase()
+    .replace(/\b(\w)(\w*)/g, (match, firstLetter, rest) => {
+      return firstLetter.toUpperCase() + rest // Capitalizar la primera letra
+    })
+}
+
+// 5. Generador de HTML para directorios y archivos
 function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
-  const dirs = items.dirs || []
-  const files = items.files || []
+  const dirs = items.dirs || [] // Aseguramos que dirs siempre sea un array
+  const files = items.files || [] // Aseguramos que files siempre sea un array
   const rootPath =
     currentPath.split('/').filter(Boolean).fill('..').join('/') || '.'
-  const isIndex = path.basename(currentPath) === ''
-
-  // Leer enlaces adicionales desde links.txt
-  let additionalLinks = ''
-  const linksFilePath = path.join(CONFIG.outputRoot, currentPath, 'links.txt')
-  if (fs.existsSync(linksFilePath)) {
-    const links = fs.readFileSync(linksFilePath, 'utf-8').split('\n')
-    additionalLinks = links
-      .filter((line) => line.trim())
-      .map((line) => {
-        const [text, url] = line.split('|').map((part) => part.trim())
-        return text && url
-          ? `<li><a href="${url}" target="_blank">${text}</a></li>`
-          : ''
-      })
-      .join('')
-  }
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -56,7 +66,6 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} | Instituto 166</title>
   <link rel="stylesheet" href="${rootPath}/css/styles.css">
-  <script src="${rootPath}/scripts/modal.js" defer></script>
 </head>
 <body>
   <header>
@@ -68,7 +77,9 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         .filter(Boolean)
         .map((dir, i, arr) => {
           const path = arr.slice(0, i + 1).join('/')
-          return `<a href="${rootPath}/${path}/index.html">${dir}</a>`
+          return `<a href="${rootPath}/${path}/index.html">${formatName(
+            dir
+          )}</a>`
         })
         .join(' / ')}
     </nav>
@@ -83,8 +94,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         <ul>
           ${dirs
             .map(
-              (dir) =>
-                `<li><a href="${dir.name}/index.html">📁 ${dir.name}</a></li>`
+              (dir) => `
+            <li>
+              <a href="${dir.name}/index.html">📁 ${formatName(dir.name)}</a>
+            </li>`
             )
             .join('')}
         </ul>
@@ -93,47 +106,167 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
     }
 
     ${
-      !isIndex && files.length > 0
+      files.length > 0
         ? `
       <section class="files">
         <h2>Archivos</h2>
         <ul>
           ${files
-            .map((file) => {
-              if (file.ext === '.pdf') {
-                return `<li><a href="${file.name}" target="_blank">📄 ${file.name}</a></li>`
-              } else if (file.ext === '.sh') {
-                return `<li><a href="#" onclick="showFile('${file.name}')">📄 ${file.name}</a></li>`
-              }
-              return `<li><a href="${file.name}" target="_blank">📁 ${file.name}</a></li>`
-            })
+            .map(
+              (file) => `
+            <li>
+              <a href="${file.name}" target="_blank">📄 ${formatName(
+                file.name
+              )}</a>
+            </li>`
+            )
             .join('')}
         </ul>
       </section>`
         : ''
     }
-
-    ${
-      additionalLinks
-        ? `
-      <section class="additional-links">
-        <h2>Enlaces adicionales</h2>
-        <ul>${additionalLinks}</ul>
-      </section>`
-        : ''
-    }
   </main>
 
-  <div id="file-viewer">
-    <button onclick="closeViewer()">Cerrar</button>
-    <pre id="file-content"></pre>
-  </div>
-  <div id="overlay" onclick="closeViewer()"></div>
+  <footer>
+    <div class="footer-bar">
+      <button onclick="window.history.back()">⬅ Retroceder</button>
+      <button onclick="window.location.href='${rootPath}/index.html'">🏠 Página de Inicio</button>
+    </div>
+  </footer>
 </body>
 </html>`
 }
 
-// 4. Procesador de directorios
+// 6. Generador de la página personalizada de inicio
+function generateHomePage(outputRoot) {
+  const homePagePath = path.join(outputRoot, 'index.html')
+  if (fs.existsSync(homePagePath)) {
+    console.log(
+      '✅ Página personalizada de inicio encontrada (home.html). No se sobrescribirá.'
+    )
+    return
+  }
+
+  const defaultHomeHTML = `
+  <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Instituto 166 - Página de Inicio</title>
+    <link
+      rel="stylesheet"
+      href="css/styles.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Bienvenido al Instituto 166</h1>
+    </header>
+    <main>
+      <h2>Tecnicatura Superior en Análisis,</h2>
+      <h2>Desarrollo y Programación de Aplicaciones</h2>
+      <section class="directories">
+        <h2>Explora el contenido</h2>
+        <p>
+          <a href="content/index.html">
+            Haz clic aquí para acceder a todas las páginas.
+          </a>
+        </p>
+      </section>
+      <h3>Horarios de segundo año</h3>
+      <div class="table-wrapper">
+      <table
+        id="horario-table"
+        class="styled-table"
+      >
+        <tr>
+          <th>Horario</th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miércoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+        </tr>
+        <tr>
+          <td>18:00 - 19:00</td>
+          <td>
+            <p>POO</p>
+          </td>
+          <td>
+            <p>Seminario de</p>
+            <p>Programación</p>
+          </td>
+          <td>
+            <p>Inglés</p>
+            <p>Técnico II</p>
+          </td>
+          <td>
+            <p>Bases</p>
+
+            <p>de Datos</p>
+          </td>
+          <td>
+            <p>Sistemas</p>
+            <p>Operativos</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>20:00 - 21:00</td>
+          <td>
+            <p>Análisis</p>
+            <p>de Sistemas</p>
+          </td>
+          <td>
+            <p>Análisis</p>
+            <p>Matemático II</p>
+          </td>
+          <td>
+            <p>EDI</p>
+          </td>
+          <td>POO</td>
+          <td>
+            <p>Probabilidad</p>
+            <p>y Estadística</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>21:00 - 22:00</td>
+          <td></td>
+          <td></td>
+          <td>
+            <p>Análisis</p>
+            <p>de Sistemas</p>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-bar">
+        <button onclick="window.history.back()">⬅ Retroceder</button>
+        <button onclick="window.location.href='index.html'">
+          🏠 Página de Inicio
+        </button>
+      </div>
+    </footer>
+  </body>
+</html>
+`
+
+  fs.writeFileSync(homePagePath, defaultHomeHTML)
+  console.log('✅ Página de inicio generada correctamente (home.html).')
+}
+
+// 7. Procesador de directorios
 function processDirectory(srcPath, destPath, relativePath = '') {
   const items = fs.readdirSync(srcPath, { withFileTypes: true })
   const contents = { dirs: [], files: [] }
@@ -163,20 +296,22 @@ function processDirectory(srcPath, destPath, relativePath = '') {
   }
 }
 
-// 5. Función principal
+// 8. Función principal
 async function buildSite() {
   console.log('🏗 Construyendo sitio...')
   try {
+    validateConfig(CONFIG)
+
     // Limpiar directorio de salida
     if (fs.existsSync(CONFIG.outputRoot)) {
       fs.rmSync(CONFIG.outputRoot, { recursive: true })
     }
+
     fs.mkdirSync(CONFIG.outputRoot, { recursive: true })
 
     // Copiar archivos estáticos
     const staticFiles = {
       'css/styles.css': path.join(__dirname, 'css/styles.css'),
-      'scripts/modal.js': path.join(__dirname, 'scripts/modal.js'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
     }
 
@@ -188,22 +323,15 @@ async function buildSite() {
       }
     })
 
-    // Generar contenido
+    // Generar directorio de contenido
     processDirectory(
       CONFIG.sourceRoot,
       path.join(CONFIG.outputRoot, 'content'),
       'content'
     )
 
-    // Crear índice raíz
-    fs.writeFileSync(
-      path.join(CONFIG.outputRoot, 'index.html'),
-      generateHTML(
-        'Instituto 166 - Tecda Tandil',
-        { dirs: [{ name: 'content' }] },
-        ''
-      )
-    )
+    // Generar o respetar la página de inicio
+    generateHomePage(CONFIG.outputRoot)
 
     console.log('✅ Sitio generado correctamente.')
   } catch (error) {

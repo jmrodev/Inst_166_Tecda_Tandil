@@ -16,11 +16,11 @@
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Estructura base */
-* {
-  box-sizing: border-box;
+body,
+html {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
@@ -30,25 +30,20 @@ body {
   line-height: 1.6;
   color: var(--text);
   background-color: var(--light);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header profesional */
+/* Header */
 header {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 h1 {
@@ -68,22 +63,20 @@ h1 {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   transition: var(--transition);
-  padding: 0.25rem 0;
-  border-bottom: 1px solid transparent;
 }
 
 .breadcrumb a:hover {
   color: white;
-  border-bottom-color: var(--secondary);
+  border-bottom: 1px solid var(--secondary);
 }
 
 /* Contenido principal */
 main {
-  flex: 1;
+  flex: 1; /* Permitir que el contenido principal crezca */
   padding: 2rem;
-  max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  justify-content: center;
+  background-color: var(--light);
 }
 
 /* Secciones */
@@ -112,9 +105,6 @@ h2 {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 /* Listados */
@@ -149,89 +139,108 @@ li a {
   width: 100%;
 }
 
-/* Iconos específicos */
-[data-type='directory'] .file-icon {
-  color: var(--primary);
-}
-[data-type='pdf'] .file-icon {
-  color: var(--danger);
-}
-[data-type='script'] .file-icon {
-  color: var(--success);
-}
-.file-icon {
-  font-size: 3rem;
-}
-/* Visor de archivos */
-#file-viewer {
+/* Footer */
+.footer-bar {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 800px;
-  max-height: 80vh;
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: var(--shadow);
-  z-index: 2000;
-  display: none;
-  flex-direction: column;
-}
-
-#file-viewer.active {
-  display: flex;
-}
-
-.viewer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-#file-content {
-  flex: 1;
-  padding: 1rem;
-  overflow-y: auto;
-  white-space: pre-wrap;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
-}
-
-#overlay {
-  position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  z-index: 1500;
-  display: none;
+  background-color: var(--dark);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.footer-bar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.footer-bar button:hover {
+  text-decoration: underline;
+}
+
+/* Estilos exclusivos para la tabla de horarios */
+.table-wrapper {
+  overflow-x: auto; /* Habilitar scroll horizontal */
+  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en móviles */
+  margin: 1rem 0; /* Espaciado exterior */
+  border: 1px solid var(--border); /* Bordes alrededor de la tabla */
+  border-radius: 0.5rem; /* Bordes redondeados */
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px; /* Altura del scroll */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary); /* Color del scroll */
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--border); /* Fondo del track del scroll */
+}
+
+#horario-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  table-layout: auto; /* Ajustar automáticamente el ancho */
+}
+
+#horario-table th,
+#horario-table td {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+#horario-table th {
+  background-color: var(--primary);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+#horario-table td {
+  background-color: var(--light);
+  color: var(--text);
+}
+
+#horario-table tr:nth-child(even) td {
+  background-color: var(--border);
+}
+
+#horario-table th,
+#horario-table td {
+  white-space: nowrap; /* Evitar saltos de línea */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  main {
-    padding: 1rem;
+  .table-wrapper {
+    overflow-x: auto; /* Scroll manual en pantallas pequeñas */
   }
 
-  .section-container {
-    grid-template-columns: 1fr;
+  #horario-table th,
+  #horario-table td {
+    padding: 0.75rem; /* Reducir espacio interno */
+    font-size: 0.9rem; /* Ajustar tamaño del texto */
   }
 
-  .file-item {
-    padding: 0.5rem;
+  #horario-table th {
+    font-size: 1rem; /* Tamaño de encabezado ajustado */
   }
 
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.25rem;
+  #horario-table tr:nth-child(even) td {
+    background-color: var(--light);
   }
 }
 
@@ -250,3 +259,27 @@ li a {
 section {
   animation: fadeIn 0.5s ease-out;
 }
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+li {
+  animation: slideIn 0.5s ease-out;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+li:hover {
+  animation: bounce 0.5s ease-in-out;
+}
+/* Fin de los estilos */
