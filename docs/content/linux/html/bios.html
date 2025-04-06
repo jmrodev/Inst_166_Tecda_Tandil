@@ -386,7 +386,73 @@
         bloquea tu sistema
       </li>
     </ul>
+ <h2>🔑 Guía para acceder al BIOS/UEFI y cambiar el orden de arranque</h2>
 
+    <div class="note">
+      <p>
+        <strong>Importante:</strong> Los métodos varían según el fabricante.<br>
+        Presiona la tecla indicada inmediatamente después de encender la computadora.
+      </p>
+    </div>
+
+    <h3>📲 Cómo ingresar al BIOS/UEFI</h3>
+    <div class="tech-box" style="border-top-color: #3498db; margin-top: 20px;">
+      <ul>
+        <li><strong>Teclas comunes:</strong>
+          <ul>
+            <li>F2, F10, F12, Delete (Del) - Laptops y placas base estándar</li>
+            <li>Esc - Algunas HP y Lenovo</li>
+            <li>F1 - ThinkPads antiguos</li>
+            <li>Windows: Usa <em>"Configuración > Recuperación > Reinicio avanzado"</em></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="boot-process">
+      <h3>⚙️ Cambiar orden de arranque (BIOS/UEFI)</h3>
+      <div class="boot-step">1. Ingresa al BIOS/UEFI con la tecla correspondiente</div>
+      <div class="boot-step">2. Navega a la pestaña <strong>"Boot"</strong></div>
+      <div class="boot-step">3. En UEFI:
+        <ul>
+          <li>Busca <strong>"Boot Priority"</strong></li>
+          <li>Arrastra el USB al primer lugar o usa <code>+/-</code></li>
+        </ul>
+      </div>
+      <div class="boot-step">4. En BIOS Legacy:
+        <ul>
+          <li>Selecciona <strong>"Boot Order"</strong></li>
+          <li>Mueve <em>"USB HDD"</em> arriba con flechas</li>
+        </ul>
+      </div>
+      <div class="boot-step">5. Guarda cambios con <strong>F10 → Yes</strong></div>
+    </div>
+
+    <h3>💻 Cómo arrancar desde USB (sin entrar al BIOS)</h3>
+    <div class="tech-box" style="border-top-color: #9b59b6;">
+      <ul>
+        <li><strong>Menú de arranque temporal:</strong>
+          <ul>
+            <li>Teclas: F12, F10, F8, Esc</li>
+            <li>Selecciona el USB en la lista</li>
+            <li>No altera configuraciones permanentes</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <h3>⚠️ Problemas comunes</h3>
+      <ul>
+        <li>Si el USB no aparece:
+          <ul>
+            <li>Formatea como <strong>FAT32</strong> (para UEFI)</li>
+            <li>Habilita <em>"Legacy USB Support"</em> en BIOS</li>
+          </ul>
+        </li>
+        <li>En UEFI: Desactiva <strong>Secure Boot</strong> si hay bloqueos</li>
+      </ul>
+    </div>
     <h2>🔧 Ventoy y la compatibilidad</h2>
     <p>
       Ventoy es

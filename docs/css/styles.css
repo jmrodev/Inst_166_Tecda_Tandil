@@ -149,14 +149,18 @@ li a {
   width: 100%;
 }
 
-
-
 /* Iconos específicos */
-[data-type="directory"] .file-icon { color: var(--primary); }
-[data-type="pdf"] .file-icon { color: var(--danger); }
-[data-type="script"] .file-icon { color: var(--success); }
+[data-type='directory'] .file-icon {
+  color: var(--primary);
+}
+[data-type='pdf'] .file-icon {
+  color: var(--danger);
+}
+[data-type='script'] .file-icon {
+  color: var(--success);
+}
 .file-icon {
-  font-size:3rem;
+  font-size: 3rem;
 }
 /* Visor de archivos */
 #file-viewer {
@@ -213,19 +217,19 @@ li a {
   main {
     padding: 1rem;
   }
-  
+
   .section-container {
     grid-template-columns: 1fr;
   }
-  
+
   .file-item {
     padding: 0.5rem;
   }
-  
+
   h1 {
     font-size: 1.5rem;
   }
-  
+
   h2 {
     font-size: 1.25rem;
   }
@@ -233,8 +237,14 @@ li a {
 
 /* Animaciones */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 section {
