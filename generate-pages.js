@@ -112,14 +112,20 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         <h2>Archivos</h2>
         <ul>
           ${files
-            .map(
-              (file) => `
+            .map((file) => {
+              const isPDF = file.ext === '.pdf'
+              const fileLink = isPDF
+                ? `${rootPath}/pdf-viewer.html?file=${encodeURIComponent(
+                    currentPath + '/' + file.name
+                  )}`
+                : file.name
+              return `
             <li>
-              <a href="${file.name}" target="_blank">📄 ${formatName(
-                file.name
-              )}</a>
+              <a href="${fileLink}" ${
+                isPDF ? '' : 'target="_blank"'
+              }>📄 ${formatName(file.name)}</a>
             </li>`
-            )
+            })
             .join('')}
         </ul>
       </section>`
@@ -130,7 +136,9 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   <footer>
     <div class="footer-bar">
       <button onclick="window.history.back()">⬅ Retroceder</button>
-      <button onclick="window.location.href='${rootPath}/index.html'">🏠 Página de Inicio</button>
+      <button onclick="window.location.href='${rootPath}/index.html'">
+        🏠 Página de Inicio
+      </button>
     </div>
   </footer>
 </body>
@@ -313,6 +321,7 @@ async function buildSite() {
     const staticFiles = {
       'css/styles.css': path.join(__dirname, 'css/styles.css'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
+      'pdf-viewer.html': path.join(__dirname, 'pdf-viewer.html'), // Agregado el visor de PDF
     }
 
     Object.entries(staticFiles).forEach(([file, source]) => {
