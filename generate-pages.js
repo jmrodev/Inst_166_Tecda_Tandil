@@ -73,63 +73,60 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
     <nav class="breadcrumb">
       <a href="${rootPath}/index.html">Inicio</a> /
       ${currentPath
-        .split('/')
-        .filter(Boolean)
-        .map((dir, i, arr) => {
-          const path = arr.slice(0, i + 1).join('/')
-          return `<a href="${rootPath}/${path}/index.html">${formatName(
-            dir
-          )}</a>`
-        })
-        .join(' / ')}
+      .split('/')
+      .filter(Boolean)
+      .map((dir, i, arr) => {
+        const path = arr.slice(0, i + 1).join('/')
+        return `<a href="${rootPath}/${path}/index.html">${formatName(
+          dir
+        )}</a>`
+      })
+      .join(' / ')}
     </nav>
   </header>
 
   <main>
-    ${
-      dirs.length > 0
-        ? `
+    ${dirs.length > 0
+      ? `
       <section class="directories">
         <h2>Directorios</h2>
         <ul>
           ${dirs
-            .map(
-              (dir) => `
+        .map(
+          (dir) => `
             <li>
               <a href="${dir.name}/index.html">📁 ${formatName(dir.name)}</a>
             </li>`
-            )
-            .join('')}
+        )
+        .join('')}
         </ul>
       </section>`
-        : ''
+      : ''
     }
 
-    ${
-      files.length > 0
-        ? `
+    ${files.length > 0
+      ? `
       <section class="files">
         <h2>Archivos</h2>
         <ul>
           ${files
-            .map((file) => {
-              const isPDF = file.ext === '.pdf'
-              const fileLink = isPDF
-                ? `${rootPath}/pdf-viewer.html?file=${encodeURIComponent(
-                    currentPath + '/' + file.name
-                  )}`
-                : file.name
-              return `
+        .map((file) => {
+          const isPDF = file.ext === '.pdf'
+          const fileLink = isPDF
+            ? `${rootPath}/pdf-viewer.html?file=${encodeURIComponent(
+              currentPath + '/' + file.name
+            )}`
+            : file.name
+          return `
             <li>
-              <a href="${fileLink}" ${
-                isPDF ? '' : 'target="_blank"'
-              }>📄 ${formatName(file.name)}</a>
+              <a href="${fileLink}" ${isPDF ? '' : 'target="_blank"'
+            }>📄 ${formatName(file.name)}</a>
             </li>`
-            })
-            .join('')}
+        })
+        .join('')}
         </ul>
       </section>`
-        : ''
+      : ''
     }
   </main>
 
@@ -200,7 +197,7 @@ function generateHomePage(outputRoot) {
           <th>Viernes</th>
         </tr>
         <tr>
-          <td>18:00 - 19:00</td>
+          <td>18:00 - 20:00</td>
           <td>
             <p>POO</p>
           </td>
@@ -214,7 +211,6 @@ function generateHomePage(outputRoot) {
           </td>
           <td>
             <p>Bases</p>
-
             <p>de Datos</p>
           </td>
           <td>
@@ -224,7 +220,7 @@ function generateHomePage(outputRoot) {
         </tr>
 
         <tr>
-          <td>20:00 - 21:00</td>
+          <td>20:00 - 22:00</td>
           <td>
             <p>Análisis</p>
             <p>de Sistemas</p>
@@ -241,18 +237,6 @@ function generateHomePage(outputRoot) {
             <p>Probabilidad</p>
             <p>y Estadística</p>
           </td>
-        </tr>
-
-        <tr>
-          <td>21:00 - 22:00</td>
-          <td></td>
-          <td></td>
-          <td>
-            <p>Análisis</p>
-            <p>de Sistemas</p>
-          </td>
-          <td></td>
-          <td></td>
         </tr>
       </table>
       </div>
