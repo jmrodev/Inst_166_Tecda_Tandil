@@ -1,0 +1,35 @@
+encapsulamiento
+flecha ,en js es punto
+funciones :2 tipos de parametros 
+copia y referencia
+variable -> referencia (va con aspersan en php)
+
+//php
+function suma ( int a,int b,int &c)
+{
+    c=a+b
+}
+
+$Z=0;
+$X=5;
+$Y=6;
+suma($X,$Y,$7);
+echo $Z
+
+//mensaje o metodos
+mensaje ->
+
+encapsulacion
+oculta como esta implementada la clase
+
+getters and setters
+
+clase =  molde
+
+primerio se instancia despues se llena 
+
+hacer una funcion clase en js ,hacer los getters y setters
+
+class persona....
+get
+set
