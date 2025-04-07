@@ -159,25 +159,13 @@ li a {
 
 /* Estilos exclusivos para la tabla de horarios */
 .table-wrapper {
-  overflow-x: auto; /* Habilitar scroll horizontal */
-  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en móviles */
   margin: 1rem 0; /* Espaciado exterior */
   border: 1px solid var(--border); /* Bordes alrededor de la tabla */
   border-radius: 0.5rem; /* Bordes redondeados */
 }
 
-.table-wrapper::-webkit-scrollbar {
-  height: 8px; /* Altura del scroll */
-}
 
-.table-wrapper::-webkit-scrollbar-thumb {
-  background: var(--primary); /* Color del scroll */
-  border-radius: 4px;
-}
 
-.table-wrapper::-webkit-scrollbar-track {
-  background: var(--border); /* Fondo del track del scroll */
-}
 
 #horario-table {
   width: 100%;
@@ -216,9 +204,7 @@ li a {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .table-wrapper {
-    overflow-x: auto; /* Scroll manual en pantallas pequeñas */
-  }
+
 
   #horario-table th,
   #horario-table td {
