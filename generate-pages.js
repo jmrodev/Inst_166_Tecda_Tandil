@@ -224,7 +224,7 @@ function generateHomePage(outputRoot) {
         </tr>
 
         <tr>
-          <td>20:00 - 21:00</td>
+          <td>20:00 - 22:00</td>
           <td>
             <p>Análisis</p>
             <p>de Sistemas</p>
@@ -241,18 +241,6 @@ function generateHomePage(outputRoot) {
             <p>Probabilidad</p>
             <p>y Estadística</p>
           </td>
-        </tr>
-
-        <tr>
-          <td>21:00 - 22:00</td>
-          <td></td>
-          <td></td>
-          <td>
-            <p>Análisis</p>
-            <p>de Sistemas</p>
-          </td>
-          <td></td>
-          <td></td>
         </tr>
       </table>
       </div>
