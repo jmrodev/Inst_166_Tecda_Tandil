@@ -1,5 +1,4 @@
 :root {
-  /* Paleta de colores profesional */
   --primary: #4a6fa5;
   --primary-dark: #2c4a7a;
   --secondary: #4fc3f7;
@@ -35,7 +34,6 @@ body {
   min-height: 100vh;
 }
 
-/* Header */
 header {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
@@ -70,16 +68,14 @@ h1 {
   border-bottom: 1px solid var(--secondary);
 }
 
-/* Contenido principal */
 main {
-  flex: 1; /* Permitir que el contenido principal crezca */
+  flex: 1;
   padding: 2rem;
   margin: 0 auto;
   justify-content: center;
   background-color: var(--light);
 }
 
-/* Secciones */
 .section-container {
   display: grid;
   gap: 2rem;
@@ -103,7 +99,6 @@ h2 {
   border-bottom: 2px solid var(--border);
 }
 
-/* Listados */
 ul {
   list-style: none;
   display: flex;
@@ -130,7 +125,6 @@ li a {
   width: 100%;
 }
 
-/* Footer */
 .footer-bar {
   position: fixed;
   bottom: 0;
@@ -157,21 +151,17 @@ li a {
   text-decoration: underline;
 }
 
-/* Estilos exclusivos para la tabla de horarios */
 .table-wrapper {
-  margin: 1rem 0; /* Espaciado exterior */
-  border: 1px solid var(--border); /* Bordes alrededor de la tabla */
-  border-radius: 0.5rem; /* Bordes redondeados */
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
 }
-
-
-
 
 #horario-table {
   width: 100%;
   border-collapse: collapse;
   margin: 0;
-  table-layout: auto; /* Ajustar automáticamente el ancho */
+  table-layout: auto;
 }
 
 #horario-table th,
@@ -199,21 +189,25 @@ li a {
 
 #horario-table th,
 #horario-table td {
-  white-space: nowrap; /* Evitar saltos de línea */
+  white-space: nowrap;
 }
-
-/* Responsive Design */
+.directories{
+  display: flex;
+  flex-direction: row;
+}
 @media (max-width: 768px) {
 
-
+.directories{
+  flex-direction: column;
+}
   #horario-table th,
   #horario-table td {
-    padding: 0.75rem; /* Reducir espacio interno */
-    font-size: 0.9rem; /* Ajustar tamaño del texto */
+    padding: 0.75rem;
+    font-size: 0.9rem;
   }
 
   #horario-table th {
-    font-size: 1rem; /* Tamaño de encabezado ajustado */
+    font-size: 1rem;
   }
 
   #horario-table tr:nth-child(even) td {
