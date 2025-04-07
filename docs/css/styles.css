@@ -94,10 +94,6 @@ section {
   transition: var(--transition);
 }
 
-section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-}
 
 h2 {
   font-size: 1.5rem;
@@ -121,14 +117,9 @@ li {
   padding: 0.75rem 1rem;
   background: var(--light);
   border-radius: 0.5rem;
-  transition: var(--transition);
   border: 1px solid var(--border);
 }
 
-li:hover {
-  transform: translateX(5px);
-  border-color: var(--primary);
-}
 
 li a {
   text-decoration: none;
@@ -243,43 +234,3 @@ li a {
     background-color: var(--light);
   }
 }
-
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-section {
-  animation: fadeIn 0.5s ease-out;
-}
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-li {
-  animation: slideIn 0.5s ease-out;
-}
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-li:hover {
-  animation: bounce 0.5s ease-in-out;
-}
-/* Fin de los estilos */
