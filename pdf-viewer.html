@@ -1,91 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Visor de PDF</title>
     <style>
-        /* ...existing code... */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #pdf-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+      }
+      #pdf-viewer {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      #page-num {
+        width: 50px;
+        text-align: center;
+      }
+      canvas {
+        max-width: 100%;
+        height: auto;
+      }
     </style>
-</head>
-<body>
-    <h1>Visor de PDF</h1>
-    <input type="file" id="file-input" accept="application/pdf">
-    <input type="text" id="url-input" placeholder="Introduce la URL del PDF">
-    <button id="load-pdf">Cargar PDF</button>
-    <div id="pdf-viewer">Cargando PDF...</div>
-    <div class="fallback">
-        <p>Si no puedes ver el PDF, <span id="download-link"></span>.</p>
+  </head>
+  <body>
+    <div id="pdf-container">
+      <div id="pdf-viewer"></div>
+      <div class="controls">
+        <button id="prev">Anterior</button>
+        <span>
+          Página
+          <input
+            type="number"
+            id="page-num"
+            min="1"
+            value="1"
+          />
+          de
+          <span id="page-count">0</span>
+        </span>
+        <button id="next">Siguiente</button>
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+      const pdfjsLib = window['pdfjs-dist/build/pdf']
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
 
-        const pdfViewer = document.getElementById('pdf-viewer');
-        const fileInput = document.getElementById('file-input');
-        const urlInput = document.getElementById('url-input');
-        const loadButton = document.getElementById('load-pdf');
-        const downloadLink = document.getElementById('download-link');
+      let pdfDoc = null
+      let pageNum = 1
+      const viewer = document.getElementById('pdf-viewer')
+      const pageNumInput = document.getElementById('page-num')
+      const pageCount = document.getElementById('page-count')
 
-        function renderPDF(url) {
-            pdfjsLib.getDocument(url).promise.then(pdf => {
-                pdf.getPage(1).then(page => {
-                    const containerWidth = pdfViewer.clientWidth;
-                    const viewport = page.getViewport({ scale: 1 });
-                    const scale = containerWidth / viewport.width;
-                    const adjustedViewport = page.getViewport({ scale });
-
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    const outputScale = window.devicePixelRatio || 1;
-                    canvas.width = Math.floor(adjustedViewport.width * outputScale);
-                    canvas.height = Math.floor(adjustedViewport.height * outputScale);
-                    canvas.style.width = `${adjustedViewport.width}px`;
-                    canvas.style.height = `${adjustedViewport.height}px`;
-
-                    context.scale(outputScale, outputScale);
-
-                    pdfViewer.innerHTML = '';
-                    pdfViewer.appendChild(canvas);
-
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: adjustedViewport
-                    };
-
-                    page.render(renderContext).catch(renderError => {
-                        pdfViewer.innerHTML = 'Error al renderizar la página del PDF.';
-                        console.error('Render Error:', renderError);
-                    });
-                }).catch(pageError => {
-                    pdfViewer.innerHTML = 'Error al cargar la página del PDF.';
-                    console.error('Page Error:', pageError);
-                });
-            }).catch(docError => {
-                pdfViewer.innerHTML = 'No se pudo cargar el PDF.';
-                console.error('Document Error:', docError);
-            });
+      async function loadPDF(url) {
+        try {
+          pdfDoc = await pdfjsLib.getDocument(url).promise
+          pageCount.textContent = pdfDoc.numPages
+          renderPage(1)
+        } catch (error) {
+          console.error('Error loading PDF:', error)
+          viewer.innerHTML = 'Error al cargar el PDF: ' + error.message
         }
+      }
 
-        loadButton.addEventListener('click', () => {
-            const url = urlInput.value.trim();
-            if (url) {
-                renderPDF(url);
-                downloadLink.innerHTML = `<a href="${url}" download>descárgalo aquí</a>`;
-            } else {
-                alert('Por favor, introduce una URL válida.');
-            }
-        });
+      async function renderPage(num) {
+        try {
+          const page = await pdfDoc.getPage(num)
+          const canvas = document.createElement('canvas')
+          const context = canvas.getContext('2d')
+          const viewport = page.getViewport({ scale: 1 })
 
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const fileURL = URL.createObjectURL(file);
-                renderPDF(fileURL);
-                downloadLink.innerHTML = `<a href="${fileURL}" download>descárgalo aquí</a>`;
-            }
-        });
+          // Ajustar escala al ancho del contenedor
+          const containerWidth = viewer.clientWidth
+          const scale = containerWidth / viewport.width
+          const scaledViewport = page.getViewport({ scale })
+
+          canvas.width = scaledViewport.width
+          canvas.height = scaledViewport.height
+
+          viewer.innerHTML = ''
+          viewer.appendChild(canvas)
+
+          await page.render({
+            canvasContext: context,
+            viewport: scaledViewport,
+          }).promise
+
+          pageNum = num
+          pageNumInput.value = num
+        } catch (error) {
+          console.error('Error rendering page:', error)
+          viewer.innerHTML = 'Error al renderizar la página: ' + error.message
+        }
+      }
+
+      // Controles de navegación
+      document.getElementById('prev').addEventListener('click', () => {
+        if (pageNum > 1) renderPage(pageNum - 1)
+      })
+
+      document.getElementById('next').addEventListener('click', () => {
+        if (pageNum < pdfDoc.numPages) renderPage(pageNum + 1)
+      })
+
+      pageNumInput.addEventListener('change', () => {
+        const num = parseInt(pageNumInput.value)
+        if (num >= 1 && num <= pdfDoc.numPages) {
+          renderPage(num)
+        }
+      })
+
+      // Cargar PDF desde URL o parámetro
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search)
+        const pdfFile = urlParams.get('file')
+        if (pdfFile) {
+          loadPDF(pdfFile)
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
