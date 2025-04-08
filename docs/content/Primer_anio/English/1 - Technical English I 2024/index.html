@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1 - Technical English I 2024 | Instituto 166</title>
   <link rel="stylesheet" href="../../../../css/styles.css">
+  <script src="../../../../scripts/modal.js"></script>
 </head>
 <body>
   <header>
@@ -99,11 +100,18 @@
               <a href="Technical English I 2024_.docx" target="_blank">📄 Technical English I 2024 </a>
             </li>
             <li>
-              <a href="../../../../pdf-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Pronunciation.pdf" >📄 Unit 1 - Pronunciation</a>
+              <a href="../../../../pdf-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Pronunciation.pdf">📄 Unit 1 - Pronunciation</a>
             </li>
         </ul>
       </section>
   </main>
+
+  <!-- Modal para visualización de archivos -->
+  <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
+  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001;">
+    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">✖</button>
+    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto;"></pre>
+  </div>
 
   <footer>
     <div class="footer-bar">
