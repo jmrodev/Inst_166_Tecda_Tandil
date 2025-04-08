@@ -19,6 +19,8 @@ const CONFIG = {
   modalExtensions: ['.sh'],
   // Extensiones para documentos Word
   wordExtensions: ['.doc', '.docx'],
+  // Extensiones para presentaciones PowerPoint
+  pptExtensions: ['.ppt', '.pptx'],
   // Modo debug para mostrar información detallada
   debug: process.argv.includes('--debug')
 }
@@ -105,6 +107,15 @@ function isWordDocument(fileExt) {
   return result
 }
 
+// Función para verificar si un archivo es una presentación PowerPoint
+function isPowerPointPresentation(fileExt) {
+  const result = CONFIG.pptExtensions.includes(fileExt)
+  if (result) {
+    logDebug(`Archivo con extensión ${fileExt} se abrirá en el visor de PowerPoint`)
+  }
+  return result
+}
+
 // 5. Generador de HTML para directorios y archivos
 function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   logDebug(`Generando HTML para: ${currentPath || 'raíz'} (${title})`)
@@ -173,6 +184,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
             .map((file) => {
               const isPDF = file.ext === '.pdf';
               const isWord = isWordDocument(file.ext);
+              const isPowerPoint = isPowerPointPresentation(file.ext);
               const useModal = shouldOpenInModal(file.ext);
               
               let fileLink;
@@ -186,6 +198,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
                 fileLink = `${rootPath}/word-viewer.html?file=${encodeURIComponent(
                   currentPath + '/' + file.name
                 )}`;
+              } else if (isPowerPoint) {
+                fileLink = `${rootPath}/powerpoint-viewer.html?file=${encodeURIComponent(
+                  currentPath + '/' + file.name
+                )}`;
               } else if (useModal) {
                 fileLink = '#';
                 clickAction = ` onclick="showFile('${file.name}'); return false;"`;
@@ -197,10 +213,11 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
               let fileIcon = '📄';
               if (isPDF) fileIcon = '📕';
               if (isWord) fileIcon = '📝';
+              if (isPowerPoint) fileIcon = '📊';
               
               return `
             <li>
-              <a href="${fileLink}"${clickAction}${!useModal && !isPDF && !isWord ? ' target="_blank"' : ''}>${fileIcon} ${formatName(file.name)}</a>
+              <a href="${fileLink}"${clickAction}${!useModal && !isPDF && !isWord && !isPowerPoint ? ' target="_blank"' : ''}>${fileIcon} ${formatName(file.name)}</a>
             </li>`;
             })
             .join('')}
@@ -418,7 +435,8 @@ async function buildSite() {
       'css/styles.css': path.join(__dirname, 'css/styles.css'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
       'pdf-viewer.html': path.join(__dirname, 'pdf-viewer.html'),
-      'word-viewer.html': path.join(__dirname, 'word-viewer.html'), // Añadido el visor de Word
+      'word-viewer.html': path.join(__dirname, 'word-viewer.html'),
+      'powerpoint-viewer.html': path.join(__dirname, 'powerpoint-viewer.html'), // Añadido el visor de PowerPoint
       'scripts/modal.js': path.join(__dirname, 'scripts/modal.js'),
     }
 
