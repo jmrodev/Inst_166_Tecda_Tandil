@@ -3,10 +3,14 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"build": "node generate-pages.js"
+		"build": "node generate-pages.js",
+		"dev": "node generate-pages.js && serve docs"
 	},
 	"dependencies": {
 		"path": "^0.12.7",
 		"fs": "0.0.1-security"
+	},
+	"devDependencies": {
+		"serve": "^14.2.1"
 	}
 }

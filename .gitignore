@@ -19,3 +19,6 @@ Thumbs.db
 # Ignorar logs y temporales
 *.log
 *.tmp
+
+# Ignorar caché
+.cache
