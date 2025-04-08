@@ -1,0 +1,52 @@
+name: Build Site
+
+on:
+  push:
+    paths:
+      - 'documents/**'
+      - 'generate-pages.js'
+      - 'pdf-viewer.html'
+      - 'css/**'
+  pull_request:
+    paths:
+      - 'documents/**'
+      - 'generate-pages.js'
+      - 'pdf-viewer.html'
+      - 'css/**'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Generate site
+        run: pnpm run build
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update site content [skip ci]" && git push)
