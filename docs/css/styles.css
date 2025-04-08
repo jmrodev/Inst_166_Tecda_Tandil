@@ -87,7 +87,6 @@ section {
   border-radius: 0.5rem;
   padding: 1.5rem;
   box-shadow: var(--shadow);
-  transition: var(--transition);
 }
 
 

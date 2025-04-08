@@ -15,8 +15,10 @@ const CONFIG = {
     'links.txt',
     '*.txt',
   ],
-  // Se añaden extensiones que deberían abrirse en el modal
+  // Se añaden extensiones que deberían abrirse en modal o visores específicos
   modalExtensions: ['.sh'],
+  // Extensiones para documentos Word
+  wordExtensions: ['.doc', '.docx'],
   // Modo debug para mostrar información detallada
   debug: process.argv.includes('--debug')
 }
@@ -94,6 +96,15 @@ function shouldOpenInModal(fileExt) {
   return result
 }
 
+// Función para verificar si un archivo es un documento Word
+function isWordDocument(fileExt) {
+  const result = CONFIG.wordExtensions.includes(fileExt)
+  if (result) {
+    logDebug(`Archivo con extensión ${fileExt} se abrirá en el visor de Word`)
+  }
+  return result
+}
+
 // 5. Generador de HTML para directorios y archivos
 function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   logDebug(`Generando HTML para: ${currentPath || 'raíz'} (${title})`)
@@ -161,6 +172,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
           ${files
             .map((file) => {
               const isPDF = file.ext === '.pdf';
+              const isWord = isWordDocument(file.ext);
               const useModal = shouldOpenInModal(file.ext);
               
               let fileLink;
@@ -170,6 +182,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
                 fileLink = `${rootPath}/pdf-viewer.html?file=${encodeURIComponent(
                   currentPath + '/' + file.name
                 )}`;
+              } else if (isWord) {
+                fileLink = `${rootPath}/word-viewer.html?file=${encodeURIComponent(
+                  currentPath + '/' + file.name
+                )}`;
               } else if (useModal) {
                 fileLink = '#';
                 clickAction = ` onclick="showFile('${file.name}'); return false;"`;
@@ -177,9 +193,14 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
                 fileLink = file.name;
               }
               
+              // Determinar el icono según el tipo de archivo
+              let fileIcon = '📄';
+              if (isPDF) fileIcon = '📕';
+              if (isWord) fileIcon = '📝';
+              
               return `
             <li>
-              <a href="${fileLink}"${clickAction}${!useModal && !isPDF ? ' target="_blank"' : ''}>📄 ${formatName(file.name)}</a>
+              <a href="${fileLink}"${clickAction}${!useModal && !isPDF && !isWord ? ' target="_blank"' : ''}>${fileIcon} ${formatName(file.name)}</a>
             </li>`;
             })
             .join('')}
@@ -397,6 +418,7 @@ async function buildSite() {
       'css/styles.css': path.join(__dirname, 'css/styles.css'),
       'favicon.ico': path.join(__dirname, 'favicon.ico'),
       'pdf-viewer.html': path.join(__dirname, 'pdf-viewer.html'),
+      'word-viewer.html': path.join(__dirname, 'word-viewer.html'), // Añadido el visor de Word
       'scripts/modal.js': path.join(__dirname, 'scripts/modal.js'),
     }
 
