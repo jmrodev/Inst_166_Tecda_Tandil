@@ -17,40 +17,74 @@
   </header>
 
   <main>
+    <div class="note">
+      <p>Esta sección contiene recursos para <strong>Unit 1 - Work - Language Reference</strong>. Explora los directorios y archivos disponibles.</p>
+    </div>
+
     
 
     
-      <section class="files">
-        <h2>Archivos</h2>
-        <ul>
-          
-            <li>
-              <a href="1 - Present Simple of TO BE.png" target="_blank">📄 1 - Present Simple Of To Be</a>
-            </li>
-            <li>
-              <a href="2 - Present_Simple.png" target="_blank">📄 2 - Present Simple</a>
-            </li>
-            <li>
-              <a href="3 - Present_Simple_-_Spelling_Rules.png" target="_blank">📄 3 - Present Simple - Spelling Rules</a>
-            </li>
-            <li>
-              <a href="../../../../../word-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Work%20-%20Language%20Reference%2F4%20-%20Unit%201%20-%20Grammar%20Practice%20with%20Key.docx">📝 4 - Unit 1 - Grammar Practice With Key</a>
-            </li>
-            <li>
-              <a href="../../../../../pdf-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Work%20-%20Language%20Reference%2F5%20-%20Unit%201%20-%20Language%20Review.pdf">📕 5 - Unit 1 - Language Review</a>
-            </li>
-            <li>
-              <a href="../../../../../word-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Work%20-%20Language%20Reference%2F6%20-%20TO%20BE%20%20-%20TO%20HAVE%20-%20A-AN%20-%20Links.docx">📝 6 - To Be  - To Have - A-An - Links</a>
-            </li>
-        </ul>
-      </section>
+      <h2>📄 Archivos</h2>
+      <table class="comparison-table">
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Acción</th>
+        </tr>
+        
+          <tr>
+            <td><strong>📄 1 - Present Simple Of To Be</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="1 - Present Simple of TO BE.png" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 2 - Present Simple</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="2 - Present_Simple.png" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 3 - Present Simple - Spelling Rules</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="3 - Present_Simple_-_Spelling_Rules.png" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📝 4 - Unit 1 - Grammar Practice With Key</strong></td>
+            <td>Word</td>
+            <td>
+              <a href="../../../../../word-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Work%20-%20Language%20Reference%2F4%20-%20Unit%201%20-%20Grammar%20Practice%20with%20Key.docx" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📕 5 - Unit 1 - Language Review</strong></td>
+            <td>PDF</td>
+            <td>
+              <a href="../../../../../pdf-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Work%20-%20Language%20Reference%2F5%20-%20Unit%201%20-%20Language%20Review.pdf" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📝 6 - To Be  - To Have - A-An - Links</strong></td>
+            <td>Word</td>
+            <td>
+              <a href="../../../../../word-viewer.html?file=content%2FPrimer_anio%2FEnglish%2F1%20-%20Technical%20English%20I%202024%2FUnit%201%20-%20Work%20-%20Language%20Reference%2F6%20-%20TO%20BE%20%20-%20TO%20HAVE%20-%20A-AN%20-%20Links.docx" class="action-button">Ver</a>
+            </td>
+          </tr>
+      </table>
+      
+
+    
   </main>
 
   <!-- Modal para visualización de archivos -->
   <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
-  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001;">
-    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">✖</button>
-    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto;"></pre>
+  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background: none; border: none; font-size: 18px;">✖</button>
+    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto; background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd;"></pre>
   </div>
 
   <footer>

@@ -17,43 +17,81 @@
   </header>
 
   <main>
+    <div class="note">
+      <p>Esta sección contiene recursos para <strong>fotos_de_pizarron</strong>. Explora los directorios y archivos disponibles.</p>
+    </div>
+
     
 
     
-      <section class="files">
-        <h2>Archivos</h2>
-        <ul>
-          
-            <li>
-              <a href="01_repaso_de diagnostico_inicial.jpeg" target="_blank">📄 01 Repaso De Diagnostico Inicial</a>
-            </li>
-            <li>
-              <a href="02_repaso_de diagnostico_inicial.jpeg" target="_blank">📄 02 Repaso De Diagnostico Inicial</a>
-            </li>
-            <li>
-              <a href="03_repaso_de diagnostico_inicial.jpeg" target="_blank">📄 03 Repaso De Diagnostico Inicial</a>
-            </li>
-            <li>
-              <a href="04_repaso_de diagnostico_inicial.jpeg" target="_blank">📄 04 Repaso De Diagnostico Inicial</a>
-            </li>
-            <li>
-              <a href="05_repaso_de diagnostico_inicial.jpeg" target="_blank">📄 05 Repaso De Diagnostico Inicial</a>
-            </li>
-            <li>
-              <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FPoo%2Ffotos_de_pizarron%2FComenzando%20con%20objetos.pdf">📕 Comenzando Con Objetos</a>
-            </li>
-            <li>
-              <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FPoo%2Ffotos_de_pizarron%2Finstancia.pdf">📕 Instancia</a>
-            </li>
-        </ul>
-      </section>
+      <h2>📄 Archivos</h2>
+      <table class="comparison-table">
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Acción</th>
+        </tr>
+        
+          <tr>
+            <td><strong>📄 01 Repaso De Diagnostico Inicial</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="01_repaso_de diagnostico_inicial.jpeg" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 02 Repaso De Diagnostico Inicial</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="02_repaso_de diagnostico_inicial.jpeg" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 03 Repaso De Diagnostico Inicial</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="03_repaso_de diagnostico_inicial.jpeg" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 04 Repaso De Diagnostico Inicial</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="04_repaso_de diagnostico_inicial.jpeg" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📄 05 Repaso De Diagnostico Inicial</strong></td>
+            <td>Documento</td>
+            <td>
+              <a href="05_repaso_de diagnostico_inicial.jpeg" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📕 Comenzando Con Objetos</strong></td>
+            <td>PDF</td>
+            <td>
+              <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FPoo%2Ffotos_de_pizarron%2FComenzando%20con%20objetos.pdf" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>📕 Instancia</strong></td>
+            <td>PDF</td>
+            <td>
+              <a href="../../../../pdf-viewer.html?file=content%2FSegundo_anio%2FPoo%2Ffotos_de_pizarron%2Finstancia.pdf" class="action-button">Ver</a>
+            </td>
+          </tr>
+      </table>
+      
+
+    
   </main>
 
   <!-- Modal para visualización de archivos -->
   <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
-  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001;">
-    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">✖</button>
-    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto;"></pre>
+  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background: none; border: none; font-size: 18px;">✖</button>
+    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto; background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd;"></pre>
   </div>
 
   <footer>

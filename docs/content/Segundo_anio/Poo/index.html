@@ -17,46 +17,73 @@
   </header>
 
   <main>
-    
-      <section class="directories">
-        <h2>Directorios</h2>
-        <ul>
-          
-            <li>
-              <a href="Manual/index.html">📁 Manual</a>
-            </li>
-            <li>
-              <a href="docs/index.html">📁 Docs</a>
-            </li>
-            <li>
-              <a href="fotos_de_pizarron/index.html">📁 Fotos De Pizarron</a>
-            </li>
-            <li>
-              <a href="pdfs/index.html">📁 Pdfs</a>
-            </li>
-            <li>
-              <a href="slides/index.html">📁 Slides</a>
-            </li>
-        </ul>
-      </section>
+    <div class="note">
+      <p>Esta sección contiene recursos para <strong>Poo</strong>. Explora los directorios y archivos disponibles.</p>
+    </div>
 
     
-      <section class="files">
-        <h2>Archivos</h2>
-        <ul>
-          
-            <li>
-              <a href="index.html" target="_blank">📄 Index</a>
-            </li>
-        </ul>
-      </section>
+      <h2>🗂️ Directorios</h2>
+      <div class="tech-container">
+        
+          <div class="tech-box" style="border-top-color: #3498db;">
+            <div class="tech-title">Manual</div>
+            <div class="tech-image">📁</div>
+            <p>Accede a este directorio para ver su contenido.</p>
+            <p><a href="Manual/index.html" style="display: inline-block; padding: 8px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px;">Explorar</a></p>
+          </div>
+          <div class="tech-box" style="border-top-color: #3498db;">
+            <div class="tech-title">Docs</div>
+            <div class="tech-image">📁</div>
+            <p>Accede a este directorio para ver su contenido.</p>
+            <p><a href="docs/index.html" style="display: inline-block; padding: 8px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px;">Explorar</a></p>
+          </div>
+          <div class="tech-box" style="border-top-color: #3498db;">
+            <div class="tech-title">Fotos De Pizarron</div>
+            <div class="tech-image">📁</div>
+            <p>Accede a este directorio para ver su contenido.</p>
+            <p><a href="fotos_de_pizarron/index.html" style="display: inline-block; padding: 8px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px;">Explorar</a></p>
+          </div>
+          <div class="tech-box" style="border-top-color: #3498db;">
+            <div class="tech-title">Pdfs</div>
+            <div class="tech-image">📁</div>
+            <p>Accede a este directorio para ver su contenido.</p>
+            <p><a href="pdfs/index.html" style="display: inline-block; padding: 8px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px;">Explorar</a></p>
+          </div>
+          <div class="tech-box" style="border-top-color: #3498db;">
+            <div class="tech-title">Slides</div>
+            <div class="tech-image">📁</div>
+            <p>Accede a este directorio para ver su contenido.</p>
+            <p><a href="slides/index.html" style="display: inline-block; padding: 8px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px;">Explorar</a></p>
+          </div>
+      </div>
+
+    
+      <h2>📄 Archivos</h2>
+      <table class="comparison-table">
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Acción</th>
+        </tr>
+        
+          <tr>
+            <td><strong>🌐 Index</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="index.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+      </table>
+      
+
+    
   </main>
 
   <!-- Modal para visualización de archivos -->
   <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
-  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001;">
-    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">✖</button>
-    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto;"></pre>
+  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background: none; border: none; font-size: 18px;">✖</button>
+    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto; background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd;"></pre>
   </div>
 
   <footer>

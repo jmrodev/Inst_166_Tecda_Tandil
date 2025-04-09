@@ -1,101 +1,230 @@
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instituto 166 - Página de Inicio</title>
-    <link
-      rel="stylesheet"
-      href="css/styles.css"
-    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .calendar-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px 0;
+        justify-content: center;
+      }
+      .calendar-button {
+        padding: 12px 24px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      .calendar-button:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      .calendar-button:active {
+        transform: translateY(0);
+      }
+      .calendar-button.active {
+        background-color: #e74c3c;
+      }
+      /* Estilos para el modal de calendario */
+      #calendar-modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 1000px;
+        max-height: 90vh;
+        overflow-y: auto;
+        z-index: 1001;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+      .modal-header h2 {
+        margin: 0;
+        color: #3498db;
+        font-size: 24px;
+      }
+      .close-button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #777;
+        transition: color 0.2s;
+      }
+      .close-button:hover {
+        color: #e74c3c;
+      }
+      #modal-content {
+        padding: 10px 0;
+      }
+      #modal-content table {
+        width: 100%;
+      }
+      /* Estilos para la sección de horarios */
+      .horario-section {
+        background-color: #f2f9fe;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 30px 0;
+        border-left: 5px solid #3498db;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+      .horario-section .boot-step {
+        margin-bottom: 15px;
+        padding-left: 20px;
+        position: relative;
+        font-size: 17px;
+      }
+      .horario-section .boot-step:before {
+        content: "•";
+        color: #3498db;
+        font-size: 24px;
+        position: absolute;
+        left: 0;
+        top: -5px;
+      }
+      .horario-section .boot-step strong {
+        color: #e74c3c;
+        font-weight: 600;
+      }
+    </style>
+    <script src="scripts/modal.js"></script>
   </head>
   <body>
     <header>
       <h1>Bienvenido al Instituto 166</h1>
     </header>
+
     <main>
-      <h2>Tecnicatura Superior en Análisis,</h2>
-      <h2>Desarrollo y Programación de Aplicaciones</h2>
-      <section class="directories">
-        <h2>Explora el contenido</h2>
-        <p>
-          <a href="content/index.html">
-            Haz clic aquí para acceder a todas las páginas.
-          </a>
-        </p>
-      </section>
-      <h3>Horarios de segundo año</h3>
-      <div class="table-wrapper">
-      <table
-        id="horario-table"
-        class="styled-table"
-      >
-        <tr>
-          <th>Horario</th>
-          <th>Lunes</th>
-          <th>Martes</th>
-          <th>Miércoles</th>
-          <th>Jueves</th>
-          <th>Viernes</th>
-        </tr>
-        <tr>
-          <td>18:00 - 20:00</td>
-          <td>
-            <p>POO</p>
-          </td>
-          <td>
-            <p>Seminario de</p>
-            <p>Programación</p>
-          </td>
-          <td>
-            <p>Inglés</p>
-            <p>Técnico II</p>
-          </td>
-          <td>
-            <p>Bases</p>
+      <div class="note">
+        <p><strong>Tecnicatura Superior en Análisis, Desarrollo y Programación de Aplicaciones</strong> - Recursos educativos y materiales de estudio.</p>
+      </div>
 
-            <p>de Datos</p>
-          </td>
-          <td>
-            <p>Sistemas</p>
-            <p>Operativos</p>
-          </td>
-        </tr>
+      <h2>🎓 Formación Técnica</h2>
+      
+      <div class="tech-container">
+        <div class="tech-box bios">
+          <div class="tech-title">Contenido Educativo</div>
+          <div class="tech-image">📚</div>
+          <p>Accede a todos los materiales de estudio organizados por temas y materias.</p>
+          <p><a href="content/index.html" class="action-button">Explorar Contenido</a></p>
+        </div>
+      </div>
 
-        <tr>
-          <td>20:00 - 22:00</td>
-          <td>
-            <p>Análisis</p>
-            <p>de Sistemas</p>
-          </td>
-          <td>
-            <p>Análisis</p>
-            <p>Matemático II</p>
-          </td>
-          <td>
-            <p>EDI</p>
-          </td>
-          <td>POO</td>
-          <td>
-            <p>Probabilidad</p>
-            <p>y Estadística</p>
-          </td>
-        </tr>
-      </table>
+      <h2>📅 Horarios</h2>
+      
+      <div class="boot-process horario-section">
+        <div class="boot-step">Las clases se dictan de <strong>Lunes a Viernes</strong> en el horario de 18:00 a 22:00 hs.</div>
+        <div class="boot-step">La distribución de materias se organiza en bloques de 2 horas.</div>
+        <div class="boot-step">Haz clic en el botón correspondiente para ver el horario de cada año.</div>
+      
+        <div class="calendar-buttons">
+          <button class="calendar-button" onclick="showCalendar('horario-primero')">📅 Ver Horario Primer Año</button>
+          <button class="calendar-button" onclick="showCalendar('horario-segundo')">📅 Ver Horario Segundo Año</button>
+        </div>
+      </div>
+
+      <!-- Calendarios ocultos para ser mostrados en el modal -->
+      <div style="display: none;">
+        <div id="horario-primero" class="calendar-content">
+          <table class="comparison-table">
+            <tr>
+              <th>Horario</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+            </tr>
+            <tr>
+              <td>18:00 - 20:00</td>
+              <td><strong>Matemática</strong></td>
+              <td><strong>Programación I</strong></td>
+              <td><strong>Inglés Técnico I</strong></td>
+              <td><strong>Arquitectura de Computadoras</strong></td>
+              <td><strong>Sistemas Operativos</strong></td>
+            </tr>
+            <tr>
+              <td>20:00 - 22:00</td>
+              <td><strong>Laboratorio de Computación I</strong></td>
+              <td><strong>Base de Datos</strong></td>
+              <td><strong>Práctica Profesionalizante I</strong></td>
+              <td><strong>Programación I</strong></td>
+              <td><strong>Redes de Datos</strong></td>
+            </tr>
+          </table>
+        </div>
+
+        <div id="horario-segundo" class="calendar-content">
+          <table class="comparison-table">
+            <tr>
+              <th>Horario</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+            </tr>
+            <tr>
+              <td>18:00 - 20:00</td>
+              <td><strong>POO</strong></td>
+              <td><strong>Seminario de Programación</strong></td>
+              <td><strong>Inglés Técnico II</strong></td>
+              <td><strong>Bases de Datos</strong></td>
+              <td><strong>Sistemas Operativos</strong></td>
+            </tr>
+            <tr>
+              <td>20:00 - 22:00</td>
+              <td><strong>Análisis de Sistemas</strong></td>
+              <td><strong>Análisis Matemático II</strong></td>
+              <td><strong>EDI</strong></td>
+              <td><strong>POO</strong></td>
+              <td><strong>Probabilidad y Estadística</strong></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </main>
 
     <footer>
       <div class="footer-bar">
         <button onclick="window.history.back()">⬅ Retroceder</button>
-        <button onclick="window.location.href='index.html'">
-          🏠 Página de Inicio
-        </button>
+        <button onclick="window.location.href='index.html'">🏠 Página de Inicio</button>
       </div>
     </footer>
+
+    <!-- Modal para visualización de calendarios -->
+    <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
+    <div id="calendar-modal">
+      <div class="modal-header">
+        <h2 id="modal-title">Horario</h2>
+        <button class="close-button" onclick="closeCalendarModal()">✖</button>
+      </div>
+      <div id="modal-content"></div>
+    </div>
   </body>
 </html>
