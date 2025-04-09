@@ -2,75 +2,283 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <title>Visor de PDF</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 0;
+        background: #f5f5f5;
+        touch-action: none;
       }
       #pdf-container {
         width: 100%;
         max-width: 800px;
-        margin: 20px auto;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
       }
       #pdf-viewer {
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
+        width: 100%;
+        min-height: 300px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        position: relative;
+        touch-action: none;
+      }
+      #pdf-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        touch-action: none;
+        cursor: grab;
+      }
+      #pdf-content.grabbing {
+        cursor: grabbing;
       }
       .controls {
         display: flex;
-        gap: 10px;
-        margin: 10px 0;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+      .controls button {
+        padding: 10px 20px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+      .controls button:hover {
+        background: #2980b9;
+      }
+      .controls button:active {
+        transform: scale(0.98);
       }
       #page-num {
-        width: 50px;
+        width: 60px;
         text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
       }
       canvas {
-        max-width: 100%;
-        height: auto;
+        display: block;
+        margin: 0 auto;
+        max-width: none;
+        transform-origin: 0 0;
+        transition: transform 0.1s ease-out;
+      }
+      .zoom-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 1000;
+      }
+      .zoom-controls button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #3498db;
+        color: white;
+        border: none;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      .zoom-controls button:active {
+        transform: scale(0.95);
+      }
+      @media (max-width: 600px) {
+        #pdf-container {
+          padding: 10px;
+        }
+        .controls {
+          gap: 10px;
+        }
+        .controls button {
+          padding: 8px 15px;
+          font-size: 14px;
+        }
+        #page-num {
+          width: 50px;
+          padding: 6px;
+          font-size: 14px;
+        }
+        .zoom-controls {
+          bottom: 10px;
+          right: 10px;
+        }
+        .zoom-controls button {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
       }
     </style>
   </head>
   <body>
     <div id="pdf-container">
-      <div id="pdf-viewer"></div>
+      <div id="pdf-viewer">
+        <div id="pdf-content"></div>
+      </div>
       <div class="controls">
-        <button id="prev">Anterior</button>
+        <button id="prev">⬅ Anterior</button>
         <span>
-          Página
-          <input
-            type="number"
-            id="page-num"
-            min="1"
-            value="1"
-          />
-          de
+          Página <input type="number" id="page-num" min="1" value="1" /> de
           <span id="page-count">0</span>
         </span>
-        <button id="next">Siguiente</button>
+        <button id="next">Siguiente ➡</button>
+      </div>
+      <div class="zoom-controls">
+        <button id="zoom-in">+</button>
+        <button id="zoom-out">-</button>
+        <button id="zoom-reset">↺</button>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
       const pdfjsLib = window['pdfjs-dist/build/pdf']
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
 
       let pdfDoc = null
       let pageNum = 1
-      const viewer = document.getElementById('pdf-viewer')
+      let currentScale = 1
+      let minScale = 0.5
+      let maxScale = 3
+      let isDragging = false
+      let startX = 0
+      let startY = 0
+      let translateX = 0
+      let translateY = 0
+      const viewer = document.getElementById('pdf-content')
       const pageNumInput = document.getElementById('page-num')
       const pageCount = document.getElementById('page-count')
+
+      // Función para obtener la densidad de píxeles del dispositivo
+      function getDevicePixelRatio() {
+        return window.devicePixelRatio || 1
+      }
+
+      // Variables para el zoom con gestos
+      let initialDistance = 0
+      let initialScale = 1
+
+      // Función para calcular la distancia entre dos puntos táctiles
+      function getDistance(touch1, touch2) {
+        const dx = touch1.clientX - touch2.clientX
+        const dy = touch1.clientY - touch2.clientY
+        return Math.sqrt(dx * dx + dy * dy)
+      }
+
+      // Eventos táctiles para el zoom
+      viewer.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+          initialDistance = getDistance(e.touches[0], e.touches[1])
+          initialScale = currentScale
+        } else if (e.touches.length === 1 && currentScale > 1) {
+          isDragging = true
+          startX = e.touches[0].clientX - translateX
+          startY = e.touches[0].clientY - translateY
+          viewer.classList.add('grabbing')
+        }
+      })
+
+      viewer.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+          e.preventDefault()
+          const currentDistance = getDistance(e.touches[0], e.touches[1])
+          const scale = (currentDistance / initialDistance) * initialScale
+          setZoom(Math.min(Math.max(scale, minScale), maxScale))
+        } else if (e.touches.length === 1 && isDragging) {
+          e.preventDefault()
+          translateX = e.touches[0].clientX - startX
+          translateY = e.touches[0].clientY - startY
+          updateCanvasTransform()
+        }
+      })
+
+      viewer.addEventListener('touchend', () => {
+        isDragging = false
+        viewer.classList.remove('grabbing')
+      })
+
+      // Eventos de ratón para pan
+      viewer.addEventListener('mousedown', (e) => {
+        if (currentScale > 1) {
+          isDragging = true
+          startX = e.clientX - translateX
+          startY = e.clientY - translateY
+          viewer.classList.add('grabbing')
+        }
+      })
+
+      viewer.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          e.preventDefault()
+          translateX = e.clientX - startX
+          translateY = e.clientY - startY
+          updateCanvasTransform()
+        }
+      })
+
+      viewer.addEventListener('mouseup', () => {
+        isDragging = false
+        viewer.classList.remove('grabbing')
+      })
+
+      viewer.addEventListener('mouseleave', () => {
+        isDragging = false
+        viewer.classList.remove('grabbing')
+      })
+
+      // Función para actualizar la transformación del canvas
+      function updateCanvasTransform() {
+        const canvas = viewer.querySelector('canvas')
+        if (canvas) {
+          canvas.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`
+        }
+      }
+
+      // Funciones de zoom
+      function setZoom(scale) {
+        currentScale = scale
+        if (scale === 1) {
+          translateX = 0
+          translateY = 0
+        }
+        updateCanvasTransform()
+      }
+
+      document.getElementById('zoom-in').addEventListener('click', () => {
+        setZoom(Math.min(currentScale + 0.25, maxScale))
+      })
+
+      document.getElementById('zoom-out').addEventListener('click', () => {
+        setZoom(Math.max(currentScale - 0.25, minScale))
+      })
+
+      document.getElementById('zoom-reset').addEventListener('click', () => {
+        setZoom(1)
+      })
 
       async function loadPDF(url) {
         try {
@@ -79,7 +287,12 @@
           renderPage(1)
         } catch (error) {
           console.error('Error loading PDF:', error)
-          viewer.innerHTML = 'Error al cargar el PDF: ' + error.message
+          viewer.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: #e74c3c;">
+              <p>Error al cargar el PDF: ${error.message}</p>
+              <p>Por favor, intenta descargar el archivo y abrirlo localmente.</p>
+            </div>
+          `
         }
       }
 
@@ -88,29 +301,46 @@
           const page = await pdfDoc.getPage(num)
           const canvas = document.createElement('canvas')
           const context = canvas.getContext('2d')
-          const viewport = page.getViewport({ scale: 1 })
-
-          // Ajustar escala al ancho del contenedor
+          
+          // Obtener dimensiones del contenedor y del PDF
           const containerWidth = viewer.clientWidth
-          const scale = containerWidth / viewport.width
+          const viewport = page.getViewport({ scale: 1 })
+          
+          // Calcular escala óptima considerando la densidad de píxeles
+          const devicePixelRatio = getDevicePixelRatio()
+          const scale = (containerWidth / viewport.width) * devicePixelRatio
           const scaledViewport = page.getViewport({ scale })
-
+          
+          // Configurar canvas con la densidad de píxeles correcta
           canvas.width = scaledViewport.width
           canvas.height = scaledViewport.height
-
+          canvas.style.width = `${scaledViewport.width / devicePixelRatio}px`
+          canvas.style.height = `${scaledViewport.height / devicePixelRatio}px`
+          
+          // Limpiar y agregar el canvas
           viewer.innerHTML = ''
           viewer.appendChild(canvas)
-
+          
+          // Renderizar con calidad mejorada
           await page.render({
             canvasContext: context,
             viewport: scaledViewport,
+            intent: 'display',
+            renderInteractiveForms: true
           }).promise
+
+          // Aplicar el zoom actual
+          setZoom(currentScale)
 
           pageNum = num
           pageNumInput.value = num
         } catch (error) {
           console.error('Error rendering page:', error)
-          viewer.innerHTML = 'Error al renderizar la página: ' + error.message
+          viewer.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: #e74c3c;">
+              Error al renderizar la página: ${error.message}
+            </div>
+          `
         }
       }
 
@@ -127,7 +357,18 @@
         const num = parseInt(pageNumInput.value)
         if (num >= 1 && num <= pdfDoc.numPages) {
           renderPage(num)
+        } else {
+          pageNumInput.value = pageNum
         }
+      })
+
+      // Manejar redimensionamiento de ventana
+      let resizeTimeout
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(() => {
+          if (pdfDoc) renderPage(pageNum)
+        }, 250)
       })
 
       // Cargar PDF desde URL o parámetro
