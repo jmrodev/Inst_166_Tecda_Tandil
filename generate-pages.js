@@ -318,112 +318,6 @@ function generateHomePage(outputRoot) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instituto 166 - Página de Inicio</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <style>
-      .calendar-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin: 20px 0;
-        justify-content: center;
-      }
-      .calendar-button {
-        padding: 12px 24px;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      }
-      .calendar-button:hover {
-        background-color: #2980b9;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      .calendar-button:active {
-        transform: translateY(0);
-      }
-      .calendar-button.active {
-        background-color: #e74c3c;
-      }
-      /* Estilos para el modal de calendario */
-      #calendar-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 1000px;
-        max-height: 90vh;
-        overflow-y: auto;
-        z-index: 1001;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      }
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 2px solid #f0f0f0;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-      }
-      .modal-header h2 {
-        margin: 0;
-        color: #3498db;
-        font-size: 24px;
-      }
-      .close-button {
-        background: none;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        color: #777;
-        transition: color 0.2s;
-      }
-      .close-button:hover {
-        color: #e74c3c;
-      }
-      #modal-content {
-        padding: 10px 0;
-      }
-      #modal-content table {
-        width: 100%;
-      }
-      /* Estilos para la sección de horarios */
-      .horario-section {
-        background-color: #f2f9fe;
-        border-radius: 10px;
-        padding: 25px;
-        margin: 30px 0;
-        border-left: 5px solid #3498db;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      }
-      .horario-section .boot-step {
-        margin-bottom: 15px;
-        padding-left: 20px;
-        position: relative;
-        font-size: 17px;
-      }
-      .horario-section .boot-step:before {
-        content: "•";
-        color: #3498db;
-        font-size: 24px;
-        position: absolute;
-        left: 0;
-        top: -5px;
-      }
-      .horario-section .boot-step strong {
-        color: #e74c3c;
-        font-weight: 600;
-      }
-    </style>
     <script src="scripts/modal.js"></script>
   </head>
   <body>
@@ -474,19 +368,19 @@ function generateHomePage(outputRoot) {
             </tr>
             <tr>
               <td>18:00 - 20:00</td>
-              <td><strong>Matemática</strong></td>
-              <td><strong>Programación I</strong></td>
-              <td><strong>Inglés Técnico I</strong></td>
-              <td><strong>Arquitectura de Computadoras</strong></td>
-              <td><strong>Sistemas Operativos</strong></td>
+              <td><strong>EDI</strong></td>
+              <td><strong>Sistemas de computación</strong></td>
+              <td><strong>Análisis matemático</strong></td>
+              <td><strong>Sistemas de computación</strong></td>
+              <td><strong>Álgebra</strong></td>
             </tr>
             <tr>
               <td>20:00 - 22:00</td>
-              <td><strong>Laboratorio de Computación I</strong></td>
-              <td><strong>Base de Datos</strong></td>
-              <td><strong>Práctica Profesionalizante I</strong></td>
-              <td><strong>Programación I</strong></td>
-              <td><strong>Redes de Datos</strong></td>
+              <td><strong>Ingles</strong></td>
+              <td><strong>Programación</strong></td>
+              <td><strong>Admin de organizaciones</strong></td>
+              <td><strong>Programación</strong></td>
+              <td><strong>Met de la Investigación</strong></td>
             </tr>
           </table>
         </div>
