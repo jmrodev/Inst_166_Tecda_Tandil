@@ -7,38 +7,7 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>Visor de PDF</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      #pdf-container {
-        width: 100%;
-        max-width: 800px;
-        margin: 20px auto;
-      }
-      #pdf-viewer {
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-      }
-      .controls {
-        display: flex;
-        gap: 10px;
-        margin: 10px 0;
-      }
-      #page-num {
-        width: 50px;
-        text-align: center;
-      }
-      canvas {
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/pdf-viewer.css" />
   </head>
   <body>
     <div id="pdf-container">
@@ -57,87 +26,20 @@
           <span id="page-count">0</span>
         </span>
         <button id="next">Siguiente</button>
+        <div class="zoom-controls">
+          <button id="zoom-out" title="Reducir">-</button>
+          <span id="zoom-level">100%</span>
+          <button id="zoom-in" title="Ampliar">+</button>
+        </div>
+        <div class="fit-controls">
+          <button id="fit-width" title="Ajustar al ancho">↔</button>
+          <button id="fit-height" title="Ajustar al alto">↕</button>
+        </div>
+        <button id="fullscreen">Pantalla completa</button>
       </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>
-      const pdfjsLib = window['pdfjs-dist/build/pdf']
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
-
-      let pdfDoc = null
-      let pageNum = 1
-      const viewer = document.getElementById('pdf-viewer')
-      const pageNumInput = document.getElementById('page-num')
-      const pageCount = document.getElementById('page-count')
-
-      async function loadPDF(url) {
-        try {
-          pdfDoc = await pdfjsLib.getDocument(url).promise
-          pageCount.textContent = pdfDoc.numPages
-          renderPage(1)
-        } catch (error) {
-          console.error('Error loading PDF:', error)
-          viewer.innerHTML = 'Error al cargar el PDF: ' + error.message
-        }
-      }
-
-      async function renderPage(num) {
-        try {
-          const page = await pdfDoc.getPage(num)
-          const canvas = document.createElement('canvas')
-          const context = canvas.getContext('2d')
-          const viewport = page.getViewport({ scale: 1 })
-
-          // Ajustar escala al ancho del contenedor
-          const containerWidth = viewer.clientWidth
-          const scale = containerWidth / viewport.width
-          const scaledViewport = page.getViewport({ scale })
-
-          canvas.width = scaledViewport.width
-          canvas.height = scaledViewport.height
-
-          viewer.innerHTML = ''
-          viewer.appendChild(canvas)
-
-          await page.render({
-            canvasContext: context,
-            viewport: scaledViewport,
-          }).promise
-
-          pageNum = num
-          pageNumInput.value = num
-        } catch (error) {
-          console.error('Error rendering page:', error)
-          viewer.innerHTML = 'Error al renderizar la página: ' + error.message
-        }
-      }
-
-      // Controles de navegación
-      document.getElementById('prev').addEventListener('click', () => {
-        if (pageNum > 1) renderPage(pageNum - 1)
-      })
-
-      document.getElementById('next').addEventListener('click', () => {
-        if (pageNum < pdfDoc.numPages) renderPage(pageNum + 1)
-      })
-
-      pageNumInput.addEventListener('change', () => {
-        const num = parseInt(pageNumInput.value)
-        if (num >= 1 && num <= pdfDoc.numPages) {
-          renderPage(num)
-        }
-      })
-
-      // Cargar PDF desde URL o parámetro
-      window.onload = function () {
-        const urlParams = new URLSearchParams(window.location.search)
-        const pdfFile = urlParams.get('file')
-        if (pdfFile) {
-          loadPDF(pdfFile)
-        }
-      }
-    </script>
+    <script src="../scripts/pdf-viewer.js"></script>
   </body>
 </html>

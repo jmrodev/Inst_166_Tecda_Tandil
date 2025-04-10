@@ -515,11 +515,11 @@ async function buildSite() {
     logProgress("Copiando archivos estáticos...");
     const staticFiles = {
       "css/styles.css": path.join(__dirname, "css/styles.css"),
-      "favicon.ico": path.join(__dirname, "favicon.ico"),
-      "pdf-viewer.html": path.join(__dirname, "pdf-viewer.html"),
-      "word-viewer.html": path.join(__dirname, "word-viewer.html"),
-      "powerpoint-viewer.html": path.join(__dirname, "powerpoint-viewer.html"), // Añadido el visor de PowerPoint
+      "css/pdf-viewer.css": path.join(__dirname, "css/pdf-viewer.css"),
       "scripts/modal.js": path.join(__dirname, "scripts/modal.js"),
+      "scripts/pdf-viewer.js": path.join(__dirname, "scripts/pdf-viewer.js"),
+      "pdf-viewer.html": path.join(__dirname, "pdf-viewer.html"),
+      "favicon.ico": path.join(__dirname, "favicon.ico"),
     };
 
     Object.entries(staticFiles).forEach(([file, source]) => {
@@ -533,6 +533,9 @@ async function buildSite() {
       }
     });
     logProgress("✅ Archivos estáticos copiados.");
+
+    // Generar el visor PDF
+    generatePDFViewer();
 
     // Generar directorio de contenido
     logProgress("Generando estructura de directorios y archivos...");
@@ -601,3 +604,53 @@ Ejemplo:
 }
 
 buildSite();
+
+// Función para generar el visor PDF
+function generatePDFViewer() {
+  const pdfViewerPath = path.join(CONFIG.outputRoot, "pdf-viewer.html");
+  const pdfViewerHTML = `<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visor de PDF</title>
+    <link rel="stylesheet" href="css/pdf-viewer.css" />
+  </head>
+  <body>
+    <div id="pdf-container">
+      <div id="pdf-viewer"></div>
+      <div class="controls">
+        <button id="prev">Anterior</button>
+        <span>
+          Página
+          <input type="number" id="page-num" min="1" value="1" />
+          de
+          <span id="page-count">0</span>
+        </span>
+        <button id="next">Siguiente</button>
+        <div class="zoom-controls">
+          <button id="zoom-out" title="Reducir">-</button>
+          <span id="zoom-level">100%</span>
+          <button id="zoom-in" title="Ampliar">+</button>
+        </div>
+        <div class="fit-controls">
+          <button id="fit-width" title="Ajustar al ancho">↔</button>
+          <button id="fit-height" title="Ajustar al alto">↕</button>
+        </div>
+        <button id="fullscreen">Pantalla completa</button>
+      </div>
+    </div>
+
+    <!-- PDF.js v3.11.174 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      // Configurar el worker de PDF.js antes de cargar el script principal
+      window['pdfjs-dist/build/pdf'].GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="scripts/pdf-viewer.js"></script>
+  </body>
+</html>`;
+
+  fs.writeFileSync(pdfViewerPath, pdfViewerHTML);
+  logProgress("✅ Visor PDF generado correctamente.");
+}
