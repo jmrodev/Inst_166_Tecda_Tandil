@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html | Instituto 166</title>
+  <link rel="stylesheet" href="../../../css/styles.css">
+  <script src="../../../scripts/modal.js"></script>
+</head>
+<body>
+  <header>
+    <h1>html</h1>
+    <nav class="breadcrumb">
+      <a href="../../../index.html">Inicio</a> /
+      <a href="../../../content/index.html">Content</a> / <a href="../../../content/linux/index.html">Linux</a> / <a href="../../../content/linux/html/index.html">Html</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="note">
+      <p>Esta sección contiene recursos para <strong>html</strong>. Explora los directorios y archivos disponibles.</p>
+    </div>
+
+    
+
+    
+      <h2>📄 Archivos</h2>
+      <table class="comparison-table">
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Acción</th>
+        </tr>
+        
+          <tr>
+            <td><strong>🌐 Bios</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="bios.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Distros</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="distros.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Instalacion</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="instalacion.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Preparacion</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="preparacion.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Recomendacion</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="recomendacion.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Ventoy</strong></td>
+            <td>HTML</td>
+            <td>
+              <a href="ventoy.html" target="_blank" class="action-button">Ver</a>
+            </td>
+          </tr>
+      </table>
+      
+
+    
+  </main>
+
+  <!-- Modal para visualización de archivos -->
+  <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
+  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background: none; border: none; font-size: 18px;">✖</button>
+    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto; background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd;"></pre>
+  </div>
+
+  <footer>
+    <div class="footer-bar">
+      <button onclick="window.history.back()">⬅ Retroceder</button>
+      <button onclick="window.location.href='../../../index.html'">
+        🏠 Página de Inicio
+      </button>
+    </div>
+  </footer>
+</body>
+</html>
