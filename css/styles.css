@@ -213,6 +213,10 @@ li a {
   width: 100%;
 }
 
+.tech-box{
+  width: 27%;
+}
+
 code {
   background-color: #030303;
   color: #f8f8f2;
