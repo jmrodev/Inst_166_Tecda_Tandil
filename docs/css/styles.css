@@ -90,9 +90,9 @@ h3 {
 
 main {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 90rem;
   justify-content: center;
   background-color: var(--light);
 }
@@ -205,59 +205,37 @@ li a {
 /* Boxes similar to bios.html */
 .tech-container {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 20px;
-  gap: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: .2rem;
+  gap: 5px;
   margin: 30px 0;
   width: 100%;
 }
 
 .tech-box{
-  width: 27%;
-}
-
-code {
-  background-color: #030303;
-  color: #f8f8f2;
-  border: 1px solid #44475a;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  padding: 6px;
-  margin: 20px 0;
-  font-family: monospace;
-  white-space: pre-wrap;
-}
-
-@media (min-width: 768px) {
-  .tech-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .tech-box {
-    flex: 1 1 calc(50% - 20px);
-    max-width: calc(50% - 20px);
-  }
-}
-
-.tech-box {
-  flex: 1 1 100%;
-  min-width: 100%;
-  background: white;
+  align-items: center;
+  justify-content: center;
+  min-width: 20%;
+  max-width: 22%;
+  padding: 12px;
+  background-color: var(--light);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-top: 5px solid var(--primary);
+  margin: 10px;
+  font-size: 0.9em;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  border-top: 4px solid var(--primary);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px;
+
 }
 
-.tech-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
 
 .tech-title {
   font-size: 1.4em;
@@ -308,7 +286,17 @@ code {
 .comparison-table tr:hover {
   background-color: #e8f4f8;
 }
-
+code {
+  background-color: #030303;
+  color: #f8f8f2;
+  border: 1px solid #44475a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 6px;
+  margin: 20px 0;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
 .pro {
   color: var(--success);
   font-weight: bold;

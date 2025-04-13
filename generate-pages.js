@@ -171,7 +171,6 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
           <div class="tech-box" style="border-top-color: #3498db;">
             <div class="tech-title">${formatName(dir.name)}</div>
             <div class="tech-image">📁</div>
-            <p>Accede a este directorio para ver su contenido.</p>
             <p><a href="${dir.name
             }/index.html" style="display: inline-block; padding: 8px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 4px;">Explorar</a></p>
           </div>`
