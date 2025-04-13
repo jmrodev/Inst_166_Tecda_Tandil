@@ -32,7 +32,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 1200px;
+  max-width: 90vw;
   margin: 0 auto;
   padding: 20px;
 }
@@ -92,14 +92,12 @@ main {
   flex: 1;
   padding: 1rem;
   margin: 0 auto;
-  max-width: 90rem;
   justify-content: center;
   background-color: var(--light);
 }
 
 .section-container {
-  display: grid;
-  gap: 2rem;
+  gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
@@ -202,51 +200,45 @@ li a {
   background-color: #f2f2f2;
 }
 
-/* Boxes similar to bios.html */
 .tech-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: .2rem;
-  gap: 5px;
-  margin: 30px 0;
+  padding: 0.2rem;
+  gap: 10px;
+  margin:0;
   width: 100%;
 }
 
-.tech-box{
+.tech-box {
   align-items: center;
   justify-content: center;
-  min-width: 20%;
-  max-width: 22%;
-  padding: 12px;
+  width: 15vw;
+  padding: 10px;
   background-color: var(--light);
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   text-align: center;
-  transition: transform 0.3s ease;
   cursor: pointer;
   border-top: 5px solid var(--primary);
-  margin: 10px;
   font-size: 0.9em;
   border-radius: 8px;
-
 }
-
 
 .tech-title {
   font-size: 1.4em;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: var(--primary-dark);
 }
 
 .tech-image {
   text-align: center;
-  margin: 15px 0;
+  margin: 1rem;
   font-size: 5em;
 }
 
