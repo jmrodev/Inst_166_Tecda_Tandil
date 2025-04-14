@@ -645,8 +645,9 @@ code {
 @media (max-width: 768px) {
   .tech-container {
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
   }
+
 
   #horario-table th,
   #horario-table td {
@@ -667,6 +668,12 @@ code {
     padding: 0;
   }
 
+  header {
+    padding: 0;
+    text-align: center;
+    margin: 0;
+  }
+
   h1 {
     font-size: 1.8rem;
   }
@@ -678,7 +685,7 @@ code {
   .tech-box {
     padding: 15px;
     margin-bottom: 15px;
-    width: 100vw;
+    width: 100%;
   }
 
   .breadcrumb {
@@ -699,4 +706,6 @@ code {
   .footer-bar button {
     width: 100%;
   }
+
+  
 }
