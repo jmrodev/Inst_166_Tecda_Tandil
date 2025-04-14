@@ -663,12 +663,14 @@ code {
   }
 
   .tech-container {
-    width: 80%;
+    width: 100%;
   }
   .tech-box {
-    padding: 15px;
-    margin-bottom: 15px;
     width: 50%;
+  }
+
+  .tech-image {
+    font-size: 3em;
   }
 
   .breadcrumb {
