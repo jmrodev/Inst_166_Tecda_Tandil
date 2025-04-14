@@ -343,7 +343,6 @@ code {
   margin-top: 20px;
 }
 
-/* Estilos para diferentes tipos de tech-box */
 .bios {
   border-top-color: #e74c3c;
 }
@@ -359,6 +358,7 @@ code {
 @media (max-width: 768px) {
   .tech-container {
     flex-direction: column;
+    width: 100vw;
   }
 
   #horario-table th,
@@ -377,7 +377,7 @@ code {
 
   body {
     font-size: 14px; /* Reducir el tamaño de fuente */
-    padding: 10px;
+    padding: 0;
   }
 
   h1 {
@@ -391,6 +391,7 @@ code {
   .tech-box {
     padding: 15px;
     margin-bottom: 15px;
+    width: 100vw;
   }
 
   .breadcrumb {
