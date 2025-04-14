@@ -355,6 +355,7 @@ function generateHomePage(outputRoot) {
 
       <!-- Calendarios ocultos para ser mostrados en el modal -->
       <div style="display: none;">
+      div id="table-container">
         <div id="horario-primero" class="calendar-content">
           <table class="comparison-table">
             <tr>
@@ -412,6 +413,7 @@ function generateHomePage(outputRoot) {
             </tr>
           </table>
         </div>
+      </div>
       </div>
     </main>
 

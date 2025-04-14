@@ -227,7 +227,7 @@ li a {
 
 .tech-image {
   text-align: center;
-  margin: .5rem;
+  margin: 0.5rem;
   font-size: 4em;
 }
 
@@ -623,17 +623,17 @@ code {
   box-sizing: border-box;
 }
 
-
 @media (max-width: 768px) {
   .tech-container {
     flex-direction: column;
     width: 100vw;
   }
 
+ 
+
   .calendar-content th,
   .calendar-content td {
     padding: 0.75rem;
-    font-size: 0.9rem;
   }
 
   .calendar-content th {
@@ -643,6 +643,7 @@ code {
   .calendar-content tr:nth-child(even) td {
     background-color: #f2f2f2;
   }
+
 
   body {
     font-size: 14px;
