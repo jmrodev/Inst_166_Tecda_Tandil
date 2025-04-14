@@ -193,20 +193,18 @@ li a {
 
 .tech-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-flow: row wrap;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.2rem;
-  gap: 10px;
+  gap: 2rem 1rem;
   margin: 0;
-  width: 100%;
 }
 
 .tech-box {
   align-items: center;
   justify-content: center;
-  width: 15vw;
+  width: 20vw;
+  min-height: 200px;
   padding: 10px;
   background-color: var(--light);
   box-shadow: var(--shadow);
@@ -223,14 +221,14 @@ li a {
 .tech-title {
   font-size: 1.4em;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   color: var(--primary-dark);
 }
 
 .tech-image {
   text-align: center;
-  margin: 1rem;
-  font-size: 5em;
+  margin: .5rem;
+  font-size: 4em;
 }
 
 .note {
@@ -628,7 +626,7 @@ code {
 @media (max-width: 768px) {
   .tech-container {
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
   }
 
   #horario-table th,
@@ -664,10 +662,13 @@ code {
     font-size: 1.4rem;
   }
 
+  .tech-container {
+    width: 80%;
+  }
   .tech-box {
     padding: 15px;
     margin-bottom: 15px;
-    width: 100%;
+    width: 50%;
   }
 
   .breadcrumb {
