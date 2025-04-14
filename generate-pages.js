@@ -256,8 +256,8 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
             <td>${fileType}</td>
             <td>
               <a href="${fileLink}"${clickAction}${!useModal && !isPDF && !isWord && !isPowerPoint
-              ? ' target="_blank"'
-              : ""
+              ? ' target="_blank"' // Open in a new tab for non-modal files
+              : "" // No target attribute for modal or specific viewers
             } class="action-button">Ver</a>
             </td>
           </tr>`;
