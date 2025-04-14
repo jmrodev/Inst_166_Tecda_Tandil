@@ -1,455 +1,167 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="ie=edge"
-    />
-    <title>Markmap</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        overflow: auto; /* Permite el scroll si el contenido excede el tamaño de la ventana */
-      }
-      #mindmap {
-        display: block;
-        width: 100vw;
-        height: 100vh;
-      }
-      /* Mejoras al estilo de la barra de herramientas */
-      .mm-toolbar {
-        display: flex;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-        align-items: center;
-        border: 1px solid rgba(212, 212, 216, 1);
-        border-radius: 0.5rem; /* Incremento del radio para bordes más suaves */
-        background-color: rgba(255, 255, 255, 1);
-        padding: 0.5rem; /* Más espacio interno */
-        line-height: 1.2;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para mayor profundidad */
-        transition: background-color 0.3s, border-color 0.3s; /* Transiciones suaves */
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.10/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:x,mm:K}=window,P=new x.Toolbar;P.attach(K);const F=P.render();F.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(F)})})()</script><script>((b,L,T,D)=>{const H=b();window.mm=H.Markmap.create("svg#mindmap",(L||H.deriveOptions)(D),T)})(()=>window.markmap,null,{"content":"&#x1f4e2; Ponencia: Requerimientos del Sistema y T&#xe9;cnicas de Recolecci&#xf3;n","children":[{"content":"1. Introducci&#xf3;n","children":[],"payload":{"tag":"h2","lines":"2,3"}},{"content":"2. &#xbf;Qu&#xe9; son los Requerimientos del Sistema?","children":[{"content":"Tipos de requerimientos:","children":[{"content":"<strong>Funcionales:</strong> Qu&#xe9; hace el sistema.<br>\n<em>Ejemplo:</em> permitir login, enviar correos, registrar usuarios.","children":[],"payload":{"tag":"li","lines":"13,15"}},{"content":"<strong>No funcionales:</strong> C&#xf3;mo lo hace.<br>\n<em>Ejemplo:</em> tiempo de respuesta, seguridad, escalabilidad.","children":[],"payload":{"tag":"li","lines":"15,18"}}],"payload":{"tag":"h3","lines":"12,13"}}],"payload":{"tag":"h2","lines":"8,9"}},{"content":"3. Desaf&#xed;os en la Definici&#xf3;n de Requerimientos","children":[{"content":"<strong>Imprecisi&#xf3;n:</strong> El lenguaje natural es ambiguo.","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"<strong>Falta de acuerdo:</strong> Diferentes stakeholders pueden tener interpretaciones distintas.","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"<strong>Arrastre organizacional:</strong> Cambios en el personal o en la estructura afectan los requerimientos.","children":[],"payload":{"tag":"li","lines":"24,26"}}],"payload":{"tag":"h2","lines":"20,21"}},{"content":"4. Consideraciones Estrat&#xe9;gicas","children":[{"content":"<strong>Escalabilidad:</strong> El sistema debe poder crecer con el negocio.","children":[],"payload":{"tag":"li","lines":"30,31"}},{"content":"<strong>Seguridad:</strong> Ha pasado de ser no funcional a funcional, por su criticidad en entornos conectados.","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"<strong>Costo Total de Propiedad (TCO):</strong> Considera el costo de desarrollo, mantenimiento, soporte y evoluci&#xf3;n del sistema.","children":[],"payload":{"tag":"li","lines":"32,34"}}],"payload":{"tag":"h2","lines":"28,29"}},{"content":"5. T&#xe9;cnicas Basadas en Equipos","children":[{"content":"JAD (Desarrollo de Aplicaciones Conjuntas)","children":[{"content":"","children":[{"content":"Mejora la precisi&#xf3;n y claridad.","children":[],"payload":{"tag":"li","lines":"43,44"}},{"content":"Fomenta el compromiso del usuario.","children":[],"payload":{"tag":"li","lines":"44,46"}}],"payload":{"tag":"ul","lines":"43,46"}},{"content":"","children":[{"content":"Puede ser costoso.","children":[],"payload":{"tag":"li","lines":"47,48"}},{"content":"Dif&#xed;cil de manejar en grupos grandes.","children":[],"payload":{"tag":"li","lines":"48,50"}}],"payload":{"tag":"ul","lines":"47,50"}}],"payload":{"tag":"h3","lines":"38,39"}},{"content":"RAD (Desarrollo R&#xe1;pido de Aplicaciones)","children":[{"content":"Desarrollo veloz y centrado en el usuario.","children":[],"payload":{"tag":"li","lines":"57,59"}},{"content":"Puede comprometer la calidad o la visi&#xf3;n a largo plazo.","children":[],"payload":{"tag":"li","lines":"60,62"}}],"payload":{"tag":"h3","lines":"52,53"}}],"payload":{"tag":"h2","lines":"36,37"}},{"content":"6. M&#xe9;todos &#xc1;giles","children":[{"content":"&#xbf;Qu&#xe9; propone?","children":[{"content":"Desarrollo <strong>incremental</strong>.","children":[],"payload":{"tag":"li","lines":"68,69"}},{"content":"Mejora continua.","children":[],"payload":{"tag":"li","lines":"69,70"}},{"content":"Adaptaci&#xf3;n r&#xe1;pida al cambio.","children":[],"payload":{"tag":"li","lines":"70,72"}}],"payload":{"tag":"h3","lines":"66,67"}},{"content":"Ejemplo: SCRUM","children":[{"content":"Sprints con entregables.","children":[],"payload":{"tag":"li","lines":"74,75"}},{"content":"Comunicaci&#xf3;n constante.","children":[],"payload":{"tag":"li","lines":"75,76"}},{"content":"Reuniones para ajustes frecuentes.","children":[],"payload":{"tag":"li","lines":"76,78"}}],"payload":{"tag":"h3","lines":"72,73"}}],"payload":{"tag":"h2","lines":"64,65"}},{"content":"7. Recolecci&#xf3;n de Requerimientos","children":[{"content":"Principales t&#xe9;cnicas:","children":[{"content":"1. \n<p data-lines=\"86,87\"><strong>Entrevistas</strong></p>","children":[{"content":"Planificadas, estructuradas y con an&#xe1;lisis posterior.","children":[],"payload":{"tag":"li","lines":"87,89"}}],"payload":{"tag":"li","lines":"86,89","listIndex":1}},{"content":"2. \n<p data-lines=\"89,90\"><strong>Revisi&#xf3;n documental</strong></p>","children":[{"content":"Para entender el sistema actual y sus limitaciones.","children":[],"payload":{"tag":"li","lines":"90,92"}}],"payload":{"tag":"li","lines":"89,92","listIndex":2}},{"content":"3. \n<p data-lines=\"92,93\"><strong>Observaci&#xf3;n directa</strong></p>","children":[{"content":"Detecta pr&#xe1;cticas no documentadas.","children":[],"payload":{"tag":"li","lines":"93,95"}}],"payload":{"tag":"li","lines":"92,95","listIndex":3}},{"content":"4. \n<p data-lines=\"95,96\"><strong>Encuestas y cuestionarios</strong></p>","children":[{"content":"Permiten recopilar opiniones masivas.","children":[],"payload":{"tag":"li","lines":"96,98"}}],"payload":{"tag":"li","lines":"95,98","listIndex":4}},{"content":"5. \n<p data-lines=\"98,99\"><strong>Tormenta de ideas</strong></p>","children":[{"content":"Estimula creatividad y descubre necesidades ocultas.","children":[],"payload":{"tag":"li","lines":"99,101"}}],"payload":{"tag":"li","lines":"98,101","listIndex":5}},{"content":"6. \n<p data-lines=\"101,102\"><strong>Muestreo de datos del sistema actual</strong></p>","children":[{"content":"Se analizan registros y documentos reales.","children":[],"payload":{"tag":"li","lines":"102,104"}}],"payload":{"tag":"li","lines":"101,104","listIndex":6}},{"content":"7. \n<p data-lines=\"104,105\"><strong>Investigaci&#xf3;n t&#xe9;cnica</strong></p>","children":[{"content":"Permite conocer soluciones modernas y mejores pr&#xe1;cticas.","children":[],"payload":{"tag":"li","lines":"105,107"}}],"payload":{"tag":"li","lines":"104,107","listIndex":7}}],"payload":{"tag":"h3","lines":"84,85"}}],"payload":{"tag":"h2","lines":"82,83"}},{"content":"8. M&#xe9;todos &#xc1;giles para Capturar Requerimientos","children":[{"content":"<strong>Historias de usuario (User Stories):</strong>","children":[{"content":"&quot;Como [tipo de usuario], quiero [acci&#xf3;n] para [objetivo]&quot;.","children":[],"payload":{"tag":"li","lines":"112,113"}}],"payload":{"tag":"li","lines":"111,113"}},{"content":"<strong>Features:</strong> Funcionalidades espec&#xed;ficas a desarrollar.","children":[],"payload":{"tag":"li","lines":"113,114"}},{"content":"<strong>Storyboards:</strong> Flujos visuales de navegaci&#xf3;n y funcionalidad.","children":[],"payload":{"tag":"li","lines":"114,115"}},{"content":"<strong>Escenarios:</strong> Descripciones detalladas de casos pr&#xe1;cticos.","children":[],"payload":{"tag":"li","lines":"115,117"}}],"payload":{"tag":"h2","lines":"109,110"}},{"content":"9. Conclusi&#xf3;n","children":[{"content":"Mejora la calidad del sistema.","children":[],"payload":{"tag":"li","lines":"123,124"}},{"content":"Optimiza tiempos y costos.","children":[],"payload":{"tag":"li","lines":"124,125"}},{"content":"Aumenta la satisfacci&#xf3;n del usuario.","children":[],"payload":{"tag":"li","lines":"125,127"}}],"payload":{"tag":"h2","lines":"119,120"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ponencia: Requerimientos del Sistema</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    blockquote {
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #f1f1f1;
+      border-left: 5px solid #ccc;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>📢 Ponencia: Requerimientos del Sistema y Técnicas de Recolección</h1>
 
-      .mm-toolbar:hover {
-        border-color: rgba(161, 161, 170, 1);
-        background-color: rgba(
-          245,
-          245,
-          245,
-          1
-        ); /* Fondo más claro al pasar el mouse */
-      }
+  <h2>1. Introducción</h2>
+  <p>En el marco del ciclo de vida del desarrollo de sistemas (SDLC), la fase de análisis juega un papel fundamental. Es en esta instancia donde se identifican y documentan los <strong>requerimientos del sistema</strong>, elementos clave para el éxito del proyecto. Una mala definición o recolección inadecuada de estos puede comprometer todo el desarrollo.</p>
 
-      .mm-toolbar svg {
-        display: block;
-      }
+  <h2>2. ¿Qué son los Requerimientos del Sistema?</h2>
+  <p>Un <strong>requerimiento del sistema</strong> es una característica o función que debe tener el sistema para satisfacer las necesidades del negocio y de los usuarios. Estos sirven como base para medir el éxito del producto final.</p>
+  <h3>Tipos de requerimientos:</h3>
+  <ul>
+    <li><strong>Funcionales:</strong> Qué hace el sistema.<br><em>Ejemplo:</em> permitir login, enviar correos, registrar usuarios.</li>
+    <li><strong>No funcionales:</strong> Cómo lo hace.<br><em>Ejemplo:</em> tiempo de respuesta, seguridad, escalabilidad.</li>
+  </ul>
 
-      .mm-toolbar a {
-        display: inline-block;
-        text-decoration: none;
-      }
+  <h2>3. Desafíos en la Definición de Requerimientos</h2>
+  <ul>
+    <li><strong>Imprecisión:</strong> El lenguaje natural es ambiguo.</li>
+    <li><strong>Falta de acuerdo:</strong> Diferentes stakeholders pueden tener interpretaciones distintas.</li>
+    <li><strong>Arrastre organizacional:</strong> Cambios en el personal o en la estructura afectan los requerimientos.</li>
+  </ul>
 
-      .mm-toolbar-brand > img {
-        width: 1.25rem; /* Tamaño ligeramente mayor */
-        height: 1.25rem;
-        vertical-align: middle;
-      }
+  <h2>4. Consideraciones Estratégicas</h2>
+  <ul>
+    <li><strong>Escalabilidad:</strong> El sistema debe poder crecer con el negocio.</li>
+    <li><strong>Seguridad:</strong> Ha pasado de ser no funcional a funcional, por su criticidad en entornos conectados.</li>
+    <li><strong>Costo Total de Propiedad (TCO):</strong> Considera el costo de desarrollo, mantenimiento, soporte y evolución del sistema.</li>
+  </ul>
 
-      .mm-toolbar-brand > span {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }
+  <h2>5. Técnicas Basadas en Equipos</h2>
+  <h3>JAD (Desarrollo de Aplicaciones Conjuntas)</h3>
+  <p>Reúne usuarios y desarrolladores para definir requerimientos en sesiones colaborativas.</p>
+  <p><strong>Ventajas:</strong></p>
+  <ul>
+    <li>Mejora la precisión y claridad.</li>
+    <li>Fomenta el compromiso del usuario.</li>
+  </ul>
+  <p><strong>Desventajas:</strong></p>
+  <ul>
+    <li>Puede ser costoso.</li>
+    <li>Difícil de manejar en grupos grandes.</li>
+  </ul>
 
-      .mm-toolbar-brand:not(:first-child),
-      .mm-toolbar-item:not(:first-child) {
-        margin-left: 0.5rem; /* Más espacio entre elementos */
-      }
+  <h3>RAD (Desarrollo Rápido de Aplicaciones)</h3>
+  <p>Metodología ágil que combina análisis, diseño y construcción en ciclos rápidos.</p>
+  <p><strong>Ventajas:</strong></p>
+  <ul>
+    <li>Desarrollo veloz y centrado en el usuario.</li>
+  </ul>
+  <p><strong>Desventajas:</strong></p>
+  <ul>
+    <li>Puede comprometer la calidad o la visión a largo plazo.</li>
+  </ul>
 
-      .mm-toolbar-brand > *,
-      .mm-toolbar-item > * {
-        min-width: 1.25rem; /* Tamaño mínimo ajustado */
-        cursor: pointer;
-        text-align: center;
-        font-size: 0.875rem; /* Tamaño de fuente más grande */
-        line-height: 1.25rem;
-        color: rgba(0, 0, 0, 1); /* Letras más negras */
-        transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
-      }
+  <h2>6. Métodos Ágiles</h2>
+  <h3>¿Qué propone?</h3>
+  <ul>
+    <li>Desarrollo <strong>incremental</strong>.</li>
+    <li>Mejora continua.</li>
+    <li>Adaptación rápida al cambio.</li>
+  </ul>
+  <h3>Ejemplo: SCRUM</h3>
+  <ul>
+    <li>Sprints con entregables.</li>
+    <li>Comunicación constante.</li>
+    <li>Reuniones para ajustes frecuentes.</li>
+  </ul>
+  <blockquote>⚠️ <strong>Advertencia:</strong> Requiere un equipo muy competente y comprometido.</blockquote>
 
-      .mm-toolbar-brand.active,
-      .mm-toolbar-brand:hover,
-      .mm-toolbar-item.active,
-      .mm-toolbar-item:hover {
-        border-radius: 0.5rem;
-        background-color: rgba(228, 228, 231, 1);
-      }
+  <h2>7. Recolección de Requerimientos</h2>
+  <h3>Principales técnicas:</h3>
+  <ol>
+    <li><strong>Entrevistas:</strong> Planificadas, estructuradas y con análisis posterior.</li>
+    <li><strong>Revisión documental:</strong> Para entender el sistema actual y sus limitaciones.</li>
+    <li><strong>Observación directa:</strong> Detecta prácticas no documentadas.</li>
+    <li><strong>Encuestas y cuestionarios:</strong> Permiten recopilar opiniones masivas.</li>
+    <li><strong>Tormenta de ideas:</strong> Estimula creatividad y descubre necesidades ocultas.</li>
+    <li><strong>Muestreo de datos del sistema actual:</strong> Se analizan registros y documentos reales.</li>
+    <li><strong>Investigación técnica:</strong> Permite conocer soluciones modernas y mejores prácticas.</li>
+  </ol>
 
-      .mm-toolbar-brand.active > *,
-      .mm-toolbar-brand:hover > *,
-      .mm-toolbar-item.active > *,
-      .mm-toolbar-item:hover > * {
-        color: rgba(0, 0, 0, 1); /* Letras más negras al interactuar */
-      }
+  <h2>8. Métodos Ágiles para Capturar Requerimientos</h2>
+  <ul>
+    <li><strong>Historias de usuario (User Stories):</strong> "Como [tipo de usuario], quiero [acción] para [objetivo]".</li>
+    <li><strong>Features:</strong> Funcionalidades específicas a desarrollar.</li>
+    <li><strong>Storyboards:</strong> Flujos visuales de navegación y funcionalidad.</li>
+    <li><strong>Escenarios:</strong> Descripciones detalladas de casos prácticos.</li>
+  </ul>
 
-      .mm-toolbar-brand.active,
-      .mm-toolbar-item.active {
-        background-color: rgba(212, 212, 216, 1);
-      }
-
-      /* Tema oscuro */
-      .markmap-dark .mm-toolbar {
-        border-color: rgba(82, 82, 91, 1);
-        background-color: rgba(39, 39, 42, 1);
-        color: rgba(228, 228, 231, 1); /* Letras claras para contraste */
-      }
-
-      .markmap-dark .mm-toolbar:hover {
-        border-color: rgba(113, 113, 122, 1);
-      }
-
-      .markmap-dark .mm-toolbar > *:hover {
-        background-color: rgba(82, 82, 91, 1);
-      }
-
-      .markmap-dark .mm-toolbar > *:hover > * {
-        color: rgba(255, 255, 255, 1); /* Letras blancas al interactuar */
-      }
-    </style>
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"
-    /> -->
-  </head>
-  <body>
-    <svg id="mindmap"></svg>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.10/dist/browser/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/index.js"></script>
-    <script>
-      ;(() => {
-        setTimeout(() => {
-          const { markmap: x, mm: K } = window,
-            P = new x.Toolbar()
-          P.attach(K)
-          const F = P.render()
-          F.setAttribute('style', 'position:absolute;bottom:20px;right:20px'),
-            document.body.append(F)
-        })
-      })()
-    </script>
-    <script>
-      ;((b, L, T, D) => {
-        const H = b()
-        window.mm = H.Markmap.create(
-          'svg#mindmap',
-          (L || H.deriveOptions)(D),
-          T
-        )
-      })(
-        () => window.markmap,
-        null,
-        {
-          content: 'Sistema: concepto y an&#xe1;lisis',
-          children: [
-            {
-              content: '&#xbf;Qu&#xe9; es un sistema?',
-              children: [
-                {
-                  content: 'Conjunto de partes interrelacionadas.',
-                  children: [],
-                  payload: { tag: 'li', lines: '3,4' },
-                },
-                {
-                  content: 'Cumple una funci&#xf3;n espec&#xed;fica.',
-                  children: [],
-                  payload: { tag: 'li', lines: '4,5' },
-                },
-                {
-                  content: 'Tiene l&#xed;mites definidos.',
-                  children: [],
-                  payload: { tag: 'li', lines: '5,6' },
-                },
-                {
-                  content: 'Interact&#xfa;a con su entorno.',
-                  children: [],
-                  payload: { tag: 'li', lines: '6,7' },
-                },
-                {
-                  content: 'Ejemplos:',
-                  children: [
-                    {
-                      content: 'Computadora',
-                      children: [],
-                      payload: { tag: 'li', lines: '8,9' },
-                    },
-                    {
-                      content: 'Hospital',
-                      children: [],
-                      payload: { tag: 'li', lines: '9,10' },
-                    },
-                    {
-                      content: 'Empresa',
-                      children: [],
-                      payload: { tag: 'li', lines: '10,12' },
-                    },
-                  ],
-                  payload: { tag: 'li', lines: '7,12' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '2,3' },
-            },
-            {
-              content: '&#xbf;Qu&#xe9; es analizar un sistema?',
-              children: [
-                {
-                  content: 'Comprender el funcionamiento del sistema.',
-                  children: [],
-                  payload: { tag: 'li', lines: '13,14' },
-                },
-                {
-                  content: 'Identificar sus componentes.',
-                  children: [],
-                  payload: { tag: 'li', lines: '14,15' },
-                },
-                {
-                  content: 'Estudiar relaciones internas y externas.',
-                  children: [],
-                  payload: { tag: 'li', lines: '15,16' },
-                },
-                {
-                  content: 'Preguntas clave:',
-                  children: [
-                    {
-                      content: '&#xbf;Qu&#xe9; partes lo conforman?',
-                      children: [],
-                      payload: { tag: 'li', lines: '17,18' },
-                    },
-                    {
-                      content: '&#xbf;C&#xf3;mo interact&#xfa;an?',
-                      children: [],
-                      payload: { tag: 'li', lines: '18,19' },
-                    },
-                    {
-                      content: '&#xbf;Qu&#xe9; entradas y salidas tiene?',
-                      children: [],
-                      payload: { tag: 'li', lines: '19,21' },
-                    },
-                  ],
-                  payload: { tag: 'li', lines: '16,21' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '12,13' },
-            },
-            {
-              content: 'Tipos de sistemas',
-              children: [
-                {
-                  content: 'Seg&#xfa;n su naturaleza',
-                  children: [
-                    {
-                      content: 'F&#xed;sicos: hardware, maquinaria.',
-                      children: [],
-                      payload: { tag: 'li', lines: '23,24' },
-                    },
-                    {
-                      content: 'Abstractos: software, procedimientos.',
-                      children: [],
-                      payload: { tag: 'li', lines: '24,26' },
-                    },
-                  ],
-                  payload: { tag: 'h3', lines: '22,23' },
-                },
-                {
-                  content: 'Seg&#xfa;n su organizaci&#xf3;n',
-                  children: [
-                    {
-                      content: 'Abiertos: interact&#xfa;an con el entorno.',
-                      children: [],
-                      payload: { tag: 'li', lines: '27,28' },
-                    },
-                    {
-                      content: 'Cerrados: aislados del entorno.',
-                      children: [],
-                      payload: { tag: 'li', lines: '28,30' },
-                    },
-                  ],
-                  payload: { tag: 'h3', lines: '26,27' },
-                },
-                {
-                  content: 'Seg&#xfa;n su complejidad',
-                  children: [
-                    {
-                      content: 'Simples: pocos elementos y relaciones.',
-                      children: [],
-                      payload: { tag: 'li', lines: '31,32' },
-                    },
-                    {
-                      content:
-                        'Complejos: muchos elementos y relaciones din&#xe1;micas.',
-                      children: [],
-                      payload: { tag: 'li', lines: '32,34' },
-                    },
-                  ],
-                  payload: { tag: 'h3', lines: '30,31' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '21,22' },
-            },
-            {
-              content: 'Componentes de un sistema',
-              children: [
-                {
-                  content: 'Entradas (inputs)',
-                  children: [],
-                  payload: { tag: 'li', lines: '35,36' },
-                },
-                {
-                  content: 'Procesos',
-                  children: [],
-                  payload: { tag: 'li', lines: '36,37' },
-                },
-                {
-                  content: 'Salidas (outputs)',
-                  children: [],
-                  payload: { tag: 'li', lines: '37,38' },
-                },
-                {
-                  content: 'Retroalimentaci&#xf3;n',
-                  children: [],
-                  payload: { tag: 'li', lines: '38,39' },
-                },
-                {
-                  content: 'Entorno',
-                  children: [],
-                  payload: { tag: 'li', lines: '39,41' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '34,35' },
-            },
-            {
-              content: 'Objetivo del an&#xe1;lisis de sistemas',
-              children: [
-                {
-                  content: 'Mejorar el sistema.',
-                  children: [],
-                  payload: { tag: 'li', lines: '42,43' },
-                },
-                {
-                  content: 'Detectar fallas.',
-                  children: [],
-                  payload: { tag: 'li', lines: '43,44' },
-                },
-                {
-                  content: 'Proponer soluciones.',
-                  children: [],
-                  payload: { tag: 'li', lines: '44,45' },
-                },
-                {
-                  content: 'Documentar el funcionamiento actual.',
-                  children: [],
-                  payload: { tag: 'li', lines: '45,47' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '41,42' },
-            },
-            {
-              content: 'Herramientas del an&#xe1;lisis',
-              children: [
-                {
-                  content: 'Diagramas de flujo',
-                  children: [],
-                  payload: { tag: 'li', lines: '48,49' },
-                },
-                {
-                  content: 'Entrevistas',
-                  children: [],
-                  payload: { tag: 'li', lines: '49,50' },
-                },
-                {
-                  content: 'Observaci&#xf3;n directa',
-                  children: [],
-                  payload: { tag: 'li', lines: '50,51' },
-                },
-                {
-                  content: 'Cuestionarios',
-                  children: [],
-                  payload: { tag: 'li', lines: '51,52' },
-                },
-                {
-                  content: 'Revisi&#xf3;n de documentaci&#xf3;n existente',
-                  children: [],
-                  payload: { tag: 'li', lines: '52,54' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '47,48' },
-            },
-            {
-              content: 'Rol del analista de sistemas',
-              children: [
-                {
-                  content: 'Entender las necesidades del usuario.',
-                  children: [],
-                  payload: { tag: 'li', lines: '55,56' },
-                },
-                {
-                  content: 'Traducirlas a requerimientos t&#xe9;cnicos.',
-                  children: [],
-                  payload: { tag: 'li', lines: '56,57' },
-                },
-                {
-                  content: 'Dise&#xf1;ar soluciones efectivas.',
-                  children: [],
-                  payload: { tag: 'li', lines: '57,58' },
-                },
-                {
-                  content: 'Actuar como puente entre usuarios y programadores.',
-                  children: [],
-                  payload: { tag: 'li', lines: '58,60' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '54,55' },
-            },
-            {
-              content: 'Relaci&#xf3;n con otras disciplinas',
-              children: [
-                {
-                  content: 'Inform&#xe1;tica',
-                  children: [],
-                  payload: { tag: 'li', lines: '61,62' },
-                },
-                {
-                  content: 'Administraci&#xf3;n',
-                  children: [],
-                  payload: { tag: 'li', lines: '62,63' },
-                },
-                {
-                  content: 'Psicolog&#xed;a',
-                  children: [],
-                  payload: { tag: 'li', lines: '63,64' },
-                },
-                {
-                  content: 'Comunicaci&#xf3;n',
-                  children: [],
-                  payload: { tag: 'li', lines: '64,65' },
-                },
-              ],
-              payload: { tag: 'h2', lines: '60,61' },
-            },
-          ],
-          payload: { tag: 'h1', lines: '0,1' },
-        },
-        null
-      )
-    </script>
-  </body>
+  <h2>9. Conclusión</h2>
+  <p>La correcta identificación y recolección de requerimientos:</p>
+  <ul>
+    <li>Mejora la calidad del sistema.</li>
+    <li>Optimiza tiempos y costos.</li>
+    <li>Aumenta la satisfacción del usuario.</li>
+  </ul>
+  <blockquote>🎯 <em>Un sistema exitoso nace de requerimientos claros, consensuados y continuamente refinados.</em></blockquote>
+</body>
 </html>
