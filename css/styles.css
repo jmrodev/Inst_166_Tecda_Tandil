@@ -31,10 +31,6 @@ body {
   background-color: var(--light);
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  max-width: 90vw;
-  margin: 0 auto;
-  padding: 20px;
 }
 
 header {
@@ -50,28 +46,23 @@ h1 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  text-align: center;
   border-bottom: 3px solid var(--primary);
-  padding-bottom: 15px;
-  margin-bottom: 30px;
 }
 
 h2 {
   font-size: 1.5rem;
   color: var(--primary-dark);
-  margin-top: 40px;
   background-color: #e8f4f8;
-  padding: 10px;
   border-left: 5px solid var(--primary);
 }
 
 h3 {
   color: var(--primary-dark);
-  margin-top: 25px;
 }
 
 .breadcrumb {
   font-size: 0.9rem;
+  margin: 0.5rem;
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -208,7 +199,7 @@ li a {
   align-items: center;
   padding: 0.2rem;
   gap: 10px;
-  margin:0;
+  margin: 0;
   width: 100%;
 }
 
@@ -355,9 +346,6 @@ code {
   border-top-color: #f39c12;
 }
 
-
-
-/* Estilos para botones de calendario */
 .calendar-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -393,7 +381,6 @@ code {
   background-color: var(--accent);
 }
 
-/* Estilos para el modal de calendario */
 #calendar-modal {
   display: none;
   position: fixed;
@@ -447,7 +434,6 @@ code {
   width: 100%;
 }
 
-/* Estilos para la sección de horarios */
 .horario-section {
   background-color: var(--background-light);
   border-radius: 10px;
@@ -478,7 +464,6 @@ code {
   font-weight: 600;
 }
 
-/* Estilos para la página de videos.html */
 .video-container {
   margin-bottom: 40px;
   background-color: white;
@@ -495,7 +480,7 @@ code {
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   max-width: 100%;
@@ -567,7 +552,6 @@ footer {
   border-radius: 8px;
 }
 
-/* Styles for Linux command documentation pages */
 .terminal {
   background-color: #1e1e1e;
   color: #f0f0f0;
@@ -630,7 +614,6 @@ footer {
   margin: 30px 0;
 }
 
-/* Asegurar que tablas y bloques de código sean responsivos */
 table,
 pre,
 code {
@@ -638,7 +621,7 @@ code {
   overflow-x: auto;
   display: block;
   word-wrap: break-word;
-  white-space: pre-wrap; /* Permite que el texto se ajuste */
+  white-space: pre-wrap;
   box-sizing: border-box;
 }
 
@@ -647,7 +630,6 @@ code {
     flex-direction: column;
     width: 100%;
   }
-
 
   #horario-table th,
   #horario-table td {
@@ -664,7 +646,7 @@ code {
   }
 
   body {
-    font-size: 14px; /* Reducir el tamaño de fuente */
+    font-size: 14px;
     padding: 0;
   }
 
@@ -689,7 +671,9 @@ code {
   }
 
   .breadcrumb {
-    font-size: 0.8rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
   }
 
   .comparison-table th,
@@ -706,6 +690,4 @@ code {
   .footer-bar button {
     width: 100%;
   }
-
-  
 }
