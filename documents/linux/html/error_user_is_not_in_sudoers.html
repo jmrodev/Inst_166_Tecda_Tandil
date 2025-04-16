@@ -13,21 +13,30 @@
     <title>Solución: User is not in the sudoers file</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
-        margin: 0;
+        max-width: 900px;
+        margin: 0 auto;
         padding: 20px;
-        background-color: #f9f9f9;
         color: #333;
+        background-color: #f9f9f9;
       }
       h1,
       h2,
       h3 {
-        color: #222;
+        color: #2c3e50;
       }
       h1 {
         text-align: center;
-        margin-bottom: 20px;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+      }
+      h2 {
+        background-color: #e8f4f8;
+        padding: 10px;
+        border-left: 5px solid #3498db;
+        margin-top: 40px;
       }
       code {
         background-color: #f4f4f4;
@@ -47,6 +56,12 @@
       }
       li {
         margin-bottom: 10px;
+      }
+      .note {
+        background-color: #fffde7;
+        padding: 15px;
+        border-left: 4px solid #ffd600;
+        margin: 25px 0;
       }
     </style>
   </head>
@@ -84,10 +99,10 @@
           <code>wheel</code>
           (en sistemas basados en Arch Linux):
         </p>
-        <pre><code># En Debian y derivadas (Ubuntu, Linux Mint, etc.)
+        <pre><code># En Debian y derivadas:
 usermod -aG sudo nombre-de-usuario
 
-# En Arch Linux y derivadas (Manjaro, EndeavourOS, etc.)
+# En Arch Linux y derivadas:
 usermod -aG wheel nombre-de-usuario</code></pre>
         <p>
           Reemplaza
@@ -147,10 +162,6 @@ usermod -aG wheel nombre-de-usuario</code></pre>
       <li>
         Si no tienes acceso al usuario root, necesitarás acceso físico al
         sistema para iniciar en modo de recuperación o desde un live CD/USB.
-      </li>
-      <li>
-        En modo de recuperación, puedes montar el sistema de archivos y realizar
-        los pasos anteriores para agregar el usuario al grupo sudo o wheel.
       </li>
       <li>
         Siempre usa el comando
