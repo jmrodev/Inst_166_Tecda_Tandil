@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Completo de Vim: De principiante a experto</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #2e3440;
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.8em;
+        }
+        h2 {
+            color: #3b4252;
+            border-bottom: 2px solid #88c0d0;
+            padding-bottom: 10px;
+            margin-top: 50px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: #434c5e;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        h4 {
+            color: #4c566a;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        pre {
+            background-color: #eceff4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #88c0d0;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #eceff4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .command {
+            font-weight: bold;
+            color: #5e81ac;
+        }
+        .key {
+            background-color: #d8dee9;
+            border: 1px solid #c0c5ce;
+            border-radius: 3px;
+            padding: 0 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .tip {
+            background-color: #ebfbee;
+            border-left: 4px solid #81a1c1;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #bf616a;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .exercise {
+            background-color: #e6f3ff;
+            border-left: 4px solid #a3be8c;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .concept {
+            background-color: #f0e7f7;
+            border-left: 4px solid #b48ead;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .example {
+            background-color: #f8f9ec;
+            border-left: 4px solid #ebcb8b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        nav {
+            background-color: #e5e9f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        nav h2 {
+            border-bottom: none;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin-bottom: 8px;
+        }
+        nav ul li a {
+            color: #5e81ac;
+            text-decoration: none;
+            display: block;
+            padding: 3px 0;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        nav ul ul {
+            padding-left: 20px;
+        }
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        .progress-indicator::before {
+            content: '';
+            position: absolute;
+            height: 4px;
+            background-color: #88c0d0;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+        .level {
+            background-color: #88c0d0;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        footer {
+            text-align: center;
+            margin-top: 70px;
+            padding: 30px;
+            background-color: #3b4252;
+            color: white;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        table, th, td {
+            border: 1px solid #d8dee9;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #e5e9f0;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+        .vim-keys-diagram {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            text-align: center;
+        }
+        .vim-keys-diagram pre {
+            border-left: none;
+            display: inline-block;
+            text-align: left;
+        }
+        .shortcut-category {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .shortcut-box {
+            background-color: #fff;
+            border: 1px solid #d8dee9;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            width: 48%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .shortcut-box h4 {
+            margin-top: 0;
+            border-bottom: 1px solid #e5e9f0;
+            padding-bottom: 8px;
+        }
+        @media (max-width: 768px) {
+            .shortcut-box {
+                width: 100%;
+            }
+        }
+        .vim-diagram {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .flow-chart {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .kbd-combo {
+            background-color: #d8dee9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #c0c5ce;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            margin: 30px 0;
+        }
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .timeline-date {
+            width: 80px;
+            padding: 5px;
+            background-color: #5e81ac;
+            color: white;
+            text-align: center;
+            border-radius: 5px 0 0 5px;
+        }
+        .timeline-content {
+            flex: 1;
+            padding: 10px;
+            background-color: #e5e9f0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tutorial Completo de Vim: De principiante a experto</h1>
+        <p>Una guía exhaustiva y progresiva para dominar el editor de texto más potente</p>
+    </header>
+
+    <nav>
+        <h2>Índice de contenidos</h2>
+        <ul>
+            <li><a href="#introduccion">Introducción a Vim</a>
+                <ul>
+                    <li><a href="#por-que-vim">¿Por qué aprender Vim?</a></li>
+                    <li><a href="#historia">Historia y filosofía</a></li>
+                    <li><a href="#modalidad">El concepto de modalidad</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-1">Nivel 1: Primeros pasos en Vim</a>
+                <ul>
+                    <li><a href="#instalacion">Instalación en diferentes sistemas</a></li>
+                    <li><a href="#primeros-comandos">Comandos básicos para sobrevivir</a></li>
+                    <li><a href="#modos-vim">Modos de Vim en detalle</a></li>
+                    <li><a href="#vimtutor">Vimtutor: El primer entrenamiento</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-2">Nivel 2: Movimientos básicos y edición</a>
+                <ul>
+                    <li><a href="#movimientos-basicos">Navegación en modo normal</a></li>
+                    <li><a href="#edicion-basica">Comandos de edición básicos</a></li>
+                    <li><a href="#combinando-comandos">Multiplicadores y movimientos</a></li>
+                    <li><a href="#paginacion">Desplazamiento por el archivo</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-3">Nivel 3: Búsqueda, reemplazo y selección</a>
+                <ul>
+                    <li><a href="#busqueda-basica">Búsqueda básica y avanzada</a></li>
+                    <li><a href="#busqueda-reemplazo">Búsqueda y reemplazo global</a></li>
+                    <li><a href="#modo-visual">Modo Visual: selección de texto</a></li>
+                    <li><a href="#operador-movimiento">Combinar operadores y movimientos</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-4">Nivel 4: Trabajando con múltiples archivos</a>
+                <ul>
+                    <li><a href="#buffers">Buffers: gestión de archivos en memoria</a></li>
+                    <li><a href="#ventanas">Ventanas divididas y layouts</a></li>
+                    <li><a href="#pestanas">Organización con pestañas</a></li>
+                    <li><a href="#netrw">Explorador de archivos Netrw</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-5">Nivel 5: Macros y automatización</a>
+                <ul>
+                    <li><a href="#macros">Grabación y reproducción de macros</a></li>
+                    <li><a href="#registros">Registros: portapapeles avanzados</a></li>
+                    <li><a href="#marcas">Marcas y saltos</a></li>
+                    <li><a href="#comandos-ex">Comandos Ex avanzados</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-6">Nivel 6: Personalización y plugins</a>
+                <ul>
+                    <li><a href="#vimrc">El archivo .vimrc en profundidad</a></li>
+                    <li><a href="#mapeos">Mapeos de teclas personalizados</a></li>
+                    <li><a href="#plugins">Sistema de plugins y gestores</a></li>
+                    <li><a href="#temas">Temas y personalización visual</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-7">Nivel 7: Técnicas avanzadas</a>
+                <ul>
+                    <li><a href="#texto-objetos">Objetos de texto</a></li>
+                    <li><a href="#fold">Plegado de código (folding)</a></li>
+                    <li><a href="#autocompletar">Autocompletado y snippets</a></li>
+                    <li><a href="#lenguajes">Soporte de lenguajes de programación</a></li>
+                    <li><a href="#scripts">Scripting en Vim</a></li>
+                </ul>
+            </li>
+            <li><a href="#nivel-8">Nivel 8: Dominio y optimización del flujo de trabajo</a>
+                <ul>
+                    <li><a href="#patrones">Patrones y antipatrones de uso</a></li>
+                    <li><a href="#depuracion">Depuración de código</a></li>
+                    <li><a href="#integracion">Integración con herramientas externas</a></li>
+                    <li><a href="#optimizacion">Optimización del rendimiento de Vim</a></li>
+                </ul>
+            </li>
+            <li><a href="#neovim">Neovim: El futuro de Vim</a></li>
+            <li><a href="#recursos">Recursos adicionales y comunidad</a></li>
+        </ul>
+    </nav>
+
+    <div class="progress-indicator">
+        <div class="level">1</div>
+        <div class="level">2</div>
+        <div class="level">3</div>
+        <div class="level">4</div>
+        <div class="level">5</div>
+        <div class="level">6</div>
+        <div class="level">7</div>
+        <div class="level">8</div>
+    </div>
+
+    <section id="introduccion">
+        <h2>Introducción a Vim</h2>
+        <p>Vim (Vi IMproved) es mucho más que un simple editor de texto; es una filosofía completa de edición que revoluciona la forma en que interactuamos con el texto. Creado por Bram Moolenaar como una mejora del editor Vi original, Vim se ha convertido en una herramienta fundamental para programadores, escritores, administradores de sistemas y cualquier persona que trabaje intensivamente con texto.</p>
+        
+        <div class="concept">
+            <p>Vim no es solo un editor, sino una <strong>filosofía de edición</strong> basada en la eficiencia y la composición de comandos. Mientras otros editores se centran en el ratón y menús, Vim apuesta por comandos de teclado potentes y componibles que, una vez dominados, permiten editar texto a velocidades vertiginosas.</p>
+        </div>
+        
+        <h3 id="por-que-vim">¿Por qué aprender Vim?</h3>
+        <p>En una era de editores gráficos sofisticados, ¿por qué dedicar tiempo a aprender Vim? Las razones son numerosas y convincentes:</p>
+        <ul>
+            <li><strong>Eficiencia extraordinaria:</strong> Una vez que superas la curva de aprendizaje inicial, la velocidad de edición que alcanzarás con Vim es inigualable. Los usuarios experimentados de Vim pueden realizar en segundos tareas que en otros editores tomarían minutos.</li>
+            <li><strong>Ubicuidad:</strong> Vim está preinstalado en prácticamente todos los sistemas Unix y Linux, lo que significa que siempre estará disponible cuando necesites editar archivos en servidores remotos o sistemas mínimos.</li>
+            <li><strong>Personalización extrema:</strong> Cada aspecto de Vim puede ser configurado y adaptado a tus necesidades específicas. Desde atajos de teclado hasta comportamientos complejos, todo es ajustable.</li>
+            <li><strong>Bajo consumo de recursos:</strong> Vim es increíblemente ligero. Funciona a la perfección incluso en hardware antiguo o limitado donde otros editores modernos podrían ralentizarse.</li>
+            <li><strong>Independencia del ratón:</strong> Al permitir hacer todo desde el teclado, Vim elimina las ineficiencias de alternar entre teclado y ratón, lo que no solo aumenta la velocidad sino que también reduce la fatiga física.</li>
+            <li><strong>Longevidad:</strong> Los conocimientos que adquieras sobre Vim te servirán durante toda tu carrera profesional. A diferencia de interfaces que cambian con cada actualización, los fundamentos de Vim han permanecido estables durante décadas.</li>
+            <li><strong>Portabilidad:</strong> Tu configuración de Vim puede viajar contigo fácilmente entre diferentes máquinas y sistemas operativos.</li>
+        </ul>
+        
+        <div class="warning">
+            <p><strong>Advertencia sobre la curva de aprendizaje:</strong> Vim tiene una curva de aprendizaje pronunciada al principio. Los primeros días pueden ser frustrantes mientras tu cerebro y tus dedos se adaptan a un paradigma completamente diferente de edición. Sin embargo, esta guía está diseñada para suavizar ese proceso y la recompensa por perseverar es enorme.</p>
+        </div>
+
+        <h3 id="historia">Historia y filosofía de Vim</h3>
+        <p>Para entender Vim, es útil conocer sus orígenes y la filosofía que lo sustenta:</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">1976</div>
+                <div class="timeline-content">
+                    <strong>Vi</strong> - Creado por Bill Joy para BSD Unix. Su nombre viene de "Visual", ya que era un editor visual que superaba a los editores línea por línea previos.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1988</div>
+                <div class="timeline-content">
+                    <strong>Stevie</strong> - "ST Editor for VI Enthusiasts", una implementación temprana de Vi para el Atari ST.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">1991</div>
+                <div class="timeline-content">
+                    <strong>Vim</strong> - Bram Moolenaar lanza "Vi IMproved", inicialmente para Amiga, como una expansión de Stevie.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2006</div>
+                <div class="timeline-content">
+                    <strong>Vim 7.0</strong> - Introduce características modernas como pestañas, corrección ortográfica, y más.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2014</div>
+                <div class="timeline-content">
+                    <strong>Neovim</strong> - Surge como un fork de Vim enfocado en modernizar su base de código y facilitar la extensibilidad.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2016</div>
+                <div class="timeline-content">
+                    <strong>Vim 8.0</strong> - Introduce soporte nativo para plugins asíncronos y más características modernas.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023</div>
+                <div class="timeline-content">
+                    <strong>Vim 9.0</strong> - Incorpora el nuevo lenguaje de script Vim9script para una mayor eficiencia y rendimiento.
+                </div>
+            </div>
+        </div>
+
+        <p>La filosofía de Vim se basa en varios principios clave:</p>
+        <ul>
+            <li><strong>Eficiencia a través de la composición:</strong> Pequeños comandos que pueden combinarse para realizar operaciones complejas.</li>
+            <li><strong>Modalidad:</strong> Separar la inserción de texto de la manipulación del mismo.</li>
+            <li><strong>Mnemotecnia:</strong> Comandos que son fáciles de recordar (d para "delete", y para "yank", etc.).</li>
+            <li><strong>Minimalismo:</strong> Hacer una cosa y hacerla bien, siguiendo la filosofía Unix.</li>
+            <li><strong>Extensibilidad:</strong> Capacidad para adaptarse a diferentes necesidades mediante plugins y configuración.</li>
+        </ul>
+
+        <h3 id="modalidad">El concepto de modalidad</h3>
+        <p>La característica distintiva de Vim es su naturaleza modal. A diferencia de la mayoría de los editores donde simplemente escribes y el texto aparece, Vim tiene diferentes modos para diferentes tareas:</p>
+        
+        <div class="concept">
+            <p><strong>El principio de la modalidad:</strong> La idea fundamental es separar el proceso de <em>insertar texto</em> del proceso de <em>manipular texto</em>. Esta separación es lo que permite a Vim ofrecer comandos tan potentes para la manipulación de texto sin requerir combinaciones de teclas complicadas.</p>
+        </div>
+
+        <div class="vim-diagram">
+            <img src="/api/placeholder/800/400" alt="Diagrama de los modos de Vim y sus transiciones" class="flow-chart">
+            <p><em>Diagrama de los principales modos de Vim y cómo se relacionan entre sí</em></p>
+        </div>
+
+        <p>Los modos principales de Vim incluyen:</p>
+        
+        <div class="shortcut-category">
+            <div class="shortcut-box">
+                <h4>Modo Normal</h4>
+                <p>El estado predeterminado de Vim. Aquí los caracteres que tecleas son interpretados como comandos, no como texto a insertar.</p>
+                <p><strong>Propósito:</strong> Navegar, manipular texto, copiar, pegar, eliminar.</p>
+                <p><strong>Entrar:</strong> <span class="key">Esc</span> desde cualquier otro modo.</p>
+            </div>
+            
+            <div class="shortcut-box">
+                <h4>Modo Inserción</h4>
+                <p>Similar a otros editores, aquí los caracteres que tecleas se insertan como texto.</p>
+                <p><strong>Propósito:</strong> Escribir y añadir texto nuevo.</p>
+                <p><strong>Entrar:</strong> <span class="key">i</span>, <span class="key">a</span>, <span class="key">o</span>, etc. desde modo Normal.</p>
+            </div>
+            
+            <div class="shortcut-box">
+                <h4>Modo Visual</h4>
+                <p>Permite seleccionar texto antes de realizar operaciones sobre él.</p>
+                <p><strong>Propósito:</strong> Seleccionar texto para copiarlo, eliminarlo, indentarlo, etc.</p>
+                <p><strong>Entrar:</strong> <span class="key">v</span>, <span class="key">V</span>, o <span class="key">Ctrl+v</span> desde modo Normal.</p>
+            </div>
+            
+            <div class="shortcut-box">
+                <h4>Modo Comando</h4>
+                <p>Para ejecutar comandos específicos de Vim, como guardar, salir, buscar, etc.</p>
+                <p><strong>Propósito:</strong> Operaciones a nivel de archivo y comandos especiales.</p>
+                <p><strong>Entrar:</strong> <span class="key">:</span>, <span class="key">/</span>, o <span class="key">?</span> desde modo Normal.</p>
+            </div>
+        </div>
+
+        <p>Esta estructura modal es la que inicialmente confunde a los nuevos usuarios, pero también es la fuente del poder de Vim. En lugar de tener que presionar combinaciones complejas de teclas como Ctrl+Alt+Shift+Algo, simplemente cambias de modo y usas comandos simples y mnemonicos.</p>
+        
+        <div class="example">
+            <p><strong>Ejemplo práctico de modalidad:</strong> Para eliminar una palabra en un editor tradicional, posicionarías el cursor al inicio de la palabra, mantendrías Shift presionado mientras te desplazas para seleccionarla y luego presionarías Delete. En Vim, simplemente posicionas el cursor en la palabra y tecleas <span class="key">dw</span> (delete word) en modo Normal. Esta diferencia se vuelve aún más pronunciada con operaciones complejas.</p>
+        </div>
+    </section>
+
+    <section id="nivel-1">
+        <h2>Nivel 1: Primeros pasos en Vim</h2>
+        
+        <h3 id="instalacion">Instalación en diferentes sistemas</h3>
+        <p>Antes de comenzar tu viaje con Vim, necesitas instalarlo en tu sistema. Afortunadamente, el proceso es bastante sencillo:</p>
+        
+        <h4>Linux</h4>
+        <p>En la mayoría de las distribuciones Linux, Vim puede no estar instalado por defecto (aunque Vi suele estarlo), pero es fácil de instalar:</p>
+        <pre>
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install vim
+
+# Fedora/RHEL/CentOS
+sudo dnf install vim
+
+# Arch Linux
+sudo pacman -S vim
+
+# OpenSUSE
+sudo zypper install vim
+</pre>
+
+        <h4>macOS</h4>
+        <p>macOS viene con una versión básica de Vim preinstalada, pero puedes obtener una versión más actualizada:</p>
+        <pre>
+# Usando Homebrew
+brew install vim
+
+# Para la versión con interfaz gráfica
+brew install macvim
+</pre>
+
+        <h4>Windows</h4>
+        <p>En Windows, necesitarás descargar el instalador:</p>
+        <ol>
+            <li>Visita <a href="https://www.vim.org/download.php">https://www.vim.org/download.php</a></li>
+            <li>Descarga el instalador para Windows</li>
+            <li>Ejecuta el instalador y sigue las instrucciones</li>
+        </ol>
+        <p>Alternativamente, si tienes instalado Git para Windows, ya tienes una versión de Vim incluida.</p>
+
+        <h4>Verificando la instalación</h4>
+        <p>Para verificar que Vim está correctamente instalado, abre una terminal (o símbolo del sistema en Windows) y escribe:</p>
+        <pre>
+vim --version
+</pre>
+        <p>Esto mostrará la versión de Vim y las características compiladas.</p>
+
+        <h3 id="primeros-comandos">Comandos básicos para sobrevivir</h3>
+        <p>Antes de profundizar en la edición avanzada, es crucial aprender los comandos mínimos para no sentirse atrapado en Vim. Estos son los comandos de "supervivencia":</p>
+        
+        <table>
+            <tr>
+                <th>Comando</th>
+                <th>Acción</th>
+                <th>Descripción detallada</th>
+            </tr>
+            <tr>
+                <td><code>vim archivo.txt</code></td>
+                <td>Abrir o crear archivo</td>
+                <td>Inicia Vim y abre el archivo especificado. Si el archivo no existe, se creará al guardar.</td>
+            </tr>
+            <tr>
+                <td><span class="key">i</span></td>
+                <td>Entrar en modo inserción</td>
+                <td>Permite insertar texto antes de la posición actual del cursor.</td>
+            </tr>
+            <tr>
+                <td><span class="key">Esc</span></td>
+                <td>Volver al modo normal</td>
+                <td>Sale del modo actual y regresa al modo normal para ejecutar comandos.</td>
+            </tr>
+            <tr>
+                <td><span class="command">:w</span></td>
+                <td>Guardar cambios</td>
+                <td>Escribe (Write) los cambios actuales al archivo.</td>
+            </tr>
+            <tr>
+                <td><span class="command">:q</span></td>
+                <td>Salir</td>
+                <td>Cierra Vim si no hay cambios sin guardar. Si hay cambios, mostrará un error.</td>
+            </tr>
+            <tr>
+                <td><span class="command">:wq</span> o <span class="key">ZZ</span></td>
+                <td>Guardar y salir</td>
+                <td>Guarda los cambios y cierra Vim en un solo comando.</td>
+            </tr>
+            <tr>
+                <td><span class="command">:q!</span></td>
+                <td>Forzar salida</td>
+                <td>Sale de Vim descartando cualquier cambio no guardado. ¡Usar con precaución!</td>
+            </tr>
+            <tr>
+                <td><span class="command">:help</span></td>
+                <td>Obtener ayuda</td>
+                <td>Abre el sistema de ayuda de Vim. Extremadamente útil cuando tienes dudas.</td>
+            </tr>
+        </table>
+
+        <div class="example">
+            <p><strong>Ejemplo práctico:</strong> Supongamos que quieres crear un archivo llamado "notas.txt", escribir un poco de texto, guardarlo y salir:</p>
+            <ol>
+    <li>Abre una terminal y escribe: <code>vim notas.txt</code></li>
+    <li>Presiona <span class="key">i</span> para entrar en modo inserción</li>
+    <li>Escribe el texto que desees</li>
+    <li>Presiona <span class="key">Esc</span> para volver al modo normal</li>
+    <li>Escribe <span class="command">:wq</span> y presiona Enter para guardar y salir</li>
+</ol>
+<p>¡Felicidades! Has completado tu primera sesión de Vim.</p>
+</div>
+
+<div class="warning">
+    <p><strong>Nota importante:</strong> Si alguna vez te sientes perdido dentro de Vim, recuerda que <span class="key">Esc</span> te llevará al modo normal y desde ahí puedes ejecutar <span class="command">:q!</span> para salir sin guardar o <span class="command">:help</span> para buscar ayuda.</p>
+</div>
+
+<h3 id="modos-vim">Modos de Vim en detalle</h3>
+<p>Aunque ya hemos mencionado brevemente los modos de Vim en la introducción, es importante entenderlos más a fondo, ya que forman la base de cómo interactuamos con el editor:</p>
+
+<h4>Modo Normal (Modo Comando)</h4>
+<p>Es el modo predeterminado cuando abres Vim. En este modo, cada tecla es un comando, no texto a insertar.</p>
+<ul>
+    <li><strong>Propósito:</strong> Navegar por el documento, realizar operaciones de edición como copiar, cortar, pegar, eliminar.</li>
+    <li><strong>Cómo entrar:</strong> Presionar <span class="key">Esc</span> desde cualquier otro modo.</li>
+    <li><strong>Indicador:</strong> No hay indicador específico, es el estado por defecto.</li>
+</ul>
+
+<h4>Modo Inserción</h4>
+<p>Es el modo que más se parece a otros editores, donde las teclas que presionas se insertan como texto.</p>
+<ul>
+    <li><strong>Propósito:</strong> Escribir y añadir texto al documento.</li>
+    <li><strong>Cómo entrar:</strong> Desde el modo normal, hay varias opciones:
+        <ul>
+            <li><span class="key">i</span> - Insertar antes del cursor</li>
+            <li><span class="key">a</span> - Insertar después del cursor</li>
+            <li><span class="key">I</span> - Insertar al inicio de la línea</li>
+            <li><span class="key">A</span> - Insertar al final de la línea</li>
+            <li><span class="key">o</span> - Insertar en una nueva línea debajo</li>
+            <li><span class="key">O</span> - Insertar en una nueva línea arriba</li>
+        </ul>
+    </li>
+    <li><strong>Indicador:</strong> En la parte inferior de la pantalla verás "-- INSERT --".</li>
+</ul>
+
+<h4>Modo Visual</h4>
+<p>Permite seleccionar bloques de texto para realizar operaciones sobre ellos.</p>
+<ul>
+    <li><strong>Propósito:</strong> Seleccionar texto para copiarlo, eliminarlo, cambiarlo, etc.</li>
+    <li><strong>Cómo entrar:</strong> Desde el modo normal:
+        <ul>
+            <li><span class="key">v</span> - Visual por caracteres</li>
+            <li><span class="key">V</span> - Visual por líneas</li>
+            <li><span class="key">Ctrl+v</span> - Visual por bloques (rectangular)</li>
+        </ul>
+    </li>
+    <li><strong>Indicador:</strong> En la parte inferior verás "-- VISUAL --", "-- VISUAL LINE --" o "-- VISUAL BLOCK --".</li>
+</ul>
+
+<h4>Modo Comando (Ex)</h4>
+<p>Para ejecutar comandos más complejos, como guardar, salir, buscar, reemplazar, etc.</p>
+<ul>
+    <li><strong>Propósito:</strong> Ejecutar comandos Ex, operaciones a nivel de archivo.</li>
+    <li><strong>Cómo entrar:</strong> Desde el modo normal:
+        <ul>
+            <li><span class="key">:</span> - Para comandos Ex</li>
+            <li><span class="key">/</span> - Para búsqueda hacia adelante</li>
+            <li><span class="key">?</span> - Para búsqueda hacia atrás</li>
+        </ul>
+    </li>
+    <li><strong>Indicador:</strong> Los caracteres ":", "/" o "?" aparecen en la línea inferior, seguidos del comando que escribas.</li>
+</ul>
+
+<h4>Modos Menos Utilizados</h4>
+<p>Vim también tiene algunos modos menos comunes pero útiles:</p>
+<ul>
+    <li><strong>Modo Reemplazo:</strong> Reemplaza el texto existente mientras escribes. Se entra con <span class="key">R</span> desde modo normal.</li>
+    <li><strong>Modo Terminal:</strong> En versiones recientes de Vim, permite usar una terminal dentro de Vim. Se accede con <span class="command">:terminal</span>.</li>
+    <li><strong>Modo Selección:</strong> Similar al modo visual pero se comporta más como las selecciones estándar de Windows/Mac.</li>
+</ul>
+
+<div class="vim-keys-diagram">
+<pre>
+MODOS DE VIM:
++----------------+     +----------------+     +----------------+
+|                |     |                |     |                |
+|  MODO NORMAL   | --> |  MODO INSERT   | --> |  MODO NORMAL   |
+|                |     |                |     |                |
++----------------+     +----------------+     +----------------+
+        |                                            |
+        v                                            v
++----------------+     +----------------+     +----------------+
+|                |     |                |     |                |
+|  MODO VISUAL   | --> |  MODO COMANDO  | --> |     :wq!       |
+|                |     |                |     |    (SALIR)     |
++----------------+     +----------------+     +----------------+
+</pre>
+</div>
+
+<h3 id="vimtutor">Vimtutor: El primer entrenamiento</h3>
+<p>Vim incluye un tutorial integrado llamado "Vimtutor" que es el punto de partida perfecto para nuevos usuarios. Este tutorial interactivo te guía a través de los conceptos básicos de Vim de manera práctica.</p>
+
+<h4>¿Cómo acceder a Vimtutor?</h4>
+<p>Para iniciar Vimtutor, simplemente abre una terminal y escribe:</p>
+<pre>vimtutor</pre>
+
+<p>En Windows, puedes ejecutarlo desde el menú de inicio o desde la línea de comandos.</p>
+
+<div class="tip">
+<p><strong>Consejo:</strong> Completa Vimtutor al menos una vez antes de continuar con esta guía. Toma aproximadamente 30 minutos y cubre muchos de los conceptos fundamentales de manera práctica. Repítelo varias veces si es necesario hasta que te sientas cómodo con los comandos básicos.</p>
+</div>
+
+<h4>¿Qué cubre Vimtutor?</h4>
+<p>Vimtutor cubre conceptos esenciales como:</p>
+<ul>
+    <li>Movimientos básicos con h, j, k, l</li>
+    <li>Entrar y salir del editor</li>
+    <li>Edición de texto (eliminar, cambiar, insertar)</li>
+    <li>Búsqueda simple</li>
+    <li>Guardar y salir</li>
+</ul>
+
+<div class="exercise">
+<p><strong>Ejercicio de nivel 1:</strong> Abre Vimtutor y completa los primeros 3 capítulos. Luego, crea un nuevo archivo con Vim y practica los comandos que has aprendido: movimientos, inserción de texto, eliminar y deshacer cambios, guardar y salir.</p>
+</div>
+
+<p>Si has llegado a este punto y has completado Vimtutor, ¡felicidades! Has dado el primer paso importante en tu camino para dominar Vim. Ahora pasaremos al siguiente nivel, donde aprenderás a moverte y editar texto de manera más eficiente.</p>
+</section>
+
+<section id="nivel-2">
+<h2>Nivel 2: Movimientos básicos y edición</h2>
+
+<p>En este nivel, profundizaremos en las formas eficientes de moverse por el texto y realizar ediciones básicas. La navegación eficiente es fundamental para aprovechar al máximo Vim.</p>
+
+<h3 id="movimientos-basicos">Navegación en modo normal</h3>
+<p>El modo normal de Vim está diseñado para navegar y manipular texto. Los comandos de movimiento son la base para muchas operaciones de edición.</p>
+
+<h4>Movimientos por caracteres</h4>
+<div class="shortcut-category">
+<div class="shortcut-box">
+    <h4>Navegación básica</h4>
+    <ul>
+        <li><span class="key">h</span> - Mover el cursor un carácter a la izquierda</li>
+        <li><span class="key">j</span> - Mover el cursor una línea hacia abajo</li>
+        <li><span class="key">k</span> - Mover el cursor una línea hacia arriba</li>
+        <li><span class="key">l</span> - Mover el cursor un carácter a la derecha</li>
+    </ul>
+</div>
+
+<div class="shortcut-box">
+    <h4>Movimientos por palabras</h4>
+    <ul>
+        <li><span class="key">w</span> - Mover al inicio de la siguiente palabra</li>
+        <li><span class="key">e</span> - Mover al final de la palabra actual o siguiente</li>
+        <li><span class="key">b</span> - Mover al inicio de la palabra actual o anterior</li>
+        <li><span class="key">ge</span> - Mover al final de la palabra anterior</li>
+    </ul>
+</div>
+</div>
+
+<div class="tip">
+<p><strong>Consejo:</strong> Las versiones en mayúsculas de estos comandos (<span class="key">W</span>, <span class="key">E</span>, <span class="key">B</span>) consideran como delimitadores solo los espacios en blanco, no la puntuación, lo que permite movimientos más largos.</p>
+</div>
+
+<h4>Movimientos dentro de la línea</h4>
+<div class="shortcut-category">
+<div class="shortcut-box">
+    <h4>Inicio y fin de línea</h4>
+    <ul>
+        <li><span class="key">0</span> - Mover al primer carácter de la línea</li>
+        <li><span class="key">^</span> - Mover al primer carácter no-blanco de la línea</li>
+        <li><span class="key">$</span> - Mover al final de la línea</li>
+        <li><span class="key">g_</span> - Mover al último carácter no-blanco de la línea</li>
+    </ul>
+</div>
+
+<div class="shortcut-box">
+    <h4>Movimientos por caracteres específicos</h4>
+    <ul>
+        <li><span class="key">f{char}</span> - Mover hacia adelante hasta el carácter {char}</li>
+        <li><span class="key">F{char}</span> - Mover hacia atrás hasta el carácter {char}</li>
+        <li><span class="key">t{char}</span> - Mover hacia adelante justo antes del carácter {char}</li>
+        <li><span class="key">T{char}</span> - Mover hacia atrás justo después del carácter {char}</li>
+        <li><span class="key">;</span> - Repetir el último movimiento f, F, t o T</li>
+        <li><span class="key">,</span> - Repetir el último movimiento f, F, t o T en dirección opuesta</li>
+    </ul>
+</div>
+</div>
+
+<div class="example">
+<p><strong>Ejemplo práctico:</strong> Imagina que tienes esta línea de código en Python y quieres mover el cursor a la "r" en "return":</p>
+<pre>def suma(a, b): return a + b  # Esta función suma dos números</pre>
+<p>Podrías mover el cursor rápidamente con <span class="key">fr</span> (buscar hacia adelante hasta "r") o <span class="key">tr</span> (mover justo antes de "r").</p>
+</div>
+
+<h4>Movimientos por párrafos y secciones</h4>
+<ul>
+    <li><span class="key">{</span> - Mover al párrafo anterior (separado por líneas en blanco)</li>
+    <li><span class="key">}</span> - Mover al párrafo siguiente</li>
+    <li><span class="key">(</span> - Mover a la oración anterior</li>
+    <li><span class="key">)</span> - Mover a la oración siguiente</li>
+</ul>
+
+<div class="exercise">
+<p><strong>Ejercicio de navegación:</strong> Abre un archivo de texto con varios párrafos y practica moverte usando los distintos comandos de navegación. Intenta llegar a puntos específicos del texto usando la combinación más eficiente de comandos.</p>
+</div>
+
+<h3 id="edicion-basica">Comandos de edición básicos</h3>
+<p>Ahora que sabes cómo moverte eficientemente, es hora de aprender a modificar el texto.</p>
+
+<h4>Insertar texto</h4>
+<p>Ya conoces <span class="key">i</span> para insertar texto antes del cursor, pero hay más formas de entrar en modo inserción:</p>
+<ul>
+    <li><span class="key">i</span> - Insertar antes del cursor</li>
+    <li><span class="key">a</span> - Insertar después del cursor (append)</li>
+    <li><span class="key">I</span> - Insertar al inicio de la línea</li>
+    <li><span class="key">A</span> - Insertar al final de la línea</li>
+    <li><span class="key">o</span> - Crear una nueva línea debajo y entrar en modo inserción</li>
+    <li><span class="key">O</span> - Crear una nueva línea arriba y entrar en modo inserción</li>
+    <li><span class="key">gi</span> - Insertar en la última posición donde se realizó una inserción</li>
+</ul>
+
+<h4>Eliminar y cambiar texto</h4>
+<div class="shortcut-category">
+<div class="shortcut-box">
+    <h4>Eliminar (cut)</h4>
+    <ul>
+        <li><span class="key">x</span> - Eliminar carácter bajo el cursor</li>
+        <li><span class="key">X</span> - Eliminar carácter antes del cursor</li>
+        <li><span class="key">dd</span> - Eliminar línea completa</li>
+        <li><span class="key">d{movimiento}</span> - Eliminar desde el cursor hasta donde indique el movimiento</li>
+        <li><span class="key">D</span> - Eliminar desde el cursor hasta el final de la línea (equivale a d$)</li>
+    </ul>
+</div>
+
+<div class="shortcut-box">
+    <h4>Cambiar</h4>
+    <ul>
+        <li><span class="key">r{char}</span> - Reemplazar el carácter bajo el cursor con {char}</li>
+        <li><span class="key">R</span> - Entrar en modo reemplazo (sobreescribir)</li>
+        <li><span class="key">cc</span> - Cambiar línea completa</li>
+        <li><span class="key">c{movimiento}</span> - Cambiar desde el cursor hasta donde indique el movimiento</li>
+        <li><span class="key">C</span> - Cambiar desde el cursor hasta el final de la línea (equivale a c$)</li>
+        <li><span class="key">s</span> - Eliminar carácter bajo el cursor y entrar en modo inserción</li>
+        <li><span class="key">S</span> - Eliminar línea y entrar en modo inserción (equivale a cc)</li>
+    </ul>
+</div>
+</div>
+
+<div class="example">
+<p><strong>Ejemplo práctico:</strong> Si tienes la línea <code>const valor = 123;</code> y quieres cambiar "123" por "456":</p>
+<ol>
+    <li>Coloca el cursor en "1"</li>
+    <li>Presiona <span class="key">ce</span> (cambiar hasta el final de la palabra)</li>
+    <li>Escribe "456"</li>
+    <li>Presiona <span class="key">Esc</span> para volver al modo normal</li>
+</ol>
+</div>
+
+<h4>Copiar y pegar</h4>
+<ul>
+    <li><span class="key">yy</span> o <span class="key">Y</span> - Copiar (yank) línea completa</li>
+    <li><span class="key">y{movimiento}</span> - Copiar desde el cursor hasta donde indique el movimiento</li>
+    <li><span class="key">p</span> - Pegar después del cursor o en la línea siguiente</li>
+    <li><span class="key">P</span> - Pegar antes del cursor o en la línea anterior</li>
+</ul>
+
+<h4>Deshacer y rehacer</h4>
+<ul>
+    <li><span class="key">u</span> - Deshacer el último cambio</li>
+    <li><span class="key">Ctrl+r</span> - Rehacer el último cambio deshecho</li>
+    <li><span class="key">U</span> - Deshacer todos los cambios en la línea actual</li>
+</ul>
+
+<h3 id="combinando-comandos">Multiplicadores y movimientos</h3>
+<p>Una de las características más potentes de Vim es la combinación de comandos con multiplicadores y movimientos.</p>
+
+<h4>Multiplicadores numéricos</h4>
+<p>Puedes anteponer un número a casi cualquier comando para repetirlo esa cantidad de veces:</p>
+<ul>
+    <li><span class="key">5j</span> - Mover 5 líneas hacia abajo</li>
+    <li><span class="key">3dw</span> - Eliminar 3 palabras</li>
+    <li><span class="key">2y}</span> - Copiar 2 párrafos</li>
+    <li><span class="key">10x</span> - Eliminar 10 caracteres</li>
+</ul>
+
+<h4>La gramática de Vim</h4>
+<p>Vim sigue un patrón gramatical que una vez dominado, te permite "hablar" el lenguaje de Vim:</p>
+<div class="concept">
+<p><strong>Operador + [número] + movimiento</strong></p>
+<ul>
+    <li><strong>Operador:</strong> qué hacer (d = delete, c = change, y = yank)</li>
+    <li><strong>Número:</strong> cuántas veces (opcional)</li>
+    <li><strong>Movimiento:</strong> sobre qué texto actuar (w = word, } = paragraph, etc.)</li>
+</ul>
+</div>
+
+<div class="example">
+<p><strong>Ejemplos de combinaciones poderosas:</strong></p>
+<ul>
+    <li><span class="key">d2w</span> - Eliminar 2 palabras</li>
+    <li><span class="key">ci"</span> - Cambiar el texto dentro de comillas</li>
+    <li><span class="key">df.</span> - Eliminar hasta el próximo punto</li>
+    <li><span class="key">y$</span> - Copiar desde el cursor hasta el final de la línea</li>
+    <li><span class="key">3dd</span> - Eliminar 3 líneas</li>
+</ul>
+</div>
+
+<h3 id="paginacion">Desplazamiento por el archivo</h3>
+<p>Para archivos más grandes, necesitas formas eficientes de desplazarte:</p>
+
+<h4>Desplazamiento por pantalla</h4>
+<ul>
+    <li><span class="key">Ctrl+f</span> - Avanzar una pantalla (Forward)</li>
+    <li><span class="key">Ctrl+b</span> - Retroceder una pantalla (Backward)</li>
+    <li><span class="key">Ctrl+d</span> - Avanzar media pantalla (Down)</li>
+    <li><span class="key">Ctrl+u</span> - Retroceder media pantalla (Up)</li>
+    <li><span class="key">Ctrl+e</span> - Desplazar una línea hacia abajo</li>
+    <li><span class="key">Ctrl+y</span> - Desplazar una línea hacia arriba</li>
+</ul>
+
+<h4>Posicionamiento del cursor en la pantalla</h4>
+<ul>
+    <li><span class="key">H</span> - Mover el cursor a la parte superior de la pantalla (High)</li>
+    <li><span class="key">M</span> - Mover el cursor a la mitad de la pantalla (Middle)</li>
+    <li><span class="key">L</span> - Mover el cursor a la parte inferior de la pantalla (Low)</li>
+    <li><span class="key">zt</span> - Desplazar la vista para que la línea actual esté en la parte superior</li>
+    <li><span class="key">zz</span> - Desplazar la vista para que la línea actual esté en el centro</li>
+    <li><span class="key">zb</span> - Desplazar la vista para que la línea actual esté en la parte inferior</li>
+</ul>
+
+<h4>Ir a una línea específica</h4>
+<ul>
+    <li><span class="key">gg</span> - Ir al inicio del archivo (línea 1)</li>
+    <li><span class="key">G</span> - Ir al final del archivo (última línea)</li>
+    <li><span class="key">{número}G</span> o <span class="key">:{número}</span> - Ir a la línea {número}</li>
+    <li><span class="key">%</span> - Ir al carácter correspondiente (paréntesis, corchetes, llaves, etc.)</li>
+</ul>
+
+<div class="exercise">
+<p><strong>Ejercicio de nivel 2:</strong> Practica combinando comandos de edición con movimientos. Intenta realizar las siguientes operaciones:</p>
+<ol>
+    <li>Eliminar desde el cursor hasta el final de la palabra</li>
+    <li>Cambiar una oración completa</li>
+    <li>Copiar un párrafo entero</li>
+    <li>Mover 3 palabras a la derecha y eliminar 2 palabras</li>
+    <li>Ir al inicio del archivo, luego a la línea 10, y luego al final del archivo</li>
+</ol>
+</div>
+
+<p>¡Excelente progreso! Has aprendido las técnicas fundamentales de navegación y edición en Vim. Estos comandos forman la base de tu fluidez en Vim. Practícalos hasta que se vuelvan instintivos. En el siguiente nivel, aprenderemos técnicas más avanzadas de búsqueda, reemplazo y selección.</p>
