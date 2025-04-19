@@ -200,11 +200,12 @@ li a {
   margin: 0;
 }
 
+/* Maintain existing tech-box styles but enhance for mobile */
 .tech-box {
   align-items: center;
   justify-content: center;
-  width: 20vw;
-  min-height: 200px;
+  width: 25vw;
+  min-height: 20vh;
   padding: 10px;
   background-color: var(--light);
   box-shadow: var(--shadow);
@@ -212,10 +213,24 @@ li a {
   display: flex;
   flex-direction: column;
   text-align: center;
-  cursor: pointer;
   border-top: 5px solid var(--primary);
   font-size: 0.9em;
   border-radius: 8px;
+  transition: var(--transition);
+}
+
+/* Link wrapper for the tech box */
+.tech-box-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 20vw;
+}
+
+/* Add hover effect for better UX indicating the clickable nature */
+.tech-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .tech-title {
@@ -267,6 +282,7 @@ li a {
 .comparison-table tr:hover {
   background-color: #e8f4f8;
 }
+
 code {
   background-color: #030303;
   color: #f8f8f2;
@@ -278,6 +294,7 @@ code {
   font-family: monospace;
   white-space: pre-wrap;
 }
+
 .pro {
   color: var(--success);
   font-weight: bold;
@@ -629,8 +646,6 @@ code {
     width: 100vw;
   }
 
- 
-
   .calendar-content th,
   .calendar-content td {
     padding: 0.75rem;
@@ -644,10 +659,9 @@ code {
     background-color: #f2f2f2;
   }
 
-
-  body {
-    font-size: 14px;
-    padding: 0;
+  .footer-bar {
+    flex-direction: column;
+    gap: 10px;
   }
 
   header {
@@ -667,32 +681,59 @@ code {
   .tech-container {
     width: 100%;
   }
+
   .tech-box {
-    width: 50%;
-  }
-
-  .tech-image {
-    font-size: 3em;
-  }
-
-  .breadcrumb {
-    display: inline-flex;
-    flex-wrap: wrap;
-    font-size: 1.2rem;
-  }
-
-  .comparison-table th,
-  .comparison-table td {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
-
-  .footer-bar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-bar button {
     width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+
+  .tech-box .tech-title {
+    order: 1;
+    margin-top: auto;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-dark);
+  }
+
+  .tech-box .tech-image {
+    order: 0;
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  /* Hide the button container on mobile as the entire card is clickable */
+  .tech-box .button-container {
+    display: none;
+  }
+
+  /* Add a subtle indication that the card is clickable */
+  .tech-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .tech-box:active::after {
+    opacity: 1;
+  }
+
+  .tech-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
   }
 }
