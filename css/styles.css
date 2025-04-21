@@ -194,9 +194,8 @@ li a {
 .tech-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
   align-items: center;
-  gap: 2rem 1rem;
+  gap: 1rem 1rem;
   margin: 0;
 }
 
@@ -204,7 +203,7 @@ li a {
 .tech-box {
   align-items: center;
   justify-content: center;
-  width: 25vw;
+  width: 15vw;
   min-height: 20vh;
   padding: 10px;
   background-color: var(--light);
@@ -224,13 +223,6 @@ li a {
   text-decoration: none;
   color: inherit;
   display: block;
-  width: 20vw;
-}
-
-/* Add hover effect for better UX indicating the clickable nature */
-.tech-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .tech-title {
@@ -243,7 +235,7 @@ li a {
 .tech-image {
   text-align: center;
   margin: 0.5rem;
-  font-size: 4em;
+  font-size: 2em;
 }
 
 .note {
