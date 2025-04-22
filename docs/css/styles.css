@@ -201,21 +201,12 @@ li a {
 
 /* Maintain existing tech-box styles but enhance for mobile */
 .tech-box {
-  align-items: center;
-  justify-content: center;
-  width: 15vw;
-  min-height: 20vh;
-  padding: 10px;
   background-color: var(--light);
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
   border-top: 5px solid var(--primary);
   font-size: 0.9em;
   border-radius: 8px;
-  transition: var(--transition);
 }
 
 /* Link wrapper for the tech box */
@@ -701,25 +692,6 @@ code {
   /* Hide the button container on mobile as the entire card is clickable */
   .tech-box .button-container {
     display: none;
-  }
-
-  /* Add a subtle indication that the card is clickable */
-  .tech-box::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.05);
-    opacity: 0;
-    transition: opacity 0.3s;
-    border-radius: 8px;
-    pointer-events: none;
-  }
-
-  .tech-box:active::after {
-    opacity: 1;
   }
 
   .tech-container {
