@@ -24,7 +24,7 @@ html {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text);
@@ -655,6 +655,11 @@ code {
 }
 
 @media (max-width: 768px) {
+  body{
+    font-size: 20px;
+  }
+
+  
   .tech-container {
     flex-direction: column;
     width: 100vw;
