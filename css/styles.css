@@ -24,7 +24,7 @@ html {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text);
@@ -81,8 +81,8 @@ h3 {
 
 main {
   flex: 1;
-  padding: 1rem;
   margin: 0 auto;
+  padding-top: 3rem;
   justify-content: center;
   background-color: var(--light);
 }
@@ -655,6 +655,8 @@ code {
 }
 
 @media (max-width: 768px) {
+
+  
   .tech-container {
     flex-direction: column;
     width: 100vw;
@@ -702,7 +704,7 @@ code {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    padding: 15px 10px;
+    padding: 10px;
     margin-bottom: 15px;
   }
 
@@ -717,7 +719,7 @@ code {
   .tech-box .tech-image {
     order: 0;
     font-size: 3em;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   /* Hide the button container on mobile as the entire card is clickable */
@@ -729,6 +731,12 @@ code {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 0 10px;
+    padding: 0;
   }
+
+  #content-description {
+    display:none;
+  }
+
+  
 }

@@ -346,10 +346,21 @@ function generateHomePage(outputRoot) {
         <div class="tech-title">Contenido Educativo</div>
         -->  
         
+        
         <div class="tech-image">📚</div>
-          <p>Accede a todos los materiales de estudio</p>
-          <p>organizados por temas y materias.</p>
-          <p><a href="content/index.html" class="action-button">Explorar Contenido</a></p>
+          <div id="content-description">
+            <p>Accede a todos los materiales de estudio</p>
+            <p>organizados por temas y materias.</p> 
+          </div>
+            <p>
+                <a 
+                    href="content/index.html" 
+                    class="action-button"
+                >
+                    Explorar Contenido
+                </a>
+            </p>
+       
         </div>
       </div>
 
