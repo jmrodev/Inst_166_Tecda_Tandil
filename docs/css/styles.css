@@ -219,9 +219,9 @@ li a {
   font-size: 0.9em;
   border-radius: 8px;
 }
-/* Maintain existing tech-box styles but enhance for mobile */
+
 .tech-box {
-  /* min-width: 200px;
+  min-width: 200px;
   max-width: 300px;
   width: 100%;
   position: relative;
@@ -239,10 +239,9 @@ li a {
   border: 1px solid var(--border);
   border-top: 5px solid var(--primary);
   font-size: 0.9em;
-  border-radius: 8px; */
+  border-radius: 8px; 
 }
 
-/* Link wrapper for the tech box */
 .tech-box-link {
   text-decoration: none;
   color: inherit;
@@ -379,13 +378,16 @@ code {
 
 .calendar-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column; /* Cambia a dirección columna */
   gap: 15px;
-  margin: 20px 0;
-  justify-content: center;
+  margin: 20px auto; /* Centra los botones */
+  width: 100%;
+  max-width: 300px; /* Limita el ancho máximo */
+  align-items: center;
 }
 
 .calendar-button {
+  width: 100%; /* Ocupa todo el ancho disponible */
   padding: 12px 24px;
   background-color: var(--primary);
   color: white;
@@ -396,20 +398,15 @@ code {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-.calendar-button:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.calendar-button:active {
-  transform: translateY(0);
-}
-
-.calendar-button.active {
-  background-color: var(--accent);
+/* Elimina media query redundante ya que ahora siempre están en columna */
+@media (max-width: 768px) {
+  .calendar-button {
+    font-size: 14px; /* Texto más pequeño en móviles */
+    padding: 10px 20px; /* Padding más compacto */
+  }
 }
 
 #calendar-modal {
@@ -466,6 +463,7 @@ code {
 }
 
 .horario-section {
+  
   background-color: var(--background-light);
   border-radius: 10px;
   padding: 25px;
