@@ -1,25 +1,28 @@
-/* --- VARIABLES GLOBALES --- */
+/* --- VARIABLES GLOBALES (Mantenidas) --- */
 :root {
   --primary: #3498db;
-  --primary-dark: #2980b9; /* Un poco más oscuro para hover/activos */
+  --primary-dark: #2980b9;
   --secondary: #4fc3f7;
-  --accent: #e74c3c; /* Rojo para alertas o acciones importantes */
+  --accent: #e74c3c;
   --success: #2ecc71;
   --warning: #f39c12;
-  --light: #f8f9fa; /* Fondo principal más claro */
-  --dark: #343a40; /* Texto oscuro/fondos oscuros */
-  --text: #333333; /* Color de texto principal */
-  --text-light: #6c757d; /* Texto secundario o más claro */
-  --border: #dee2e6; /* Bordes más suaves */
+  --info: #17a2b8; /* Nuevo color para concept-box */
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --text: #333333;
+  --text-light: #6c757d;
+  --border: #dee2e6;
   --border-light: #e9ecef;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+  --code-bg: #282c34; /* Fondo oscuro para código */
+  --code-text: #abb2bf; /* Texto claro para código */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --header-height: 70px; /* Ajusta si es necesario */
-  --footer-height: 50px; /* Ajusta si es necesario */
+  --header-height: 70px;
+  --footer-height: 50px; /* Altura del footer fijo si se usa */
 }
 
-/* --- RESET BÁSICO Y CONFIGURACIÓN GLOBAL --- */
+/* --- RESET BÁSICO Y CONFIGURACIÓN GLOBAL (Mantenidos) --- */
 *,
 *::before,
 *::after {
@@ -34,12 +37,12 @@ body,
 html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  /* Quitar height: 100% si no se necesita footer pegado al fondo siempre */
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px; /* Base más estándar */
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text);
@@ -47,47 +50,47 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: var(--header-height); /* Espacio para header fijo */
-  padding-bottom: var(--footer-height); /* Espacio para footer fijo */
+  /* Quitar padding-bottom si el footer del manual no es fijo */
+   min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura */
 }
 
-/* --- HEADER Y NAVEGACIÓN --- */
+/* --- HEADER Y NAVEGACIÓN (Mantenidos, con ajuste para iconos) --- */
 header {
   background: var(--primary-dark);
   color: white;
-  padding: 0 2rem; /* Sin padding vertical, altura fija */
+  padding: 0 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  position: fixed; /* Fijo en la parte superior */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 900;
   height: var(--header-height);
   display: flex;
-  align-items: center; /* Centrar verticalmente */
-  justify-content: space-between; /* Espacio entre título y breadcrumb */
+  align-items: center;
+  justify-content: space-between;
 }
 
 header h1 {
-  font-size: 1.8rem; /* Ajustar tamaño */
+  font-size: 1.6rem; /* Un poco más pequeño para manual */
   font-weight: 600;
   margin: 0;
   padding: 0;
-  border-bottom: none; /* Quitar borde inferior aquí */
-  white-space: nowrap; /* Evitar que se rompa el título */
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Añadir puntos si no cabe */
-  max-width: 50%; /* Limitar ancho para que quepa el breadcrumb */
+  text-overflow: ellipsis;
+  max-width: 50%;
 }
 
 .breadcrumb {
   font-size: 0.9rem;
   margin: 0;
   display: flex;
-  flex-wrap: nowrap; /* Evitar que se rompa en múltiples líneas */
-  overflow: hidden; /* Ocultar si no cabe */
+  flex-wrap: nowrap;
+  overflow: hidden;
   align-items: center;
-  gap: 0; /* Sin gap, usaremos ::before */
-  max-width: 50%; /* Limitar ancho */
+  gap: 0;
+  max-width: 50%;
 }
 
 .breadcrumb a {
@@ -97,6 +100,10 @@ header h1 {
   padding: 0.3rem 0.5rem;
   border-radius: 4px;
   white-space: nowrap;
+  /* Para alinear icono y texto */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em; /* Espacio entre icono y texto */
 }
 
 .breadcrumb a:hover {
@@ -104,513 +111,451 @@ header h1 {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Añadir separador '/' entre los enlaces del breadcrumb */
 .breadcrumb a + a::before {
   content: '/';
-  padding: 0 0.5rem; /* Espacio alrededor del separador */
-  color: rgba(255, 255, 255, 0.6); /* Color del separador */
+  padding: 0 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
   display: inline-block;
 }
 
-/* --- CONTENIDO PRINCIPAL --- */
+/* --- CONTENIDO PRINCIPAL (Mantenido) --- */
 main {
   flex: 1; /* Ocupa el espacio restante */
   width: 100%;
-  max-width: 1100px; /* Ancho máximo del contenido */
-  margin: 0 auto; /* Centrar */
-  padding: 2rem 1rem; /* Espaciado interno */
-  background-color: var(--light);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: var(--light); /* Fondo claro para el contenido */
+}
+
+section {
+  margin-bottom: 3rem; /* Espacio entre secciones del manual */
 }
 
 h2 {
-  font-size: 1.6rem; /* Ajustar tamaño */
+  font-size: 1.8rem; /* Títulos de sección más grandes */
   color: var(--primary-dark);
   border-bottom: 2px solid var(--primary);
   padding-bottom: 0.5rem;
-  margin-top: 2.5rem; /* Espacio antes de H2 */
-  margin-bottom: 1.5rem; /* Espacio después de H2 */
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  /* Para alinear icono y texto si se usa en H2 */
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
-main > h2:first-of-type {
-  margin-top: 0; /* Sin margen superior para el primer H2 */
+main > section:first-of-type > h2 {
+   margin-top: 0;
+}
+/* Ocultar borde inferior si no hay contenido después */
+h2:last-child {
+    border-bottom: none;
 }
 
+
 h3 {
-  font-size: 1.3rem;
+  font-size: 1.4rem; /* Títulos H3 un poco más grandes */
   color: var(--dark);
   margin-top: 2rem;
   margin-bottom: 1rem;
+    /* Para alinear icono y texto si se usa en H3 */
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
-/* --- CONTENEDOR DE DIRECTORIOS (TECH-CONTAINER / TECH-BOX) --- */
+/* --- CONTENEDOR TECH (Mantenido) --- */
 .tech-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Grid responsivo */
-  gap: 1.5rem; /* Espacio entre cajas */
-  margin-bottom: 2rem; /* Espacio después del contenedor */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajustar minmax si es necesario */
+  gap: 1.5rem;
+  margin-top: 1.5rem; /* Espacio después de H2/H3 */
+  margin-bottom: 2rem;
 }
 
-.tech-box-link {
-  text-decoration: none;
-  color: inherit;
-  display: block; /* Asegura que el enlace ocupe toda la caja */
-  transition: var(--transition);
-  border-radius: 8px; /* Redondear enlace para que coincida con la caja */
-}
-
-.tech-box-link:hover {
-  transform: translateY(-5px); /* Levantar la caja al pasar el ratón */
-  box-shadow: var(--shadow-hover);
-}
-
+/* --- TECH BOX (Ajustado para contenido interno del manual) --- */
 .tech-box {
   background: white;
   border-radius: 8px;
-  padding: 1.5rem 1rem; /* Espaciado interno */
+  padding: 1.5rem; /* Más padding interno */
   box-shadow: var(--shadow);
   border: 1px solid var(--border-light);
-  border-top: 5px solid var(--primary); /* Borde superior de color */
-  text-align: center;
+  border-top: 5px solid var(--primary);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribuir contenido verticalmente */
-  min-height: 200px; /* Altura mínima */
-  transition: var(--transition); /* Transición suave para el :hover del link */
+  min-height: auto; /* Altura automática según contenido */
+}
+.tech-box > *:last-child {
+    margin-bottom: 0; /* Quitar margen inferior del último elemento */
 }
 
+
 .tech-title {
-  font-size: 1.2em;
+  font-size: 1.3em; /* Título de tech-box más grande */
   font-weight: 600;
   color: var(--primary-dark);
   margin-bottom: 1rem;
+   /* Para alinear icono y texto */
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .tech-image {
-  font-size: 3em; /* Icono más grande */
-  margin-bottom: 1rem;
+  font-size: 2.5em; /* Icono un poco más pequeño */
+  margin: 0 auto 1rem auto; /* Centrado */
   color: var(--primary);
-  flex-grow: 1; /* Permitir que el icono ocupe espacio */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Estilos específicos para la caja de contenido en la homepage */
-.tech-box#content-description {
-  padding: 1rem;
-}
-
-.tech-box #content-description p {
-  margin: 0.5rem 0;
-  color: var(--text-light);
-  font-size: 0.95em;
-}
-
-.tech-box .button-container {
-  margin-top: 1rem; /* Espacio antes del botón */
-}
-
-/* --- TABLA DE ARCHIVOS (COMPARISON-TABLE) --- */
-/* Envolver la tabla en este div para scroll horizontal en móviles */
-.table-responsive-wrapper {
-   overflow-x: auto;
-   margin: 1.5rem 0;
-   border: 1px solid var(--border);
-   border-radius: 8px;
-   box-shadow: var(--shadow);
-   background-color: white; /* Fondo para la tabla */
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto; /* Columnas se ajustan al contenido */
-}
-
-.comparison-table th,
-.comparison-table td {
-  padding: 0.9rem 1rem; /* Espaciado en celdas */
-  text-align: left;
-  border-bottom: 1px solid var(--border-light); /* Líneas horizontales suaves */
-  vertical-align: middle; /* Alinear contenido verticalmente */
-  white-space: nowrap; /* Evitar que el texto largo rompa la línea */
-}
-/* Quitar borde inferior de la última fila */
-.comparison-table tr:last-child td {
-  border-bottom: none;
-}
-
-
-.comparison-table th {
-  background-color: #e9ecef; /* Fondo claro para cabecera */
-  color: var(--dark);
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.85em;
-  letter-spacing: 0.5px;
-  position: sticky; /* Cabecera fija si la tabla es muy larga (requiere wrapper con overflow) */
-  top: 0;
-  z-index: 1;
-}
-
-.comparison-table td strong {
-  color: var(--text);
-  font-weight: 500; /* Peso normal para el nombre */
-}
-
-.comparison-table tr:hover td {
-  background-color: #f1f9ff; /* Azul muy claro al pasar el ratón */
-}
-
-.comparison-table td:last-child {
-  text-align: right; /* Alinear botón a la derecha */
-}
-
-
-/* --- BOTONES --- */
-.action-button, .calendar-button {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background-color: var(--primary);
-  color: white !important; /* Forzar color blanco por si está dentro de un <a> */
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.95em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
   text-align: center;
 }
 
-.action-button:hover, .calendar-button:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-2px); /* Pequeño efecto de elevación */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: white !important;
-}
+/* --- ESTILOS ESPECÍFICOS PARA EL MANUAL (NUEVOS) --- */
 
-/* Botones del calendario en la homepage */
-.calendar-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem; /* Espacio entre botones */
-  margin: 1.5rem auto;
-  width: 100%;
-  max-width: 350px; /* Ancho máximo para los botones */
-  align-items: stretch; /* Estirar botones */
-}
-
-.calendar-button {
-  width: 100%; /* Ocupar todo el ancho */
-}
-
-/* Sección de Horarios en Homepage */
-.horario-section {
-  background-color: white; /* Fondo blanco para destacar */
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  border-left: 5px solid var(--secondary);
-  box-shadow: var(--shadow);
-}
-
-/* Notas informativas */
+/* Caja de Notas Informativas (Ajustado) */
 .note {
-  background-color: #e8f4f8;
+  background-color: #eef7ff; /* Azul muy claro */
   padding: 1rem 1.5rem;
   border-left: 4px solid var(--primary);
   margin: 1.5rem 0;
   border-radius: 4px;
-  color: var(--primary-dark);
+  color: #032b4d; /* Texto oscuro azulado */
+}
+.note p { margin: 0; }
+.note i { /* Estilo para iconos dentro de .note */
+  margin-right: 0.5em;
+  color: var(--primary);
+}
+.note code { /* Código dentro de una nota */
+  background-color: rgba(0,0,0, 0.05);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: var(--text);
 }
 
-.note p {
-  margin: 0;
-}
-.note strong {
-  color: var(--primary-dark);
-  font-weight: 600;
-}
 
-/* Mensaje directorio vacío */
-.note[style*="background-color: #e8f4f8;"] { /* Selector un poco frágil basado en style */
-  background-color: #fff3cd;
-  border-left-color: var(--warning);
-  color: #664d03;
+/* Caja de Conceptos */
+.concept-box {
+  background-color: #f8f9fa; /* Fondo ligeramente gris */
+  border-left: 4px solid var(--info); /* Usar color info */
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  border: 1px solid var(--border-light);
 }
-
-/* --- MODALES (Calendario y Visor de Archivos) --- */
-#overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Overlay más oscuro */
-  z-index: 1000;
+.concept-box h3 {
+  margin-top: 0; /* Sin margen superior para H3 dentro de concept-box */
+  margin-bottom: 1rem;
+  font-size: 1.2rem; /* H3 más pequeño aquí */
+  color: var(--info); /* Color del título coincide con borde */
 }
-
-#file-viewer,
-#calendar-modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 0; /* Padding manejado por header/content */
-  border-radius: 8px;
-  width: 90%; /* Más ancho por defecto */
-  max-width: 800px; /* Ancho máximo */
-  max-height: 85vh; /* Altura máxima */
-  z-index: 1001;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* Evitar scroll en el contenedor principal del modal */
-  display: flex; /* Usar flex para estructura interna */
-  flex-direction: column;
+.concept-box p {
+  margin-bottom: 0.8rem;
+  color: var(--text-light);
 }
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem;
-  background-color: #f8f9fa; /* Fondo ligero para el header */
-  border-top-left-radius: 8px; /* Redondear esquinas superiores */
-  border-top-right-radius: 8px;
-}
-
-.modal-header h2 {
-  margin: 0;
-  color: var(--primary-dark);
-  font-size: 1.2rem; /* Tamaño título modal */
-  border-bottom: none; /* Quitar borde inferior heredado */
-  padding-bottom: 0;
-  margin-top: 0;
+.concept-box p:last-child {
   margin-bottom: 0;
 }
 
-#modal-content,
-#file-viewer #file-content { /* Aplicar al contenedor de contenido */
-  padding: 1.5rem;
-  overflow-y: auto; /* Permitir scroll vertical SOLO en el contenido */
-  flex-grow: 1; /* Ocupar espacio restante */
+/* Caja "Por qué aprender" */
+.why-learn {
+  background-color: #fff9e6; /* Amarillo muy claro */
+  border-left: 4px solid var(--warning);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0 0 0; /* Margen superior, sin margen inferior */
+  border-radius: 4px;
 }
-
-/* Tabla dentro del modal de calendario */
-#modal-content .comparison-table {
-  margin: 0; /* Sin margen extra dentro del modal */
-  box-shadow: none; /* Sin sombra interna */
-  border: none; /* Sin borde externo */
+.why-learn strong { /* El título "¿Por qué...?" */
+  color: #8a6d3b; /* Marrón/dorado oscuro */
+  font-weight: 600;
+  display: flex; /* Para alinear con icono */
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5rem;
 }
-#modal-content .table-responsive-wrapper {
+.why-learn p {
   margin: 0;
-  border: none;
-  box-shadow: none;
+  font-size: 0.95em;
+  color: #6c582b;
 }
 
 
-/* Contenido PRE para visor de archivos */
-#file-viewer #file-content {
-  background-color: #282c34; /* Fondo oscuro para código */
-  color: #abb2bf; /* Texto claro */
-  border-radius: 0; /* Sin bordes redondeados */
-  border: none;
+/* Caja de Ejercicios */
+.exercise-box {
+  background-color: #e6f7ff; /* Azul claro */
+  border: 1px solid #91d5ff; /* Borde azul */
+  padding: 1.5rem;
+  margin-top: 1.5rem; /* Margen superior */
+  border-radius: 4px;
+}
+.exercise-box strong { /* El título "Tarea:" */
+  color: var(--primary-dark);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 1rem;
+}
+.exercise-box ol {
+  padding-left: 1.5rem; /* Indentación para lista ordenada */
+  margin: 0;
+}
+.exercise-box li {
+  margin-bottom: 0.7rem; /* Espacio entre ítems de la lista */
+  color: var(--text);
+}
+.exercise-box li:last-child {
+  margin-bottom: 0;
+}
+.exercise-box code { /* Código dentro de ejercicios */
+  background-color: rgba(0, 0, 0, 0.07);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: var(--text);
+  word-break: break-all; /* Romper código largo si es necesario */
+}
+
+/* Listas UL dentro de tech-box (ej: Recursos de instalación, Extensiones) */
+.tech-box ul {
+  list-style: none; /* Quitar bullets por defecto */
+  padding-left: 0;
+  margin: 1rem 0 0 0;
+}
+.tech-box ul li {
+  padding: 0.5rem 0 0.5rem 1.5rem; /* Padding izquierdo para simular indentación */
+  margin-bottom: 0.5rem;
+  position: relative;
+  border-left: 3px solid var(--secondary); /* Línea decorativa izquierda */
+  background-color: #f8f9fa; /* Fondo ligero para cada item */
+  border-radius: 0 4px 4px 0;
+}
+.tech-box ul li::before {
+  /* No usar ::before para bullet, ya usamos border-left */
+}
+.tech-box ul li i { /* Iconos en listas */
+  margin-right: 0.6em;
+  color: var(--primary);
+  width: 1.2em; /* Ancho fijo para alinear texto */
+  text-align: center;
+}
+.tech-box ul li a { /* Enlaces en listas */
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 500;
+}
+.tech-box ul li a:hover {
+    text-decoration: underline;
+}
+
+
+/* --- ESTILOS PARA CÓDIGO Y TERMINAL (NUEVOS/MEJORADOS) --- */
+
+/* Bloque de código genérico (el que tiene style en el HTML) */
+code[style*="background-color: #1e1e1e;"] {
+  display: block;
+  background-color: var(--code-bg) !important; /* Forzar el fondo */
+  color: var(--code-text);
+  padding: 1rem 1.5rem !important; /* Forzar padding */
+  margin: 1.5rem 0;
+  border-radius: 5px;
   font-family: Consolas, 'Courier New', Courier, monospace;
   font-size: 0.9em;
   line-height: 1.5;
-  white-space: pre-wrap; /* Respetar espacios y saltos, envolver líneas */
-  word-wrap: break-word; /* Romper palabras largas si es necesario */
-  margin: 0; /* Sin margen */
-  padding: 1.5rem;
+  white-space: pre-wrap;
+  overflow-x: auto; /* Scroll horizontal si el código es muy ancho */
+  border: 1px solid #444;
+}
+/* Quitar el PRE dentro de este CODE si existe, ya que el CODE maneja el formato */
+code[style*="background-color: #1e1e1e;"] pre {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    white-space: inherit; /* Heredar white-space del code */
+}
+code[style*="background-color: #1e1e1e;"] code { /* Evitar anidamiento de code */
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    border-radius: 0;
 }
 
-/* Botón de cierre (común para ambos modales) */
-.close-button,
-#file-viewer > button:first-of-type { /* Selector más específico para el botón del file viewer */
-  position: absolute;
-  top: 12px; /* Ajustar posición */
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.8rem; /* Más grande y visible */
-  font-weight: bold;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-  line-height: 1;
-  padding: 0; /* Sin padding extra */
-  z-index: 10; /* Asegurar que esté sobre el título */
+
+/* Estilo específico para la clase .terminal */
+.terminal {
+  background-color: var(--code-bg);
+  color: #ccc; /* Color base más claro que el code-text */
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 5px;
+  font-family: Consolas, 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+  border: 1px solid #444;
+  white-space: pre-wrap; /* Para respetar saltos de línea */
+  overflow-x: auto;
+}
+.terminal span {
+  display: block; /* Cada span en una nueva línea */
+  margin-bottom: 0.3em; /* Pequeño espacio entre líneas */
+}
+.terminal span:last-child {
+    margin-bottom: 0;
 }
 
-.close-button:hover,
-#file-viewer > button:first-of-type:hover {
-  color: var(--accent); /* Rojo al pasar el ratón */
-  transform: scale(1.1);
+.terminal .comment {
+  color: #6a9955; /* Verde comentario */
+  font-style: italic;
 }
 
-/* --- FOOTER --- */
+.terminal .prompt {
+  color: #569cd6; /* Azul para el prompt */
+  display: inline; /* El prompt no necesita ser bloque */
+  margin-right: 0.5em; /* Espacio después del prompt */
+}
+/* Para el texto del comando después del prompt */
+.terminal code { /* Si hay `code` después de `span.prompt` */
+    color: #d4d4d4; /* Blanco/gris claro para comando */
+    background: none;
+    padding: 0;
+}
+
+.terminal .output {
+  color: #ce9178; /* Naranja/marrón para la salida */
+  white-space: pre-wrap; /* Respetar formato de salida */
+}
+
+/* Código inline normal (no bloques) */
+p code, li code, h3 code /* Código dentro de párrafos, listas, etc */ {
+  background-color: rgba(0,0,0, 0.07);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #c7254e; /* Rosa oscuro para código inline */
+  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+
+
+/* --- FOOTER (Adaptado para el Manual) --- */
 footer {
-  /* Footer se maneja con el padding-bottom del body ahora */
+  text-align: center;
+  margin-top: auto; /* Empuja el footer hacia abajo si el contenido es corto */
+  padding: 1.5rem 1rem;
+  background-color: var(--dark); /* Fondo oscuro */
+  color: rgba(255, 255, 255, 0.7); /* Texto claro */
+  font-size: 0.9em;
 }
-
-.footer-bar {
-  position: fixed; /* Fijo en la parte inferior */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--dark);
-  color: white;
-  display: flex;
-  justify-content: space-between; /* Espaciar botones */
-  padding: 0 1rem; /* Padding horizontal */
-  height: var(--footer-height);
-  align-items: center; /* Centrar verticalmente */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 900;
-}
-
-.footer-bar button {
+/* Estilos específicos si mantienes el .footer-bar DENTRO del footer del manual */
+footer .footer-bar {
+  position: static; /* Anular el fixed */
   background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: var(--transition);
+  box-shadow: none;
+  padding: 1rem 0 0 0; /* Espacio superior */
   display: flex;
-  align-items: center;
-  gap: 0.4rem; /* Espacio entre icono y texto */
+  justify-content: center; /* Centrar botones */
+  gap: 1rem;
 }
-
-.footer-bar button:hover {
+footer .footer-bar button {
+  background: rgba(255, 255, 255, 0.1);
   color: white;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: var(--transition);
+}
+footer .footer-bar button:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-
-/* --- AJUSTES RESPONSIVOS --- */
+/* --- AJUSTES RESPONSIVOS (Revisados) --- */
 @media (max-width: 992px) {
   main {
     max-width: 90%;
   }
   .tech-container {
-     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Cajas un poco más pequeñas */
+     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajustar minmax */
   }
 }
 
 @media (max-width: 768px) {
   body {
-    font-size: 15px; /* Reducir fuente base en móviles */
-    padding-top: calc(var(--header-height) + 10px); /* Ajustar si el header es más alto */
+    font-size: 15px;
+    /* Ajustar padding si el header cambia de altura */
+     padding-top: 60px; /* Asumiendo header fijo más pequeño o sin fixed */
   }
 
   header {
-    padding: 0 1rem; /* Menos padding en header */
-    height: auto; /* Altura automática para permitir wrap */
-    min-height: var(--header-height);
-    flex-direction: column; /* Apilar título y breadcrumb */
-    align-items: flex-start; /* Alinear a la izquierda */
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0 1rem;
+    height: auto; /* Altura dinámica */
+     min-height: 60px; /* Altura mínima */
+     position: fixed; /* Mantener fijo? O static? */
+    /* Si es static, quitar padding-top del body */
+
+    /* Apilar si es necesario */
+     flex-direction: column;
+     align-items: flex-start;
+     padding-top: 0.5rem;
+     padding-bottom: 0.5rem;
+
   }
 
   header h1 {
-    font-size: 1.4rem; /* Título más pequeño */
-    max-width: 100%; /* Permitir que ocupe todo el ancho */
-    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+     max-width: 100%;
+     margin-bottom: 0.3rem;
   }
 
   .breadcrumb {
     max-width: 100%;
     font-size: 0.8rem;
-    flex-wrap: wrap; /* Permitir que el breadcrumb se rompa */
+    flex-wrap: wrap;
   }
 
   main {
-    padding: 1.5rem 0.8rem; /* Menos padding en main */
-    max-width: 100%; /* Ocupar todo el ancho */
+    padding: 1.5rem 0.8rem;
+    max-width: 100%;
   }
 
-  h2 {
-    font-size: 1.4rem;
-  }
-  h3 {
-    font-size: 1.2rem;
-  }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
 
   .tech-container {
-     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Cajas aún más pequeñas */
-     gap: 1rem;
+     grid-template-columns: 1fr; /* Una columna en móviles */
+     gap: 1.2rem;
   }
 
   .tech-box {
-    min-height: 160px; /* Menor altura mínima */
-    min-width: 80%
-    padding: 1rem 0.8rem;
-  }
-  .tech-title { font-size: 1.1em; }
-  .tech-image { font-size: 2.5em; }
-
-  /* Visibilidad de descripción en homepage (según tu script) */
-  #content-description {
-    display: none;
+    padding: 1.2rem;
   }
 
-  .table-responsive-wrapper {
-     /* El overflow-x ya debería funcionar bien */
+  code[style*="background-color: #1e1e1e;"],
+  .terminal {
+      padding: 0.8rem 1rem;
+      font-size: 0.85em;
   }
 
-  .comparison-table th,
-  .comparison-table td {
-     padding: 0.7rem 0.8rem; /* Menos padding en celdas */
-     white-space: normal; /* Permitir wrap en celdas en móvil */
+  /* Quitar footer fijo en móvil si interfiere mucho */
+  /*
+  footer .footer-bar {
+     position: static;
   }
-  /* Para mejorar legibilidad en tablas muy anchas en móvil */
-  .comparison-table td:first-child {
-      white-space: normal; /* Permitir wrap en la primera celda (nombre) */
+  body {
+      padding-bottom: 0;
   }
-
-
-  #file-viewer,
-  #calendar-modal {
-    width: 95%; /* Casi todo el ancho en móvil */
-    max-height: 90vh;
-  }
-
-  .modal-header { padding: 0.8rem 1rem; }
-  .modal-header h2 { font-size: 1.1rem; }
-  #modal-content, #file-viewer #file-content { padding: 1rem; }
-
-  .footer-bar {
-    flex-direction: row; /* Mantener en fila si caben */
-    justify-content: space-around; /* Distribuir mejor */
-    padding: 0 0.5rem;
-  }
-  .footer-bar button {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
-  }
+  */
 }
 
 @media (max-width: 480px) {
-   .tech-container {
-     grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
-   }
    header h1 {
       font-size: 1.2rem;
    }
    .breadcrumb a {
       padding: 0.2rem 0.4rem;
+      font-size: 0.75rem;
    }
-   .footer-bar {
-      /* Podrías apilarlos si es necesario */
-      /* flex-direction: column;
-      height: auto;
-      padding: 0.5rem;
-      gap: 0.5rem; */
+   .breadcrumb a + a::before {
+       padding: 0 0.3rem;
    }
 }
