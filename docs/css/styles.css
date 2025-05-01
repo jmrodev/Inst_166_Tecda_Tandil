@@ -549,6 +549,7 @@ footer {
 
   .tech-box {
     min-height: 160px; /* Menor altura mínima */
+    min-width: 80%
     padding: 1rem 0.8rem;
   }
   .tech-title { font-size: 1.1em; }
