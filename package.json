@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"build": "node generate-pages.js",
-		"dev": "node generate-pages.js && serve docs"
+		"build": "node src/generator/main.js",
+		"dev": "node src/generator/main.js && serve docs"
 	},
 	"dependencies": {
 		"path": "^0.12.7",

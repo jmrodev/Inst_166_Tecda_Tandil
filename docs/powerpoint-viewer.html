@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de Presentaciones PowerPoint | Instituto 166</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/viewer-common.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Visor de Presentaciones PowerPoint</h1>
+      <div>
+        <button id="back-btn" onclick="window.history.back()">⬅ Volver</button>
+        <button onclick="window.location.href='index.html'">🏠 Inicio</button>
+      </div>
+    </div>
+    
+    <div class="file-info" id="file-info"></div>
+    
+    <div class="controls">
+      <button id="download-btn">📥 Descargar Original</button>
+    </div>
+    
+    <div class="presentation-viewer" id="presentation-content">
+      <div class="loading">Cargando presentación...</div>
+    </div>
+  </div>
+
+  <script src="scripts/powerpoint-viewer.js"></script>
+</body>
+</html>
