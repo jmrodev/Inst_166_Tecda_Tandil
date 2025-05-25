@@ -35,16 +35,16 @@
   <p><strong>Estructura del Proyecto Inicial:</strong></p>
   <ol>
     <li>Crea una carpeta: <code>sistema_bancario_poo</code>.</li>
-    <li>Dentro, crearás los archivos PHP a medida que avanzamos.</li>
+    <li>Dentro, crea los archivos PHP a medida que avanzamos.</li>
   </ol>
   <div class="tip">
     <p><strong>Ejecución:</strong></p>
     <ol>
-      <li>Para cada sección, actualiza (o crea) los archivos de clase (<code>Cliente.php</code>, <code>CuentaBancaria.php</code>, etc.) con el código proporcionado para esa sección.</li>
+      <li>Para cada sección, actualiza (o crea) los archivos de clase (<code>Cliente.php</code>, <code>CuentaBancaria.php</code>, etc.) con el código proporcionado para esa sección. Este manual te mostrará el código PHP tal como debes escribirlo en tus archivos <code>.php</code>.</li>
       <li>Luego, <strong>reemplaza completamente</strong> el contenido de tu archivo <code>app.php</code> con el código proporcionado en el bloque "Archivo: <code>app.php</code> (Script Principal - Sección N)" para la sección que estás probando.</li>
       <li>En la terminal, navega a <code>sistema_bancario_poo/</code> y ejecuta <code>php app.php</code>.</li>
     </ol>
-    <p>Esto asegura que cada prueba de sección sea autocontenida y no haya conflictos por redefinición de clases.</p>
+    <p>Usaremos <code>PHP_EOL</code> para salidas de consola limpias en los ejemplos de <code>app.php</code>.</p>
   </div>
 </div>
 
@@ -55,24 +55,24 @@
   
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (para Sección 1)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php
 
 class Cliente {
     // Vacía por ahora.
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (para Sección 1)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php
 
 class CuentaBancaria {
     // Vacía por ahora.
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -80,7 +80,7 @@ class CuentaBancaria {
   <span class="concept-title">Creación de Objetos y Uso de Clases</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 1)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 1)
 
 require_once 'Cliente.php';
@@ -100,7 +100,7 @@ echo "Clase de \$cuentaDePrueba: " . get_class($cuentaDePrueba) . PHP_EOL;
 echo PHP_EOL . "Inspección detallada:" . PHP_EOL;
 var_dump($cliente1);
 var_dump($cuentaDePrueba);
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -111,7 +111,7 @@ var_dump($cuentaDePrueba);
 
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (Actualización para Sección 2)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php (Actualizado con propiedades)
 
 class Cliente {
@@ -122,12 +122,12 @@ class Cliente {
     public $telefono;
     public $fechaRegistro;
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización para Sección 2)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php (Actualizado con propiedades)
 
 class CuentaBancaria {
@@ -137,7 +137,7 @@ class CuentaBancaria {
     public $moneda = "USD";
     public $fechaApertura;
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -145,11 +145,11 @@ class CuentaBancaria {
   <span class="concept-title">Uso de Objetos con Propiedades</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 2)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 2)
 
-require_once 'Cliente.php';       // Asegúrate que Cliente.php tiene las props de la Sec. 2
-require_once 'CuentaBancaria.php';// Asegúrate que CuentaBancaria.php tiene las props de la Sec. 2
+require_once 'Cliente.php';       
+require_once 'CuentaBancaria.php';
 
 echo "--- Sección 2: Objetos con Propiedades ---" . PHP_EOL;
 
@@ -179,7 +179,7 @@ echo "Datos de la Cuenta Bancaria:" . PHP_EOL;
 echo "  Número de Cuenta: " . $cuentaAna->numeroCuenta . PHP_EOL;
 echo "  Tipo: " . $cuentaAna->tipoCuenta . PHP_EOL;
 echo "  Saldo: " . $cuentaAna->moneda . " " . number_format($cuentaAna->saldo, 2) . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -190,7 +190,7 @@ echo "  Saldo: " . $cuentaAna->moneda . " " . number_format($cuentaAna->saldo, 2
 
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (Actualización para Sección 3)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php (Actualizado con métodos)
 
 class Cliente {
@@ -220,12 +220,12 @@ class Cliente {
         echo "Email del cliente " . $this->idCliente . " actualizado a: " . $this->email . PHP_EOL;
     }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización para Sección 3)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php (Actualizado con métodos)
 
 class CuentaBancaria {
@@ -288,7 +288,7 @@ class CuentaBancaria {
         }
     }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -296,7 +296,7 @@ class CuentaBancaria {
   <span class="concept-title">Uso de Objetos con Métodos</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 3)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 3)
 
 require_once 'Cliente.php';       // Con métodos de la Sec. 3
@@ -337,18 +337,18 @@ echo $cuentaCarlos->obtenerResumenCuenta();
 $cuentaCarlos->cambiarEstadoActividad(false); 
 $cuentaCarlos->depositar(50); 
 echo $cuentaCarlos->obtenerResumenCuenta();
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
 <h2 class="section-title">☀️ Sección 4: Métodos Mágicos - Constructor y Destructor en el Banco</h2>
 <div class="concept-box">
   <span class="concept-title">El Constructor (<code>__construct</code>)</span>
-  <p>El constructor (<code>__construct()</code>) se llama al crear un objeto con <code>new</code>. Ideal para inicializar propiedades con valores pasados como argumentos.</p>
+  <p>El constructor (<code>__construct()</code>) se llama al crear un objeto con <code>new</code>.</p>
 
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (Actualización Sección 4 - Constructor)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php (Actualizado con constructor)
 
 class Cliente {
@@ -368,20 +368,20 @@ class Cliente {
         echo "CONSTRUCTOR: Nuevo cliente creado -> " . $this->obtenerNombreCompleto() . " (ID: " . $this->idCliente . ")" . PHP_EOL;
     }
 
-    public function obtenerNombreCompleto() { /* ...como antes... */ return $this->nombre . " " . $this->apellido;}
-    public function mostrarInformacionDetallada() { /* ...como antes... */ echo "--- Detalles del Cliente ---" . PHP_EOL; echo "ID Cliente: " . $this->idCliente . PHP_EOL; echo "Nombre Completo: " . $this->obtenerNombreCompleto() . PHP_EOL; echo "Email: " . $this->email . PHP_EOL; echo "Teléfono: " . ($this->telefono ?? "No proporcionado") . PHP_EOL; echo "Fecha de Registro: " . $this->fechaRegistro . PHP_EOL; echo "----------------------------" . PHP_EOL;}
-    public function actualizarEmail($nuevoEmail) { /* ...como antes... */ $this->email = $nuevoEmail; echo "Email del cliente " . $this->idCliente . " actualizado a: " . $this->email . PHP_EOL;}
+    public function obtenerNombreCompleto() { return $this->nombre . " " . $this->apellido;}
+    public function mostrarInformacionDetallada() { echo "--- Detalles del Cliente ---" . PHP_EOL; echo "ID Cliente: " . $this->idCliente . PHP_EOL; echo "Nombre Completo: " . $this->obtenerNombreCompleto() . PHP_EOL; echo "Email: " . $this->email . PHP_EOL; echo "Teléfono: " . ($this->telefono ?? "No proporcionado") . PHP_EOL; echo "Fecha de Registro: " . $this->fechaRegistro . PHP_EOL; echo "----------------------------" . PHP_EOL;}
+    public function actualizarEmail($nuevoEmail) { $this->email = $nuevoEmail; echo "Email del cliente " . $this->idCliente . " actualizado a: " . $this->email . PHP_EOL;}
 
     public function __destruct() {
         echo "DESTRUCTOR: Cliente " . $this->obtenerNombreCompleto() . " (ID: " . $this->idCliente . ") eliminado." . PHP_EOL;
     }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización Sección 4 - Constructor)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php (Actualizado con constructor)
 
 class CuentaBancaria {
@@ -402,17 +402,17 @@ class CuentaBancaria {
         echo "  Tipo: " . $this->tipoCuenta . ", Moneda: " . $this->moneda . ", Saldo Inicial: " . number_format($this->saldo, 2) . PHP_EOL;
     }
 
-    public function depositar($monto) { /* ...como antes... */  if (!$this->estaActiva) { echo "Error (Cta " . $this->numeroCuenta . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->numeroCuenta . ": +" . $this->moneda . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->saldo, 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->numeroCuenta . "): Monto a depositar debe ser positivo." . PHP_EOL; return false; } }
-    public function retirar($monto) { /* ...como antes... */ if (!$this->estaActiva) { echo "Error (Cta " . $this->numeroCuenta . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->numeroCuenta . "): Monto a retirar debe ser positivo." . PHP_EOL; return false; } if ($this->saldo >= $monto) { $this->saldo -= $monto; echo "Retiro de cta " . $this->numeroCuenta . ": -" . $this->moneda . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->saldo, 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->numeroCuenta . "): Saldo insuficiente. Actual: " . $this->moneda . " " . number_format($this->saldo, 2) . PHP_EOL; return false; } }
-    public function consultarSaldo() { /* ...como antes... */ return $this->saldo; }
-    public function obtenerResumenCuenta() { /* ...como antes... */ $estado = $this->estaActiva ? "Activa" : "Inactiva"; $resumen = "--- Resumen Cuenta N°: " . $this->numeroCuenta . " ---" . PHP_EOL; $resumen .= "Tipo: " . $this->tipoCuenta . " (" . $this->moneda . ")" . PHP_EOL; $resumen .= "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; $resumen .= "Fecha de Apertura: " . ($this->fechaApertura ?? "No registrada") . PHP_EOL; $resumen .= "Estado: " . $estado . PHP_EOL; $resumen .= "------------------------------------" . PHP_EOL; return $resumen;}
-    public function cambiarEstadoActividad($estaActiva) { /* ...como antes... */ if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; $mensajeEstado = $this->estaActiva ? "ACTIVADA" : "DESACTIVADA"; echo "La cuenta " . $this->numeroCuenta . " ha sido " . $mensajeEstado . "." . PHP_EOL; }}
+    public function depositar($monto) { if (!$this->estaActiva) { echo "Error (Cta " . $this->numeroCuenta . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->numeroCuenta . ": +" . $this->moneda . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->saldo, 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->numeroCuenta . "): Monto a depositar debe ser positivo." . PHP_EOL; return false; } }
+    public function retirar($monto) { if (!$this->estaActiva) { echo "Error (Cta " . $this->numeroCuenta . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->numeroCuenta . "): Monto a retirar debe ser positivo." . PHP_EOL; return false; } if ($this->saldo >= $monto) { $this->saldo -= $monto; echo "Retiro de cta " . $this->numeroCuenta . ": -" . $this->moneda . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->saldo, 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->numeroCuenta . "): Saldo insuficiente. Actual: " . $this->moneda . " " . number_format($this->saldo, 2) . PHP_EOL; return false; } }
+    public function consultarSaldo() { return $this->saldo; }
+    public function obtenerResumenCuenta() { $estado = $this->estaActiva ? "Activa" : "Inactiva"; $resumen = "--- Resumen Cuenta N°: " . $this->numeroCuenta . " ---" . PHP_EOL; $resumen .= "Tipo: " . $this->tipoCuenta . " (" . $this->moneda . ")" . PHP_EOL; $resumen .= "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; $resumen .= "Fecha de Apertura: " . ($this->fechaApertura ?? "No registrada") . PHP_EOL; $resumen .= "Estado: " . $estado . PHP_EOL; $resumen .= "------------------------------------" . PHP_EOL; return $resumen;}
+    public function cambiarEstadoActividad($estaActiva) { if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; $mensajeEstado = $this->estaActiva ? "ACTIVADA" : "DESACTIVADA"; echo "La cuenta " . $this->numeroCuenta . " ha sido " . $mensajeEstado . "." . PHP_EOL; }}
 
     public function __destruct() {
         echo "DESTRUCTOR: Cuenta N°" . $this->numeroCuenta . " (" . $this->tipoCuenta . ") cerrada/eliminada." . PHP_EOL;
     }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -420,7 +420,7 @@ class CuentaBancaria {
   <span class="concept-title">Uso de Clases con Constructores y Destructores</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 4)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 4)
 
 require_once 'Cliente.php';       // Con constructor de la Sec. 4
@@ -449,19 +449,18 @@ $cuentaJuan->retirar(100);
 echo $cuentaSimple->obtenerResumenCuenta();
 
 echo PHP_EOL . "--- Fin de las operaciones principales del script de la Sección 4 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
-
 
 <h2 class="section-title">🛡️ Sección 5: Encapsulamiento - Protegiendo los Datos del Banco</h2>
 <div class="concept-box">
   <span class="concept-title">Principios del Encapsulamiento</span>
-  <p>Se usan modificadores de visibilidad: <code>public</code>, <code>private</code>, y <code>protected</code>. Propiedades <code>private</code>/<code>protected</code> se acceden vía getters/setters públicos.</p>
+  <p>Modificadores: <code>public</code>, <code>private</code>, <code>protected</code>. Acceso a props. <code>private</code>/<code>protected</code> vía getters/setters públicos.</p>
 
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (Actualización Sección 5 - Encapsulamiento)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php (Actualizado con encapsulamiento)
 
 class Cliente {
@@ -505,15 +504,15 @@ class Cliente {
     }
     public function setTelefono($nuevoTelefono) { $this->telefono = $nuevoTelefono; echo "Teléfono del cliente " . $this->idCliente . " actualizado a: " . $this->telefono . PHP_EOL; }
     private function esEmailValido($email) { return filter_var($email, FILTER_VALIDATE_EMAIL) !== false; }
-    public function mostrarInformacionDetallada() { /* ...como antes, usando getters... */ echo "--- Detalles del Cliente (Encapsulado) ---" . PHP_EOL; echo "ID Cliente: " . $this->getIdCliente() . PHP_EOL; echo "Nombre Completo: " . $this->obtenerNombreCompleto() . PHP_EOL; echo "Email: " . $this->getEmail() . PHP_EOL; echo "Teléfono: " . ($this->getTelefono() ?? "No proporcionado") . PHP_EOL; echo "Fecha de Registro: " . $this->getFechaRegistro() . PHP_EOL; echo "----------------------------------------" . PHP_EOL;}
-    public function __destruct() { /* ...como antes... */ echo "DESTRUCTOR: Cliente (encapsulado) " . $this->obtenerNombreCompleto() . " (ID: " . $this->getIdCliente() . ") eliminado." . PHP_EOL;}
+    public function mostrarInformacionDetallada() { echo "--- Detalles del Cliente (Encapsulado) ---" . PHP_EOL; echo "ID Cliente: " . $this->getIdCliente() . PHP_EOL; echo "Nombre Completo: " . $this->obtenerNombreCompleto() . PHP_EOL; echo "Email: " . $this->getEmail() . PHP_EOL; echo "Teléfono: " . ($this->getTelefono() ?? "No proporcionado") . PHP_EOL; echo "Fecha de Registro: " . $this->getFechaRegistro() . PHP_EOL; echo "----------------------------------------" . PHP_EOL;}
+    public function __destruct() { echo "DESTRUCTOR: Cliente (encapsulado) " . $this->obtenerNombreCompleto() . " (ID: " . $this->getIdCliente() . ") eliminado." . PHP_EOL;}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización Sección 5 - Encapsulamiento)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php (Actualizado con encapsulamiento)
 
 class CuentaBancaria {
@@ -548,13 +547,13 @@ class CuentaBancaria {
             echo "Tipo de cuenta N°" . $this->numeroCuenta . " cambiado a: " . $this->tipoCuenta . PHP_EOL;
         } else { echo "Error: Tipo de cuenta '" . htmlspecialchars($nuevoTipo) . "' no es válido." . PHP_EOL;}
     }
-    public function cambiarEstadoActividad($estaActiva) { /* ...como antes... */ if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; $mensajeEstado = $this->estaActiva ? "ACTIVADA" : "DESACTIVADA"; echo "La cuenta " . $this->getNumeroCuenta() . " ha sido " . $mensajeEstado . "." . PHP_EOL; }}
-    public function depositar($monto) { /* ...como antes, usando getters... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->getNumeroCuenta() . ": +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto a depositar debe ser positivo." . PHP_EOL; return false; } }
-    public function retirar($monto) { /* ...como antes, usando getters... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto a retirar debe ser positivo." . PHP_EOL; return false; } if ($this->saldo >= $monto) { $this->saldo -= $monto; echo "Retiro de cta " . $this->getNumeroCuenta() . ": -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Saldo insuficiente. Actual: " . $this->getMoneda() . " " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; } }
-    public function obtenerResumenCuenta() { /* ...como antes, usando getters... */ $estado = $this->estaActiva() ? "Activa" : "Inactiva"; return "--- Resumen Cuenta N°: " . $this->getNumeroCuenta() . " ---" . PHP_EOL . "Tipo: " . $this->getTipoCuenta() . " (" . $this->getMoneda() . ")" . PHP_EOL . "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL . "Fecha de Apertura: " . $this->getFechaApertura() . PHP_EOL . "Estado: " . $estado . PHP_EOL . "------------------------------------" . PHP_EOL;}
-    public function __destruct() { /* ...como antes... */ echo "DESTRUCTOR: Cuenta N°" . $this->getNumeroCuenta() . " (" . $this->getTipoCuenta() . ") cerrada/eliminada." . PHP_EOL;}
+    public function cambiarEstadoActividad($estaActiva) { if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; $mensajeEstado = $this->estaActiva ? "ACTIVADA" : "DESACTIVADA"; echo "La cuenta " . $this->getNumeroCuenta() . " ha sido " . $mensajeEstado . "." . PHP_EOL; }}
+    public function depositar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->getNumeroCuenta() . ": +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto a depositar debe ser positivo." . PHP_EOL; return false; } }
+    public function retirar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto a retirar debe ser positivo." . PHP_EOL; return false; } if ($this->saldo >= $monto) { $this->saldo -= $monto; echo "Retiro de cta " . $this->getNumeroCuenta() . ": -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Saldo insuficiente. Actual: " . $this->getMoneda() . " " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; } }
+    public function obtenerResumenCuenta() { $estado = $this->estaActiva() ? "Activa" : "Inactiva"; return "--- Resumen Cuenta N°: " . $this->getNumeroCuenta() . " ---" . PHP_EOL . "Tipo: " . $this->getTipoCuenta() . " (" . $this->getMoneda() . ")" . PHP_EOL . "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL . "Fecha de Apertura: " . $this->getFechaApertura() . PHP_EOL . "Estado: " . $estado . PHP_EOL . "------------------------------------" . PHP_EOL;}
+    public function __destruct() { echo "DESTRUCTOR: Cuenta N°" . $this->getNumeroCuenta() . " (" . $this->getTipoCuenta() . ") cerrada/eliminada." . PHP_EOL;}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -562,7 +561,7 @@ class CuentaBancaria {
   <span class="concept-title">Uso de Clases Encapsuladas</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 5)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 5)
 
 require_once 'Cliente.php';       // Con encapsulamiento de la Sec. 5
@@ -591,10 +590,9 @@ $cuentaLaura->cambiarTipoCuenta("Tipo Inventado");
 echo $cuentaLaura->obtenerResumenCuenta();
 
 echo PHP_EOL . "--- Fin de la Sección 5 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
-
 
 <h2 class="section-title">👨‍👩‍👧‍👦 Sección 6: Herencia - Jerarquía en el Sistema Bancario</h2>
 <div class="concept-box">
@@ -603,8 +601,8 @@ echo PHP_EOL . "--- Fin de la Sección 5 ---" . PHP_EOL;
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización Sección 6 - Clase Padre)</h3>
   <div class="example-box">
-<pre><code><?php
-// Archivo: CuentaBancaria.php (Refactorizada como clase padre para herencia)
+<pre><code>&lt;?php
+// Archivo: CuentaBancaria.php (Refactorizada como clase padre para herencia - Sec. 6)
 
 class CuentaBancaria {
     protected $numeroCuenta; 
@@ -631,20 +629,20 @@ class CuentaBancaria {
     public function estaActiva() { return $this->estaActiva; }
     public function getTipoCuentaGeneral() { return $this->tipoCuentaGeneral; }
 
-    public function depositar($monto) { /* ...como en Sec.5, usando $this->tipoCuentaGeneral... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . "): +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto a depositar debe ser positivo." . PHP_EOL; return false;}
-    public function retirar($monto) { /* ...como en Sec.5, usando $this->tipoCuentaGeneral y puedeHacerRetiro()... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto de retiro inválido." . PHP_EOL; return false; } if ($this->puedeHacerRetiro($monto)) { $this->saldo -= $monto; echo "Retiro de cta " . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . "): -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Retiro de " . number_format($monto,2) . " no permitido o saldo insuficiente. Saldo actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; }}
+    public function depositar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . "): +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto a depositar debe ser positivo." . PHP_EOL; return false;}
+    public function retirar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto de retiro inválido." . PHP_EOL; return false; } if ($this->puedeHacerRetiro($monto)) { $this->saldo -= $monto; echo "Retiro de cta " . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . "): -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Retiro de " . number_format($monto,2) . " no permitido o saldo insuficiente. Saldo actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; }}
     protected function puedeHacerRetiro($monto) { return $this->saldo >= $monto; }
-    public function obtenerResumenCuenta() { /* ...como en Sec.5... */ $estado = $this->estaActiva() ? "Activa" : "Inactiva"; return "--- Resumen Cuenta N°: " . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . ") ---" . PHP_EOL . "Moneda: " . $this->getMoneda() . PHP_EOL . "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL . "Fecha de Apertura: " . $this->getFechaApertura() . PHP_EOL . "Estado: " . $estado . PHP_EOL . "-------------------------------------------------" . PHP_EOL;}
-    public function cambiarEstadoActividad($estaActiva) { /* ...como en Sec.5... */ if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; $mensajeEstado = $this->estaActiva ? "ACTIVADA" : "DESACTIVADA"; echo "La cuenta " . $this->getNumeroCuenta() . " ha sido " . $mensajeEstado . "." . PHP_EOL; }}
-    public function __destruct() { /* ...como en Sec.5... */ echo "DESTRUCTOR (CuentaBancaria Base): Cuenta N°" . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . ") cerrada." . PHP_EOL;}
+    public function obtenerResumenCuenta() { $estado = $this->estaActiva() ? "Activa" : "Inactiva"; return "--- Resumen Cuenta N°: " . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . ") ---" . PHP_EOL . "Moneda: " . $this->getMoneda() . PHP_EOL . "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL . "Fecha de Apertura: " . $this->getFechaApertura() . PHP_EOL . "Estado: " . $estado . PHP_EOL . "-------------------------------------------------" . PHP_EOL;}
+    public function cambiarEstadoActividad($estaActiva) { if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; $mensajeEstado = $this->estaActiva ? "ACTIVADA" : "DESACTIVADA"; echo "La cuenta " . $this->getNumeroCuenta() . " ha sido " . $mensajeEstado . "." . PHP_EOL; }}
+    public function __destruct() { echo "DESTRUCTOR (CuentaBancaria Base): Cuenta N°" . $this->getNumeroCuenta() . " (" . $this->getTipoCuentaGeneral() . ") cerrada." . PHP_EOL;}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaAhorro.php</code> (Nueva clase hija - para Sección 6)</h3>
   <div class="example-box">
-<pre><code><?php
-// Archivo: CuentaAhorro.php
+<pre><code>&lt;?php
+// Archivo: CuentaAhorro.php (para Sec. 6)
 require_once 'CuentaBancaria.php';
 
 class CuentaAhorro extends CuentaBancaria {
@@ -661,19 +659,19 @@ class CuentaAhorro extends CuentaBancaria {
     }
 
     public function getTasaInteres() { return $this->tasaInteresAnual; }
-    public function aplicarInteresMensual() { /* ...como en la respuesta anterior... */ if ($this->estaActiva()) { $interesGanado = $this->saldo * ($this->tasaInteresAnual / 12); $this->saldo += $interesGanado; echo "Interés mensual aplicado a cta " . $this->getNumeroCuenta() . ": +" . $this->getMoneda() . " " . number_format($interesGanado, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; }}
-    public function obtenerResumenCuenta() { /* ...como en la respuesta anterior, llamando a parent:: y añadiendo info... */ $resumenPadre = parent::obtenerResumenCuenta(); $infoAdicional = "Tasa de Interés Anual: " . ($this->tasaInteresAnual * 100) . "%" . PHP_EOL; $infoAdicional .= "Retiros gratuitos este mes: " . ($this->limiteRetirosGratisMes - $this->retirosRealizadosMes) . "/" . $this->limiteRetirosGratisMes . PHP_EOL; return str_replace("Cuenta Bancaria Base", "Cuenta de Ahorro", $resumenPadre) . $infoAdicional;}
-    public function retirar($monto) { /* ...como en la respuesta anterior, con lógica de comisión y conteo... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false;} if ($monto <=0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto inválido." . PHP_EOL; return false;} $costoAdicional = 0; if ($this->retirosRealizadosMes >= $this->limiteRetirosGratisMes) { $costoAdicional = $this->costoRetiroExtra; echo "AVISO (Cta " . $this->getNumeroCuenta() . "): Límite retiros gratuitos excedido. Comisión: " . $this->getMoneda() . " " . number_format($costoAdicional,2) . "." . PHP_EOL; } $montoTotalARetirar = $monto + $costoAdicional; if ($this->saldo >= $montoTotalARetirar) { $this->saldo -= $montoTotalARetirar; $this->retirosRealizadosMes++; echo "Retiro de cta " . $this->getNumeroCuenta() . " (Ahorro): -" . $this->getMoneda() . " " . number_format($monto, 2); if ($costoAdicional > 0) { echo " (Comisión: -" . $this->getMoneda() . " " . number_format($costoAdicional,2) . ")"; } echo ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Saldo insuficiente para retirar " . number_format($montoTotalARetirar,2) . ". Saldo actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; }}
-    public function resetearContadorRetiros() { /* ...como en la respuesta anterior... */ $this->retirosRealizadosMes = 0; echo "Contador de retiros para cta " . $this->getNumeroCuenta() . " reseteado." . PHP_EOL;}
-    public function __destruct() { /* ...como en la respuesta anterior, llamando a parent::__destruct()... */ echo "DESTRUCTOR (CuentaAhorro): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct(); }
+    public function aplicarInteresMensual() { if ($this->estaActiva()) { $interesGanado = $this->saldo * ($this->tasaInteresAnual / 12); $this->saldo += $interesGanado; echo "Interés mensual aplicado a cta " . $this->getNumeroCuenta() . ": +" . $this->getMoneda() . " " . number_format($interesGanado, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; }}
+    public function obtenerResumenCuenta() { $resumenPadre = parent::obtenerResumenCuenta(); $infoAdicional = "Tasa de Interés Anual: " . ($this->tasaInteresAnual * 100) . "%" . PHP_EOL; $infoAdicional .= "Retiros gratuitos este mes: " . ($this->limiteRetirosGratisMes - $this->retirosRealizadosMes) . "/" . $this->limiteRetirosGratisMes . PHP_EOL; return str_replace("Cuenta Bancaria Base", "Cuenta de Ahorro", $resumenPadre) . $infoAdicional;}
+    public function retirar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false;} if ($monto <=0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto inválido." . PHP_EOL; return false;} $costoAdicional = 0; if ($this->retirosRealizadosMes >= $this->limiteRetirosGratisMes) { $costoAdicional = $this->costoRetiroExtra; echo "AVISO (Cta " . $this->getNumeroCuenta() . "): Límite retiros gratuitos excedido. Comisión: " . $this->getMoneda() . " " . number_format($costoAdicional,2) . "." . PHP_EOL; } $montoTotalARetirar = $monto + $costoAdicional; if ($this->saldo >= $montoTotalARetirar) { $this->saldo -= $montoTotalARetirar; $this->retirosRealizadosMes++; echo "Retiro de cta " . $this->getNumeroCuenta() . " (Ahorro): -" . $this->getMoneda() . " " . number_format($monto, 2); if ($costoAdicional > 0) { echo " (Comisión: -" . $this->getMoneda() . " " . number_format($costoAdicional,2) . ")"; } echo ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Saldo insuficiente para retirar " . number_format($montoTotalARetirar,2) . ". Saldo actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; }}
+    public function resetearContadorRetiros() { $this->retirosRealizadosMes = 0; echo "Contador de retiros para cta " . $this->getNumeroCuenta() . " reseteado." . PHP_EOL;}
+    public function __destruct() { echo "DESTRUCTOR (CuentaAhorro): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct(); }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaCorriente.php</code> (Nueva clase hija - para Sección 6)</h3>
   <div class="example-box">
-<pre><code><?php
-// Archivo: CuentaCorriente.php
+<pre><code>&lt;?php
+// Archivo: CuentaCorriente.php (para Sec. 6)
 require_once 'CuentaBancaria.php';
 
 class CuentaCorriente extends CuentaBancaria {
@@ -687,11 +685,11 @@ class CuentaCorriente extends CuentaBancaria {
     }
 
     public function getLimiteSobregiro() { return $this->limiteSobregiro; }
-    protected function puedeHacerRetiro($monto) { /* ...como en la respuesta anterior... */ return ($this->saldo - $monto) >= (-$this->limiteSobregiro); }
-    public function obtenerResumenCuenta() { /* ...como en la respuesta anterior, llamando a parent:: y añadiendo info... */ $resumenPadre = parent::obtenerResumenCuenta(); $infoAdicional = "Límite de Sobregiro: " . $this->getMoneda() . " " . number_format($this->getLimiteSobregiro(), 2) . PHP_EOL; return str_replace("Cuenta Bancaria Base", "Cuenta Corriente", $resumenPadre) . $infoAdicional;}
-    public function __destruct() { /* ...como en la respuesta anterior, llamando a parent::__destruct()... */ echo "DESTRUCTOR (CuentaCorriente): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct();}
+    protected function puedeHacerRetiro($monto) { return ($this->saldo - $monto) >= (-$this->limiteSobregiro); }
+    public function obtenerResumenCuenta() { $resumenPadre = parent::obtenerResumenCuenta(); $infoAdicional = "Límite de Sobregiro: " . $this->getMoneda() . " " . number_format($this->getLimiteSobregiro(), 2) . PHP_EOL; return str_replace("Cuenta Bancaria Base", "Cuenta Corriente", $resumenPadre) . $infoAdicional;}
+    public function __destruct() { echo "DESTRUCTOR (CuentaCorriente): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct();}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -699,10 +697,10 @@ class CuentaCorriente extends CuentaBancaria {
   <span class="concept-title">Uso de Clases Hijas (Herencia)</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 6)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 6)
 
-require_once 'Cliente.php';         // De la Sec. 5 (encapsulado)
+require_once 'Cliente.php';         // De la Sec. 5
 require_once 'CuentaBancaria.php';  // Clase padre de la Sec. 6
 require_once 'CuentaAhorro.php';    // Hija de la Sec. 6
 require_once 'CuentaCorriente.php'; // Hija de la Sec. 6
@@ -718,7 +716,7 @@ echo $cuentaAhorroDavid->obtenerResumenCuenta();
 $cuentaAhorroDavid->depositar(100.00);
 $cuentaAhorroDavid->aplicarInteresMensual();
 echo PHP_EOL . "Probando límite de retiros:" . PHP_EOL;
-for ($i = 0; $i < 4; $i++) { $cuentaAhorroDavid->retirar(10.00); }
+for ($i = 0; $i < 4; $i++) { echo "Intento retiro N°" . ($i+1) . PHP_EOL; $cuentaAhorroDavid->retirar(10.00); }
 echo $cuentaAhorroDavid->obtenerResumenCuenta();
 
 echo PHP_EOL . "*** Cuenta Corriente de David ***" . PHP_EOL;
@@ -730,7 +728,7 @@ $cuentaCorrienteDavid->retirar(60.00);
 echo $cuentaCorrienteDavid->obtenerResumenCuenta();
 
 echo PHP_EOL . "--- Fin de la Sección 6 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -741,7 +739,7 @@ echo PHP_EOL . "--- Fin de la Sección 6 ---" . PHP_EOL;
 
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 7)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 7)
 
 require_once 'Cliente.php';         // De la Sec. 5
@@ -754,7 +752,7 @@ echo "--- Sección 7: Polimorfismo en Acción ---" . PHP_EOL;
 $listaDeCuentas = [
     new CuentaAhorro("AH701", "USD", 1200.00, 0.015),
     new CuentaCorriente("CC702", "EUR", 500.00, 200.00),
-    new CuentaBancaria("CB704", "CAD", 100.00) // Instancia de la clase base
+    new CuentaBancaria("CB704", "CAD", 100.00) 
 ];
 
 echo PHP_EOL . "*** Procesando cuentas polimórficamente ***" . PHP_EOL;
@@ -773,23 +771,23 @@ function cerrarYReportarCuenta(CuentaBancaria $cuentaOperable) {
     echo $cuentaOperable->obtenerResumenCuenta(); 
     $cuentaOperable->cambiarEstadoActividad(false);
 }
-cerrarYReportarCuenta($listaDeCuentas[0]); // Cierra la primera cuenta de ahorro
+cerrarYReportarCuenta($listaDeCuentas[0]); 
 echo PHP_EOL;
-cerrarYReportarCuenta($listaDeCuentas[1]); // Cierra la cuenta corriente
+cerrarYReportarCuenta($listaDeCuentas[1]); 
 
 echo PHP_EOL . "--- Fin de la Sección 7 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
 <h2 class="section-title">🏛️ Sección 8: Clases y Métodos Abstractos - Definiendo Contratos y Esqueletos</h2>
 <div class="concept-box">
   <span class="concept-title">Clases y Métodos Abstractos</span>
-  <p>Una <strong>clase abstracta</strong> (<code>abstract class</code>) no se instancia. Un <strong>método abstracto</strong> (<code>abstract public function</code>) solo define la firma; las hijas deben implementarlo.</p>
+  <p><code>abstract class</code> no se instancia. <code>abstract public function</code> define firma; hijas deben implementarlo.</p>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización Sección 8 - Clase Abstracta)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php (Convertida a CLASE ABSTRACTA para Sección 8)
 
 abstract class CuentaBancaria {
@@ -803,7 +801,6 @@ abstract class CuentaBancaria {
         $this->numeroCuenta = $numero; $this->moneda = $moneda;
         if ($saldoInicial >= 0) { $this->saldo = $saldoInicial; }
         $this->fechaApertura = date("Y-m-d H:i:s");
-        // No echo en constructor de clase abstracta
     }
 
     public function getNumeroCuenta() { return $this->numeroCuenta; }
@@ -812,23 +809,23 @@ abstract class CuentaBancaria {
     public function estaActiva() { return $this->estaActiva; }
     public function getFechaApertura() { return $this->fechaApertura; }
 
-    public function depositar($monto) { /* ...como en Sec.6, usando $this->obtenerTipoCuentaEspecifico()... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->getNumeroCuenta() . " (".$this->obtenerTipoCuentaEspecifico()."): +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } return false; }
-    public function retirar($monto) { /* ...como en Sec.6, usando $this->obtenerTipoCuentaEspecifico() y $this->aplicarComisionPorRetiro()... */ if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto de retiro inválido." . PHP_EOL; return false; } if ($this->puedeHacerRetiro($monto)) { $this->saldo -= $monto; $this->aplicarComisionPorRetiro(); echo "Retiro de cta " . $this->getNumeroCuenta() . " (".$this->obtenerTipoCuentaEspecifico()."): -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Retiro de " . number_format($monto,2) . " no permitido o saldo insuficiente. Saldo actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; }}
+    public function depositar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto > 0) { $this->saldo += $monto; echo "Depósito en cta " . $this->getNumeroCuenta() . " (".$this->obtenerTipoCuentaEspecifico()."): +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } return false; }
+    public function retirar($monto) { if (!$this->estaActiva()) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Cuenta inactiva." . PHP_EOL; return false; } if ($monto <= 0) { echo "Error (Cta " . $this->getNumeroCuenta() . "): Monto de retiro inválido." . PHP_EOL; return false; } if ($this->puedeHacerRetiro($monto)) { $this->saldo -= $monto; $this->aplicarComisionPorRetiro(); echo "Retiro de cta " . $this->getNumeroCuenta() . " (".$this->obtenerTipoCuentaEspecifico()."): -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return true; } else { echo "Error (Cta " . $this->getNumeroCuenta() . "): Retiro de " . number_format($monto,2) . " no permitido o saldo insuficiente. Saldo actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; return false; }}
     protected function puedeHacerRetiro($monto) { return $this->saldo >= $monto; }
-    public function cambiarEstadoActividad($estaActiva) { /* ...como en Sec.6... */ if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; echo "La cuenta " . $this->getNumeroCuenta() . " ha sido " . ($this->estaActiva ? "ACTIVADA" : "DESACTIVADA") . "." . PHP_EOL; }}
+    public function cambiarEstadoActividad($estaActiva) { if (is_bool($estaActiva)) { $this->estaActiva = $estaActiva; echo "La cuenta " . $this->getNumeroCuenta() . " ha sido " . ($this->estaActiva ? "ACTIVADA" : "DESACTIVADA") . "." . PHP_EOL; }}
     
     abstract public function obtenerTipoCuentaEspecifico();
     abstract protected function aplicarComisionPorRetiro();
 
-    public function obtenerResumenGeneral() { /* ...como en la respuesta anterior... */ $estado = $this->estaActiva() ? "Activa" : "Inactiva"; return "--- Resumen General Cuenta N°: " . $this->getNumeroCuenta() . " ---" . PHP_EOL . "Tipo Específico: " . $this->obtenerTipoCuentaEspecifico() . PHP_EOL . "Moneda: " . $this->getMoneda() . PHP_EOL . "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL . "Estado: " . $estado . PHP_EOL . "-------------------------------------------------" . PHP_EOL;}
-    public function __destruct() { /* ...como en la respuesta anterior... */ echo "DESTRUCTOR (CuentaBancaria Abstracta): Cuenta N°" . $this->getNumeroCuenta() . " finalizada." . PHP_EOL;}
+    public function obtenerResumenGeneral() { $estado = $this->estaActiva() ? "Activa" : "Inactiva"; return "--- Resumen General Cuenta N°: " . $this->getNumeroCuenta() . " ---" . PHP_EOL . "Tipo Específico: " . $this->obtenerTipoCuentaEspecifico() . PHP_EOL . "Moneda: " . $this->getMoneda() . PHP_EOL . "Saldo Actual: " . number_format($this->consultarSaldo(), 2) . PHP_EOL . "Estado: " . $estado . PHP_EOL . "-------------------------------------------------" . PHP_EOL;}
+    public function __destruct() { echo "DESTRUCTOR (CuentaBancaria Abstracta): Cuenta N°" . $this->getNumeroCuenta() . " finalizada." . PHP_EOL;}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaAhorro.php</code> (Actualización Sección 8 - Implementa métodos abstractos)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaAhorro.php (Actualizado para Sec. 8)
 require_once 'CuentaBancaria.php'; // Padre abstracto
 
@@ -845,19 +842,19 @@ class CuentaAhorro extends CuentaBancaria {
     }
 
     public function obtenerTipoCuentaEspecifico() { return "Ahorro con Intereses"; }
-    protected function aplicarComisionPorRetiro() { /* ...como en la respuesta anterior, con la lógica de comisión... */ if ($this->retirosRealizadosMes > $this->limiteRetirosGratisMes && $this->costoRetiroExtra > 0) { if ($this->saldo >= $this->costoRetiroExtra) { $this->saldo -= $this->costoRetiroExtra; echo "INFO (Cta " . $this->getNumeroCuenta() . "): Comisión por retiro excedido aplicada: -" . $this->getMoneda() . " " . number_format($this->costoRetiroExtra, 2) . ". Saldo actualizado: " . number_format($this->saldo, 2) . PHP_EOL; } else { echo "ADVERTENCIA (Cta " . $this->getNumeroCuenta() . "): Saldo insuficiente para comisión por retiro excedido." . PHP_EOL;}}}
-    public function aplicarInteresMensual() { /* ...como antes... */ }
-    protected function puedeHacerRetiro($monto) { /* ...como antes, con la advertencia y cálculo de monto total... */ if ($this->retirosRealizadosMes >= $this->limiteRetirosGratisMes) { echo "AVISO (Cta Ahorro " . $this->getNumeroCuenta() . "): Límite retiros gratuitos excedido. Se aplicará comisión." . PHP_EOL; } $montoTotalConsiderandoComision = $monto; if ($this->retirosRealizadosMes >= $this->limiteRetirosGratisMes) { $montoTotalConsiderandoComision += $this->costoRetiroExtra; } return $this->saldo >= $montoTotalConsiderandoComision;}
-    public function retirar($monto) { /* ...como antes, llamando a parent::retirar() y contando... */ $exito = parent::retirar($monto); if ($exito) { $this->retirosRealizadosMes++; echo " (Retiro de Ahorro N°" . $this->retirosRealizadosMes . " del mes)" . PHP_EOL; } return $exito;}
-    public function resetearContadorRetiros() { /* ...como antes... */ }
-    public function __destruct() { /* ...como antes... */ echo "DESTRUCTOR (CuentaAhorro - hija de abstracta): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct(); }
+    protected function aplicarComisionPorRetiro() { if ($this->retirosRealizadosMes > $this->limiteRetirosGratisMes && $this->costoRetiroExtra > 0) { if ($this->saldo >= $this->costoRetiroExtra) { $this->saldo -= $this->costoRetiroExtra; echo "INFO (Cta " . $this->getNumeroCuenta() . "): Comisión por retiro excedido aplicada: -" . $this->getMoneda() . " " . number_format($this->costoRetiroExtra, 2) . ". Saldo actualizado: " . number_format($this->saldo, 2) . PHP_EOL; } else { echo "ADVERTENCIA (Cta " . $this->getNumeroCuenta() . "): Saldo insuficiente para comisión." . PHP_EOL;}}}
+    public function aplicarInteresMensual() { if ($this->estaActiva()) { $interesGanado = $this->saldo * ($this->tasaInteresAnual / 12); $this->saldo += $interesGanado; echo "Interés mensual aplicado a cta " . $this->getNumeroCuenta() . ": +" . $this->getMoneda() . " " . number_format($interesGanado, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; }}
+    protected function puedeHacerRetiro($monto) { if ($this->retirosRealizadosMes >= $this->limiteRetirosGratisMes) { echo "AVISO (Cta Ahorro " . $this->getNumeroCuenta() . "): Límite retiros gratuitos excedido. Posible comisión." . PHP_EOL; } $montoTotalConsiderandoComision = $monto; if ($this->retirosRealizadosMes >= $this->limiteRetirosGratisMes) { $montoTotalConsiderandoComision += $this->costoRetiroExtra; } return $this->saldo >= $montoTotalConsiderandoComision;}
+    public function retirar($monto) { $exito = parent::retirar($monto); if ($exito) { $this->retirosRealizadosMes++; echo " (Retiro de Ahorro N°" . $this->retirosRealizadosMes . " del mes)" . PHP_EOL; } return $exito;}
+    public function resetearContadorRetiros() { $this->retirosRealizadosMes = 0; echo "Contador de retiros para cta " . $this->getNumeroCuenta() . " reseteado." . PHP_EOL;}
+    public function __destruct() { echo "DESTRUCTOR (CuentaAhorro - hija de abstracta): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct(); }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaCorriente.php</code> (Actualización Sección 8 - Implementa métodos abstractos)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaCorriente.php (Actualizado para Sec. 8)
 require_once 'CuentaBancaria.php'; // Padre abstracto
 
@@ -875,10 +872,10 @@ class CuentaCorriente extends CuentaBancaria {
     protected function aplicarComisionPorRetiro() { /* No aplica comisión por retiro individual */ }
     public function getLimiteSobregiro() { return $this->limiteSobregiro; }
     protected function puedeHacerRetiro($monto) { return ($this->saldo - $monto) >= (-$this->limiteSobregiro); }
-    public function aplicarComisionMantenimiento() { /* ...como antes... */ if ($this->estaActiva()) { $this->saldo -= $this->comisionMantenimientoMensual; echo "INFO (Cta " . $this->getNumeroCuenta() . "): Comisión de mantenimiento aplicada: -" . $this->getMoneda() . " " . number_format($this->comisionMantenimientoMensual, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; }}
-    public function __destruct() { /* ...como antes... */ echo "DESTRUCTOR (CuentaCorriente - hija de abstracta): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct();}
+    public function aplicarComisionMantenimiento() { if ($this->estaActiva()) { $this->saldo -= $this->comisionMantenimientoMensual; echo "INFO (Cta " . $this->getNumeroCuenta() . "): Comisión de mantenimiento aplicada: -" . $this->getMoneda() . " " . number_format($this->comisionMantenimientoMensual, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL; }}
+    public function __destruct() { echo "DESTRUCTOR (CuentaCorriente - hija de abstracta): Cuenta N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct();}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -886,7 +883,7 @@ class CuentaCorriente extends CuentaBancaria {
   <span class="concept-title">Uso de Clases que Heredan de una Clase Abstracta</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 8)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 8)
 
 require_once 'Cliente.php';         // De la Sec. 5
@@ -921,10 +918,9 @@ mostrarDetallesGenerales($miCuentaAhorroAbs);
 mostrarDetallesGenerales($miCuentaCorrienteAbs);
 
 echo PHP_EOL . "--- Fin de la Sección 8 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
-
 
 <h2 class="section-title">📜 Sección 9: Interfaces - Definiendo Contratos de Comportamiento Adicionales</h2>
 <div class="concept-box">
@@ -933,30 +929,30 @@ echo PHP_EOL . "--- Fin de la Sección 8 ---" . PHP_EOL;
 
   <h3 class="file-title">Archivo: <code>Notificable.php</code> (Nueva Interfaz - para Sección 9)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Notificable.php
 interface Notificable {
     public function enviarAlerta($mensaje, $severidad = "INFO");
     public function getCanalNotificacionPreferido();
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>Auditable.php</code> (Nueva Interfaz - para Sección 9)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Auditable.php
 interface Auditable {
     public function registrarTransaccion($tipo, $monto, $descripcionAdicional = "");
     public function obtenerHistorialTransacciones($limite = 10);
     public function getIdAuditable();
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (Actualización Sección 9 - Implementa <code>Notificable</code>)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php (Implementa Notificable - para Sec. 9)
 require_once 'Notificable.php';
 // Si se usan traits de secciones anteriores, mantener los require_once y 'use' statements
@@ -979,7 +975,7 @@ class Cliente implements Notificable {
         $this->idCliente = $id; // Para este ejemplo, se pasa el ID
         $this->nombre = $nombre; $this->apellido = $apellido; $this->email = $email;
         $this->fechaRegistro = date("Y-m-d H:i:s");
-        // $this->registrarEvento("Cliente creado", "CREACION"); // Si se usa el trait
+        // $this->registrarEvento("Cliente creado", "CREACION"); // Si se usa el Trait Logger
         echo "CONSTRUCTOR: Cliente (con Notificable) creado -> ID: " . $this->idCliente . PHP_EOL;
     }
 
@@ -987,6 +983,9 @@ class Cliente implements Notificable {
     public function obtenerNombreCompleto() { return $this->nombre . " " . $this->apellido; }
     public function getEmail() { return $this->email; }
     public function setEmail($nuevoEmail) { $this->email = $nuevoEmail; }
+    public function setTelefono($tel) { $this->telefono = $tel; }
+    public function getTelefono() { return $this->telefono; }
+
 
     public function enviarAlerta($mensaje, $severidad = "INFO") {
         echo "ALERTA (" . $severidad . ") para Cliente " . $this->obtenerNombreCompleto() . " vía " . $this->getCanalNotificacionPreferido() . ": " . $mensaje . PHP_EOL;
@@ -994,28 +993,28 @@ class Cliente implements Notificable {
     public function getCanalNotificacionPreferido() { return $this->canalPreferidoNotificacion; }
     public function setCanalNotificacionPreferido($canal) { $this->canalPreferidoNotificacion = $canal; }
 
-    public function __destruct() { /* ... */ }
+    public function __destruct() { echo "DESTRUCTOR: Cliente (con Notificable) " . $this->obtenerNombreCompleto() . " eliminado." . PHP_EOL; }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaCorriente.php</code> (Actualización Sección 9 - Implementa <code>Auditable</code>)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaCorriente.php (Implementa Auditable - para Sec. 9)
 require_once 'CuentaBancaria.php'; 
 require_once 'Auditable.php';    
-// require_once 'RegistradorEventos.php'; // Si se usa
 
 class CuentaCorriente extends CuentaBancaria implements Auditable {
-    // use RegistradorEventos; // Si se usa
-
     private $limiteSobregiro;
     private $historialAuditoria = []; 
+    // Podríamos añadir emailNotificacion si también implementara Notificable
+    // private $emailNotificacion; 
 
-    public function __construct($numero, $moneda = "USD", $saldoInicial = 0.00, $sobregiro = 0.00) {
+    public function __construct($numero, $moneda = "USD", $saldoInicial = 0.00, $sobregiro = 0.00 /*, $emailNotif = null*/) {
         parent::__construct($numero, $moneda, $saldoInicial);
         $this->limiteSobregiro = abs($sobregiro);
+        // $this->emailNotificacion = $emailNotif;
         $this->registrarTransaccion("APERTURA", $saldoInicial, "Cta Corriente creada. Sobregiro: " . $sobregiro);
         echo "CONSTRUCTOR (CuentaCorriente con Auditable): Creada N°" . $this->getNumeroCuenta() . PHP_EOL;
     }
@@ -1027,13 +1026,13 @@ class CuentaCorriente extends CuentaBancaria implements Auditable {
     public function depositar($monto) { $exito = parent::depositar($monto); if ($exito) { $this->registrarTransaccion("DEPOSITO", $monto); } return $exito; }
     public function retirar($monto) { $exito = parent::retirar($monto); if ($exito) { $this->registrarTransaccion("RETIRO", $monto); } return $exito; }
     
-    public function registrarTransaccion($tipo, $monto, $descripcionAdicional = "") { /* ...como antes... */ $entradaAuditoria = [ "timestamp" => date("Y-m-d H:i:s"), "id_entidad" => $this->getIdAuditable(), "tipo_transaccion" => strtoupper($tipo), "monto" => $monto, "moneda" => $this->getMoneda(), "saldo_resultante" => $this->consultarSaldo(), "descripcion" => $descripcionAdicional ]; $this->historialAuditoria[] = $entradaAuditoria; }
+    public function registrarTransaccion($tipo, $monto, $descripcionAdicional = "") { $entradaAuditoria = [ "timestamp" => date("Y-m-d H:i:s"), "id_entidad" => $this->getIdAuditable(), "tipo_transaccion" => strtoupper($tipo), "monto" => $monto, "moneda" => $this->getMoneda(), "saldo_resultante" => $this->consultarSaldo(), "descripcion" => $descripcionAdicional ]; $this->historialAuditoria[] = $entradaAuditoria; }
     public function obtenerHistorialTransacciones($limite = 10) { return array_slice($this->historialAuditoria, -$limite); }
     public function getIdAuditable() { return "CTA_CORR_" . $this->getNumeroCuenta(); }
 
-    public function __destruct() { $this->registrarTransaccion("CIERRE", $this->consultarSaldo(), "Cuenta cerrada."); parent::__destruct(); }
+    public function __destruct() { $this->registrarTransaccion("CIERRE", $this->consultarSaldo(), "Cuenta cerrada."); echo "DESTRUCTOR (CuentaCorriente con Auditable) N°" . $this->getNumeroCuenta() . " cerrada." . PHP_EOL; parent::__destruct(); }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -1041,7 +1040,7 @@ class CuentaCorriente extends CuentaBancaria implements Auditable {
   <span class="concept-title">Uso de Clases que Implementan Interfaces</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 9)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 9)
 
 require_once 'Notificable.php';     
@@ -1050,9 +1049,6 @@ require_once 'Cliente.php';         // Implementa Notificable (Sec. 9)
 require_once 'CuentaBancaria.php';  // Padre Abstracto (Sec. 8)
 require_once 'CuentaAhorro.php';    // Hija (Sec. 8)
 require_once 'CuentaCorriente.php'; // Implementa Auditable (Sec. 9)
-// Traits si se usan en las clases anteriores:
-// require_once 'GestorIdentificadores.php';
-// require_once 'RegistradorEventos.php';
 
 echo "--- Sección 9: Interfaces ---" . PHP_EOL;
 
@@ -1068,13 +1064,13 @@ function enviarMensajeImportante(Notificable $destinatario, $mensaje) {
 enviarMensajeImportante($clienteVIP, "Actualización de seguridad.");
 
 echo PHP_EOL;
-function generarReporteAuditoria(Auditable $entidad) { /* ...como antes... */ echo "--- Reporte Auditoría para: " . $entidad->getIdAuditable() . " ---" . PHP_EOL; $historial = $entidad->obtenerHistorialTransacciones(5); if (empty($historial)) { echo "Sin transacciones." . PHP_EOL; } else { foreach ($historial as $t) { echo $t['timestamp'] . " | " . $t['tipo_transaccion'] . " | " . number_format($t['monto'], 2) . " " . $t['moneda'] . " | Saldo: " . number_format($t['saldo_resultante'], 2) . " | " . $t['descripcion'] . PHP_EOL; }} echo "---------------------------------------------" . PHP_EOL;}
+function generarReporteAuditoria(Auditable $entidad) { echo "--- Reporte Auditoría para: " . $entidad->getIdAuditable() . " ---" . PHP_EOL; $historial = $entidad->obtenerHistorialTransacciones(5); if (empty($historial)) { echo "Sin transacciones." . PHP_EOL; } else { foreach ($historial as $t) { echo $t['timestamp'] . " | " . $t['tipo_transaccion'] . " | " . number_format($t['monto'], 2) . " " . $t['moneda'] . " | Saldo: " . number_format($t['saldo_resultante'], 2) . " | " . $t['descripcion'] . PHP_EOL; }} echo "---------------------------------------------" . PHP_EOL;}
 $cuentaEmpresarialAuditable->depositar(5000);
 $cuentaEmpresarialAuditable->retirar(2000);
 generarReporteAuditoria($cuentaEmpresarialAuditable);
 
 echo PHP_EOL . "--- Fin de la Sección 9 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -1082,23 +1078,23 @@ echo PHP_EOL . "--- Fin de la Sección 9 ---" . PHP_EOL;
 <h2 class="section-title">🧬 Sección 10: Traits - Reutilización Horizontal de Código en el Banco</h2>
 <div class="concept-box">
   <span class="concept-title">Concepto de Traits</span>
-  <p>Un <strong>Trait</strong> (<code>trait</code>) permite "mezclar" (<code>use</code>) métodos y propiedades en clases, sin herencia. Para reutilización horizontal.</p>
+  <p>Un <strong>Trait</strong> (<code>trait</code>) permite "mezclar" (<code>use</code>) métodos y propiedades en clases, sin herencia.</p>
 
   <h3 class="file-title">Archivo: <code>GestorIdentificadores.php</code> (Nuevo Trait - para Sección 10)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: GestorIdentificadores.php
 trait GestorIdentificadores {
     public function generarId($prefijo = "ID_") {
-        return $prefijo . strtoupper(bin2hex(random_bytes(5))); // ID un poco más largo
+        return $prefijo . strtoupper(bin2hex(random_bytes(5)));
     }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>RegistradorEventos.php</code> (Nuevo Trait - para Sección 10)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: RegistradorEventos.php
 trait RegistradorEventos {
     protected $eventosRegistradosTrait = []; 
@@ -1108,22 +1104,28 @@ trait RegistradorEventos {
         echo "EVENTO TRAIT [" . $evento['tipo'] . "]: " . $descripcion . PHP_EOL;
     }
     public function mostrarEventosTrait() {
-        echo "--- Historial Eventos (Trait) para " . (method_exists($this, 'getIdAuditable') ? $this->getIdAuditable() : get_class($this)) . " ---" . PHP_EOL;
+        $idEntidad = 'EntidadDesconocida';
+        if (method_exists($this, 'getIdCliente')) { $idEntidad = $this->getIdCliente(); }
+        elseif (method_exists($this, 'getNumeroCuenta')) { $idEntidad = $this->getNumeroCuenta(); }
+        elseif (property_exists($this, 'idCliente')) { $idEntidad = $this->idCliente; } 
+        elseif (property_exists($this, 'numeroCuenta')) { $idEntidad = $this->numeroCuenta; }
+
+        echo "--- Historial Eventos (Trait) para " . $idEntidad . " ---" . PHP_EOL;
         if (empty($this->eventosRegistradosTrait)) { echo "Sin eventos." . PHP_EOL; } 
         else { foreach ($this->eventosRegistradosTrait as $e) { echo $e['timestamp'] . " [" . $e['tipo'] . "] " . $e['descripcion'] . PHP_EOL; }}
         echo "--------------------------------------------" . PHP_EOL;
     }
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>Cliente.php</code> (Actualización Sección 10 - Usa Traits)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: Cliente.php (Usa Traits - para Sec. 10)
-require_once 'Notificable.php';
-require_once 'GestorIdentificadores.php';
-require_once 'RegistradorEventos.php';
+require_once 'Notificable.php';     // Interfaz
+require_once 'GestorIdentificadores.php'; // Trait
+require_once 'RegistradorEventos.php';  // Trait
 
 class Cliente implements Notificable {
     use GestorIdentificadores, RegistradorEventos; 
@@ -1133,6 +1135,8 @@ class Cliente implements Notificable {
     private $apellido;
     private $email;
     private $canalPreferidoNotificacion = "email";
+    // private $telefono; 
+    // private $fechaRegistro; 
 
     public function __construct($nombreCliente, $apellidoCliente, $emailCliente = "No proporcionado") {
         $this->idCliente = $this->generarId("CLIENTE_"); 
@@ -1149,12 +1153,12 @@ class Cliente implements Notificable {
     public function getCanalNotificacionPreferido() { return $this->canalPreferidoNotificacion; }
     public function __destruct() { $this->registrarEventoTrait("Cliente " . $this->idCliente . " eliminado", "ELIMINACION_CLIENTE");}
 }
-?></code></pre>
+?&gt</code></pre>
   </div>
 
   <h3 class="file-title">Archivo: <code>CuentaBancaria.php</code> (Actualización Sección 10 - Usa Trait)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: CuentaBancaria.php (Clase Abstracta usando RegistradorEventos - para Sec. 10)
 require_once 'RegistradorEventos.php';
 
@@ -1171,7 +1175,7 @@ abstract class CuentaBancaria {
         $this->numeroCuenta = $numero; $this->moneda = $moneda;
         if ($saldoInicial >= 0) { $this->saldo = $saldoInicial; }
         $this->fechaApertura = date("Y-m-d H:i:s");
-        $this->registrarEventoTrait("Cuenta N°" . $this->numeroCuenta . " creada. Tipo: " . $this->obtenerTipoCuentaEspecifico() . ", Saldo: " . $moneda . " " . number_format($saldoInicial,2), "APERTURA");
+        $this->registrarEventoTrait("Cuenta N°" . $this->numeroCuenta . " creada. Tipo: " . $this->obtenerTipoCuentaEspecifico() . ", Saldo inicial: " . $moneda . " " . number_format($saldoInicial,2), "APERTURA_CUENTA");
     }
     
     public function getNumeroCuenta() { return $this->numeroCuenta; }
@@ -1180,36 +1184,36 @@ abstract class CuentaBancaria {
     public function estaActiva() { return $this->estaActiva; }
 
     public function depositar($monto) { 
-        if (!$this->estaActiva()) { /*...*/ return false; }
+        if (!$this->estaActiva()) { $this->registrarEventoTrait("Intento de depósito en cuenta inactiva ".$this->numeroCuenta, "ERROR_OPERACION"); return false; }
         if ($monto > 0) { 
             $this->saldo += $monto; 
-            $this->registrarEventoTrait("Depósito: +" . $this->getMoneda() . " " . number_format($monto, 2), "DEPOSITO");
+            $this->registrarEventoTrait("Depósito: +" . $this->getMoneda() . " " . number_format($monto, 2) . " en cta " . $this->numeroCuenta, "DEPOSITO");
             echo "Depósito en cta " . $this->getNumeroCuenta() . ": +" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL;
             return true; 
-        } return false; 
+        } 
+        $this->registrarEventoTrait("Intento de depósito de monto inválido (".$monto.") en cta ".$this->numeroCuenta, "ERROR_OPERACION");
+        return false; 
     }
     public function retirar($monto) {
-        if (!$this->estaActiva()) { /*...*/ return false; }
-        if ($monto <=0) { /*...*/ return false; }
+        if (!$this->estaActiva()) { $this->registrarEventoTrait("Intento de retiro en cuenta inactiva ".$this->numeroCuenta, "ERROR_OPERACION"); return false; }
+        if ($monto <=0) { $this->registrarEventoTrait("Intento de retiro de monto inválido (".$monto.") en cta ".$this->numeroCuenta, "ERROR_OPERACION"); return false; }
         if ($this->puedeHacerRetiro($monto)) {
             $this->saldo -= $monto;
             $this->aplicarComisionPorRetiro();
-            $this->registrarEventoTrait("Retiro: -" . $this->getMoneda() . " " . number_format($monto, 2), "RETIRO");
+            $this->registrarEventoTrait("Retiro: -" . $this->getMoneda() . " " . number_format($monto, 2) . " de cta " . $this->numeroCuenta, "RETIRO");
             echo "Retiro de cta " . $this->getNumeroCuenta() . ": -" . $this->getMoneda() . " " . number_format($monto, 2) . ". Saldo: " . number_format($this->consultarSaldo(), 2) . PHP_EOL;
             return true;
         }
+        $this->registrarEventoTrait("Intento de retiro fallido (saldo insuficiente) de " . number_format($monto,2) ." en cta ".$this->numeroCuenta, "ERROR_OPERACION");
         echo "Error (Cta " . $this->getNumeroCuenta() . "): Retiro no permitido o saldo insuficiente." . PHP_EOL;
         return false;
     }
     protected function puedeHacerRetiro($monto) { return $this->saldo >= $monto; }
     abstract public function obtenerTipoCuentaEspecifico();
     abstract protected function aplicarComisionPorRetiro();
-    public function __destruct() { $this->registrarEventoTrait("Cuenta N°" . $this->getNumeroCuenta() . " cerrada.", "CIERRE"); }
+    public function __destruct() { $this->registrarEventoTrait("Cuenta N°" . $this->getNumeroCuenta() . " cerrada.", "CIERRE_CUENTA"); }
 }
-?></code></pre>
-  </div>
-   <div class="tip">
-    <p>Al usar traits, si hay colisión de nombres de métodos entre traits o con la clase, usa <code>insteadof</code> y <code>as</code> para resolverlos.</p>
+?&gt</code></pre>
   </div>
 </div>
 
@@ -1217,16 +1221,16 @@ abstract class CuentaBancaria {
   <span class="concept-title">Uso de Clases con Traits</span>
   <h3 class="file-title">Archivo: <code>app.php</code> (Script Principal - Sección 10)</h3>
   <div class="example-box">
-<pre><code><?php
+<pre><code>&lt;?php
 // Archivo: app.php (Para probar la Sección 10)
 
-require_once 'GestorIdentificadores.php'; // Trait
-require_once 'RegistradorEventos.php';  // Trait
-require_once 'Notificable.php';         // Interfaz
+require_once 'GestorIdentificadores.php';
+require_once 'RegistradorEventos.php';  
+require_once 'Notificable.php';         
 require_once 'Cliente.php';             // Usa Traits e Interfaz (Sec. 10)
 require_once 'CuentaBancaria.php';      // Padre Abstracto, usa Trait (Sec. 10)
-require_once 'CuentaAhorro.php';        // Hija (Sec. 8, no usa estos traits directamente)
-require_once 'CuentaCorriente.php';     // Hija (Sec. 9, no usa estos traits directamente, pero hereda RegistradorEventos)
+require_once 'CuentaAhorro.php';        // Hija (Sec. 8, hereda RegistradorEventos)
+require_once 'CuentaCorriente.php';     // Hija (Sec. 9, hereda RegistradorEventos)
 
 echo "--- Sección 10: Traits en Acción ---" . PHP_EOL;
 
@@ -1234,7 +1238,6 @@ $clienteConTraits = new Cliente("Roberto", "Carlos", "roberto.c@musica.com");
 echo "Cliente creado con ID (del Trait): " . $clienteConTraits->getIdCliente() . PHP_EOL;
 $clienteConTraits->setEmail("robertocarlos.actualizado@musica.com");
 $clienteConTraits->enviarAlerta("Su estado de cuenta está listo.", "INFO");
-$clienteConTraits->mostrarEventosTrait(); // Mostrar eventos del cliente
 
 echo PHP_EOL;
 
@@ -1242,11 +1245,16 @@ echo PHP_EOL;
 $cuentaConLogTrait = new CuentaCorriente("TRAIT-CC-001", "EUR", 1000, 200);
 $cuentaConLogTrait->depositar(300);
 $cuentaConLogTrait->retirar(100);
-$cuentaConLogTrait->retirar(1300); // Debería usar sobregiro y registrar
-$cuentaConLogTrait->mostrarEventosTrait(); // Mostrar eventos de la cuenta
+$cuentaConLogTrait->retirar(1300); 
+
+echo PHP_EOL . "*** Historial de Eventos para Cliente " . $clienteConTraits->getIdCliente() . " ***" . PHP_EOL;
+$clienteConTraits->mostrarEventosTrait();
+
+echo PHP_EOL . "*** Historial de Eventos para Cuenta " . $cuentaConLogTrait->getNumeroCuenta() . " ***" . PHP_EOL;
+$cuentaConLogTrait->mostrarEventosTrait();
 
 echo PHP_EOL . "--- Fin de la Sección 10 ---" . PHP_EOL;
-?></code></pre>
+?&gt</code></pre>
   </div>
 </div>
 
