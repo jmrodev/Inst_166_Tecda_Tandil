@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Manual Práctico de PHP Programación Orientada a Objetos (POO)</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 2rem;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+      margin-bottom: 2rem;
+    }
+    h2.section-title {
+        color: #1a5276;
+        border-bottom: 1px solid #aed6f1;
+        padding-bottom: 8px;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .concept-box {
+      background-color: #e3f2fd;
+      border-left: 5px solid #2196f3;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .example-box {
+      background-color: #f0f0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+      overflow-x: auto;
+      border: 1px solid #ddd;
+    }
+    code { /* Estilo para código inline */
+      font-family: 'Consolas', 'Monaco', 'SFMono-Regular', 'Menlo', monospace;
+      font-size: 0.9rem;
+      color: #c7254e; 
+      background-color: #f9f2f4;
+      padding: 3px 5px;
+      border-radius: 4px;
+    }
+    .example-box pre { /* Para bloques de código dentro de example-box */
+        margin: 0; /* Quitar margen por defecto de pre */
+    }
+    .example-box pre code { /* Estilo específico para bloques de código dentro de example-box */
+        color: #333;
+        background-color: transparent;
+        padding: 0;
+        font-size: 0.875rem;
+        display: block;
+        white-space: pre-wrap;
+    }
+    .concept-title {
+      display: inline-block;
+      background-color: #2196f3;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 18px;
+      margin-bottom: 1.2rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .tip {
+      background-color: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 6px;
+    }
+    ul {
+        padding-left: 25px;
+    }
+    li {
+        margin-bottom: 0.6rem;
+    }
+    strong.keyword { /* Para resaltar palabras clave de PHP */
+        font-weight: 600;
+        color: #0b73b0; /* Azul oscuro para palabras clave */
+    }
+  </style>
+</head>
+<body>
+
+<h1>📘 Manual Práctico de PHP Programación Orientada a Objetos (POO)</h1>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué es la Programación Orientada a Objetos (POO)?</span>
+  <p>La Programación Orientada a Objetos (POO o OOP por sus siglas en inglés, Object-Oriented Programming) es un paradigma de programación, es decir, una forma de pensar y estructurar nuestro código. En lugar de basarnos principalmente en funciones y procedimientos, la POO se centra en los <strong>objetos</strong>.</p>
+  <p>Piensa en el mundo real: está lleno de objetos (coches, personas, casas, animales). Cada objeto tiene <strong>características</strong> (color, marca, edad) y puede realizar <strong>acciones</strong> (arrancar, hablar, abrirse, comer).</p>
+  <p>La POO intenta modelar esta realidad en el código. Los beneficios principales son:</p>
+  <ul>
+    <li><strong>Reutilización de código:</strong> Puedes crear "moldes" (clases) y usarlos para crear muchos objetos.</li>
+    <li><strong>Organización:</strong> El código se vuelve más estructurado y fácil de entender.</li>
+    <li><strong>Mantenibilidad:</strong> Modificar o extender el código es más sencillo sin afectar otras partes del sistema.</li>
+    <li><strong>Abstracción:</strong> Permite representar conceptos complejos de forma simplificada.</li>
+  </ul>
+</div>
+
+<h2 class="section-title">🏛️ Sección 1: Clases y Objetos - Los Pilares de la POO</h2>
+
+<div class="concept-box">
+  <span class="concept-title">Clases: Los Moldes o Planos</span>
+  <p>Una <strong>clase</strong> es como un plano o un molde para crear objetos. Define las características (llamadas <strong>propiedades</strong> o atributos) y los comportamientos (llamados <strong>métodos</strong> o funciones) que tendrán los objetos creados a partir de ella.</p>
+  <p>Por ejemplo, podríamos tener una clase <code>Coche</code>. Esta clase definiría que todos los coches tendrán una marca, un modelo, un color (propiedades) y podrán arrancar, acelerar, frenar (métodos).</p>
+  <p>En PHP, una clase se define con la palabra clave <strong class="keyword">class</strong>, seguida del nombre de la clase (generalmente en CamelCase, empezando con mayúscula) y llaves <code>{}</code> que encierran su contenido.</p>
+  <div class="example-box">
+<pre><code><?php
+// Definición de una clase llamada Coche
+class Coche {
+    // Aquí irán las propiedades y métodos (lo veremos pronto)
+}
+
+// Definición de otra clase
+class Persona {
+    // Contenido de la clase Persona
+}
+?></code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Objetos: Las Instancias de una Clase</span>
+  <p>Un <strong>objeto</strong> es una instancia concreta de una clase. Si la clase <code>Coche</code> es el plano, un objeto podría ser "mi Toyota Corolla rojo" o "tu Ford Mustang azul". Cada uno es un coche (instancia de la clase <code>Coche</code>), pero con sus características particulares.</p>
+  <p>Para crear un objeto (proceso llamado <strong>instanciación</strong>), usamos la palabra clave <strong class="keyword">new</strong> seguida del nombre de la clase y paréntesis <code>()</code>.</p>
+  <div class="example-box">
+<pre><code><?php
+// Requerimos definir la clase Coche primero si está en otro archivo,
+// o simplemente definirla antes de usarla en el mismo archivo.
+class Coche {
+    // ... por ahora vacía ...
+}
+
+// Creamos un objeto (instancia) de la clase Coche
+$miPrimerCoche = new Coche(); 
+$cocheDeAna = new Coche();
+
+// Ahora $miPrimerCoche y $cocheDeAna son dos objetos distintos,
+// ambos del tipo "Coche".
+
+// Podemos ver qué tipo de dato son con var_dump()
+var_dump($miPrimerCoche); 
+// Salida: object(Coche)#1 (0) { }
+
+var_dump($cocheDeAna);
+// Salida: object(Coche)#2 (0) { } 
+// (El #numero puede variar, indica el identificador interno del objeto)
+?></code></pre>
+  </div>
+  <div class="tip">
+    <p><strong>¡Importante!</strong> Una clase es la definición, el molde. Un objeto es la cosa real creada a partir de ese molde. Puedes tener una sola clase <code>Coche</code> y crear cientos de objetos <code>Coche</code> diferentes.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🔩 Sección 2: Propiedades (Atributos)</h2>
+<div class="concept-box">
+  <span class="concept-title">Definiendo las Características</span>
+  <p>Las <strong>propiedades</strong> (también llamadas atributos o variables miembro) son las características que definen a un objeto. Siguiendo con nuestro ejemplo de la clase <code>Coche</code>, propiedades podrían ser <code>$marca</code>, <code>$modelo</code>, <code>$color</code>, <code>$velocidadActual</code>.</p>
+  <p>Dentro de una clase, las propiedades se declaran como variables, generalmente precedidas por una palabra clave de visibilidad como <strong class="keyword">public</strong> (lo veremos más adelante, por ahora usaremos <code>public</code> para que sean accesibles).</p>
+  <div class="example-box">
+<pre><code><?php
+class Coche {
+    // Propiedades de la clase Coche
+    public $marca;
+    public $modelo;
+    public $color = "Rojo"; // Podemos asignar un valor por defecto
+    public $velocidadActual = 0;
+}
+
+// Creamos un objeto
+$miCoche = new Coche();
+
+// Asignar valores a las propiedades de un objeto
+// Usamos el operador flecha "->" (guion y signo mayor que)
+$miCoche->marca = "Toyota";
+$miCoche->modelo = "Corolla";
+$miCoche->color = "Plata"; // Sobrescribimos el valor por defecto
+
+// Acceder (leer) los valores de las propiedades
+echo "Marca: " . $miCoche->marca . "<br>";          // Salida: Marca: Toyota
+echo "Modelo: " . $miCoche->modelo . "<br>";        // Salida: Modelo: Corolla
+echo "Color: " . $miCoche->color . "<br>";          // Salida: Color: Plata
+echo "Velocidad: " . $miCoche->velocidadActual . " km/h<br>"; // Salida: Velocidad: 0 km/h
+
+// Creamos otro objeto, tendrá sus propios valores para las propiedades
+$otroCoche = new Coche();
+$otroCoche->marca = "Ford";
+$otroCoche->modelo = "Focus";
+// $otroCoche->color seguirá siendo "Rojo" (el valor por defecto)
+// $otroCoche->velocidadActual seguirá siendo 0 (el valor por defecto)
+
+echo "<hr>Otro coche:<br>";
+echo "Marca: " . $otroCoche->marca . "<br>";        // Salida: Marca: Ford
+echo "Color: " . $otroCoche->color . "<br>";        // Salida: Color: Rojo
+?></code></pre>
+  </div>
+  <div class="tip">
+    <p>El operador <code>-></code> se usa para acceder a las propiedades (y métodos, como veremos luego) de un objeto. Piensa en ello como "del objeto X, dame su propiedad Y" (<code>$objeto->propiedad</code>).</p>
+  </div>
+</div>
+
+<h2 class="section-title">🎬 Sección 3: Métodos (Comportamientos)</h2>
+<div class="concept-box">
+  <span class="concept-title">Realizando Acciones</span>
+  <p>Los <strong>métodos</strong> (también llamados funciones miembro) definen los comportamientos o acciones que un objeto puede realizar. Si las propiedades son los sustantivos que describen al objeto, los métodos son los verbos.</p>
+  <p>Por ejemplo, un objeto <code>Coche</code> podría tener métodos como <code>arrancar()</code>, <code>acelerar()</code>, <code>frenar()</code>, o <code>mostrarInformacion()</code>.</p>
+  <p>Dentro de una clase, los métodos se definen de forma muy similar a las funciones normales de PHP, usando la palabra clave <strong class="keyword">function</strong>, precedida por una palabra clave de visibilidad (seguiremos usando <strong class="keyword">public</strong> por ahora).</p>
+  <div class="example-box">
+<pre><code><?php
+class Coche {
+    // Propiedades
+    public $marca;
+    public $modelo;
+    public $color = "Rojo";
+    public $velocidadActual = 0;
+    public $estaArrancado = false;
+
+    // Métodos (acciones)
+    public function arrancar() {
+        // Lógica para arrancar el coche
+        // Por ahora, solo cambiaremos una propiedad y mostraremos un mensaje
+        if (!$this->estaArrancado) { // Usamos $this para referirnos a este objeto
+            $this->estaArrancado = true;
+            echo $this->marca . " " . $this->modelo . " ha arrancado.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya estaba arrancado.<br>";
+        }
+    }
+
+    public function apagar() {
+        if ($this->estaArrancado) {
+            $this->estaArrancado = false;
+            $this->velocidadActual = 0; // Si se apaga, la velocidad es 0
+            echo $this->marca . " " . $this->modelo . " se ha apagado.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya estaba apagado.<br>";
+        }
+    }
+
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            $this->velocidadActual += $incremento; // Aumenta la velocidad
+            echo "El " . $this->marca . " " . $this->modelo . " aceleró a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "No puedes acelerar, el " . $this->marca . " " . $this->modelo . " está apagado.<br>";
+        }
+    }
+
+    public function frenar($decremento) {
+        if ($this->velocidadActual > 0) {
+            $this->velocidadActual -= $decremento;
+            if ($this->velocidadActual < 0) {
+                $this->velocidadActual = 0; // No puede tener velocidad negativa
+            }
+            echo "El " . $this->marca . " " . $this->modelo . " frenó a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "El coche ya está detenido.<br>";
+        }
+    }
+
+    public function obtenerInformacion() {
+        $estadoMotor = $this->estaArrancado ? "Encendido" : "Apagado";
+        return "Información del Coche: <br>
+                Marca: " . $this->marca . "<br>
+                Modelo: " . $this->modelo . "<br>
+                Color: " . $this->color . "<br>
+                Velocidad: " . $this->velocidadActual . " km/h<br>
+                Motor: " . $estadoMotor . "<br>";
+    }
+}
+
+// Creamos un objeto Coche
+$miDeportivo = new Coche();
+$miDeportivo->marca = "Ferrari";
+$miDeportivo->modelo = "F8 Tributo";
+$miDeportivo->color = "Rojo Ferrari";
+
+// Llamamos a los métodos del objeto usando el operador flecha ->
+$miDeportivo->arrancar();         // Salida: Ferrari F8 Tributo ha arrancado.
+$miDeportivo->acelerar(100);    // Salida: El Ferrari F8 Tributo aceleró a 100 km/h.
+$miDeportivo->acelerar(50);     // Salida: El Ferrari F8 Tributo aceleró a 150 km/h.
+$miDeportivo->frenar(70);       // Salida: El Ferrari F8 Tributo frenó a 80 km/h.
+
+// Mostramos la información completa
+echo $miDeportivo->obtenerInformacion();
+/*
+Salida:
+Información del Coche: <br>
+Marca: Ferrari<br>
+Modelo: F8 Tributo<br>
+Color: Rojo Ferrari<br>
+Velocidad: 80 km/h<br>
+Motor: Encendido<br>
+*/
+
+$miDeportivo->apagar();           // Salida: Ferrari F8 Tributo se ha apagado.
+$miDeportivo->acelerar(20);     // Salida: No puedes acelerar, el Ferrari F8 Tributo está apagado.
+
+echo $miDeportivo->obtenerInformacion();
+/*
+Salida:
+Información del Coche: <br>
+Marca: Ferrari<br>
+Modelo: F8 Tributo<br>
+Color: Rojo Ferrari<br>
+Velocidad: 0 km/h<br>
+Motor: Apagado<br>
+*/
+
+?></code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">La Pseudo-Variable <strong class="variable">$this</strong></span>
+  <p>Dentro de los métodos de una clase, a menudo necesitarás referirte a las propiedades o a otros métodos <strong>del objeto actual</strong> (la instancia específica con la que estás trabajando). Para esto, PHP proporciona la pseudo-variable <strong class="variable">$this</strong>.</p>
+  <p><strong class="variable">$this</strong> se refiere al objeto que está llamando al método. Es la forma en que un objeto "habla de sí mismo".</p>
+  <ul>
+    <li>Para acceder a una propiedad del objeto actual: <code class="variable">$this</strong>->nombrePropiedad</code></li>
+    <li>Para llamar a otro método del objeto actual: <code class="variable">$this</strong>->nombreOtroMetodo()</code></li>
+  </ul>
+  <p>En el ejemplo anterior de la clase <code>Coche</code>:</p>
+  <ul>
+    <li>En el método <code>arrancar()</code>, <code class="variable">$this</strong>->estaArrancado = true;</code> modifica la propiedad <code>$estaArrancado</code> <em>del coche específico</em> que llamó al método <code>arrancar()</code>.</li>
+    <li>En <code>acelerar($incremento)</code>, <code class="variable">$this</strong>->velocidadActual += $incremento;</code> modifica la velocidad <em>de ese coche en particular</em>.</li>
+    <li>En <code>obtenerInformacion()</code>, se accede a <code class="variable">$this</strong>->marca</code>, <code class="variable">$this</strong>->modelo</code>, etc., para obtener los datos <em>del coche</em> cuya información se está solicitando.</li>
+  </ul>
+  <div class="tip">
+    <p><strong>¡Recuerda!</strong> <strong class="variable">$this</strong> solo está disponible y tiene sentido <strong>dentro de los métodos de un objeto</strong>. No puedes usar <strong class="variable">$this</strong> fuera de una definición de clase o en funciones que no son métodos de un objeto.</p>
+    <p>Cuando llamas a un método desde un objeto, como <code class="variable">$miDeportivo</strong>->arrancar();</code>, internamente, dentro del método <code>arrancar()</code>, <strong class="variable">$this</strong> se convierte en una referencia a <code class="variable">$miDeportivo</code>.</p>
+  </div>
+</div>
+
+<h2 class="section-title">☀️ Sección 4: Métodos Mágicos - Constructor y Destructor (Aplicado a Coches)</h2>
+
+<div class="concept-box">
+  <span class="concept-title">El Constructor: Ensamblando tu Coche (<code>__construct</code>)</span>
+  <p>Un <strong>constructor</strong> es un método especial dentro de una clase que se llama automáticamente cuando creas una nueva instancia (un objeto) de esa clase usando la palabra clave <strong class="keyword">new</strong>.</p>
+  <p>Para nuestra clase <code>Coche</code>, el constructor es el lugar perfecto para definir las características iniciales obligatorias de cada coche que "fabricamos", como su marca y modelo, y quizás un color por defecto.</p>
+  <p>En PHP, el método constructor se nombra específicamente como <strong class="keyword"><code>__construct</code></strong> (dos guiones bajos al principio).</p>
+  <div class="example-box">
+<pre><code><?php
+class Coche {
+    // Propiedades
+    public $marca;
+    public $modelo;
+    public $color;
+    public $velocidadActual = 0;
+    public $estaArrancado = false;
+
+    // Este es el método constructor para la clase Coche
+    public function __construct($marcaCoche, $modeloCoche, $colorCoche = "Plata") {
+        $this->marca = $marcaCoche;
+        $this->modelo = $modeloCoche;
+        $this->color = $colorCoche; // "Plata" es el color por defecto si no se especifica
+
+        // Mensaje para saber que el constructor se ejecutó
+        echo "¡Se ha fabricado un nuevo coche! Es un " . $this->marca . " " . $this->modelo . " de color " . $this->color . ".<br>";
+    }
+
+    // Métodos (acciones)
+    public function arrancar() {
+        if (!$this->estaArrancado) {
+            $this->estaArrancado = true;
+            echo $this->marca . " " . $this->modelo . " ha arrancado.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya estaba arrancado.<br>";
+        }
+    }
+
+    public function apagar() {
+        if ($this->estaArrancado) {
+            $this->estaArrancado = false;
+            $this->velocidadActual = 0;
+            echo $this->marca . " " . $this->modelo . " se ha apagado.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya estaba apagado.<br>";
+        }
+    }
+
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            $this->velocidadActual += $incremento;
+            echo "El " . $this->marca . " " . $this->modelo . " aceleró a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "No puedes acelerar, el " . $this->marca . " " . $this->modelo . " está apagado.<br>";
+        }
+    }
+
+    public function obtenerInformacion() {
+        $estadoMotor = $this->estaArrancado ? "Encendido" : "Apagado";
+        return "Info del Coche: Marca: " . $this->marca . 
+               ", Modelo: " . $this->modelo . 
+               ", Color: " . $this->color . 
+               ", Velocidad: " . $this->velocidadActual . " km/h" .
+               ", Motor: " . $estadoMotor . "<br>";
+    }
+
+    // Este es el método destructor para la clase Coche
+    public function __destruct() {
+        echo "El coche " . $this->marca . " " . $this->modelo . " está siendo enviado al desguace (objeto destruido).<br>";
+        // En un caso real, aquí podríamos registrar que el coche fue "retirado",
+        // o liberar algún recurso específico si lo tuviera.
+    }
+}
+
+// Al crear objetos Coche, pasamos los argumentos al constructor
+$miBerlina = new Coche("Volkswagen", "Passat", "Azul Marino");
+// Salida del constructor: ¡Se ha fabricado un nuevo coche! Es un Volkswagen Passat de color Azul Marino.
+
+$suvFamiliar = new Coche("Volvo", "XC60"); // Usará el color por defecto "Plata"
+// Salida del constructor: ¡Se ha fabricado un nuevo coche! Es un Volvo XC60 de color Plata.
+
+echo $miBerlina->obtenerInformacion();
+$suvFamiliar->arrancar();
+$suvFamiliar->acelerar(80);
+echo $suvFamiliar->obtenerInformacion();
+
+echo "<hr>Fin del script principal o cuando las variables pierden su referencia...<br>";
+// Al final del script, los objetos $miBerlina y $suvFamiliar serán destruidos
+// y sus métodos __destruct() se llamarán automáticamente.
+
+// Para ver el destructor en acción antes del fin del script, puedes "destruir" una referencia:
+// unset($miBerlina); 
+// echo "El objeto miBerlina ha sido explícitamente desreferenciado.<br>";
+
+?>
+<!--
+Al final de la ejecución del script (o si usas unset), verás algo como:
+El coche Volvo XC60 está siendo enviado al desguace (objeto destruido).
+El coche Volkswagen Passat está siendo enviado al desguace (objeto destruido).
+(El orden puede variar)
+-->
+</code></pre>
+  </div>
+  <div class="tip">
+    <p><strong>Constructor en Acción:</strong> El constructor <code>__construct()</code> de la clase <code>Coche</code> asegura que cada vez que creamos un <code>new Coche()</code>, se le asignen inmediatamente una marca, un modelo y un color. Esto hace que nuestros objetos coche sean útiles desde el momento de su creación.</p>
+    <p><strong>Destructor en Acción:</strong> El destructor <code>__destruct()</code> se ejecuta cuando el objeto ya no es necesario. En nuestro ejemplo del coche, imaginamos que esto es como enviar el coche al "desguace". En aplicaciones reales, se usa para tareas de limpieza más técnicas.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🛡️ Sección 5: Encapsulamiento - Protegiendo los Componentes Internos del Coche</h2>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué es el Encapsulamiento?</span>
+  <p>El <strong>encapsulamiento</strong> es uno de los principios fundamentales de la Programación Orientada a Objetos. Significa dos cosas principales:</p>
+  <ol>
+    <li><strong>Agrupar</strong> datos (propiedades) y los métodos (funciones) que operan sobre esos datos dentro de una misma unidad, es decir, una clase. Ya hemos estado haciendo esto con nuestra clase <code>Coche</code>.</li>
+    <li><strong>Controlar el acceso</strong> a esos datos y métodos desde fuera de la clase. Esto implica ocultar los detalles internos del objeto (cómo funciona por dentro) y exponer solo una interfaz pública (los métodos que otros pueden usar para interactuar con el objeto).</li>
+  </ol>
+  <p>Piensa en un coche real: puedes usar el volante, los pedales y la palanca de cambios (la interfaz pública) para conducirlo, pero no necesitas (ni deberías) acceder directamente al motor o a la transmisión mientras está en marcha para hacer que funcione. El capó protege esos componentes internos.</p>
+  <p><strong>Beneficios del encapsulamiento:</strong></p>
+  <ul>
+    <li><strong>Protección de datos:</strong> Evita que el estado interno del objeto sea modificado de forma incorrecta o inesperada desde el exterior.</li>
+    <li><strong>Control:</strong> La clase decide cómo se accede y se modifican sus datos, a través de métodos específicos.</li>
+    <li><strong>Abstracción:</strong> Oculta la complejidad interna. Solo necesitas saber *qué* hace un objeto, no *cómo* lo hace.</li>
+    <li><strong>Mantenibilidad:</strong> Puedes cambiar la implementación interna de una clase sin afectar el código que la utiliza, siempre que la interfaz pública (métodos) no cambie.</li>
+  </ul>
+  <p>Para lograr el control de acceso, PHP nos ofrece los <strong>modificadores de visibilidad</strong>.</p>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Modificadores de Visibilidad: <code>public</code>, <code>private</code>, <code>protected</code></span>
+  <p>Los modificadores de visibilidad son palabras clave que se anteponen a la declaración de propiedades y métodos en una clase para definir desde dónde se pueden acceder.</p>
+
+  <p><strong>1. <strong class="keyword">public</strong> (Acceso Público):</strong></p>
+  <p>Es el nivel de acceso menos restrictivo. Las propiedades y métodos declarados como <code>public</code> pueden ser accedidos desde:</p>
+  <ul>
+    <li>Dentro de la misma clase.</li>
+    <li>Desde clases que heredan de esta clase (lo veremos más adelante).</li>
+    <li>Desde fuera de la clase (por ejemplo, en el código que crea y usa los objetos).</li>
+  </ul>
+  <p>Hasta ahora, hemos usado <code>public</code> para todas nuestras propiedades y métodos, lo que permitía modificarlos libremente desde fuera de la clase <code>Coche</code>.</p>
+  <div class="example-box">
+<pre><code><?php
+class EjemploPublic {
+    public $mensajePublico = "Soy accesible desde cualquier lugar.";
+
+    public function mostrarMensajePublico() {
+        echo $this->mensajePublico . "<br>";
+    }
+}
+
+$objPublico = new EjemploPublic();
+echo $objPublico->mensajePublico . "<br>"; // Acceso directo a la propiedad pública
+$objPublico->mensajePublico = "He sido modificado desde fuera."; // Modificación directa
+$objPublico->mostrarMensajePublico();        // Llama al método público
+?></code></pre>
+  </div>
+
+  <p><strong>2. <strong class="keyword">private</strong> (Acceso Privado):</strong></p>
+  <p>Es el nivel de acceso más restrictivo. Las propiedades y métodos declarados como <code>private</code> solo pueden ser accedidos <strong>desde dentro de la misma clase</strong> donde fueron definidos. Ni las clases hijas (herencia) ni el código externo pueden acceder directamente a ellos.</p>
+  <p>Esto es ideal para proteger el estado interno de un objeto y asegurar que solo se manipule a través de los métodos públicos de la clase (si los hay para ello).</p>
+  <div class="example-box">
+<pre><code><?php
+class EjemploPrivado {
+    private $secreto = "Nadie fuera de esta clase puede verme directamente.";
+    public $visible = "Soy visible";
+
+    public function revelarSecreto() {
+        // Dentro de la clase, SÍ podemos acceder a $secreto
+        echo "El secreto es: " . $this->secreto . "<br>";
+    }
+
+    // Un método "setter" para modificar la propiedad privada de forma controlada
+    public function cambiarSecreto($nuevoSecreto) {
+        if (strlen($nuevoSecreto) > 5) { // Ejemplo de validación
+            $this->secreto = $nuevoSecreto;
+            echo "Secreto cambiado.<br>";
+        } else {
+            echo "El nuevo secreto es demasiado corto.<br>";
+        }
+    }
+}
+
+$objPrivado = new EjemploPrivado();
+echo $objPrivado->visible . "<br>"; // OK, es public
+
+// Esto generaría un ERROR FATAL: Cannot access private property EjemploPrivado::$secreto
+// echo $objPrivado->secreto; 
+// $objPrivado->secreto = "Intentando cambiar"; // También ERROR FATAL
+
+// Accedemos/modificamos el dato privado a través de métodos públicos (getters/setters)
+$objPrivado->revelarSecreto();         // Llama al método público para mostrar el secreto
+$objPrivado->cambiarSecreto("Un nuevo secreto más largo");
+$objPrivado->revelarSecreto();
+$objPrivado->cambiarSecreto("corto"); // No lo cambiará por la validación
+$objPrivado->revelarSecreto();
+?></code></pre>
+  </div>
+  <p>Para interactuar con propiedades privadas desde fuera, a menudo se utilizan métodos públicos especiales llamados <strong>getters</strong> (para obtener el valor) y <strong>setters</strong> (para establecer el valor, usualmente con alguna lógica o validación).</p>
+
+  <p><strong>3. <strong class="keyword">protected</strong> (Acceso Protegido):</strong></p>
+  <p>Las propiedades y métodos declarados como <code>protected</code> pueden ser accedidos desde:</p>
+  <ul>
+    <li>Dentro de la misma clase.</li>
+    <li>Desde clases que heredan de esta clase (clases hijas).</li>
+  </ul>
+  <p>Sin embargo, <strong>no pueden</strong> ser accedidos directamente desde fuera de la clase (es decir, por código que no sea la propia clase o una de sus descendientes).</p>
+  <p><code>protected</code> es crucial para el concepto de <strong>herencia</strong>, que veremos en una sección posterior. Por ahora, solo recuerda que es un nivel intermedio entre <code>public</code> y <code>private</code>.</p>
+  <div class="example-box">
+<pre><code><?php
+class ClasePadre {
+    protected $propiedadProtegida = "Soy protegida.";
+    public $propiedadPublicaPadre = "Soy pública en el padre.";
+
+    protected function metodoProtegido() {
+        echo "Este es un método protegido de ClasePadre.<br>";
+    }
+}
+
+class ClaseHija extends ClasePadre { // 'extends' indica herencia
+    public function mostrarProtegidaDesdeHija() {
+        // La clase hija SÍ puede acceder a miembros protegidos de la clase padre
+        echo "Desde la hija, la propiedad protegida es: " . $this->propiedadProtegida . "<br>";
+        $this->metodoProtegido(); // También puede llamar a métodos protegidos del padre
+    }
+}
+
+$objPadre = new ClasePadre();
+echo $objPadre->propiedadPublicaPadre . "<br>"; // OK
+
+// Esto generaría un ERROR FATAL: Cannot access protected property ClasePadre::$propiedadProtegida
+// echo $objPadre->propiedadProtegida;
+// $objPadre->metodoProtegido(); // También ERROR FATAL
+
+$objHija = new ClaseHija();
+$objHija->mostrarProtegidaDesdeHija(); // OK, el método público de la hija accede a lo protegido
+// Salida:
+// Desde la hija, la propiedad protegida es: Soy protegida.
+// Este es un método protegido de ClasePadre.
+
+// Esto también generaría un ERROR FATAL, no se puede acceder a lo protegido desde fuera, incluso en la hija
+// echo $objHija->propiedadProtegida;
+?></code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Aplicando Encapsulamiento a Nuestra Clase <code>Coche</code></span>
+  <p>Ahora, vamos a refactorizar nuestra clase <code>Coche</code> para aplicar correctamente el encapsulamiento. Haremos que propiedades como <code>$velocidadActual</code> y <code>$estaArrancado</code> sean privadas, ya que su manipulación directa desde fuera podría llevar a estados inconsistentes. Las propiedades como marca, modelo y color las definiremos en el constructor y proporcionaremos "getters" públicos para leerlas.</p>
+
+  <div class="example-box">
+<pre><code><?php
+class Coche {
+    // Propiedades ahora con visibilidad definida
+    private $marca;
+    private $modelo;
+    private $color;
+    private $velocidadActual = 0; // Estado interno, privado
+    private $estaArrancado = false; // Estado interno, privado
+    private $numeroSerie; // Un identificador único, también privado
+
+    // Constructor
+    public function __construct($marca, $modelo, $color, $numeroSerie) {
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        $this->color = $color;
+        $this->numeroSerie = $numeroSerie;
+        echo "Coche " . $this->marca . " " . $this->modelo . " (SN: " . $this->numeroSerie . ") fabricado.<br>";
+    }
+
+    // --- Getters (métodos públicos para obtener valores de propiedades privadas) ---
+    public function getMarca() {
+        return $this->marca;
+    }
+
+    public function getModelo() {
+        return $this->modelo;
+    }
+
+    public function getColor() {
+        return $this->color;
+    }
+
+    public function getVelocidadActual() {
+        return $this->velocidadActual;
+    }
+
+    public function getEstaArrancado() {
+        return $this->estaArrancado;
+    }
+    
+    public function getNumeroSerie() {
+        // Podríamos añadir lógica aquí, por ejemplo, solo devolver los últimos 4 dígitos
+        return "SN-XXXX-" . substr($this->numeroSerie, -4); 
+    }
+
+    // --- Setters (métodos públicos para modificar propiedades privadas de forma controlada) ---
+    // En este caso, solo permitiremos cambiar el color después de la fabricación.
+    // La marca, modelo y número de serie no deberían cambiar.
+    public function setColor($nuevoColor) {
+        // Aquí podríamos añadir validaciones, por ejemplo, colores permitidos
+        echo "El color del " . $this->marca . " " . $this->modelo . " ha cambiado de " . $this->color . " a " . $nuevoColor . ".<br>";
+        $this->color = $nuevoColor;
+    }
+
+    // --- Métodos de acción (interfaz pública para operar el coche) ---
+    public function arrancar() {
+        if (!$this->estaArrancado) {
+            $this->estaArrancado = true; // Modificamos la propiedad privada
+            echo $this->marca . " " . $this->modelo . " ha arrancado.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya estaba arrancado.<br>";
+        }
+    }
+
+    public function apagar() {
+        if ($this->estaArrancado) {
+            $this->estaArrancado = false;
+            $this->velocidadActual = 0; // Modificamos propiedades privadas
+            echo $this->marca . " " . $this->modelo . " se ha apagado.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya estaba apagado.<br>";
+        }
+    }
+
+    public function acelerar($incremento) {
+        if ($incremento <= 0) {
+            echo "El incremento de velocidad debe ser positivo.<br>";
+            return;
+        }
+        if ($this->estaArrancado) {
+            $this->velocidadActual += $incremento;
+            echo "El " . $this->marca . " " . $this->modelo . " aceleró a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "No puedes acelerar, el " . $this->marca . " " . $this->modelo . " está apagado.<br>";
+        }
+    }
+
+    public function frenar($decremento) {
+        if ($decremento <= 0) {
+            echo "El decremento de velocidad debe ser positivo.<br>";
+            return;
+        }
+        if ($this->velocidadActual > 0) {
+            $this->velocidadActual -= $decremento;
+            if ($this->velocidadActual < 0) {
+                $this->velocidadActual = 0;
+            }
+            echo "El " . $this->marca . " " . $this->modelo . " frenó a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "El coche ya está detenido.<br>";
+        }
+    }
+
+    public function obtenerInformacionDetallada() {
+        $estadoMotor = $this->estaArrancado ? "Encendido" : "Apagado";
+        return "--- Ficha Técnica (" . $this->getNumeroSerie() . ") ---<br>" .
+               "Marca: " . $this->marca . "<br>" . // Accedemos directamente ya que estamos dentro de la clase
+               "Modelo: " . $this->modelo . "<br>" .
+               "Color: " . $this->color . "<br>" .
+               "Velocidad Actual: " . $this->velocidadActual . " km/h<br>" .
+               "Estado del Motor: " . $estadoMotor . "<br>";
+    }
+
+    public function __destruct() {
+        echo "El coche " . $this->marca . " " . $this->modelo . " (SN: " . $this->numeroSerie . ") está siendo enviado al desguace.<br>";
+    }
+}
+
+// --- Uso de la clase Coche encapsulada ---
+$miNuevoCoche = new Coche("Audi", "A4", "Negro Brillante", "ASN789234XYZ");
+// Salida: Coche Audi A4 (SN: ASN789234XYZ) fabricado.
+
+// No podemos hacer esto (generaría error porque $marca es private):
+// $miNuevoCoche->marca = "BMW"; 
+// echo $miNuevoCoche->velocidadActual;
+
+// Usamos los getters para obtener información:
+echo "Mi coche es un: " . $miNuevoCoche->getMarca() . " " . $miNuevoCoche->getModelo() . ".<br>";
+// Salida: Mi coche es un: Audi A4.
+
+echo "Su número de serie (parcial) es: " . $miNuevoCoche->getNumeroSerie() . ".<br>";
+// Salida: Su número de serie (parcial) es: SN-XXXX-XYZ.
+
+$miNuevoCoche->arrancar();
+$miNuevoCoche->acelerar(50);
+$miNuevoCoche->acelerar(30);
+echo "Velocidad actual: " . $miNuevoCoche->getVelocidadActual() . " km/h.<br>";
+// Salida: Velocidad actual: 80 km/h.
+
+$miNuevoCoche->setColor("Rojo Fuego");
+// Salida: El color del Audi A4 ha cambiado de Negro Brillante a Rojo Fuego.
+
+echo $miNuevoCoche->obtenerInformacionDetallada();
+
+$miNuevoCoche->apagar();
+
+echo "<hr>Fin de la demostración de encapsulamiento.<br>";
+?>
+</code></pre>
+  </div>
+  <div class="tip">
+    <p><strong>¿Por qué tanto esfuerzo con <code>private</code> y getters/setters?</strong></p>
+    <ul>
+      <li><strong>Control:</strong> Puedes añadir lógica de validación en los setters (como hicimos con <code>setColor</code> o podríamos hacer para <code>acelerar</code> si la velocidad tiene un límite).</li>
+      <li><strong>Flexibilidad:</strong> Puedes cambiar cómo se almacena internamente un dato (por ejemplo, de km/h a m/s) sin que el código que usa tu clase se vea afectado, siempre que los getters/setters sigan devolviendo/aceptando los valores en el formato esperado.</li>
+      <li><strong>Seguridad:</strong> Evitas que el estado interno de tu objeto se corrompa por modificaciones externas accidentales o malintencionadas. Un coche no debería poder ir a -50 km/h, o arrancar si ya está arrancado de una forma no controlada.</li>
+      <li><strong>Claridad del API:</strong> Los métodos públicos (incluyendo getters y setters) definen claramente cómo se debe interactuar con el objeto.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 class="section-title">🚗💨 Sección 6: Herencia - Creando Familias de Coches</h2>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué es la Herencia?</span>
+  <p>La <strong>herencia</strong> es otro pilar fundamental de la Programación Orientada a Objetos. Permite crear nuevas clases (llamadas <strong>clases hijas</strong>, subclases o clases derivadas) que reutilizan, extienden y/o modifican el comportamiento definido en otra clase existente (llamada <strong>clase padre</strong>, superclase o clase base).</p>
+  <p>Imagina que nuestra clase <code>Coche</code> es una buena base, pero queremos crear tipos de coches más específicos, como un <code>CocheDeportivo</code> o un <code>Camion</code>. Estos tipos de vehículos comparten muchas características y comportamientos con un coche genérico (marca, modelo, color, arrancar, apagar, acelerar), pero también tienen sus propias particularidades.</p>
+  <p>La herencia nos permite definir lo común en la clase <code>Coche</code> y luego, en <code>CocheDeportivo</code>, añadir o especializar solo lo que es diferente (por ejemplo, un método <code>activarTurbo()</code> o una propiedad <code>$aleronAjustable</code>).</p>
+  <p><strong>Beneficios de la Herencia:</strong></p>
+  <ul>
+    <li><strong>Reutilización de código:</strong> No tienes que reescribir las propiedades y métodos comunes en cada nueva clase.</li>
+    <li><strong>Organización:</strong> Crea una jerarquía de clases lógica ("es un" tipo de relación: un <code>CocheDeportivo</code> *es un* tipo de <code>Coche</code>).</li>
+    <li><strong>Mantenibilidad:</strong> Si necesitas cambiar algo común a todos los coches, lo cambias en la clase padre y las clases hijas lo heredan automáticamente.</li>
+    <li><strong>Extensibilidad:</strong> Fácil de añadir nuevas funcionalidades específicas en las clases hijas.</li>
+  </ul>
+  <p>En PHP, la herencia se implementa usando la palabra clave <strong class="keyword">extends</strong>.</p>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Implementando Herencia con la Clase <code>Coche</code></span>
+  <p>Vamos a tomar nuestra clase <code>Coche</code> (que ahora llamaremos <code>VehiculoBase</code> para que sea más genérica como clase padre) y crearemos clases hijas que hereden de ella.</p>
+  <p>Primero, adaptemos nuestra clase <code>Coche</code> para que sea una buena base (<code>VehiculoBase</code>). Haremos que algunas propiedades que antes eran <code>private</code> sean <code>protected</code> para que las clases hijas puedan acceder a ellas si es necesario, pero sigan estando protegidas del exterior.</p>
+
+  <div class="example-box">
+<pre><code><?php
+// --- Clase Padre: VehiculoBase ---
+class VehiculoBase {
+    // Propiedades que pueden ser heredadas y accedidas por clases hijas
+    protected $marca;
+    protected $modelo;
+    protected $color;
+    protected $numeroSerie;
+    protected $velocidadActual = 0;
+    protected $estaArrancado = false;
+
+    public function __construct($marca, $modelo, $color, $numeroSerie) {
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        $this->color = $color;
+        $this->numeroSerie = $numeroSerie;
+        echo "Vehículo Base " . $this->marca . " " . $this->modelo . " (SN: " . $this->numeroSerie . ") ensamblado.<br>";
+    }
+
+    // Getters públicos
+    public function getMarca() { return $this->marca; }
+    public function getModelo() { return $this->modelo; }
+    public function getColor() { return $this->color; }
+    public function getVelocidadActual() { return $this->velocidadActual; }
+    public function getEstaArrancado() { return $this->estaArrancado; }
+    public function getNumeroSerie() { return "SN-BASE-" . substr($this->numeroSerie, -4); }
+
+    public function setColor($nuevoColor) {
+        $this->color = $nuevoColor;
+        echo "El color del " . $this->marca . " " . $this->modelo . " ha cambiado a " . $nuevoColor . ".<br>";
+    }
+
+    public function arrancar() {
+        if (!$this->estaArrancado) {
+            $this->estaArrancado = true;
+            echo $this->marca . " " . $this->modelo . " ha arrancado el motor.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya tiene el motor arrancado.<br>";
+        }
+    }
+
+    public function apagar() {
+        if ($this->estaArrancado) {
+            $this->estaArrancado = false;
+            $this->velocidadActual = 0;
+            echo $this->marca . " " . $this->modelo . " ha apagado el motor.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . " ya tiene el motor apagado.<br>";
+        }
+    }
+
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            $this->velocidadActual += $incremento;
+            echo "El " . $this->marca . " " . $this->modelo . " aceleró a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "Motor apagado. No se puede acelerar el " . $this->marca . " " . $this->modelo . ".<br>";
+        }
+    }
+
+    public function frenar($decremento) {
+        if ($this->velocidadActual > 0) {
+            $this->velocidadActual -= $decremento;
+            if ($this->velocidadActual < 0) $this->velocidadActual = 0;
+            echo "El " . $this->marca . " " . $this->modelo . " frenó a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "El " . $this->marca . " " . $this->modelo . " ya está detenido.<br>";
+        }
+    }
+
+    public function obtenerInformacionDetallada() {
+        $estadoMotor = $this->estaArrancado ? "Encendido" : "Apagado";
+        return "--- Ficha Técnica Vehículo (" . $this->getNumeroSerie() . ") ---<br>" .
+               "Tipo: Vehículo Base<br>" .
+               "Marca: " . $this->marca . "<br>" .
+               "Modelo: " . $this->modelo . "<br>" .
+               "Color: " . $this->color . "<br>" .
+               "Velocidad: " . $this->velocidadActual . " km/h<br>" .
+               "Motor: " . $estadoMotor . "<br>";
+    }
+
+    public function __destruct() {
+        echo "Vehículo Base " . $this->marca . " " . $this->modelo . " (SN: " . $this->numeroSerie . ") enviado al desguace.<br>";
+    }
+}
+
+// --- Clase Hija: CocheDeportivo ---
+// CocheDeportivo HEREDA de VehiculoBase
+class CocheDeportivo extends VehiculoBase {
+    private $tieneTurboActivado = false;
+    public $aleron = "Fijo"; // Propiedad específica de CocheDeportivo
+
+    // El constructor de la clase hija
+    public function __construct($marca, $modelo, $color, $numeroSerie, $tipoAleron = "Deportivo Móvil") {
+        // Es MUY IMPORTANTE llamar al constructor de la clase PADRE
+        // para asegurar que la parte base del objeto se inicialice correctamente.
+        parent::__construct($marca, $modelo, $color, $numeroSerie);
+        
+        $this->aleron = $tipoAleron; // Inicializamos propiedad específica de la hija
+        echo "¡Un Coche Deportivo " . $this->marca . " " . $this->modelo . " con alerón " . $this->aleron . " ha llegado!<br>";
+    }
+
+    // Método específico de CocheDeportivo
+    public function activarTurbo() {
+        if ($this->estaArrancado) { // $estaArrancado es protected, accesible desde la hija
+            if (!$this->tieneTurboActivado) {
+                $this->tieneTurboActivado = true;
+                echo "¡TURBO ACTIVADO en el " . $this->marca . " " . $this->modelo . "! Agárrate.<br>";
+                // Podríamos aumentar la capacidad de aceleración, por ejemplo
+            } else {
+                echo "El turbo ya está activado.<br>";
+            }
+        } else {
+            echo "No puedes activar el turbo, el motor está apagado.<br>";
+        }
+    }
+    
+    public function desactivarTurbo() {
+        if ($this->tieneTurboActivado) {
+            $this->tieneTurboActivado = false;
+            echo "Turbo desactivado en el " . $this->marca . " " . $this->modelo . ".<br>";
+        }
+    }
+
+    // Sobrescritura de un método (Overriding)
+    // Queremos que el método acelerar sea diferente para un deportivo con turbo
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            if ($this->tieneTurboActivado) {
+                $incremento *= 1.5; // Con turbo, acelera un 50% más (ejemplo)
+                echo "(Con Turbo) ";
+            }
+            // Podemos llamar al método acelerar del padre si queremos reutilizar su lógica
+            // parent::acelerar($incremento);
+            // O re-implementarlo aquí:
+            $this->velocidadActual += $incremento;
+            echo "El deportivo " . $this->marca . " " . $this->modelo . " aceleró a " . $this->velocidadActual . " km/h.<br>";
+
+        } else {
+            echo "Motor apagado. No se puede acelerar el deportivo " . $this->marca . " " . $this->modelo . ".<br>";
+        }
+    }
+
+    // Sobrescritura para añadir información específica
+    public function obtenerInformacionDetallada() {
+        $infoBase = parent::obtenerInformacionDetallada(); // Obtenemos info del padre
+        $estadoTurbo = $this->tieneTurboActivado ? "Activado" : "Desactivado";
+        return str_replace("Tipo: Vehículo Base", "Tipo: Coche Deportivo", $infoBase) . // Modificamos parte de la info base
+               "Alerón: " . $this->aleron . "<br>" .
+               "Turbo: " . $estadoTurbo . "<br>";
+    }
+    
+    // El destructor de la clase hija
+    // Si no se define, se llama al del padre. Si se define, es buena práctica llamar al del padre.
+    public function __destruct() {
+        echo "El Coche Deportivo " . $this->marca . " " . $this->modelo . " se va a la pista celestial.<br>";
+        parent::__destruct(); // Llama al destructor de VehiculoBase
+    }
+}
+
+// --- Uso de las clases ---
+echo "<h3>Creando un Vehículo Base:</h3>";
+$miUtilitario = new VehiculoBase("Seat", "Ibiza", "Blanco", "VB1001");
+$miUtilitario->arrancar();
+$miUtilitario->acelerar(50);
+echo $miUtilitario->obtenerInformacionDetallada();
+
+echo "<hr><h3>Creando un Coche Deportivo:</h3>";
+$miSuperDeportivo = new CocheDeportivo("Ferrari", "F40", "Rojo Corsa", "CD2002", "De Competición");
+// Salida del constructor de VehiculoBase: Vehículo Base Ferrari F40 (SN: CD2002) ensamblado.
+// Salida del constructor de CocheDeportivo: ¡Un Coche Deportivo Ferrari F40 con alerón De Competición ha llegado!
+
+$miSuperDeportivo->arrancar();
+$miSuperDeportivo->activarTurbo(); // Método específico de CocheDeportivo
+// Salida: ¡TURBO ACTIVADO en el Ferrari F40! Agárrate.
+
+$miSuperDeportivo->acelerar(100); // Usará el método acelerar sobrescrito de CocheDeportivo
+// Salida: (Con Turbo) El deportivo Ferrari F40 aceleró a 150 km/h.
+
+$miSuperDeportivo->desactivarTurbo();
+$miSuperDeportivo->acelerar(30); // Ahora acelera normal
+// Salida: El deportivo Ferrari F40 aceleró a 180 km/h.
+
+echo $miSuperDeportivo->obtenerInformacionDetallada(); // Muestra información combinada
+
+echo "<hr>Finalizando...<br>";
+// Al final, se llamarán los destructores en orden inverso de creación (o al perder referencia)
+// Primero el de $miSuperDeportivo (que llama al del padre), luego el de $miUtilitario.
+?>
+</code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Puntos Clave de la Herencia</span>
+  <ul>
+    <li><strong><code>extends</code>:</strong> Es la palabra clave para indicar que una clase hereda de otra.</li>
+    <li><strong><code>parent::</code>:</strong> Dentro de una clase hija, puedes usar <code>parent::</code> para acceder a métodos y propiedades (si son <code>public</code> o <code>protected</code>) de la clase padre. Es especialmente útil para llamar al constructor del padre (<code>parent::__construct()</code>) o a una versión de un método que ha sido sobrescrito.</li>
+    <li><strong>Sobrescritura de Métodos (Overriding):</strong> Una clase hija puede proporcionar su propia implementación de un método que ya existe en la clase padre (con la misma firma: nombre y parámetros). Esto permite especializar el comportamiento. En nuestro ejemplo, <code>CocheDeportivo</code> sobrescribe <code>acelerar()</code> y <code>obtenerInformacionDetallada()</code>.</li>
+    <li><strong>Visibilidad <code>protected</code>:</strong> Es muy útil en la herencia, ya que permite que las clases hijas accedan a miembros de la clase padre, pero estos miembros siguen estando protegidos del acceso externo directo. Propiedades como <code>$estaArrancado</code> en <code>VehiculoBase</code> son <code>protected</code> para que <code>CocheDeportivo</code> pueda usarlas.</li>
+    <li><strong>Constructores y Destructores en Herencia:</strong> Si una clase hija tiene su propio constructor, es fundamental que llame explícitamente al constructor de la clase padre usando <code>parent::__construct()</code> si la clase padre lo requiere para su correcta inicialización. De forma similar, si la clase hija tiene un destructor y la clase padre también, puedes llamar a <code>parent::__destruct()</code>.</li>
+    <li><strong>PHP solo soporta herencia simple:</strong> Una clase solo puede heredar directamente de una única clase padre. No existe la herencia múltiple (heredar de varias clases a la vez) directamente en PHP, aunque se pueden lograr efectos similares con Traits o Interfaces (conceptos más avanzados).</li>
+  </ul>
+  <div class="tip">
+    <p>Piensa en la herencia como una forma de construir sobre lo que ya existe. Comienzas con algo general (<code>VehiculoBase</code>) y luego creas versiones más especializadas (<code>CocheDeportivo</code>, podrías crear <code>Camion</code>, <code>Motocicleta</code>, etc.) que comparten la base pero añaden sus propias características únicas.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🎭 Sección 7: Polimorfismo - Objetos con Múltiples Formas</h2>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué es el Polimorfismo?</span>
+  <p><strong>Polimorfismo</strong> (del griego, "muchas formas") es la capacidad en POO que permite que objetos de diferentes clases (que comparten una clase padre común o implementan la misma interfaz) respondan al mismo mensaje (llamada a un método) de maneras diferentes y específicas a su tipo.</p>
+  <p>En términos más sencillos: puedes tratar a objetos de clases hijas como si fueran objetos de su clase padre, pero cuando llamas a un método que ha sido sobrescrito en la clase hija, se ejecutará la versión específica de ese método de la clase hija.</p>
+  <p>Esto permite escribir código más genérico y flexible, que puede operar sobre una variedad de tipos de objetos sin necesidad de conocer su tipo exacto de antemano.</p>
+  <p><strong>La herencia es una forma de lograr polimorfismo.</strong> Si una clase hija sobrescribe un método de su clase padre, un objeto de la clase hija se comportará de manera diferente a un objeto de la clase padre (u otra clase hija) cuando se llame a ese método.</p>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Demostrando Polimorfismo con Nuestros Vehículos</span>
+  <p>Continuaremos con nuestra jerarquía de <code>VehiculoBase</code> y <code>CocheDeportivo</code>. Ya vimos que <code>CocheDeportivo</code> sobrescribe los métodos <code>acelerar()</code> y <code>obtenerInformacionDetallada()</code>. El polimorfismo entra en juego cuando tratamos a estos objetos de manera uniforme pero obtenemos comportamientos distintos.</p>
+
+  <div class="example-box">
+<pre><code><?php
+// --- Clases Padre e Hija (versión resumida para el ejemplo de polimorfismo) ---
+// (Asegúrate de que estas clases estén definidas como en la sección anterior o incluye el código completo)
+
+/*
+// Clase Padre: VehiculoBase (Resumen de la sección anterior)
+class VehiculoBase {
+    protected $marca;
+    protected $modelo;
+    protected $velocidadActual = 0;
+    protected $estaArrancado = false;
+
+    public function __construct($marca, $modelo) {
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        // echo "Vehículo Base " . $this->marca . " " . $this->modelo . " ensamblado.<br>";
+    }
+
+    public function arrancar() {
+        $this->estaArrancado = true;
+        echo $this->marca . " " . $this->modelo . " ha arrancado el motor (Base).<br>";
+    }
+
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            $this->velocidadActual += $incremento;
+            echo "El " . $this->marca . " " . $this->modelo . " (Base) aceleró a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "Motor apagado (Base). No se puede acelerar.<br>";
+        }
+    }
+
+    public function obtenerInformacionDetallada() {
+        return "Vehículo Base: " . $this->marca . " " . $this->modelo . ", Vel: " . $this->velocidadActual . " km/h.<br>";
+    }
+    // ... otros métodos y destructor ...
+}
+
+// Clase Hija: CocheDeportivo (Resumen de la sección anterior)
+class CocheDeportivo extends VehiculoBase {
+    private $tieneTurboActivado = false;
+
+    public function __construct($marca, $modelo) {
+        parent::__construct($marca, $modelo);
+        // echo "Coche Deportivo " . $this->marca . " " . $this->modelo . " listo.<br>";
+    }
+    
+    public function activarTurbo() {
+        $this->tieneTurboActivado = true;
+        echo "¡TURBO ACTIVADO en el deportivo " . $this->marca . " " . $this->modelo . "!<br>";
+    }
+    
+    // Sobrescritura de acelerar
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            if ($this->tieneTurboActivado) {
+                $incremento *= 1.5;
+                echo "(Con Turbo Deportivo) ";
+            }
+            $this->velocidadActual += $incremento;
+            echo "El deportivo " . $this->marca . " " . $this->modelo . " aceleró a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "Motor apagado (Deportivo). No se puede acelerar.<br>";
+        }
+    }
+
+    // Sobrescritura de obtenerInformacionDetallada
+    public function obtenerInformacionDetallada() {
+        $estadoTurbo = $this->tieneTurboActivado ? "Activado" : "Desactivado";
+        return "Coche Deportivo: " . $this->marca . " " . $this->modelo . 
+               ", Vel: " . $this->velocidadActual . " km/h, Turbo: " . $estadoTurbo . "<br>";
+    }
+    // ... otros métodos y destructor ...
+}
+*/
+
+// --- Reutilizamos las clases VehiculoBase y CocheDeportivo de la sección anterior ---
+// (Si estás copiando y pegando en un solo archivo, ya deberían estar definidas arriba)
+// Asegúrate de tener las definiciones completas de VehiculoBase y CocheDeportivo
+// de la sección de Herencia para que este ejemplo funcione correctamente.
+// Por brevedad, no las repetiré aquí en el manual HTML, pero son necesarias.
+
+echo "<h3>Demostración de Polimorfismo:</h3>";
+
+// Creamos un array de vehículos. Algunos son VehiculoBase, otros CocheDeportivo.
+$flotaDeVehiculos = [
+    new VehiculoBase("Renault", "Clio", "Azul", "VB3003"),
+    new CocheDeportivo("Porsche", "911 GT3", "Amarillo Racing", "CD4004", "Ajustable"),
+    new VehiculoBase("Ford", "Focus", "Gris", "VB3004"),
+    new CocheDeportivo("Lamborghini", "Huracan", "Verde Mantis", "CD4005", "Aerodinámico")
+];
+
+// Iteramos sobre la flota y realizamos acciones comunes
+foreach ($flotaDeVehiculos as $vehiculo) {
+    echo "<hr>";
+    echo "Procesando: " . $vehiculo->getMarca() . " " . $vehiculo->getModelo() . "<br>";
+    
+    // Todos los vehículos (sean VehiculoBase o CocheDeportivo) tienen un método arrancar()
+    $vehiculo->arrancar();
+
+    // Si el vehículo es un CocheDeportivo, podemos activar su turbo (usando 'instanceof')
+    if ($vehiculo instanceof CocheDeportivo) {
+        $vehiculo->activarTurbo(); // Esto solo se puede llamar si es un CocheDeportivo
+    }
+    
+    // Todos los vehículos tienen un método acelerar().
+    // AQUÍ SE MANIFIESTA EL POLIMORFISMO:
+    // Si $vehiculo es un VehiculoBase, se llama a VehiculoBase::acelerar().
+    // Si $vehiculo es un CocheDeportivo, se llama a CocheDeportivo::acelerar() (la versión sobrescrita).
+    $vehiculo->acelerar(60);
+
+    // Todos los vehículos tienen un método obtenerInformacionDetallada().
+    // AQUÍ TAMBIÉN SE MANIFIESTA EL POLIMORFISMO:
+    // Se llamará a la versión del método correspondiente al tipo real del objeto.
+    echo $vehiculo->obtenerInformacionDetallada();
+}
+
+echo "<hr><h3>Función que opera con VehiculoBase (Polimorfismo con Type Hinting):</h3>";
+
+// Esta función espera un objeto de tipo VehiculoBase.
+// Gracias al polimorfismo, también aceptará cualquier objeto de una clase que HEREDE de VehiculoBase,
+// como CocheDeportivo.
+function probarVehiculo(VehiculoBase $v) {
+    echo "--- Probando vehículo en función ---<br>";
+    echo "Marca y Modelo: " . $v->getMarca() . " " . $v->getModelo() . "<br>";
+    $v->arrancar();
+    
+    // Si es un deportivo, una acción extra
+    if ($v instanceof CocheDeportivo) {
+        $v->activarTurbo();
+    }
+
+    $v->acelerar(75); // Se llamará al método acelerar() específico del tipo de $v
+    echo $v->obtenerInformacionDetallada(); // Y aquí también
+    $v->apagar();
+    echo "--- Prueba finalizada ---<br>";
+}
+
+$miUtilitarioRapido = new VehiculoBase("Peugeot", "208", "Amarillo", "VB3005");
+$miSuperDeportivoRapido = new CocheDeportivo("McLaren", "720S", "Naranja Papaya", "CD4006", "Activo");
+
+probarVehiculo($miUtilitarioRapido);
+echo "<br>";
+probarVehiculo($miSuperDeportivoRapido); // ¡Funciona! Aunque espera VehiculoBase, CocheDeportivo es un VehiculoBase.
+
+echo "<hr>Finalizando demostración de polimorfismo...<br>";
+
+// Los destructores se llamarán para todos los objetos creados al final del script.
+?>
+</code></pre>
+  </div>
+  <div class="tip">
+    <p><strong><code>instanceof</code></strong>: Es un operador de PHP que se usa para verificar si un objeto es una instancia de una clase particular, de una clase padre, o de una clase que implementa una interfaz específica. Es útil cuando necesitas realizar una acción específica solo para un tipo de objeto dentro de una colección polimórfica.</p>
+    <p><strong>Type Hinting (Declaración de Tipos):</strong> En la función <code>probarVehiculo(VehiculoBase $v)</code>, <code>VehiculoBase</code> antes de <code>$v</code> es un "type hint". Indica que la función espera un objeto que sea una instancia de <code>VehiculoBase</code>. Gracias al polimorfismo, esto también incluye cualquier objeto de una clase que herede de <code>VehiculoBase</code>.</p>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Ventajas del Polimorfismo</span>
+  <ul>
+    <li><strong>Código Genérico:</strong> Permite escribir funciones o bloques de código que operan sobre objetos de una superclase, sabiendo que se comportarán correctamente incluso si son de subclases diferentes. Reduce la necesidad de bloques <code>if/else</code> o <code>switch</code> basados en el tipo de objeto.</li>
+    <li><strong>Extensibilidad:</strong> Puedes añadir nuevas clases hijas que hereden de la misma clase padre (o implementen la misma interfaz) y el código polimórfico existente funcionará con ellas sin modificaciones.</li>
+    <li><strong>Flexibilidad:</strong> Facilita el diseño de sistemas donde los componentes pueden ser intercambiados o extendidos fácilmente.</li>
+    <li><strong>Abstracción:</strong> El código que utiliza los objetos no necesita conocer los detalles específicos de cada subclase, solo la interfaz común definida en la superclase.</li>
+  </ul>
+  <p>El polimorfismo es una herramienta poderosa para construir software robusto, flexible y fácil de mantener.</p>
+</div>
+
+
+
+<h2 class="section-title">🏛️ Sección 8: Clases y Métodos Abstractos - Definiendo Esqueletos</h2>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué son las Clases Abstractas?</span>
+  <p>Una <strong>clase abstracta</strong> es una clase que no puede ser instanciada directamente (es decir, no puedes crear un objeto <code>new MiClaseAbstracta()</code>). Sirve como una plantilla o un "esqueleto" para otras clases (sus clases hijas).</p>
+  <p>Una clase abstracta se declara con la palabra clave <strong class="keyword">abstract</strong> antes de <strong class="keyword">class</strong>.</p>
+  <p>Las clases abstractas pueden contener:</p>
+  <ul>
+    <li>Métodos completamente implementados (como los que hemos visto hasta ahora).</li>
+    <li>Propiedades.</li>
+    <li>Y, lo más importante, <strong>métodos abstractos</strong>.</li>
+  </ul>
+  <p>El propósito principal de una clase abstracta es ser heredada. Obliga a las clases hijas a implementar ciertos métodos (los métodos abstractos), asegurando una interfaz común o un comportamiento base.</p>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué son los Métodos Abstractos?</span>
+  <p>Un <strong>método abstracto</strong> se declara dentro de una clase abstracta usando la palabra clave <strong class="keyword">abstract</strong>. Un método abstracto solo define la firma del método (nombre, parámetros y, opcionalmente, tipo de retorno), pero <strong>no proporciona una implementación</strong> (no tiene cuerpo <code>{}</code>).</p>
+  <p>Cualquier clase que herede de una clase abstracta que contenga métodos abstractos <strong>debe</strong> implementar todos esos métodos abstractos, o bien, la clase hija también debe ser declarada como abstracta.</p>
+  <p>Esto garantiza que todas las subclases concretas (no abstractas) tendrán una implementación para esos métodos, aunque la implementación pueda variar entre ellas (polimorfismo).</p>
+  <div class="example-box">
+<pre><code><?php
+// Declaración de una clase abstracta
+abstract class Animal {
+    protected $nombre;
+
+    public function __construct($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    // Un método concreto (implementado) en la clase abstracta
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    // Un MÉTODO ABSTRACTO: solo la firma, sin cuerpo {}
+    // Todas las clases hijas DEBEN implementar este método.
+    abstract public function hacerSonido();
+    abstract public function moverse();
+}
+
+// NO SE PUEDE HACER ESTO:
+// $animalGenerico = new Animal("Algo"); // Error Fatal: Cannot instantiate abstract class Animal
+
+// Clase hija que HEREDA de Animal
+class Perro extends Animal {
+    // DEBE implementar el método abstracto hacerSonido()
+    public function hacerSonido() {
+        return "Guau guau!";
+    }
+
+    // DEBE implementar el método abstracto moverse()
+    public function moverse() {
+        return $this->nombre . " está corriendo.";
+    }
+
+    // Puede tener métodos propios
+    public function traerPelota() {
+        return $this->nombre . " trajo la pelota.";
+    }
+}
+
+class Gato extends Animal {
+    public function hacerSonido() {
+        return "Miau";
+    }
+
+    public function moverse() {
+        return $this->nombre . " está trepando sigilosamente.";
+    }
+
+    public function ronronear() {
+        return $this->nombre . " está ronroneando.";
+    }
+}
+
+$miPerro = new Perro("Fido");
+echo $miPerro->getNombre() . " dice: " . $miPerro->hacerSonido() . "<br>"; // Fido dice: Guau guau!
+echo $miPerro->moverse() . "<br>"; // Fido está corriendo.
+echo $miPerro->traerPelota() . "<br>"; // Fido trajo la pelota.
+
+$miGato = new Gato("Mishi");
+echo $miGato->getNombre() . " dice: " . $miGato->hacerSonido() . "<br>"; // Mishi dice: Miau
+echo $miGato->moverse() . "<br>"; // Mishi está trepando sigilosamente.
+echo $miGato->ronronear() . "<br>"; // Mishi está ronroneando.
+
+// Función polimórfica que trabaja con Animales
+function describirAnimal(Animal $unAnimal) {
+    echo $unAnimal->getNombre() . " es un animal que hace '" . $unAnimal->hacerSonido() . "' y se mueve así: '" . $unAnimal->moverse() . "'.<br>";
+}
+
+describirAnimal($miPerro);
+describirAnimal($miGato);
+?></code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Aplicando Clases y Métodos Abstractos a Nuestros Vehículos</span>
+  <p>Podríamos hacer que nuestra clase <code>VehiculoBase</code> sea abstracta si consideramos que "Vehículo Base" como tal no debería existir por sí solo, sino que siempre debe ser un tipo específico de vehículo (como <code>CocheDeportivo</code>, <code>Camion</code>, etc.).</p>
+  <p>Además, podríamos definir un método abstracto como <code>getTipoVehiculo()</code> para obligar a cada subclase a especificar qué tipo de vehículo es.</p>
+
+  <div class="example-box">
+<pre><code><?php
+// --- Clase Padre ABSTRACTA: Vehiculo ---
+// (Modificamos VehiculoBase para que sea abstracta)
+abstract class Vehiculo { // Palabra clave 'abstract'
+    protected $marca;
+    protected $modelo;
+    protected $color;
+    protected $numeroSerie;
+    protected $velocidadActual = 0;
+    protected $estaArrancado = false;
+
+    public function __construct($marca, $modelo, $color, $numeroSerie) {
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        $this->color = $color;
+        $this->numeroSerie = $numeroSerie;
+        // No mostramos mensaje aquí, lo harán las clases hijas si quieren
+    }
+
+    // Getters públicos (concretos)
+    public function getMarca() { return $this->marca; }
+    public function getModelo() { return $this->modelo; }
+    // ... otros getters ...
+
+    // Métodos concretos (heredados por todas las clases hijas)
+    public function arrancar() {
+        if (!$this->estaArrancado) {
+            $this->estaArrancado = true;
+            echo $this->getMarca() . " " . $this->getModelo() . " (" . $this->getTipoVehiculo() . ") ha arrancado.<br>";
+        } else { /* ... */ }
+    }
+
+    public function apagar() { /* ... implementación similar ... */ }
+    public function acelerar($incremento) { /* ... implementación similar ... */ }
+    public function frenar($decremento) { /* ... implementación similar ... */ }
+
+    // MÉTODO ABSTRACTO: Obliga a las clases hijas a implementarlo
+    abstract public function getTipoVehiculo(); 
+
+    // Método concreto que puede usar el método abstracto
+    public function obtenerInformacionBasica() {
+        return "Este es un " . $this->getTipoVehiculo() . ": " . $this->marca . " " . $this->modelo . ".<br>";
+    }
+    
+    // Podríamos hacer también 'obtenerInformacionDetallada()' abstracto si quisiéramos
+    // que cada hijo defina CÓMO mostrar su información detallada.
+    // abstract public function obtenerInformacionDetallada();
+
+    public function __destruct() {
+        // echo "Vehículo " . $this->marca . " " . $this->modelo . " siendo desmantelado.<br>";
+    }
+}
+
+// --- Clase Hija Concreta: CocheUrbano ---
+class CocheUrbano extends Vehiculo {
+    private $numeroPuertas;
+
+    public function __construct($marca, $modelo, $color, $numeroSerie, $puertas = 5) {
+        parent::__construct($marca, $modelo, $color, $numeroSerie);
+        $this->numeroPuertas = $puertas;
+        echo "Coche Urbano " . $this->marca . " " . $this->modelo . " fabricado con " . $this->numeroPuertas . " puertas.<br>";
+    }
+
+    // IMPLEMENTACIÓN OBLIGATORIA del método abstracto
+    public function getTipoVehiculo() {
+        return "Coche Urbano";
+    }
+
+    public function getNumeroPuertas() {
+        return $this->numeroPuertas;
+    }
+
+    // Podría sobrescribir acelerar si los coches urbanos aceleran diferente
+    // public function acelerar($incremento) { ... }
+}
+
+// --- Clase Hija Concreta: Camion ---
+class Camion extends Vehiculo {
+    private $capacidadCarga toneladas; // en toneladas
+
+    public function __construct($marca, $modelo, $color, $numeroSerie, $carga) {
+        parent::__construct($marca, $modelo, $color, $numeroSerie);
+        $this->capacidadCarga = $carga;
+        echo "Camión " . $this->marca . " " . $this->modelo . " listo para cargar " . $this->capacidadCarga . " toneladas.<br>";
+    }
+
+    // IMPLEMENTACIÓN OBLIGATORIA del método abstracto
+    public function getTipoVehiculo() {
+        return "Camión de Carga";
+    }
+
+    public function getCapacidadCarga() {
+        return $this->capacidadCarga;
+    }
+
+    // Los camiones aceleran diferente
+    public function acelerar($incremento) {
+        if ($this->estaArrancado) {
+            $this->velocidadActual += ($incremento * 0.5); // Los camiones aceleran más lento (ejemplo)
+            echo "El camión " . $this->marca . " " . $this->modelo . " aceleró (lento) a " . $this->velocidadActual . " km/h.<br>";
+        } else {
+            echo "Motor del camión apagado.<br>";
+        }
+    }
+}
+
+// NO SE PUEDE HACER:
+// $vehiculoAbstracto = new Vehiculo("Generico", "ModeloX", "Gris", "SN000"); // Error!
+
+echo "<h3>Trabajando con clases hijas de una clase abstracta:</h3>";
+$miCityCar = new CocheUrbano("Fiat", "500", "Rojo", "CU123", 3);
+$miTrailer = new Camion("Volvo", "FH16", "Blanco", "TRUCK789", 40);
+
+echo $miCityCar->obtenerInformacionBasica(); // Usa el método abstracto implementado
+$miCityCar->arrancar();
+$miCityCar->acelerar(50);
+
+echo "<br>";
+
+echo $miTrailer->obtenerInformacionBasica();
+$miTrailer->arrancar();
+$miTrailer->acelerar(50); // Usará la versión de acelerar de Camion
+
+echo "<hr>";
+
+// Función que puede trabajar con cualquier Vehiculo
+function mostrarTipo(Vehiculo $v) {
+    // Llama al método abstracto, que será la implementación de la clase hija concreta
+    echo "El vehículo procesado es un: " . $v->getTipoVehiculo() . "<br>";
+}
+
+mostrarTipo($miCityCar);
+mostrarTipo($miTrailer);
+
+?>
+</code></pre>
+  </div>
+  <div class="tip">
+    <p><strong>¿Cuándo usar clases abstractas?</strong></p>
+    <ul>
+      <li>Cuando quieres crear una clase base que define una estructura común (propiedades y métodos concretos) pero también quieres obligar a las clases hijas a implementar ciertos métodos específicos (los abstractos).</li>
+      <li>Cuando tienes una clase que es demasiado genérica para ser instanciada por sí misma, pero sirve como un buen punto de partida para especializaciones.</li>
+      <li>Para forzar un "contrato" con las clases hijas: "Si heredas de mí, DEBES proveer estas funcionalidades".</li>
+    </ul>
+    <p>Una clase puede ser declarada abstracta incluso si no tiene ningún método abstracto. Esto simplemente previene su instanciación directa.</p>
+  </div>
+</div>
+
+
+<h2 class="section-title">📜 Sección 9: Interfaces - Definiendo Contratos de Comportamiento</h2>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué es una Interfaz?</span>
+  <p>Una <strong>interfaz</strong> en POO es una especie de "contrato" o "plano" que especifica qué métodos <strong>debe</strong> implementar una clase, pero <strong>no define cómo</strong> se implementan (no tienen cuerpo).</p>
+  <p>Una interfaz se declara con la palabra clave <strong class="keyword">interface</strong>. Solo puede contener declaraciones de métodos públicos (y constantes públicas, desde PHP 8.1 también métodos estáticos públicos y privados).</p>
+  <p>A diferencia de las clases abstractas, una interfaz:</p>
+  <ul>
+    <li>No puede contener propiedades (variables de instancia).</li>
+    <li>Todos sus métodos son implícitamente abstractos y públicos (no necesitas escribir <code>abstract public</code>, aunque <code>public</code> es obligatorio).</li>
+    <li>Una clase puede <strong>implementar</strong> múltiples interfaces (a diferencia de la herencia, que es simple). Esto se hace con la palabra clave <strong class="keyword">implements</strong>.</li>
+  </ul>
+  <p>El propósito de una interfaz es asegurar que diferentes clases, incluso si no están relacionadas por herencia, puedan ofrecer un conjunto común de funcionalidades (métodos). Esto es clave para lograr polimorfismo y desacoplamiento.</p>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Declarando y Usando Interfaces</span>
+  <div class="example-box">
+<pre><code><?php
+// Definición de una interfaz
+interface Arrancable {
+    public function arrancarMotor(); // Todos los métodos de una interfaz son públicos
+    public function apagarMotor();
+    public function estaArrancado(); // Devuelve un booleano
+}
+
+interface Conducible {
+    public function acelerarVehiculo($cantidad);
+    public function frenarVehiculo($cantidad);
+    public function getVelocidadActualVehiculo();
+}
+
+// Otra interfaz, quizás para vehículos con capacidad de carga
+interface Cargable {
+    public function cargar($item, $peso);
+    public function descargar($item);
+    public function getCargaActual(); // Devuelve el peso o lista de ítems
+}
+
+// --- Clase que IMPLEMENTA múltiples interfaces ---
+// Esta clase no hereda de ninguna clase base específica aquí, pero podría.
+class CamionModerno implements Arrancable, Conducible, Cargable {
+    private $marca;
+    private $modelo;
+    private $motorEncendido = false;
+    private $velocidad = 0;
+    private $carga = [];
+    private $pesoCargaTotal = 0;
+
+    public function __construct($marca, $modelo) {
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        echo "Camión Moderno " . $this->marca . " " . $this->modelo . " listo.<br>";
+    }
+
+    // Implementación de los métodos de la interfaz Arrancable
+    public function arrancarMotor() {
+        if (!$this->motorEncendido) {
+            $this->motorEncendido = true;
+            echo $this->marca . " " . $this->modelo . ": Motor arrancado.<br>";
+        }
+    }
+
+    public function apagarMotor() {
+        if ($this->motorEncendido) {
+            $this->motorEncendido = false;
+            $this->velocidad = 0;
+            echo $this->marca . " " . $this->modelo . ": Motor apagado.<br>";
+        }
+    }
+
+    public function estaArrancado() {
+        return $this->motorEncendido;
+    }
+
+    // Implementación de los métodos de la interfaz Conducible
+    public function acelerarVehiculo($cantidad) {
+        if ($this->motorEncendido) {
+            $this->velocidad += $cantidad;
+            echo $this->marca . " " . $this->modelo . ": Acelerando a " . $this->velocidad . " km/h.<br>";
+        } else {
+            echo $this->marca . " " . $this->modelo . ": El motor está apagado, no se puede acelerar.<br>";
+        }
+    }
+
+    public function frenarVehiculo($cantidad) {
+        $this->velocidad -= $cantidad;
+        if ($this->velocidad < 0) $this->velocidad = 0;
+        echo $this->marca . " " . $this->modelo . ": Frenando a " . $this->velocidad . " km/h.<br>";
+    }
+
+    public function getVelocidadActualVehiculo() {
+        return $this->velocidad;
+    }
+
+    // Implementación de los métodos de la interfaz Cargable
+    public function cargar($item, $peso) {
+        $this->carga[$item] = $peso;
+        $this->pesoCargaTotal += $peso;
+        echo $this->marca . " " . $this->modelo . ": Cargado '" . $item . "' (" . $peso . "kg). Carga total: " . $this->pesoCargaTotal . "kg.<br>";
+    }
+
+    public function descargar($item) {
+        if (isset($this->carga[$item])) {
+            $this->pesoCargaTotal -= $this->carga[$item];
+            unset($this->carga[$item]);
+            echo $this->marca . " " . $this->modelo . ": Descargado '" . $item . "'. Carga total: " . $this->pesoCargaTotal . "kg.<br>";
+        }
+    }
+
+    public function getCargaActual() {
+        return $this->pesoCargaTotal; // Podría devolver el array $this->carga también
+    }
+}
+
+// --- Otra clase que implementa algunas interfaces ---
+class CocheElectrico implements Arrancable, Conducible {
+    private $marca;
+    private $bateriaEncendida = false;
+    private $velocidadActual = 0;
+
+    public function __construct($marca) {
+        $this->marca = $marca;
+        echo "Coche Eléctrico " . $this->marca . " preparado.<br>";
+    }
+
+    public function arrancarMotor() { // Para un eléctrico, "arrancar" podría ser activar la batería
+        $this->bateriaEncendida = true;
+        echo $this->marca . ": Sistema eléctrico activado.<br>";
+    }
+    public function apagarMotor() {
+        $this->bateriaEncendida = false;
+        $this->velocidadActual = 0;
+        echo $this->marca . ": Sistema eléctrico desactivado.<br>";
+    }
+    public function estaArrancado() {
+        return $this->bateriaEncendida;
+    }
+    public function acelerarVehiculo($cantidad) {
+        if ($this->bateriaEncendida) {
+            $this->velocidadActual += $cantidad;
+            echo $this->marca . ": Acelerando silenciosamente a " . $this->velocidadActual . " km/h.<br>";
+        }
+    }
+    public function frenarVehiculo($cantidad) {
+        $this->velocidadActual -= $cantidad;
+        if ($this->velocidadActual < 0) $this->velocidadActual = 0;
+        echo $this->marca . ": Frenada regenerativa a " . $this->velocidadActual . " km/h.<br>";
+    }
+    public function getVelocidadActualVehiculo() {
+        return $this->velocidadActual;
+    }
+}
+
+
+echo "<h3>Trabajando con Interfaces:</h3>";
+$miCamion = new CamionModerno("Scania", "S730");
+$miTesla = new CocheElectrico("Tesla Model S");
+
+// Función que opera con cualquier objeto que sea Arrancable
+function operarSistemaArranque(Arrancable $vehiculo) {
+    echo "--- Operando sistema de arranque ---<br>";
+    if (!$vehiculo->estaArrancado()) {
+        $vehiculo->arrancarMotor();
+    }
+    if ($vehiculo->estaArrancado()) {
+        echo "El vehículo está listo para operar.<br>";
+    }
+    // $vehiculo->apagarMotor(); // Podríamos apagarlo aquí también
+}
+
+// Función que opera con cualquier objeto que sea Conducible
+function probarConduccion(Conducible $vehiculo) {
+    echo "--- Probando conducción ---<br>";
+    // Para conducir, primero necesitamos que esté arrancado si también es Arrancable
+    if ($vehiculo instanceof Arrancable && !$vehiculo->estaArrancado()) {
+         $vehiculo->arrancarMotor();
+    }
+    // Verificamos si realmente arrancó (si es Arrancable) o asumimos que si no lo es, ya está listo.
+    if (!($vehiculo instanceof Arrancable) || $vehiculo->estaArrancado()) {
+        $vehiculo->acelerarVehiculo(50);
+        echo "Velocidad actual: " . $vehiculo->getVelocidadActualVehiculo() . " km/h.<br>";
+        $vehiculo->frenarVehiculo(20);
+    } else {
+        echo "No se pudo probar la conducción, el vehículo no arrancó.<br>";
+    }
+}
+
+// Función que opera con cualquier objeto que sea Cargable
+function gestionarCarga(Cargable $transporte) {
+    echo "--- Gestionando carga ---<br>";
+    $transporte->cargar("Cajas de herramientas", 500);
+    $transporte->cargar("Repuestos", 1200);
+    echo "Carga total actual: " . $transporte->getCargaActual() . "kg.<br>";
+    $transporte->descargar("Repuestos");
+}
+
+operarSistemaArranque($miCamion);
+operarSistemaArranque($miTesla);
+echo "<br>";
+
+probarConduccion($miCamion);
+probarConduccion($miTesla);
+echo "<br>";
+
+// Solo el camión es Cargable
+if ($miCamion instanceof Cargable) {
+    gestionarCarga($miCamion);
+}
+// if ($miTesla instanceof Cargable) { ... } // Esto sería false
+
+$miCamion->apagarMotor();
+$miTesla->apagarMotor();
+
+?>
+</code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Clases Abstractas vs. Interfaces</span>
+  <p>A menudo surge la pregunta de cuándo usar una clase abstracta y cuándo una interfaz. Aquí algunas diferencias y guías:</p>
+  <table border="1" style="width:100%; border-collapse: collapse;">
+    <tr style="background-color: #e3f2fd;">
+      <th style="padding: 8px;">Característica</th>
+      <th style="padding: 8px;">Clase Abstracta</th>
+      <th style="padding: 8px;">Interfaz</th>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Propósito principal</td>
+      <td style="padding: 8px;">Compartir código base (implementación común) y definir un contrato parcial. Relación "<strong>es un</strong>" fuerte con la clase padre.</td>
+      <td style="padding: 8px;">Definir un contrato de comportamiento (qué puede hacer un objeto). Relación "<strong>puede hacer</strong>" o "<strong>se comporta como</strong>".</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Instanciación</td>
+      <td style="padding: 8px;">No se puede instanciar.</td>
+      <td style="padding: 8px;">No se puede instanciar.</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Métodos</td>
+      <td style="padding: 8px;">Puede tener métodos abstractos (sin cuerpo) y métodos concretos (con cuerpo).</td>
+      <td style="padding: 8px;">Solo puede declarar métodos (sin cuerpo). Todos son públicos.</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Propiedades</td>
+      <td style="padding: 8px;">Puede tener propiedades (variables de instancia).</td>
+      <td style="padding: 8px;">No puede tener propiedades de instancia. Puede tener constantes.</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Herencia/Implementación</td>
+      <td style="padding: 8px;">Una clase puede <strong>heredar</strong> (<code>extends</code>) de <strong>una sola</strong> clase abstracta.</td>
+      <td style="padding: 8px;">Una clase puede <strong>implementar</strong> (<code>implements</code>) <strong>múltiples</strong> interfaces.</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Visibilidad de métodos</td>
+      <td style="padding: 8px;">Los métodos pueden ser <code>public</code>, <code>protected</code>. Los métodos abstractos no pueden ser <code>private</code>.</td>
+      <td style="padding: 8px;">Todos los métodos declarados son implícitamente <code>public</code>.</td>
+    </tr>
+  </table>
+
+  <p><strong>Cuándo usar cuál:</strong></p>
+  <ul>
+    <li>Usa una <strong>clase abstracta</strong> cuando quieras proporcionar una implementación base común para varias subclases relacionadas y forzar la implementación de algunos métodos. Si muchas clases comparten el mismo estado (propiedades) y comportamiento.</li>
+    <li>Usa una <strong>interfaz</strong> cuando quieras definir un "contrato" de lo que una clase puede hacer, sin importar su lugar en la jerarquía de clases o cómo lo hace. Es ideal para lograr polimorfismo entre clases no relacionadas y para el diseño de APIs desacopladas. Piensa en "capacidades" (ej: `Arrancable`, `Serializable`, `Contable`).</li>
+  </ul>
+  <p>A menudo, las clases abstractas también implementan interfaces para combinar lo mejor de ambos mundos.</p>
+  <div class="tip">
+    <p>Las interfaces son cruciales para la <strong>Inyección de Dependencias</strong> y los principios <strong>SOLID</strong> (especialmente el Principio de Inversión de Dependencias), que son patrones de diseño avanzados para crear software robusto y mantenible. Permiten que tu código dependa de abstracciones (interfaces) en lugar de implementaciones concretas.</p>
+  </div>
+</div>
+
+<h2 class="section-title">🧬 Sección 10: Traits - Reutilización Horizontal de Código</h2>
+
+<div class="concept-box">
+  <span class="concept-title">¿Qué son los Traits?</span>
+  <p>Un <strong>Trait</strong> es un mecanismo para la reutilización de código en lenguajes de herencia simple como PHP. Los Traits están diseñados para reducir algunas limitaciones de la herencia simple al permitir que un desarrollador reutilice conjuntos de métodos libremente en varias clases independientes que viven en diferentes jerarquías de clases.</p>
+  <p>Piensa en un Trait como un "mixin" o un conjunto de funcionalidades (métodos y propiedades) que puedes "inyectar" o "mezclar" en una clase. Una clase puede usar múltiples Traits.</p>
+  <p>Se declaran con la palabra clave <strong class="keyword">trait</strong> y se usan en una clase con la palabra clave <strong class="keyword">use</strong>.</p>
+  <p><strong>Diferencias clave con Interfaces y Clases Abstractas:</strong></p>
+  <ul>
+    <li><strong>Interfaces:</strong> Definen un contrato (qué métodos debe tener una clase), pero no proporcionan implementación.</li>
+    <li><strong>Clases Abstractas:</strong> Pueden proporcionar implementación parcial y definir un contrato parcial, pero una clase solo puede heredar de una.</li>
+    <li><strong>Traits:</strong> Proporcionan implementación concreta de métodos (y propiedades) que pueden ser "copiados" directamente en múltiples clases, sin forzar una relación de herencia.</li>
+  </ul>
+  <p>Los Traits ofrecen una forma de "composición" de funcionalidades en lugar de herencia.</p>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Declarando y Usando Traits</span>
+  <p>Imagina que tenemos ciertas funcionalidades que podrían ser útiles en diferentes tipos de vehículos o incluso en otras clases no relacionadas, como registrar eventos (logging) o emitir sonidos genéricos.</p>
+  <div class="example-box">
+<pre><code><?php
+// --- Definición de un Trait ---
+trait Logger {
+    protected $logEntries = []; // Los traits pueden tener propiedades
+
+    public function log($mensaje) {
+        $timestamp = date("Y-m-d H:i:s");
+        $entry = "[" . $timestamp . "] " . $mensaje;
+        $this->logEntries[] = $entry;
+        echo "LOG: " . $mensaje . "<br>"; // Para demostración inmediata
+    }
+
+    public function getLog() {
+        return $this->logEntries;
+    }
+
+    public function mostrarLogCompleto() {
+        echo "<h4>Log Completo:</h4><ul>";
+        foreach ($this->logEntries as $entry) {
+            echo "<li>" . htmlspecialchars($entry) . "</li>";
+        }
+        echo "</ul>";
+    }
+}
+
+trait EmisorDeSonido {
+    public $sonidoPorDefecto = "Beep beep!";
+
+    public function emitirSonido($sonidoEspecifico = null) {
+        $sonidoAEmitir = $sonidoEspecifico ?? $this->sonidoPorDefecto;
+        echo "SONIDO: " . htmlspecialchars($sonidoAEmitir) . "<br>";
+    }
+}
+
+// --- Clases que USAN los Traits ---
+class CocheConLoggerY सोनido {
+    // "Mezclamos" los traits en esta clase
+    use Logger;
+    use EmisorDeSonido;
+
+    public $marca;
+    public $modelo;
+
+    public function __construct($marca, $modelo) {
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        $this->log("Coche " . $marca . " " . $modelo . " creado."); // Usamos el método del Trait Logger
+        $this->sonidoPorDefecto = "Brum brum!"; // Podemos sobrescribir propiedades del Trait
+    }
+
+    public function realizarViaje($destino) {
+        $this->log("Iniciando viaje a " . $destino . ".");
+        $this->emitirSonido("¡Arrancando motor!"); // Usamos el método del Trait EmisorDeSonido
+        // ... lógica del viaje ...
+        $this->log("Viaje a " . $destino . " completado.");
+        $this->emitirSonido(); // Emite el sonido por defecto "Brum brum!"
+    }
+}
+
+class SistemaDeAlarma {
+    use Logger; // Solo necesita el Logger
+    use EmisorDeSonido; // Y emitir sonidos
+
+    private $nombreSistema;
+
+    public function __construct($nombre) {
+        $this->nombreSistema = $nombre;
+        $this->log("Sistema de alarma '" . $nombre . "' inicializado.");
+        $this->sonidoPorDefecto = "¡WIII WOOO WIII WOOO!"; // Sonido de alarma
+    }
+
+    public function detectarIntrusion() {
+        $this->log("¡INTRUSIÓN DETECTADA en " . $this->nombreSistema . "!");
+        $this->emitirSonido(); // Emite el sonido de alarma
+        $this->emitirSonido("Policía en camino.");
+    }
+}
+
+echo "<h3>Usando Traits:</h3>";
+
+$miCocheEspecial = new CocheConLoggerY सोनido("Toyota", "Supra");
+$miCocheEspecial->realizarViaje("la pista de carreras");
+$miCocheEspecial->emitirSonido("¡Acelerando a fondo!");
+$miCocheEspecial->mostrarLogCompleto();
+
+echo "<hr>";
+
+$alarmaCasa = new SistemaDeAlarma("Casa Segura");
+$alarmaCasa->emitirSonido("Sistema armado."); // Un sonido específico
+$alarmaCasa->detectarIntrusion();
+$alarmaCasa->mostrarLogCompleto();
+
+?>
+</code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Resolución de Conflictos de Nombres</span>
+  <p>¿Qué pasa si dos Traits que usas en una clase definen un método con el mismo nombre? PHP generaría un error fatal. Para resolver esto, los Traits ofrecen mecanismos de resolución de conflictos:</p>
+  <ul>
+    <li><strong><code>insteadof</code></strong>: Permite elegir explícitamente qué método del Trait usar.</li>
+    <li><strong><code>as</code></strong>: Permite renombrar un método de un Trait (darle un alias) dentro de la clase que lo usa. También se puede cambiar su visibilidad.</li>
+  </ul>
+
+  <div class="example-box">
+<pre><code><?php
+trait TraitA {
+    public function hacerAlgo() {
+        echo "Haciendo algo desde Trait A.<br>";
+    }
+    public function saludar() {
+        echo "Hola desde Trait A.<br>";
+    }
+}
+
+trait TraitB {
+    public function hacerAlgo() { // Mismo nombre que en TraitA
+        echo "Haciendo algo diferente desde Trait B.<br>";
+    }
+    public function despedir() {
+        echo "Adiós desde Trait B.<br>";
+    }
+}
+
+class ClaseConConflictos {
+    use TraitA, TraitB {
+        // Decimos que queremos usar el 'hacerAlgo' de TraitB en lugar del de TraitA
+        TraitB::hacerAlgo insteadof TraitA;
+        // Y además, queremos tener disponible el 'hacerAlgo' de TraitA bajo otro nombre (alias)
+        TraitA::hacerAlgo as hacerAlgoDesdeA;
+        // También podemos cambiar la visibilidad de un método del trait
+        TraitB::despedir as protected despedidaProtegida;
+    }
+
+    public function test() {
+        $this->hacerAlgo(); // Llamará a TraitB::hacerAlgo
+        $this->hacerAlgoDesdeA(); // Llamará a TraitA::hacerAlgo
+        $this->saludar(); // De TraitA
+        // $this->despedir(); // Error, ahora es protected despedidaProtegida
+        $this->llamarDespedidaProtegida();
+    }
+    
+    protected function llamarDespedidaProtegida(){
+        $this->despedidaProtegida(); // OK, se llama desde dentro de la clase
+    }
+}
+
+$objConflicto = new ClaseConConflictos();
+$objConflicto->test();
+// Salida:
+// Haciendo algo diferente desde Trait B.
+// Haciendo algo desde Trait A.
+// Hola desde Trait A.
+// Adiós desde Trait B.
+
+?>
+</code></pre>
+  </div>
+</div>
+
+<div class="concept-box">
+  <span class="concept-title">Ventajas y Casos de Uso de los Traits</span>
+  <ul>
+    <li><strong>Reutilización de código horizontal:</strong> Permiten compartir implementaciones entre clases sin necesidad de herencia.</li>
+    <li><strong>Evitar problemas de herencia múltiple:</strong> PHP no soporta herencia múltiple de clases, pero los Traits ofrecen una forma de "mezclar" funcionalidades de varias fuentes.</li>
+    <li><strong>Composición sobre herencia:</strong> Favorecen un diseño donde las clases se componen de diferentes funcionalidades (Traits) en lugar de depender de una larga cadena de herencia.</li>
+    <li><strong>Organización del código:</strong> Ayudan a agrupar funcionalidades cohesivas en unidades reutilizables.</li>
+  </ul>
+  <p><strong>Casos de uso comunes:</strong></p>
+  <ul>
+    <li>Funcionalidades de logging, como en el ejemplo.</li>
+    <li>Gestión de eventos o emisores de eventos.</li>
+    <li>Funciones de serialización/deserialización.</li>
+    <li>Métodos de utilidad que pueden ser aplicables a diversas clases.</li>
+  </ul>
+  <div class="tip">
+    <p>Aunque los Traits son muy útiles, úsalos con prudencia. Un uso excesivo puede llevar a clases que son una "bolsa de métodos" sin una cohesión clara. A menudo, una buena jerarquía de clases o el uso de interfaces y composición de objetos pueden ser alternativas más limpias.</p>
+    <p>Los Traits pueden definir propiedades abstractas, métodos abstractos, propiedades estáticas, métodos estáticos y constantes (desde PHP 8.2 para constantes en Traits).</p>
+  </div>
+</div>
+
+</body>
+</html>
