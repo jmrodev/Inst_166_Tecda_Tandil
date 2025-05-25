@@ -109,35 +109,68 @@
 <h2 class="section-title">🏛️ Sección 1: Clases y Objetos - Los Pilares de la POO</h2>
 
 <div class="concept-box">
+  <span class="concept-title">¿Qué es la Programación Orientada a Objetos (POO)?</span>
+  <p>La Programación Orientada a Objetos (POO o OOP por sus siglas en inglés, Object-Oriented Programming) es un paradigma de programación, es decir, una forma de pensar y estructurar nuestro código. En lugar de basarnos principalmente en funciones y procedimientos, la POO se centra en los <strong>objetos</strong>.</p>
+  <p>Piensa en el mundo real: está lleno de objetos (coches, personas, casas, animales). Cada objeto tiene <strong>características</strong> (color, marca, edad) y puede realizar <strong>acciones</strong> (arrancar, hablar, abrirse, comer).</p>
+  <p>La POO intenta modelar esta realidad en el código. Los beneficios principales son:</p>
+  <ul>
+    <li><strong>Reutilización de código:</strong> Puedes crear "moldes" (clases) y usarlos para crear muchos objetos.</li>
+    <li><strong>Organización:</strong> El código se vuelve más estructurado y fácil de entender.</li>
+    <li><strong>Mantenibilidad:</strong> Modificar o extender el código es más sencillo sin afectar otras partes del sistema.</li>
+    <li><strong>Abstracción:</strong> Permite representar conceptos complejos de forma simplificada.</li>
+  </ul>
+</div>
+
+<div class="concept-box">
   <span class="concept-title">Clases: Los Moldes o Planos</span>
   <p>Una <strong>clase</strong> es como un plano o un molde para crear objetos. Define las características (llamadas <strong>propiedades</strong> o atributos) y los comportamientos (llamados <strong>métodos</strong> o funciones) que tendrán los objetos creados a partir de ella.</p>
   <p>Por ejemplo, podríamos tener una clase <code>Coche</code>. Esta clase definiría que todos los coches tendrán una marca, un modelo, un color (propiedades) y podrán arrancar, acelerar, frenar (métodos).</p>
   <p>En PHP, una clase se define con la palabra clave <strong class="keyword">class</strong>, seguida del nombre de la clase (generalmente en CamelCase, empezando con mayúscula) y llaves <code>{}</code> que encierran su contenido.</p>
   <div class="example-box">
 <pre><code><?php
-// Definición de una clase llamada Coche
-class Coche {
-    // Aquí irán las propiedades y métodos (lo veremos pronto)
+// Definición de una clase simple llamada 'Libro'
+class Libro {
+    // Por ahora, nuestra clase no tiene propiedades ni métodos definidos dentro,
+    // pero es una clase válida.
+    // Más adelante añadiremos características (propiedades) y acciones (métodos).
 }
 
-// Definición de otra clase
-class Persona {
-    // Contenido de la clase Persona
-}
+// Para usar esta clase, necesitamos crear un 'objeto' o 'instancia' de ella.
+// Esto se hace con la palabra clave 'new'.
+
+$miPrimerLibro = new Libro(); // $miPrimerLibro ahora es un objeto de la clase Libro.
+$otroLibro = new Libro();   // $otroLibro es OTRO objeto diferente, también de la clase Libro.
+
+// Podemos verificar qué tipo de dato son estas variables:
+echo "Tipo de \$miPrimerLibro: " . gettype($miPrimerLibro) . "<br>"; // Salida: Tipo de $miPrimerLibro: object
+echo "Clase de \$miPrimerLibro: " . get_class($miPrimerLibro) . "<br>"; // Salida: Clase de $miPrimerLibro: Libro
+
+// var_dump() nos da más detalles sobre el objeto
+var_dump($miPrimerLibro);
+// Salida típica:
+// object(Libro)#1 (0) {
+// }
+// El #1 es un identificador interno del objeto y puede variar.
+// "(0) { }" indica que no tiene propiedades (atributos) definidas todavía.
+
+var_dump($otroLibro);
+// Salida típica:
+// object(Libro)#2 (0) {
+// }
 ?></code></pre>
   </div>
 </div>
 
 <div class="concept-box">
   <span class="concept-title">Objetos: Las Instancias de una Clase</span>
-  <p>Un <strong>objeto</strong> es una instancia concreta de una clase. Si la clase <code>Coche</code> es el plano, un objeto podría ser "mi Toyota Corolla rojo" o "tu Ford Mustang azul". Cada uno es un coche (instancia de la clase <code>Coche</code>), pero con sus características particulares.</p>
-  <p>Para crear un objeto (proceso llamado <strong>instanciación</strong>), usamos la palabra clave <strong class="keyword">new</strong> seguida del nombre de la clase y paréntesis <code>()</code>.</p>
+  <p>Un <strong>objeto</strong> es una instancia concreta de una clase. Si la clase <code>Libro</code> es el plano general de lo que es un libro, un objeto podría ser "El Señor de los Anillos" y otro objeto "Cien Años de Soledad". Cada uno es un libro (instancia de la clase <code>Libro</code>), pero son entidades distintas.</p>
+  <p>Como vimos en el ejemplo anterior, para crear un objeto (proceso llamado <strong>instanciación</strong>), usamos la palabra clave <strong class="keyword">new</strong> seguida del nombre de la clase y paréntesis <code>()</code>.</p>
+  <p>Vamos a usar nuestro ejemplo recurrente, la clase <code>Coche</code>:</p>
   <div class="example-box">
 <pre><code><?php
-// Requerimos definir la clase Coche primero si está en otro archivo,
-// o simplemente definirla antes de usarla en el mismo archivo.
+// Definimos la clase Coche
 class Coche {
-    // ... por ahora vacía ...
+    // (Aún vacía, pero ya es un molde)
 }
 
 // Creamos un objeto (instancia) de la clase Coche
@@ -147,20 +180,22 @@ $cocheDeAna = new Coche();
 // Ahora $miPrimerCoche y $cocheDeAna son dos objetos distintos,
 // ambos del tipo "Coche".
 
-// Podemos ver qué tipo de dato son con var_dump()
+echo "Un objeto Coche: <br>";
 var_dump($miPrimerCoche); 
-// Salida: object(Coche)#1 (0) { }
+// Salida: object(Coche)#N (0) { } (donde N es un número)
 
+echo "<br>Otro objeto Coche diferente: <br>";
 var_dump($cocheDeAna);
-// Salida: object(Coche)#2 (0) { } 
-// (El #numero puede variar, indica el identificador interno del objeto)
+// Salida: object(Coche)#M (0) { } (donde M es un número diferente a N)
+
+// Aunque ambos objetos son de la clase 'Coche' y actualmente no tienen
+// características distintivas (propiedades), son instancias separadas en memoria.
 ?></code></pre>
   </div>
   <div class="tip">
     <p><strong>¡Importante!</strong> Una clase es la definición, el molde. Un objeto es la cosa real creada a partir de ese molde. Puedes tener una sola clase <code>Coche</code> y crear cientos de objetos <code>Coche</code> diferentes.</p>
   </div>
 </div>
-
 <h2 class="section-title">🔩 Sección 2: Propiedades (Atributos)</h2>
 <div class="concept-box">
   <span class="concept-title">Definiendo las Características</span>
