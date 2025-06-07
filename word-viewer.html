@@ -1,0 +1,168 @@
+// Archivo: word-viewer.html (agrega este archivo a tu proyecto)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de Documentos Word | Instituto 166</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .doc-viewer {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 40px;
+      min-height: 400px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .loading {
+      text-align: center;
+      padding: 50px 0;
+      font-style: italic;
+      color: #666;
+    }
+    .error {
+      color: red;
+      border: 1px solid red;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #ffeeee;
+    }
+    .controls {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 8px 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .file-info {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Visor de Documentos Word</h1>
+      <div>
+        <button id="back-btn" onclick="window.history.back()">⬅ Volver</button>
+        <button onclick="window.location.href='index.html'">🏠 Inicio</button>
+      </div>
+    </div>
+    
+    <div class="file-info" id="file-info"></div>
+    
+    <div class="controls">
+      <button id="download-btn">📥 Descargar Original</button>
+    </div>
+    
+    <div class="doc-viewer" id="doc-content">
+      <div class="loading">Cargando documento...</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Obtener el parámetro del archivo de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const filePath = urlParams.get('file');
+      
+      if (!filePath) {
+        showError('No se especificó un archivo para visualizar');
+        return;
+      }
+      
+      // Mostrar información del archivo
+      const fileInfo = document.getElementById('file-info');
+      const fileName = filePath.split('/').pop();
+      fileInfo.textContent = `📄 ${fileName}`;
+      
+      // Configurar el botón de descarga
+      const downloadBtn = document.getElementById('download-btn');
+      downloadBtn.addEventListener('click', function() {
+        window.location.href = filePath;
+      });
+      
+      // Cargar el documento
+      loadDocument(filePath);
+    });
+    
+    function loadDocument(filePath) {
+      const docContainer = document.getElementById('doc-content');
+      const fileExtension = filePath.split('.').pop().toLowerCase();
+      
+      if (fileExtension === 'docx') {
+        // Usar Mammoth.js para convertir DOCX a HTML
+        fetch(filePath)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('No se pudo cargar el documento');
+            }
+            return response.arrayBuffer();
+          })
+          .then(arrayBuffer => {
+            return mammoth.convertToHtml({arrayBuffer: arrayBuffer});
+          })
+          .then(result => {
+            docContainer.innerHTML = result.value;
+            
+            // Mostrar advertencias si las hay
+            if (result.messages.length > 0) {
+              console.warn('Advertencias al convertir el documento:', result.messages);
+            }
+          })
+          .catch(error => {
+            showError('Error al cargar el documento: ' + error.message);
+          });
+      } else if (fileExtension === 'doc') {
+        // Para archivos .doc (formato antiguo), mostrar un mensaje indicando que no se puede visualizar
+        docContainer.innerHTML = `
+          <div class="error">
+            <p>Lo sentimos, los archivos con formato .doc (Word 97-2003) no se pueden previsualizar en el navegador.</p>
+            <p>Por favor, descarga el archivo usando el botón "Descargar Original" para abrirlo en Microsoft Word u otro programa compatible.</p>
+          </div>
+        `;
+      } else {
+        showError('Formato de archivo no soportado');
+      }
+    }
+    
+    function showError(message) {
+      const docContainer = document.getElementById('doc-content');
+      docContainer.innerHTML = `<div class="error">${message}</div>`;
+    }
+  </script>
+</body>
+</html>
