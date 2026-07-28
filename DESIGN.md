@@ -1,37 +1,37 @@
 ---
 name: Instituto 166 Wiki
-description: El Cuaderno de Cátedra - Wiki de Apuntes y Horarios
+description: El Cuaderno de Cátedra - Wiki de Apuntes y Horarios (Dark Cyber-Academic)
 colors:
-  primary: "#3498db"
-  primary-dark: "#2980b9"
-  secondary: "#4fc3f7"
-  accent: "#e74c3c"
-  success: "#2ecc71"
-  warning: "#f39c12"
-  info: "#17a2b8"
-  light: "#f8f9fa"
-  dark: "#343a40"
-  text: "#333333"
-  text-light: "#6c757d"
-  border: "#dee2e6"
-  border-light: "#e9ecef"
-  code-bg: "#282c34"
-  code-text: "#abb2bf"
+  primary: "#6366f1"
+  primary-dark: "#4f46e5"
+  secondary: "#06b6d4"
+  accent: "#f43f5e"
+  success: "#10b981"
+  warning: "#f59e0b"
+  info: "#0ea5e9"
+  light: "#090d16"
+  dark: "#050811"
+  text: "#f8fafc"
+  text-light: "#94a3b8"
+  border: "rgba(255, 255, 255, 0.06)"
+  border-light: "rgba(255, 255, 255, 0.12)"
+  code-bg: "#050811"
+  code-text: "#38bdf8"
 typography:
   body:
-    fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+    fontFamily: "Plus Jakarta Sans, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.6
   display:
-    fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
-    fontSize: "1.6rem"
-    fontWeight: 600
+    fontFamily: "Plus Jakarta Sans, sans-serif"
+    fontSize: "1.35rem"
+    fontWeight: 700
 rounded:
-  sm: "3px"
-  md: "4px"
-  lg: "5px"
-  xl: "8px"
+  sm: "4px"
+  md: "8px"
+  lg: "10px"
+  xl: "12px"
 spacing:
   sm: "0.5rem"
   md: "1rem"
@@ -42,13 +42,13 @@ components:
     backgroundColor: "{colors.primary}"
     textColor: "#ffffff"
     rounded: "{rounded.lg}"
-    padding: "0.6em 1.2em"
+    padding: "0.65em 1.4em"
   button-primary-hover:
     backgroundColor: "{colors.primary-dark}"
   card:
-    backgroundColor: "#ffffff"
+    backgroundColor: "{colors.surface}"
     rounded: "{rounded.xl}"
-    padding: "1.5rem"
+    padding: "2rem"
 ---
 
 # Design System: Instituto 166 Wiki
