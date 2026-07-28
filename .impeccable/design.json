@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-28T19:28:40-03:00",
+  "title": "Design System: Instituto 166 Wiki",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Azul Universitario", "canonical": "#3498db" },
+      "primary-dark": { "role": "primary", "displayName": "Azul Tinta", "canonical": "#2980b9" },
+      "light": { "role": "neutral", "displayName": "Gris Papel", "canonical": "#f8f9fa" },
+      "dark": { "role": "neutral", "displayName": "Grafito", "canonical": "#343a40" }
+    },
+    "typographyMeta": {
+      "body": { "displayName": "Cuerpo Principal", "purpose": "Texto general, apuntes y descripciones." },
+      "display": { "displayName": "Título del Sitio", "purpose": "Identificador principal en el encabezado." }
+    },
+    "shadows": [
+      { "name": "ambient", "value": "0 4px 12px rgba(0, 0, 0, 0.08)", "purpose": "Separación base de tarjetas sobre el fondo." },
+      { "name": "active", "value": "0 6px 16px rgba(0, 0, 0, 0.12)", "purpose": "Estado de hover en tarjetas interactivas." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)", "purpose": "Efectos de hover y transiciones de estado." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Botón de acción principal usado en los visores y pie de página.",
+      "html": "<button class=\"ds-btn-primary\">Acción Principal</button>",
+      "css": ".ds-btn-primary { display: inline-block; border: 1px solid transparent; padding: 0.6em 1.2em; font-family: 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 500; text-align: center; text-decoration: none; cursor: pointer; border-radius: 5px; background-color: #3498db; color: white; transition: all 0.15s ease-in-out; } .ds-btn-primary:hover { background-color: #2980b9; }"
+    },
+    {
+      "name": "Tech Box Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Tarjeta principal para directorios, asignaturas o unidades.",
+      "html": "<div class=\"ds-tech-box\"><h3 class=\"ds-tech-title\">Sistemas y Organizaciones</h3><p>Apuntes sobre flujos de información, organigramas y teoría general de sistemas.</p></div>",
+      "css": ".ds-tech-box { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); border: 1px solid #dee2e6; border-top: 5px solid #3498db; font-family: 'Segoe UI', sans-serif; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); } .ds-tech-box:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); transform: translateY(-2px); } .ds-tech-title { font-size: 1.3em; font-weight: 600; color: #2980b9; margin: 0 0 1rem 0; }"
+    },
+    {
+      "name": "Note Box",
+      "kind": "custom",
+      "description": "Caja destacada para aclaraciones didácticas o tips.",
+      "html": "<div class=\"ds-note\"><p><strong>Nota:</strong> Los archivos PDF se renderizan directamente utilizando PDF.js para evitar descargas innecesarias.</p></div>",
+      "css": ".ds-note { background-color: #eef7ff; padding: 1rem 1.5rem; border-left: 4px solid #3498db; margin: 1.5rem 0; border-radius: 4px; color: #032b4d; font-family: 'Segoe UI', sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Cuaderno de Cátedra",
+    "overview": "Este sistema de diseño emula la experiencia táctil y organizada de un cuaderno físico de apuntes universitarios. Prioriza la lectura prolongada, el orden jerárquico y la rápida localización de información técnica por sobre los adornos excesivos.",
+    "keyCharacteristics": [
+      "Claridad de Lectura: Fondos limpios y tipografía optimizada.",
+      "Resaltado Didáctico: Uso de bordes gruesos coloreados en notas informativas.",
+      "Navegación Fluida: Jerarquía visual nítida basada en migas de pan."
+    ],
+    "rules": [
+      { "name": "The Ink & Paper Rule", "body": "El fondo principal debe ser siempre Gris Papel (#f8f9fa) o blanco. Nunca usar colores saturados como fondo de páginas.", "section": "colors" },
+      { "name": "The Reading Limit Rule", "body": "Las columnas de texto principal nunca deben superar un ancho máximo de 1100px para evitar líneas de lectura largas.", "section": "layout" }
+    ],
+    "dos": [
+      "Do usar siempre la tipografía monoespaciada para comandos de terminal y bloques de código.",
+      "Do mantener el borde izquierdo coloreado de 4px en las notas informativas."
+    ],
+    "donts": [
+      "Don't usar sombras duras o colores oscuros como fondos de tarjetas de texto.",
+      "Don't anidar más de tres niveles de breadcrumbs."
+    ]
+  }
+}

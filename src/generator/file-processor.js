@@ -5,25 +5,20 @@ const { isExcluded } = require('./file-utils');
 const { generateHTML } = require('./html-generator');
 
 function validateConfig(config) {
-  try {
-    logProgress("Validando configuración...");
-    if (!fs.existsSync(config.sourceRoot)) {
-      throw new Error(`El directorio raíz ${config.sourceRoot} no existe.`);
-    }
-    logDebug(`Directorio fuente encontrado: ${config.sourceRoot}`);
-
-    if (!fs.existsSync(config.outputRoot)) {
-      logProgress(`Creando directorio de salida: ${config.outputRoot}`);
-      fs.mkdirSync(config.outputRoot, { recursive: true });
-    } else {
-      logDebug(`Directorio de salida ya existe: ${config.outputRoot}`);
-    }
-
-    logProgress("Configuración validada correctamente.");
-  } catch (error) {
-    console.error(`❌ Error en la configuración: ${error.message}`);
-    process.exit(1);
+  logProgress("Validando configuración...");
+  if (!fs.existsSync(config.sourceRoot)) {
+    throw new Error(`El directorio raíz ${config.sourceRoot} no existe.`);
   }
+  logDebug(`Directorio fuente encontrado: ${config.sourceRoot}`);
+
+  if (!fs.existsSync(config.outputRoot)) {
+    logProgress(`Creando directorio de salida: ${config.outputRoot}`);
+    fs.mkdirSync(config.outputRoot, { recursive: true });
+  } else {
+    logDebug(`Directorio de salida ya existe: ${config.outputRoot}`);
+  }
+
+  logProgress("Configuración validada correctamente.");
 }
 
 function processDirectory(srcPath, destPath, relativePath = "") {
@@ -76,6 +71,7 @@ function processDirectory(srcPath, destPath, relativePath = "") {
     if (CONFIG.debug) {
       console.error(error.stack);
     }
+    throw error;
   }
 }
 

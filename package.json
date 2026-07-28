@@ -4,13 +4,11 @@
 	"private": true,
 	"scripts": {
 		"build": "node src/generator/main.js",
-		"dev": "node src/generator/main.js && serve docs"
-	},
-	"dependencies": {
-		"path": "^0.12.7",
-		"fs": "0.0.1-security"
+		"dev": "node src/generator/main.js && serve -l 5000 docs",
+		"test": "vitest run"
 	},
 	"devDependencies": {
-		"serve": "^14.2.1"
+		"serve": "^14.2.1",
+		"vitest": "^4.1.10"
 	}
 }

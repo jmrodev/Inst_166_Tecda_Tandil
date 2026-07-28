@@ -4,15 +4,15 @@ on:
   push:
     paths:
       - 'documents/**'
-      - 'generate-pages.js'
-      - 'pdf-viewer.html'
-      - 'css/**'
+      - 'src/generator/**'
+      - 'src/assets/**'
+      - 'src/templates/**'
   pull_request:
     paths:
       - 'documents/**'
-      - 'generate-pages.js'
-      - 'pdf-viewer.html'
-      - 'css/**'
+      - 'src/generator/**'
+      - 'src/assets/**'
+      - 'src/templates/**'
 
 permissions:
   contents: write
@@ -43,6 +43,9 @@ jobs:
 
       - name: Generate site
         run: pnpm run build
+
+      - name: Run tests
+        run: pnpm test
 
       - name: Commit and push if changed
         run: |

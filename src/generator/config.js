@@ -25,9 +25,11 @@ const CONFIG = {
     "scripts/pdf-viewer.js": path.join(__dirname, "../assets/js/pdf-viewer.js"),
     "scripts/word-viewer.js": path.join(__dirname, "../assets/js/word-viewer.js"),
     "scripts/powerpoint-viewer.js": path.join(__dirname, "../assets/js/powerpoint-viewer.js"),
+    "scripts/ppt-viewer.js": path.join(__dirname, "../assets/js/ppt-viewer.js"),
     "pdf-viewer.html": path.join(__dirname, "../templates/pdf-viewer.html"),
     "word-viewer.html": path.join(__dirname, "../templates/word-viewer.html"),
     "powerpoint-viewer.html": path.join(__dirname, "../templates/powerpoint-viewer.html"),
+    "ppt-viewer.html": path.join(__dirname, "../templates/ppt-viewer.html"),
   },
 };
 

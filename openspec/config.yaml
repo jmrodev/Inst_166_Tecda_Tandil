@@ -1,0 +1,38 @@
+context: |
+  Static site generator for Instituto 166 educational materials.
+  Node.js batch processor: reads documents/ source tree, generates
+  HTML navigation pages with file-type aware viewers (PDF/Word/PPT),
+  copies static assets to docs/ output directory.
+
+stack:
+  runtime: node
+  node_version: "18"      # CI pinned
+  package_manager: pnpm 8
+  framework: none          # vanilla Node.js, no framework
+  language: javascript     # CommonJS modules
+
+testing:
+  runner: null
+  layers:
+    unit: false
+    integration: false
+    e2e: false
+  coverage: false
+  quality:
+    linter: false
+    type_checker: false
+    formatter: false
+  strict_tdd: false
+
+persistence:
+  mode: hybrid             # engram + openspec files
+
+phases:
+  explore: true
+  propose: true
+  spec: true
+  design: true
+  tasks: true
+  apply: true
+  verify: true
+  archive: true

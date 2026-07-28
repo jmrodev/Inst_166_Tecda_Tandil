@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPT Viewer | Instituto 166</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/viewer-common.css">
+  <link rel="stylesheet" href="css/pdf-viewer.css">
+  <style>
+    #ppt-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+    }
+    #ppt-viewer {
+      border: 1px solid #dee2e6;
+      margin-bottom: 15px;
+      flex: 1;
+      overflow: auto;
+      position: relative;
+      background: #e9ecef;
+      border-radius: 5px;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ppt-slide {
+      display: none;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+    }
+    .ppt-slide:first-child {
+      display: block;
+    }
+    .ppt-slide svg {
+      max-width: 100%;
+      height: auto;
+    }
+    #ppt-container.fullscreen {
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0;
+      padding: 10px;
+      height: 100vh;
+      width: 100vw;
+      box-sizing: border-box;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    #ppt-container.fullscreen #ppt-viewer {
+      max-height: calc(100vh - 80px);
+      border-radius: 0;
+      border: none;
+    }
+    #ppt-container.fullscreen .controls {
+      padding: 8px 5px;
+      border-top: 1px solid #dee2e6;
+      background-color: rgba(248, 249, 250, 0.95);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      gap: 10px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxjs/2.2.0/pptx.min.js"></script>
+</head>
+<body>
+  <div id="ppt-container">
+    <div id="ppt-breadcrumb" class="file-info"></div>
+    <div id="ppt-viewer">
+      <div id="ppt-slide-container"></div>
+      <div id="ppt-loading" class="loading">Loading presentation...</div>
+      <div id="ppt-error" class="error" style="display: none;"></div>
+    </div>
+    <div class="controls">
+      <div class="control-group page-nav">
+        <button id="prev" title="Previous slide">&#x2B05; Previous</button>
+        <span class="page-indicator">
+          Slide <span id="slide-num">1</span> of <span id="slide-count">0</span>
+        </span>
+        <button id="next" title="Next slide">Next &#x27A1;</button>
+      </div>
+      <div class="control-group view-actions">
+        <button id="fullscreen" title="Full screen">&#x2197;&#xFE0F; Full Screen</button>
+        <a href="#" id="download-btn" class="action-button" style="display: none; text-decoration: none; margin-left: 10px;">&#x1F4E5; Download</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/ppt-viewer.js"></script>
+</body>
+</html>

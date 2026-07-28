@@ -6,10 +6,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   logDebug(`- Directorios: ${items.dirs.length}`);
   logDebug(`- Archivos: ${items.files.length}`);
 
-  const dirs = items.dirs || []; // Aseguramos que dirs siempre sea un array
-  const files = items.files || []; // Aseguramos que files siempre sea un array
-  const rootPath =
-    currentPath.split("/").filter(Boolean).fill("..").join("/") || ".";
+  const dirs = items.dirs || [];
+  const files = items.files || [];
+  const pathParts = (currentPath || "").split("/").filter(Boolean);
+  const rootPath = pathParts.length > 0 ? pathParts.map(() => "..").join("/") : ".";
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -25,16 +25,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
     <h1>${title}</h1>
     <nav class="breadcrumb">
       <a href="${rootPath}/index.html">Inicio</a> /
-      ${currentPath
-      .split("/")
-      .filter(Boolean)
-      .map((dir, i, arr) => {
+      ${pathParts.map((dir, i, arr) => {
         const path = arr.slice(0, i + 1).join("/");
-        return `<a href="${rootPath}/${path}/index.html">${formatName(
-          dir
-        )}</a>`;
-      })
-      .join(" / ")}
+        return `<a href="${rootPath}/${path}/index.html">${formatName(dir)}</a>`;
+      }).join(" / ")}
     </nav>
   </header>
 
@@ -54,7 +48,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
         ${dirs
         .map(
           (dir) => `
-          <a href="${dir.name}/index.html" class="tech-box-link">
+          <a href="${rootPath}/${dir.path}/index.html" class="tech-box-link">
             <div class="tech-box" style="border-top-color: #3498db;">
               <div class="tech-title">${formatName(dir.name)}</div>
               <div class="tech-image">📁</div>
@@ -95,7 +89,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
               currentPath + "/" + file.name
             )}`;
           } else if (isPowerPoint) {
-            fileLink = `${rootPath}/powerpoint-viewer.html?file=${encodeURIComponent(
+            fileLink = `${rootPath}/ppt-viewer.html?file=${encodeURIComponent(
               currentPath + "/" + file.name
             )}`;
           } else if (useModal) {
@@ -157,7 +151,7 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
 
     ${files.length === 0 && dirs.length === 0
       ? `
-      <div class="note" style="background-color: #e8f4f8; border-left-color: #3498db;">
+      <div class="note note-empty">
         <p>No hay contenido disponible en este directorio.</p>
       </div>
       `
@@ -166,10 +160,10 @@ function generateHTML(title, items = { dirs: [], files: [] }, currentPath) {
   </main>
 
   <!-- Modal para visualización de archivos -->
-  <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;"></div>
-  <div id="file-viewer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; width: 80%; max-height: 80%; overflow-y: auto; z-index: 1001; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-    <button onclick="closeViewer()" style="position: absolute; top: 10px; right: 10px; cursor: pointer; background: none; border: none; font-size: 18px;">✖</button>
-    <pre id="file-content" style="white-space: pre-wrap; overflow-x: auto; background-color: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #ddd;"></pre>
+  <div id="overlay" class="modal-overlay" style="display: none;"></div>
+  <div id="file-viewer" class="file-viewer-modal" style="display: none;">
+    <button onclick="closeViewer()" class="file-viewer-close">✖</button>
+    <pre id="file-content" class="file-content"></pre>
   </div>
 
   <footer>

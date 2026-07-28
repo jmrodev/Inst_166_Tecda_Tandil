@@ -54,8 +54,7 @@ function loadDocument(filePath) {
     // Para archivos .doc (formato antiguo), mostrar un mensaje indicando que no se puede visualizar
     docContainer.innerHTML = `
       <div class="error">
-        <p>Lo sentimos, los archivos con formato .doc (Word 97-2003) no se pueden previsualizar en el navegador.</p>
-        <p>Por favor, descarga el archivo usando el botón "Descargar Original" para abrirlo en Microsoft Word u otro programa compatible.</p>
+        <p>This file format (.doc) is not supported by the browser viewer. Please download the file to view it.</p>
       </div>
     `;
   } else {

@@ -1,28 +1,28 @@
-/* --- VARIABLES GLOBALES (Mantenidas) --- */
+/* --- SISTEMA DE DISEÑO: EL CUADERNO DE CÁTEDRA (DARK EDITORIAL) --- */
 :root {
-  --primary: #3498db;
-  --primary-dark: #2980b9;
-  --secondary: #4fc3f7;
-  --accent: #e74c3c;
-  --success: #2ecc71;
-  --warning: #f39c12;
-  --info: #17a2b8; /* Nuevo color para concept-box */
-  --light: #f8f9fa;
-  --dark: #343a40;
-  --text: #333333;
-  --text-light: #6c757d;
-  --border: #dee2e6;
-  --border-light: #e9ecef;
-  --code-bg: #282c34; /* Fondo oscuro para código */
-  --code-text: #abb2bf; /* Texto claro para código */
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --primary: #6366f1;         /* Indigo brillante */
+  --primary-dark: #4f46e5;    /* Indigo profundo */
+  --secondary: #06b6d4;       /* Cyan vibrante */
+  --accent: #f43f5e;          /* Rosa/Coral de acento */
+  --success: #10b981;         /* Esmeralda */
+  --warning: #f59e0b;         /* Ámbar */
+  --info: #0ea5e9;            /* Sky */
+  --light: #0f172a;           /* Fondo general (Slate 900) */
+  --surface: #1e293b;         /* Fondo de tarjetas (Slate 800) */
+  --surface-hover: #26354a;   /* Tarjetas en hover */
+  --text: #f1f5f9;            /* Texto principal (Slate 100) */
+  --text-light: #94a3b8;      /* Subtexto (Slate 400) */
+  --border: #334155;          /* Borde sutil (Slate 700) */
+  --border-light: #475569;    /* Borde destacado (Slate 600) */
+  --code-bg: #020617;         /* Consola oscura (Slate 950) */
+  --code-text: #38bdf8;       /* Texto de código (Cyan 400) */
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 10px 30px rgba(99, 102, 241, 0.15); /* Brillo sutil de acento */
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --header-height: 70px;
-  --footer-height: 50px; /* Altura del footer fijo si se usa */
 }
 
-/* --- RESET BÁSICO Y CONFIGURACIÓN GLOBAL (Mantenidos) --- */
+/* --- RESET Y BASE --- */
 *,
 *::before,
 *::after {
@@ -33,38 +33,10 @@ html {
   scroll-behavior: smooth;
 }
 
-body,
-html {
+body {
   margin: 0;
   padding: 0;
-  /* Quitar height: 100% si no se necesita footer pegado al fondo siempre */
-}
-
-button, .action-button, .calendar-button { /* Add other common button classes if any */
-  display: inline-block;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em; /* Adjust for comfortable size */
-  margin: 0.3em; /* Add some margin for spacing */
-  font-size: 0.95rem; /* Ensure readable text */
-  font-weight: 500;
-  line-height: 1.4;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border-radius: 5px; /* Softer edges */
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  /* Remove default browser styling if needed */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
@@ -72,17 +44,75 @@ body {
   background-color: var(--light);
   display: flex;
   flex-direction: column;
-  padding-top: var(--header-height); /* Espacio para header fijo */
-  /* Quitar padding-bottom si el footer del manual no es fijo */
-   min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura */
+  padding-top: var(--header-height);
+  min-height: 100vh;
 }
 
-/* --- HEADER Y NAVEGACIÓN (Mantenidos, con ajuste para iconos) --- */
-header {
-  background: var(--primary-dark);
+/* --- BOTONES PREMIUM --- */
+button, .action-button, .calendar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  padding: 0.65em 1.3em;
+  margin: 0.3em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+  background-color: var(--surface);
+  color: var(--text);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button:hover, .action-button:hover, .calendar-button:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--primary);
   color: white;
-  padding: 0 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.action-button {
+  background-color: var(--primary);
+  border-color: var(--primary-dark);
+  color: white;
+}
+
+.action-button:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary);
+}
+
+.calendar-button {
+  background-color: var(--surface);
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.calendar-button:hover {
+  background-color: rgba(6, 182, 212, 0.1);
+  border-color: var(--secondary);
+  color: white;
+}
+
+/* --- FIXED GLASS HEADER --- */
+header {
+  background: rgba(15, 23, 42, 0.85); /* Slate 900 translúcido */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  padding: 0 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   left: 0;
@@ -92,559 +122,419 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border);
 }
 
 header h1 {
-  font-size: 1.6rem; /* Un poco más pequeño para manual */
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   margin: 0;
   padding: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 50%;
+  max-width: 55%;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #ffffff, var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .breadcrumb {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin: 0;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
   align-items: center;
-  gap: 0;
-  max-width: 50%;
+  gap: 0.1rem;
+  max-width: 45%;
 }
 
 .breadcrumb a {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-light);
   text-decoration: none;
   transition: var(--transition);
   padding: 0.3rem 0.5rem;
   border-radius: 4px;
   white-space: nowrap;
-  /* Para alinear icono y texto */
   display: inline-flex;
   align-items: center;
-  gap: 0.4em; /* Espacio entre icono y texto */
 }
 
 .breadcrumb a:hover {
   color: white;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: var(--surface);
 }
 
 .breadcrumb a + a::before {
-  content: '/';
-  padding: 0 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
+  content: '→';
+  padding-right: 0.5rem;
+  color: var(--border-light);
   display: inline-block;
+  font-size: 0.75rem;
 }
 
-/* --- CONTENIDO PRINCIPAL (Mantenido) --- */
+/* --- CONTENIDO PRINCIPAL --- */
 main {
-  flex: 1; /* Ocupa el espacio restante */
+  flex: 1;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  background-color: var(--light); /* Fondo claro para el contenido */
+  padding: 2.5rem 1.5rem;
 }
 
 section {
-  margin-bottom: 3rem; /* Espacio entre secciones del manual */
+  margin-bottom: 3.5rem;
 }
 
 h2 {
-  font-size: 1.8rem; /* Títulos de sección más grandes */
-  color: var(--primary-dark);
+  font-size: 1.6rem;
+  color: white;
   border-bottom: 2px solid var(--primary);
   padding-bottom: 0.5rem;
   margin-top: 2.5rem;
   margin-bottom: 1.5rem;
-  /* Para alinear icono y texto si se usa en H2 */
   display: flex;
   align-items: center;
   gap: 0.5em;
+  font-weight: 700;
 }
+
 main > section:first-of-type > h2 {
    margin-top: 0;
 }
-/* Ocultar borde inferior si no hay contenido después */
-h2:last-child {
-    border-bottom: none;
-}
-
 
 h3 {
-  font-size: 1.4rem; /* Títulos H3 un poco más grandes */
-  color: var(--dark);
+  font-size: 1.25rem;
+  color: white;
   margin-top: 2rem;
   margin-bottom: 1rem;
-    /* Para alinear icono y texto si se usa en H3 */
   display: flex;
   align-items: center;
   gap: 0.5em;
+  font-weight: 600;
 }
 
-/* --- CONTENEDOR TECH (Mantenido) --- */
+/* --- TARJETAS DIRECTORIO (TECH GRID) --- */
 .tech-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajustar minmax si es necesario */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
-  margin-top: 1.5rem; /* Espacio después de H2/H3 */
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
-/* --- TECH BOX (Ajustado para contenido interno del manual) --- */
 .tech-box {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem; /* Más padding interno */
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.75rem;
   box-shadow: var(--shadow);
-  border: 1px solid var(--border-light);
-  border-top: 5px solid var(--primary);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--primary);
   display: flex;
   flex-direction: column;
-  min-height: auto; /* Altura automática según contenido */
-}
-.tech-box:hover {
-  box-shadow: var(--shadow-hover); /* Use existing variable if suitable, or define a new one */
-  transform: translateY(-2px); /* Optional: slight lift effect */
-}
-.tech-box-link { /* Ensure the link wrapper has no decoration if the box provides all visuals */
-    text-decoration: none;
-}
-.tech-box > *:last-child {
-    margin-bottom: 0; /* Quitar margen inferior del último elemento */
+  min-height: auto;
+  transition: var(--transition);
 }
 
+.tech-box:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-light);
+  transform: translateY(-4px);
+}
+
+.tech-box-link {
+  text-decoration: none;
+}
 
 .tech-title {
-  font-size: 1.3em; /* Título de tech-box más grande */
+  font-size: 1.2rem;
   font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-   /* Para alinear icono y texto */
+  color: white;
+  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
 
 .tech-image {
-  font-size: 2.5em; /* Icono un poco más pequeño */
-  margin: 0 auto 1rem auto; /* Centrado */
-  color: var(--primary);
+  font-size: 2.5rem;
+  margin: 0 auto 1.25rem auto;
+  color: var(--secondary);
   text-align: center;
+  transition: var(--transition);
 }
 
-/* --- ESTILOS ESPECÍFICOS PARA EL MANUAL (NUEVOS) --- */
+.tech-box:hover .tech-image {
+  transform: scale(1.1);
+}
 
-/* Caja de Notas Informativas (Ajustado) */
-.note {
-  background-color: #eef7ff; /* Azul muy claro */
-  padding: 1rem 1.5rem;
-  border-left: 4px solid var(--primary);
+.tech-box p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+/* --- BLOQUES DE INFORMACIÓN Y NOTAS (STICKY DESIGN) --- */
+.note, .concept-box, .why-learn, .exercise-box {
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
   margin: 1.5rem 0;
-  border-radius: 4px;
-  color: #032b4d; /* Texto oscuro azulado */
+  border-left: 4px solid var(--primary);
+  box-shadow: var(--shadow);
+  background-color: rgba(30, 41, 59, 0.5); /* Translúcido sutil */
+  border: 1px solid var(--border);
+  border-left-width: 4px;
 }
-.note p { margin: 0; }
-.note i { /* Estilo para iconos dentro de .note */
-  margin-right: 0.5em;
-  color: var(--primary);
-}
-.note code { /* Código dentro de una nota */
-  background-color: rgba(0,0,0, 0.05);
-  padding: 0.1em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
+
+.note {
+  border-left-color: var(--primary);
   color: var(--text);
 }
 
-
-/* Caja de Conceptos */
 .concept-box {
-  background-color: #f8f9fa; /* Fondo ligeramente gris */
-  border-left: 4px solid var(--info); /* Usar color info */
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 4px;
-  border: 1px solid var(--border-light);
-}
-.concept-box h3 {
-  margin-top: 0; /* Sin margen superior para H3 dentro de concept-box */
-  margin-bottom: 1rem;
-  font-size: 1.2rem; /* H3 más pequeño aquí */
-  color: var(--info); /* Color del título coincide con borde */
-}
-.concept-box p {
-  margin-bottom: 0.8rem;
-  color: var(--text-light);
-}
-.concept-box p:last-child {
-  margin-bottom: 0;
+  border-left-color: var(--info);
 }
 
-/* Caja "Por qué aprender" */
-.why-learn {
-  background-color: #fff9e6; /* Amarillo muy claro */
-  border-left: 4px solid var(--warning);
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0 0 0; /* Margen superior, sin margen inferior */
-  border-radius: 4px;
+.concept-box h3 {
+  margin-top: 0;
+  color: var(--info);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
 }
-.why-learn strong { /* El título "¿Por qué...?" */
-  color: #8a6d3b; /* Marrón/dorado oscuro */
-  font-weight: 600;
-  display: flex; /* Para alinear con icono */
+
+.why-learn {
+  border-left-color: var(--warning);
+}
+
+.why-learn strong {
+  color: var(--warning);
+  display: flex;
   align-items: center;
   gap: 0.5em;
   margin-bottom: 0.5rem;
 }
+
 .why-learn p {
   margin: 0;
-  font-size: 0.95em;
-  color: #6c582b;
+  color: var(--text);
 }
 
-
-/* Caja de Ejercicios */
 .exercise-box {
-  background-color: #e6f7ff; /* Azul claro */
-  border: 1px solid #91d5ff; /* Borde azul */
-  padding: 1.5rem;
-  margin-top: 1.5rem; /* Margen superior */
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-left-color: var(--success);
+  background-color: rgba(16, 185, 129, 0.05);
 }
-.exercise-box strong { /* El título "Tarea:" */
-  color: var(--primary-dark);
-  font-weight: 600;
+
+.exercise-box strong {
+  color: var(--success);
   display: flex;
   align-items: center;
   gap: 0.5em;
   margin-bottom: 1rem;
 }
+
 .exercise-box ol {
-  padding-left: 1.5rem; /* Indentación para lista ordenada */
+  padding-left: 1.25rem;
   margin: 0;
 }
+
 .exercise-box li {
-  margin-bottom: 0.7rem; /* Espacio entre ítems de la lista */
-  color: var(--text);
-}
-.exercise-box li:last-child {
-  margin-bottom: 0;
-}
-.exercise-box code { /* Código dentro de ejercicios */
-  background-color: rgba(0, 0, 0, 0.07);
-  padding: 0.1em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
-  color: var(--text);
-  word-break: break-all; /* Romper código largo si es necesario */
-}
-
-/* Listas UL dentro de tech-box (ej: Recursos de instalación, Extensiones) */
-.tech-box ul {
-  list-style: none; /* Quitar bullets por defecto */
-  padding-left: 0;
-  margin: 1rem 0 0 0;
-}
-.tech-box ul li {
-  padding: 0.5rem 0 0.5rem 1.5rem; /* Padding izquierdo para simular indentación */
   margin-bottom: 0.5rem;
-  position: relative;
-  border-left: 3px solid var(--secondary); /* Línea decorativa izquierda */
-  background-color: #f8f9fa; /* Fondo ligero para cada item */
-  border-radius: 0 4px 4px 0;
-}
-.tech-box ul li::before {
-  /* No usar ::before para bullet, ya usamos border-left */
-}
-.tech-box ul li i { /* Iconos en listas */
-  margin-right: 0.6em;
-  color: var(--primary);
-  width: 1.2em; /* Ancho fijo para alinear texto */
-  text-align: center;
-}
-.tech-box ul li a { /* Enlaces en listas */
-    color: var(--primary-dark);
-    text-decoration: none;
-    font-weight: 500;
-}
-.tech-box ul li a:hover {
-    text-decoration: underline;
 }
 
+/* --- TABLAS (COMPARISON TABLES) --- */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background-color: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
 
-/* --- ESTILOS PARA CÓDIGO Y TERMINAL (NUEVOS/MEJORADOS) --- */
+.comparison-table th, .comparison-table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
 
-/* Bloque de código genérico (el que tiene style en el HTML) */
-code[style*="background-color: #1e1e1e;"] {
+.comparison-table th {
+  background-color: rgba(2, 6, 23, 0.4);
+  font-weight: 700;
+  color: white;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tbody tr {
+  transition: var(--transition);
+}
+
+.comparison-table tbody tr:hover {
+  background-color: var(--surface-hover);
+}
+
+/* --- CÓDIGO Y TERMINALES (CYBER TECH) --- */
+code, pre, .terminal {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+code[style*="background-color: #1e1e1e;"], .terminal {
   display: block;
-  background-color: var(--code-bg) !important; /* Forzar el fondo */
+  background-color: var(--code-bg) !important;
   color: var(--code-text);
-  padding: 1rem 1.5rem !important; /* Forzar padding */
+  padding: 1.25rem 1.5rem !important;
   margin: 1.5rem 0;
-  border-radius: 5px;
-  font-family: Consolas, 'Courier New', Courier, monospace;
-  font-size: 0.9em;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  overflow-x: auto; /* Scroll horizontal si el código es muy ancho */
-  border: 1px solid #444;
-}
-/* Quitar el PRE dentro de este CODE si existe, ya que el CODE maneja el formato */
-code[style*="background-color: #1e1e1e;"] pre {
-    margin: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    white-space: inherit; /* Heredar white-space del code */
-}
-code[style*="background-color: #1e1e1e;"] code { /* Evitar anidamiento de code */
-    background: none;
-    padding: 0;
-    font-size: inherit;
-    color: inherit;
-    border-radius: 0;
-}
-
-
-/* Estilo específico para la clase .terminal */
-.terminal {
-  background-color: var(--code-bg);
-  color: #ccc; /* Color base más claro que el code-text */
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  border-radius: 5px;
-  font-family: Consolas, 'Courier New', Courier, monospace;
-  font-size: 0.9em;
-  line-height: 1.5;
-  border: 1px solid #444;
-  white-space: pre-wrap; /* Para respetar saltos de línea */
+  border-radius: 8px;
+  border: 1px solid var(--border) !important;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
   overflow-x: auto;
-}
-.terminal span {
-  display: block; /* Cada span en una nueva línea */
-  margin-bottom: 0.3em; /* Pequeño espacio entre líneas */
-}
-.terminal span:last-child {
-    margin-bottom: 0;
+  white-space: pre;
 }
 
-.terminal .comment {
-  color: #6a9955; /* Verde comentario */
-  font-style: italic;
+p code, li code, h3 code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--secondary);
+  font-size: 0.85em;
 }
 
 .terminal .prompt {
-  color: #569cd6; /* Azul para el prompt */
-  display: inline; /* El prompt no necesita ser bloque */
-  margin-right: 0.5em; /* Espacio después del prompt */
+  color: var(--primary);
+  font-weight: bold;
+  margin-right: 0.5rem;
 }
-/* Para el texto del comando después del prompt */
-.terminal code { /* Si hay `code` después de `span.prompt` */
-    color: #d4d4d4; /* Blanco/gris claro para comando */
-    background: none;
-    padding: 0;
+
+.terminal .comment {
+  color: var(--text-light);
+  font-style: italic;
 }
 
 .terminal .output {
-  color: #ce9178; /* Naranja/marrón para la salida */
-  white-space: pre-wrap; /* Respetar formato de salida */
+  color: var(--text);
 }
 
-/* Código inline normal (no bloques) */
-p code, li code, h3 code /* Código dentro de párrafos, listas, etc */ {
-  background-color: rgba(0,0,0, 0.07);
-  padding: 0.15em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
-  color: #c7254e; /* Rosa oscuro para código inline */
-  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+/* --- VISORES MODALES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
 }
 
+.file-viewer-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--surface);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 800px;
+  max-height: 85%;
+  overflow-y: auto;
+  z-index: 1001;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 1px solid var(--border-light);
+}
 
-/* --- FOOTER (Adaptado para el Manual) --- */
+.file-viewer-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
+
+.file-viewer-close:hover {
+  color: white;
+}
+
+.file-content {
+  background-color: var(--code-bg);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  overflow-x: auto;
+}
+
+/* --- FOOTER --- */
 footer {
   text-align: center;
-  margin-top: auto; /* Empuja el footer hacia abajo si el contenido es corto */
-  padding: 1.5rem 1rem;
-  background-color: var(--dark); /* Fondo oscuro */
-  color: rgba(255, 255, 255, 0.7); /* Texto claro */
-  font-size: 0.9em;
+  margin-top: auto;
+  padding: 2rem 1.5rem;
+  background-color: rgba(15, 23, 42, 0.95);
+  color: var(--text-light);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
 }
-/* Estilos específicos si mantienes el .footer-bar DENTRO del footer del manual */
+
 footer .footer-bar {
-  position: static; /* Anular el fixed */
-  background: none;
-  box-shadow: none;
-  padding: 1rem 0 0 0; /* Espacio superior */
   display: flex;
-  justify-content: center; /* Centrar botones */
-  gap: 1rem;
-}
-footer .footer-bar button {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  /* padding: 0.6rem 1rem; // Harmonized by general button style */
-  /* border-radius: 5px; // Harmonized by general button style */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  /* transition: var(--transition); // Harmonized by general button style */
-}
-footer .footer-bar button:hover, footer .footer-bar button:focus {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Optional subtle shadow */
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
 }
 
-/* Specific styles for .action-button */
-.action-button {
-  background-color: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-.action-button:hover, .action-button:focus {
-  background-color: var(--primary-dark);
-  border-color: var(--primary-dark);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Specific styles for .calendar-button */
-.calendar-button {
-  background-color: var(--secondary); /* Using secondary for distinction */
-  color: white; /* Assuming secondary is dark enough, otherwise adjust */
-  border-color: var(--secondary);
-}
-.calendar-button:hover, .calendar-button:focus {
-  background-color: #2aaadd; /* Slightly darker shade of secondary */
-  border-color: #2aaadd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Comparison Table Enhancements */
-.comparison-table {
-  width: 100%; /* Ensure table takes full width */
-  border-collapse: collapse; /* Cleaner borders */
-  margin-bottom: 1.5rem; /* Space below table */
-}
-.comparison-table th, .comparison-table td {
-  padding: 0.8rem 1rem; /* Increase padding for better spacing */
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-  border-left: 1px solid var(--border-light); /* Add subtle vertical lines */
-  border-right: 1px solid var(--border-light);
-}
-.comparison-table th:first-child, .comparison-table td:first-child {
-    border-left: none; /* Remove leftmost border for cleaner look */
-}
-.comparison-table th:last-child, .comparison-table td:last-child {
-    border-right: none; /* Remove rightmost border for cleaner look */
-}
-.comparison-table th {
-  background-color: var(--border-light); /* Light background for headers */
-  font-weight: 600;
-  color: var(--primary-dark);
-  border-top: 1px solid var(--border); /* Add top border to header */
-}
-.comparison-table tr:last-child td {
-    border-bottom: 1px solid var(--border); /* Ensure last row has a bottom border */
-}
-/* Optional: hover effect for rows - can be distracting
-.comparison-table tbody tr:hover {
-  background-color: #f0f8ff; 
-}
-*/
-
-
-/* --- AJUSTES RESPONSIVOS (Revisados) --- */
-@media (max-width: 992px) {
-  main {
-    max-width: 90%;
-  }
-  .tech-container {
-     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajustar minmax */
-  }
-}
-
+/* --- RESPONSIVO --- */
 @media (max-width: 768px) {
-  body {
-    font-size: 15px;
-    /* Ajustar padding si el header cambia de altura */
-     padding-top: 60px; /* Asumiendo header fijo más pequeño o sin fixed */
-  }
-
   header {
-    padding: 0 1rem;
-    height: auto; /* Altura dinámica */
-     min-height: 60px; /* Altura mínima */
-     position: fixed; /* Mantener fijo? O static? */
-    /* Si es static, quitar padding-top del body */
-
-    /* Apilar si es necesario */
-     flex-direction: column;
-     align-items: flex-start;
-     padding-top: 0.5rem;
-     padding-bottom: 0.5rem;
-
+    padding: 0 1.25rem;
+    flex-direction: column;
+    height: auto;
+    min-height: 80px;
+    justify-content: center;
+    gap: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  body {
+    padding-top: 80px;
   }
 
   header h1 {
-    font-size: 1.4rem;
-     max-width: 100%;
-     margin-bottom: 0.3rem;
+    font-size: 1.25rem;
+    max-width: 100%;
   }
 
   .breadcrumb {
     max-width: 100%;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     flex-wrap: wrap;
   }
 
   main {
-    padding: 1.5rem 0.8rem;
-    max-width: 100%;
+    padding: 1.5rem 1rem;
   }
-
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.25rem; }
 
   .tech-container {
-     grid-template-columns: 1fr; /* Una columna en móviles */
-     gap: 1.2rem;
+     grid-template-columns: 1fr;
+     gap: 1rem;
   }
-
+  
   .tech-box {
-    padding: 1.2rem;
+    padding: 1.5rem;
   }
-
-  code[style*="background-color: #1e1e1e;"],
-  .terminal {
-      padding: 0.8rem 1rem;
-      font-size: 0.85em;
-  }
-
-  /* Quitar footer fijo en móvil si interfiere mucho */
-  /*
-  footer .footer-bar {
-     position: static;
-  }
-  body {
-      padding-bottom: 0;
-  }
-  */
-}
-
-@media (max-width: 480px) {
-   header h1 {
-      font-size: 1.2rem;
-   }
-   .breadcrumb a {
-      padding: 0.2rem 0.4rem;
-      font-size: 0.75rem;
-   }
-   .breadcrumb a + a::before {
-       padding: 0 0.3rem;
-   }
 }
