@@ -480,7 +480,9 @@ p code, li code, h3 code {
   z-index: 1000;
 }
 
+#calendar-modal,
 .file-viewer-modal {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
